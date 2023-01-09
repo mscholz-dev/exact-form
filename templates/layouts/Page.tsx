@@ -11,6 +11,7 @@ interface Props {
   children: ReactNode;
   className?: string;
   description: string;
+  padding?: boolean;
 }
 
 const Page: FC<Props> = ({
@@ -18,6 +19,7 @@ const Page: FC<Props> = ({
   children,
   className,
   description,
+  padding,
 }) => {
   const headerRef = useRef<HTMLDivElement>(null);
 
@@ -45,7 +47,13 @@ const Page: FC<Props> = ({
           className ? ` ${className}` : ""
         }`}
       >
-        <main>{children}</main>
+        <main
+          className={`${
+            padding ? " main-padding" : ""
+          }`}
+        >
+          {children}
+        </main>
       </div>
     </>
   );

@@ -5,7 +5,9 @@
 @import "bases/variables", "bases/reset",
   "bases/html";
 
-@import "components/link", "components/btn";
+@import "components/link", "components/btn",
+  "components/form/form-input",
+  "components/form/form-page";
 
 @import "layouts/body", "layouts/footer",
   "layouts/header", "layouts/main",

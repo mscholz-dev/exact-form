@@ -1,0 +1,55 @@
+.form-page {
+  overflow: hidden;
+
+  &-main {
+    overflow-x: hidden;
+    width: 100vw;
+
+    @include responsive(t-xs) {
+      display: flex;
+      flex-direction: row-reverse;
+      overflow: visible;
+    }
+  }
+
+  &-form {
+    margin: 0 auto 24px;
+
+    @include responsive(t-xs) {
+      align-items: center;
+      display: flex;
+      margin-bottom: 0;
+      max-width: 792px;
+      padding: 0 48px;
+    }
+
+    &-text {
+      font-size: 14px;
+      margin-bottom: 32px;
+    }
+
+    &-large {
+      @include responsive(t-xs) {
+        max-width: 600px;
+        width: 100%;
+      }
+    }
+  }
+
+  &-aside {
+    display: flex;
+    min-height: 330px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+
+    @include responsive(t-xs) {
+      margin-top: -96px;
+      width: 50%;
+    }
+
+    @include responsive(d-xs) {
+      width: 40%;
+    }
+  }
+}
