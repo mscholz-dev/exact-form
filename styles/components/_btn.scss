@@ -1,0 +1,44 @@
+%btn {
+  align-items: center;
+  background: $primary-color;
+  background: linear-gradient(
+    90deg,
+    $white 50%,
+    $primary-color 50%
+  );
+  background-position: right;
+  background-size: 200% 100%;
+  border: 1px solid $primary-color;
+  border-radius: 2px;
+  color: $white;
+  display: flex;
+  height: 56px;
+  justify-content: center;
+  margin-top: 24px;
+  text-decoration: none;
+  transition: 0.25s all ease-in-out;
+  width: 100%;
+
+  &:hover {
+    background-position: left;
+    color: $primary-color;
+  }
+}
+
+.btn {
+  &-header {
+    @extend %btn;
+    height: 40px;
+    margin-top: 0;
+    min-height: 40px;
+    width: 96px;
+
+    &-container {
+      padding-top: 8px;
+
+      @include responsive(t-xs) {
+        padding-top: 0;
+      }
+    }
+  }
+}

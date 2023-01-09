@@ -1,0 +1,152 @@
+.header {
+  backdrop-filter: blur(10px) !important;
+  background-color: $light-opacity;
+  display: flex;
+  height: 56px;
+  left: 0;
+  padding: 0 24px;
+  position: fixed;
+  top: 0;
+  transition: 0.25s all ease-in-out;
+  width: calc(100vw - 48px);
+  z-index: 2;
+
+  &-container {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1400px;
+    width: 100%;
+
+    @include responsive(t-xs) {
+      justify-content: space-between;
+    }
+  }
+
+  &-brand {
+    align-items: center;
+    color: $black;
+    display: flex;
+    text-decoration: none;
+
+    &:hover {
+      color: $black;
+    }
+
+    &-wrapper {
+      align-items: center;
+      display: flex;
+      height: 56px;
+      justify-content: space-between;
+      width: 100%;
+
+      @include responsive(t-xs) {
+        min-width: 130px;
+        width: 130px;
+      }
+    }
+
+    &-logo {
+      align-items: center;
+      display: flex;
+      height: 32px;
+      justify-content: center;
+      margin-right: 8px;
+      width: 32px;
+    }
+
+    &-label {
+      font-family: $primary-font-bold;
+      font-size: 18px;
+    }
+  }
+
+  &-burger {
+    cursor: pointer;
+    height: 56px;
+    position: relative;
+    width: 56px;
+
+    @include responsive(t-xs) {
+      display: none;
+    }
+
+    span {
+      background: $black;
+      height: 3px;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      transition: 0.25s all ease-in-out;
+      width: 28px;
+    }
+
+    span:first-child {
+      top: 23px;
+    }
+
+    span:last-child {
+      top: 33px;
+    }
+  }
+
+  &-list {
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 56px;
+    transition: 0.25s all ease-in-out;
+
+    @include responsive(t-xs) {
+      height: 100%;
+      position: relative;
+      top: 0;
+      width: 100%;
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+
+      @include responsive(t-xs) {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        justify-content: flex-end;
+        width: 100%;
+      }
+    }
+
+    &-item {
+      height: 32px;
+      min-height: 32px;
+
+      @include responsive(t-xs) {
+        margin-right: 24px;
+      }
+
+      &-active {
+        color: $black;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &-open {
+    .header {
+      &-burger {
+        span:first-child {
+          top: 50%;
+          transform: translate(-50%, -50%)
+            rotate(45deg);
+        }
+
+        span:last-child {
+          top: 50%;
+          transform: translate(-50%, -50%)
+            rotate(-45deg);
+        }
+      }
+    }
+  }
+}

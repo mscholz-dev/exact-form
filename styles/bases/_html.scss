@@ -1,0 +1,33 @@
+ul,
+ol,
+p,
+span,
+a {
+  font-family: $secondary-font-regular;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $primary-font-bold;
+}
+
+button {
+  background: $transparent;
+  border: 0;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+svg {
+  height: 100%;
+  width: 100%;
+}
+
+*::selection {
+  background-color: $primary-color;
+  color: $white;
+}

@@ -1,0 +1,29 @@
+.link {
+  align-items: center;
+  color: $black;
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  text-decoration: none;
+  transition: 0.25s all ease-in-out;
+  width: fit-content;
+
+  &:after {
+    background-color: $black;
+    bottom: 4px;
+    content: "";
+    left: 0;
+    height: 2px;
+    position: absolute;
+    transition: 0.25s all ease-in-out;
+    width: 0;
+  }
+
+  &:hover {
+    color: $black;
+
+    &:after {
+      width: 100%;
+    }
+  }
+}

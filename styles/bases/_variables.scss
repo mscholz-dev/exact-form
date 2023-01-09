@@ -1,0 +1,88 @@
+// breakpoints
+$breakpoints: (
+  s-xs: 375px,
+  s: 480px,
+  s-xl: 576px,
+  t-xs: 768px,
+  t-s: 800px,
+  t: 992px,
+  t-xl: 1024px,
+  d-xs: 1200px,
+  d: 1440px,
+  d-xl: 1920px,
+);
+
+// color
+$transparent: transparent;
+
+$white: #fff;
+$black: #000;
+
+$light-opacity: rgba(255, 255, 255, 0.6);
+
+// $light: #eeeeee;
+// $light-dark: #bbbbbb;
+
+$primary-color: #d72323;
+
+// $secondary-color-light: #536470;
+$secondary-color: #3a4750;
+
+$tertiary-color: #303841;
+
+// z-index
+
+// fonts
+$primary-font-regular: "primaryRegular";
+$primary-font-regular-path: "/fonts/primary/regular.ttf";
+
+$primary-font-bold: "primaryBold";
+$primary-font-bold-path: "/fonts/primary/bold.ttf";
+
+$secondary-font-light: "secondaryLight";
+$secondary-font-light-path: "/fonts/secondary/light.ttf";
+
+$secondary-font-regular: "secondaryRegular";
+$secondary-font-regular-path: "/fonts/secondary/regular.ttf";
+
+$secondary-font-semi-bold: "secondarySemiBold";
+$secondary-font-semi-bold-path: "/fonts/secondary/semi-bold.ttf";
+
+$secondary-font-bold: "secondaryBold";
+$secondary-font-bold-path: "/fonts/secondary/bold.ttf";
+
+@font-face {
+  font-family: $primary-font-regular;
+  src: url($primary-font-regular-path)
+    format("truetype");
+}
+
+@font-face {
+  font-family: $primary-font-bold;
+  src: url($primary-font-bold-path)
+    format("truetype");
+}
+
+@font-face {
+  font-family: $secondary-font-light;
+  src: url($secondary-font-light-path)
+    format("truetype");
+}
+
+@font-face {
+  font-family: $secondary-font-regular;
+  src: url($secondary-font-regular-path)
+    format("truetype");
+}
+
+@font-face {
+  font-family: $secondary-font-semi-bold;
+  src: url($secondary-font-semi-bold-path)
+    format("truetype");
+}
+
+@font-face {
+  font-family: $secondary-font-bold;
+  src: url($secondary-font-bold-path)
+    format("truetype");
+}
