@@ -1,3 +1,5 @@
+const nextTranslate = require("next-translate");
+
 const securityHeaders = [
   // prevent xss failure
   {
@@ -16,7 +18,7 @@ const securityHeaders = [
   },
 ];
 
-module.exports = {
+module.exports = nextTranslate({
   // disabled strict mode for render useEffect only once
   // reactStrictMode: true,
   // import svg in .js file
@@ -44,4 +46,4 @@ module.exports = {
       },
     ];
   },
-};
+});

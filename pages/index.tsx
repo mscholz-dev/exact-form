@@ -1,10 +1,17 @@
 import React, { FC } from "react";
 import Page from "../templates/layouts/Page";
+import useTranslation from "next-translate/useTranslation";
 
-const Index: FC = () => {
+interface Props {
+  locale: string;
+}
+
+const Index: FC<Props> = ({ locale }) => {
+  const { t } = useTranslation("index");
+
   return (
     <Page
-      title="Page d'accueil"
+      title={t("index:metaTitle")}
       description="Créer votre URL de collecte de formulaire en moins de deux minutes!"
       padding
     >
