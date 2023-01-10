@@ -12,9 +12,44 @@
   "form:subtitle:mandatory": "All fields are required",
   "form:subtitle:optional": "All fields with an asterisk are required",
 
+  "form:input:lastName:title": "Last name",
+  "form:input:lastName:ariaDescribedby": "Please enter your last name",
+  "form:input:lastName:error:empty": "Field Last name is required",
+  "form:input:lastName:error:long": "Field Last name must contain 60 characters maximum",
+
+  "form:input:firstName:title": "First name",
+  "form:input:firstName:ariaDescribedby": "Please enter your first name",
+  "form:input:firstName:error:empty": "Field First name is required",
+  "form:input:firstName:error:long": "Field First name must contain 60 characters maximum",
+
+  "form:input:username:title": "Username",
+  "form:input:username:ariaDescribedby": "Please enter your username",
+  "form:input:username:error:empty": "Field Username is required",
+  "form:input:username:error:long": "Field Username must contain 60 characters maximum",
+
   "form:input:email:title": "Email",
   "form:input:email:ariaDescribedby": "Please enter your email",
+  "form:input:email:error:empty": "Field Email is required",
+  "form:input:email:error:long": "Field Email must contain 255 characters maximum",
+  "form:input:email:error:format": "Field Email must be a valid email",
+
+  "form:input:phone:title": "Phone",
+  "form:input:phone:ariaDescribedby": "Please enter your phone",
+  "form:input:phone:error:format": "Field Phone must be a valid phone",
+
+  "form:input:message:title": "Message",
+  "form:input:message:ariaDescribedby": "Please enter your message",
+  "form:input:message:error:empty": "Field Message is required",
+  "form:input:message:error:long": "Field Message must contain 10 000 characters maximum",
 
   "form:input:password:title": "Password",
-  "form:input:password:ariaDescribedby": "Please enter your password"
+  "form:input:password:ariaDescribedby": "Please enter your password",
+  "form:input:password:error:empty": "Field Password is required",
+  "form:input:password:error:long": "Field Password must contain 60 characters maximum",
+  "form:input:password:error:match": "Fields Passwords not matching",
+
+  "form:input:password2:title": "Confirm password",
+  "form:input:password2:ariaDescribedby": "Please confirm your password",
+  "form:input:password2:error:empty": "Field Confirm password is required",
+  "form:input:password2:error:long": "Field Confirm password must contain 60 characters maximum"
 }

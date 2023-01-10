@@ -2,11 +2,5 @@
   "meta:title": "Inscription",
   "form:title": "FORMULAIRE D'INSCRIPTION",
 
-  "form:input:username:title": "Nom d'utilisateur",
-  "form:input:username:ariaDescribedby": "Veuillez renseigner votre nom d'utilisateur",
-
-  "form:input:password2:title": "Confirmer le mot de passe",
-  "form:input:password2:ariaDescribedby": "Veuillez confirmer votre mot de passe",
-
   "form:submit": "S'INSCRIRE"
 }

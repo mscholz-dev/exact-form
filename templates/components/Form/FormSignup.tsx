@@ -4,14 +4,18 @@ import React, {
   SyntheticEvent,
   ChangeEvent,
 } from "react";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import IconUser from "../../../public/icons/user.svg";
 import IconEmail from "../../../public/icons/email.svg";
 import FormInput from "./FormInput";
 import IconPassword from "../../../public/icons/password.svg";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
+import {
+  handleValidator,
+  handleErrorStyle,
+} from "../../../utils/form";
 
 type Form = {
   username: string;
@@ -23,7 +27,7 @@ type Form = {
 const FormSignup: FC = () => {
   const { t } = useTranslation("signup");
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const [form, setForm] = useState<Form>({
     username: "",
@@ -47,7 +51,35 @@ const FormSignup: FC = () => {
   ) => {
     e.preventDefault();
 
-    console.log("submit");
+    let error = false;
+
+    Object.entries(form).forEach((item) => {
+      const errorMessage = handleValidator(
+        item[0],
+        item[1],
+        t,
+      );
+      if (errorMessage.length !== 0) {
+        error = true;
+        handleErrorStyle(item[0]);
+        toast.error(errorMessage);
+      }
+    });
+
+    if (error) return;
+
+    if (form.password !== form.password2) {
+      const errorMessage = t(
+        "common:form:input:password:error:match",
+      );
+      handleErrorStyle("password2");
+      toast.error(errorMessage);
+      return;
+    }
+
+    //TODO: add api call
+
+    router.push("/");
   };
 
   return (
@@ -70,10 +102,10 @@ const FormSignup: FC = () => {
             handleChange={handleChange}
             value={form.username}
             ariaDescribedby={t(
-              "signup:form:input:username:ariaDescribedby",
+              "common:form:input:username:ariaDescribedby",
             )}
             title={t(
-              "signup:form:input:username:title",
+              "common:form:input:username:title",
             )}
             mb
             maxLength={60}
@@ -117,10 +149,10 @@ const FormSignup: FC = () => {
             handleChange={handleChange}
             value={form.password2}
             ariaDescribedby={t(
-              "signup:form:input:password2:ariaDescribedby",
+              "common:form:input:password2:ariaDescribedby",
             )}
             title={t(
-              "signup:form:input:password2:title",
+              "common:form:input:password2:title",
             )}
             maxLength={60}
             type="password"

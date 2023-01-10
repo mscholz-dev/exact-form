@@ -9,7 +9,7 @@ import Link from "next/link";
 import Brand from "../../public/icons/brand.svg";
 import HeaderItem from "../components/HeaderItem";
 import useTranslation from "next-translate/useTranslation";
-import setLanguage from "next-translate/setLanguage";
+// import setLanguage from "next-translate/setLanguage";
 
 interface Props {
   myRef: Ref<HTMLHeadingElement>;
@@ -135,8 +135,6 @@ const Header: FC<Props> = ({ myRef }) => {
     window.addEventListener("resize", () =>
       handleHeaderSize(),
     );
-
-    setTimeout(() => setLanguage("en"), 2000);
   }, []);
 
   return (

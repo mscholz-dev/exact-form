@@ -2,17 +2,7 @@
   "meta:title": "Contact",
   "form:title": "FORMULAIRE DE CONTACT",
 
-  "form:input:lastName:title": "Nom",
-  "form:input:lastName:ariaDescribedby": "Veuillez renseigner votre nom",
-
-  "form:input:firstName:title": "Prénom",
-  "form:input:firstName:ariaDescribedby": "Veuillez renseigner votre prénom",
-
-  "form:input:phone:title": "Téléphone",
-  "form:input:phone:ariaDescribedby": "Veuillez renseigner votre téléphone",
-
-  "form:input:message:title": "Message",
-  "form:input:message:ariaDescribedby": "Veuillez renseigner votre message",
+  "form:success": "Message envoyé !",
 
   "form:submit": "ENVOYER"
 }

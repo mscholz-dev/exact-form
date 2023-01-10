@@ -4,15 +4,18 @@ import React, {
   SyntheticEvent,
   ChangeEvent,
 } from "react";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import IconUser from "../../../public/icons/user.svg";
 import IconPhone from "../../../public/icons/phone.svg";
 import IconEmail from "../../../public/icons/email.svg";
 import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
-// import { useRouter } from "next/router";
 import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
+import {
+  handleValidator,
+  handleErrorStyle,
+} from "../../../utils/form";
 
 type Form = {
   firstName: string;
@@ -25,15 +28,16 @@ type Form = {
 const FormContact: FC = () => {
   const { t } = useTranslation("contact");
 
-  // const router = useRouter();
-
-  const [form, setForm] = useState<Form>({
+  const defaultForm = {
     firstName: "",
     lastName: "",
     email: "",
     phone: "",
     message: "",
-  });
+  };
+
+  const [form, setForm] =
+    useState<Form>(defaultForm);
 
   const handleChange = (
     e: ChangeEvent,
@@ -50,7 +54,32 @@ const FormContact: FC = () => {
   ) => {
     e.preventDefault();
 
-    console.log("submit");
+    let error = false;
+
+    console.log(form);
+
+    Object.entries(form).forEach((item) => {
+      const errorMessage = handleValidator(
+        item[0],
+        item[1],
+        t,
+      );
+      if (errorMessage.length !== 0) {
+        error = true;
+        handleErrorStyle(item[0]);
+        toast.error(errorMessage);
+      }
+    });
+
+    if (error) return;
+
+    //TODO: add api call
+
+    const successMessage = t(
+      "contact:form:success",
+    );
+    toast.success(successMessage);
+    setForm(defaultForm);
   };
 
   return (
@@ -74,10 +103,10 @@ const FormContact: FC = () => {
               handleChange={handleChange}
               value={form.lastName}
               ariaDescribedby={t(
-                "contact:form:input:lastName:ariaDescribedby",
+                "common:form:input:lastName:ariaDescribedby",
               )}
               title={t(
-                "contact:form:input:lastName:title",
+                "common:form:input:lastName:title",
               )}
               mb
               maxLength={60}
@@ -91,10 +120,10 @@ const FormContact: FC = () => {
               handleChange={handleChange}
               value={form.firstName}
               ariaDescribedby={t(
-                "contact:form:input:firstName:ariaDescribedby",
+                "common:form:input:firstName:ariaDescribedby",
               )}
               title={t(
-                "contact:form:input:firstName:title",
+                "common:form:input:firstName:title",
               )}
               mb
               maxLength={60}
@@ -126,10 +155,10 @@ const FormContact: FC = () => {
             handleChange={handleChange}
             value={form.phone}
             ariaDescribedby={t(
-              "contact:form:input:phone:ariaDescribedby",
+              "common:form:input:phone:ariaDescribedby",
             )}
             title={t(
-              "contact:form:input:phone:title",
+              "common:form:input:phone:title",
             )}
             mb
             maxLength={60}
@@ -141,12 +170,12 @@ const FormContact: FC = () => {
             handleChange={handleChange}
             value={form.message}
             ariaDescribedby={t(
-              "contact:form:input:message:ariaDescribedby",
+              "common:form:input:message:ariaDescribedby",
             )}
             title={t(
-              "contact:form:input:message:title",
+              "common:form:input:message:title",
             )}
-            maxLength={10000}
+            maxLength={10_000}
             asterix
           />
 

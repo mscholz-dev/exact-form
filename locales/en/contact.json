@@ -2,17 +2,7 @@
   "meta:title": "Contact",
   "form:title": "CONTACT FORM",
 
-  "form:input:lastName:title": "Last name",
-  "form:input:lastName:ariaDescribedby": "Please enter your last name",
-
-  "form:input:firstName:title": "First name",
-  "form:input:firstName:ariaDescribedby": "Please enter your first name",
-
-  "form:input:phone:title": "Phone",
-  "form:input:phone:ariaDescribedby": "Please enter your phone",
-
-  "form:input:message:title": "Message",
-  "form:input:message:ariaDescribedby": "Please enter your message",
+  "form:success": "Message sent !",
 
   "form:submit": "SUBMIT"
 }

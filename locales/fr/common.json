@@ -12,9 +12,44 @@
   "form:subtitle:mandatory": "Tous les champs sont obligatoires",
   "form:subtitle:optional": "Tous les champs avec un astérisque sont obligatoires",
 
+  "form:input:lastName:title": "Nom",
+  "form:input:lastName:ariaDescribedby": "Veuillez renseigner votre nom",
+  "form:input:lastName:error:empty": "Le champ Nom est requis",
+  "form:input:lastName:error:long": "Le champ Nom doit contenir 60 caractères maximum",
+
+  "form:input:firstName:title": "Prénom",
+  "form:input:firstName:ariaDescribedby": "Veuillez renseigner votre prénom",
+  "form:input:firstName:error:empty": "Le champ Prénom est requis",
+  "form:input:firstName:error:long": "Le champ Prénom doit contenir 60 caractères maximum",
+
+  "form:input:username:title": "Nom d'utilisateur",
+  "form:input:username:ariaDescribedby": "Veuillez renseigner votre nom d'utilisateur",
+  "form:input:username:error:empty": "Le champ Nom d'utilisateur est requis",
+  "form:input:username:error:long": "Le champ Nom d'utilisateur doit contenir 60 caractères maximum",
+
   "form:input:email:title": "Email",
   "form:input:email:ariaDescribedby": "Veuillez renseigner votre email",
+  "form:input:email:error:empty": "Le champ Email est requis",
+  "form:input:email:error:long": "Le champ Email doit contenir 255 caractères maximum",
+  "form:input:email:error:format": "Le champ Email doit être une email valide",
+
+  "form:input:phone:title": "Téléphone",
+  "form:input:phone:ariaDescribedby": "Veuillez renseigner votre téléphone",
+  "form:input:phone:error:format": "Le champ Téléphone doit être un téléphone valide",
+
+  "form:input:message:title": "Message",
+  "form:input:message:ariaDescribedby": "Veuillez renseigner votre message",
+  "form:input:message:error:empty": "Le champ Message est requis",
+  "form:input:message:error:long": "Le champ Message doit contenir 10 000 caractères maximum",
 
   "form:input:password:title": "Mot de passe",
-  "form:input:password:ariaDescribedby": "Veuillez renseigner votre mot de passe"
+  "form:input:password:ariaDescribedby": "Veuillez renseigner votre mot de passe",
+  "form:input:password:error:empty": "Le champ Mot de passe est requis",
+  "form:input:password:error:long": "Le champ Mot de passe doit contenir 60 caractères maximum",
+  "form:input:password:error:match": "Les champs Mot de passe ne correspondent pas",
+
+  "form:input:password2:title": "Confirmer le mot de passe",
+  "form:input:password2:ariaDescribedby": "Veuillez confirmer votre mot de passe",
+  "form:input:password2:error:empty": "Le champ Confirmer le mot de passe est requis",
+  "form:input:password2:error:long": "Le champ Confirmer le mot de passe doit contenir 60 caractères maximum"
 }

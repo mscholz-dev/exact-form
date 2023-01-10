@@ -4,13 +4,17 @@ import React, {
   SyntheticEvent,
   ChangeEvent,
 } from "react";
-// import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 import IconEmail from "../../../public/icons/email.svg";
 import FormInput from "./FormInput";
 import IconPassword from "../../../public/icons/password.svg";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
+import {
+  handleValidator,
+  handleErrorStyle,
+} from "../../../utils/form";
 
 type Form = {
   email: string;
@@ -20,7 +24,7 @@ type Form = {
 const FormSignin: FC = () => {
   const { t } = useTranslation("signin");
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const [form, setForm] = useState<Form>({
     email: "",
@@ -42,7 +46,26 @@ const FormSignin: FC = () => {
   ) => {
     e.preventDefault();
 
-    console.log("submit");
+    let error = false;
+
+    Object.entries(form).forEach((item) => {
+      const errorMessage = handleValidator(
+        item[0],
+        item[1],
+        t,
+      );
+      if (errorMessage.length !== 0) {
+        error = true;
+        handleErrorStyle(item[0]);
+        toast.error(errorMessage);
+      }
+    });
+
+    if (error) return;
+
+    //TODO: add api call
+
+    router.push("/");
   };
 
   return (
