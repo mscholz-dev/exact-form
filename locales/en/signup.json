@@ -1,1 +1,12 @@
-{}
+{
+  "meta:title": "Sign up",
+  "form:title": "SIGN UP FORM",
+
+  "form:input:username:title": "Username",
+  "form:input:username:ariaDescribedby": "Please enter your username",
+
+  "form:input:password2:title": "Confirm password",
+  "form:input:password2:ariaDescribedby": "Please confirm your password",
+
+  "form:submit": "SIGN UP"
+}

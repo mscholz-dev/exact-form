@@ -1,1 +1,6 @@
-{}
+{
+  "meta:title": "Sign in",
+  "form:title": "SIGN IN FORM",
+
+  "form:submit": "SIGN IN"
+}

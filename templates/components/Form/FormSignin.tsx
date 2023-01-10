@@ -10,6 +10,7 @@ import FormInput from "./FormInput";
 import IconPassword from "../../../public/icons/password.svg";
 // import { useRouter } from "next/router";
 import FormPage from "./FormPage";
+import useTranslation from "next-translate/useTranslation";
 
 type Form = {
   email: string;
@@ -17,6 +18,8 @@ type Form = {
 };
 
 const FormSignin: FC = () => {
+  const { t } = useTranslation("signin");
+
   // const router = useRouter();
 
   const [form, setForm] = useState<Form>({
@@ -46,10 +49,10 @@ const FormSignin: FC = () => {
     <FormPage>
       <>
         <h1 className="form-page-title">
-          FORMULAIRE DE CONNEXION
+          {t("signin:form:title")}
         </h1>
         <p className="form-page-subtitle">
-          Tous les champs sont obligatoires
+          {t("common:form:subtitle:mandatory")}
         </p>
 
         <form
@@ -61,8 +64,12 @@ const FormSignin: FC = () => {
             id="email"
             handleChange={handleChange}
             value={form.email}
-            ariaDescribedby="Veuillez renseigner votre email"
-            title="Email"
+            ariaDescribedby={t(
+              "common:form:input:email:ariaDescribedby",
+            )}
+            title={t(
+              "common:form:input:email:title",
+            )}
             mb
             maxLength={255}
             type="email"
@@ -73,8 +80,12 @@ const FormSignin: FC = () => {
             id="password"
             handleChange={handleChange}
             value={form.password}
-            ariaDescribedby="Veuillez renseigner votre mot de passe"
-            title="Mot de passe"
+            ariaDescribedby={t(
+              "common:form:input:password:ariaDescribedby",
+            )}
+            title={t(
+              "common:form:input:password:title",
+            )}
             mb
             maxLength={60}
             type="password"
@@ -84,7 +95,7 @@ const FormSignin: FC = () => {
             type="submit"
             className="btn-submit"
           >
-            Se connecter
+            {t("signin:form:submit")}
           </button>
         </form>
       </>

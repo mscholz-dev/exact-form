@@ -8,6 +8,8 @@ import React, {
 import Link from "next/link";
 import Brand from "../../public/icons/brand.svg";
 import HeaderItem from "../components/HeaderItem";
+import useTranslation from "next-translate/useTranslation";
+import setLanguage from "next-translate/setLanguage";
 
 interface Props {
   myRef: Ref<HTMLHeadingElement>;
@@ -20,6 +22,8 @@ type HeaderData = {
 }[];
 
 const Header: FC<Props> = ({ myRef }) => {
+  const { t } = useTranslation("common");
+
   const headerChildRef =
     useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
@@ -34,12 +38,12 @@ const Header: FC<Props> = ({ myRef }) => {
   const headerData: HeaderData = [
     {
       id: 0,
-      title: "Accueil",
+      title: t("common:header:index"),
       url: "/",
     },
     {
       id: 1,
-      title: "Documentation",
+      title: t("common:header:documentation"),
       url: "/documentation",
     },
   ];
@@ -47,12 +51,12 @@ const Header: FC<Props> = ({ myRef }) => {
   const headerRandomData: HeaderData = [
     {
       id: 4,
-      title: "Inscription",
+      title: t("common:header:signup"),
       url: "/signup",
     },
     {
       id: 5,
-      title: "Connexion",
+      title: t("common:header:signin"),
       url: "/signin",
     },
   ];
@@ -131,6 +135,8 @@ const Header: FC<Props> = ({ myRef }) => {
     window.addEventListener("resize", () =>
       handleHeaderSize(),
     );
+
+    setTimeout(() => setLanguage("en"), 2000);
   }, []);
 
   return (
@@ -150,7 +156,7 @@ const Header: FC<Props> = ({ myRef }) => {
               <Brand />
             </span>
             <span className="header-brand-label">
-              Exact Form
+              {t("common:brand:title")}
             </span>
           </Link>
 
@@ -198,7 +204,7 @@ const Header: FC<Props> = ({ myRef }) => {
                 href="/contact"
                 className="btn-header"
               >
-                Contact
+                {t("common:header:contact")}
               </Link>
             </div>
           </div>

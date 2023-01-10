@@ -1,12 +1,15 @@
 import React, { FC } from "react";
 import Page from "../templates/layouts/Page";
 import FormSignup from "../templates/components/Form/FormSignup";
+import useTranslation from "next-translate/useTranslation";
 
 const Register: FC = () => {
+  const { t } = useTranslation("signup");
+
   return (
     <Page
-      title="Inscription"
-      description="Créer votre URL de collecte de formulaire en moins de deux minutes!"
+      title={t("signup:meta:title")}
+      description={t("common:meta:description")}
     >
       <FormSignup />
     </Page>

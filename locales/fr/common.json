@@ -1,1 +1,20 @@
-{}
+{
+  "meta:description": "Créer votre URL de collecte de formulaire en moins de deux minutes!",
+
+  "brand:title": "Exact Form",
+
+  "header:index": "Accueil",
+  "header:documentation": "Documentation",
+  "header:signup": "Inscription",
+  "header:signin": "Connexion",
+  "header:contact": "Contact",
+
+  "form:subtitle:mandatory": "Tous les champs sont obligatoires",
+  "form:subtitle:optional": "Tous les champs avec un astérisque sont obligatoires",
+
+  "form:input:email:title": "Email",
+  "form:input:email:ariaDescribedby": "Veuillez renseigner votre email",
+
+  "form:input:password:title": "Mot de passe",
+  "form:input:password:ariaDescribedby": "Veuillez renseigner votre mot de passe"
+}

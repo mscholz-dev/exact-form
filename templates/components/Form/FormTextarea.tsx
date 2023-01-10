@@ -14,6 +14,7 @@ interface Props {
   ariaDescribedby: string;
   title: string;
   maxLength: number;
+  asterix?: boolean;
 }
 
 const FormTextarea: FC<Props> = ({
@@ -23,6 +24,7 @@ const FormTextarea: FC<Props> = ({
   ariaDescribedby,
   title,
   maxLength,
+  asterix,
 }) => {
   const [focus, setFocus] =
     useState<boolean>(false);
@@ -52,6 +54,7 @@ const FormTextarea: FC<Props> = ({
       />
       <span className="form-input-title">
         {title}
+        {asterix ? "*" : ""}
       </span>
     </label>
   );

@@ -12,6 +12,7 @@ import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
 // import { useRouter } from "next/router";
 import FormPage from "./FormPage";
+import useTranslation from "next-translate/useTranslation";
 
 type Form = {
   firstName: string;
@@ -22,6 +23,8 @@ type Form = {
 };
 
 const FormContact: FC = () => {
+  const { t } = useTranslation("contact");
+
   // const router = useRouter();
 
   const [form, setForm] = useState<Form>({
@@ -54,11 +57,10 @@ const FormContact: FC = () => {
     <FormPage>
       <>
         <h1 className="form-page-title">
-          FORMULAIRE DE CONTACT
+          {t("contact:form:title")}
         </h1>
         <p className="form-page-subtitle">
-          Tous les champs avec un astérisque sont
-          obligatoires
+          {t("common:form:subtitle:optional")}
         </p>
 
         <form
@@ -71,11 +73,16 @@ const FormContact: FC = () => {
               id="lastName"
               handleChange={handleChange}
               value={form.lastName}
-              ariaDescribedby="Veuillez renseigner votre nom"
-              title="Nom*"
+              ariaDescribedby={t(
+                "contact:form:input:lastName:ariaDescribedby",
+              )}
+              title={t(
+                "contact:form:input:lastName:title",
+              )}
               mb
               maxLength={60}
               type="text"
+              asterix
             />
 
             <FormInput
@@ -83,11 +90,16 @@ const FormContact: FC = () => {
               id="firstName"
               handleChange={handleChange}
               value={form.firstName}
-              ariaDescribedby="Veuillez renseigner votre prénom"
-              title="Prénom*"
+              ariaDescribedby={t(
+                "contact:form:input:firstName:ariaDescribedby",
+              )}
+              title={t(
+                "contact:form:input:firstName:title",
+              )}
               mb
               maxLength={60}
               type="text"
+              asterix
             />
           </div>
 
@@ -96,11 +108,16 @@ const FormContact: FC = () => {
             id="email"
             handleChange={handleChange}
             value={form.email}
-            ariaDescribedby="Veuillez renseigner votre email"
-            title="Email*"
+            ariaDescribedby={t(
+              "common:form:input:email:ariaDescribedby",
+            )}
+            title={t(
+              "common:form:input:email:title",
+            )}
             mb
             maxLength={255}
             type="email"
+            asterix
           />
 
           <FormInput
@@ -108,8 +125,12 @@ const FormContact: FC = () => {
             id="phone"
             handleChange={handleChange}
             value={form.phone}
-            ariaDescribedby="Veuillez renseigner votre numéro de téléphone"
-            title="Téléphone"
+            ariaDescribedby={t(
+              "contact:form:input:phone:ariaDescribedby",
+            )}
+            title={t(
+              "contact:form:input:phone:title",
+            )}
             mb
             maxLength={60}
             type="text"
@@ -119,16 +140,21 @@ const FormContact: FC = () => {
             id="message"
             handleChange={handleChange}
             value={form.message}
-            ariaDescribedby="Veuillez renseigner votre email"
-            title="Message*"
+            ariaDescribedby={t(
+              "contact:form:input:message:ariaDescribedby",
+            )}
+            title={t(
+              "contact:form:input:message:title",
+            )}
             maxLength={10000}
+            asterix
           />
 
           <button
             type="submit"
             className="btn-submit"
           >
-            Envoyer
+            {t("contact:form:submit")}
           </button>
         </form>
       </>

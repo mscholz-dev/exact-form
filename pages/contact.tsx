@@ -1,12 +1,15 @@
 import React, { FC } from "react";
 import Page from "../templates/layouts/Page";
 import FormContact from "../templates/components/Form/FormContact";
+import useTranslation from "next-translate/useTranslation";
 
 const Contact: FC = () => {
+  const { t } = useTranslation("contact");
+
   return (
     <Page
-      title="Contact"
-      description="Créer votre URL de collecte de formulaire en moins de deux minutes!"
+      title={t("contact:meta:title")}
+      description={t("common:meta:description")}
     >
       <FormContact />
     </Page>

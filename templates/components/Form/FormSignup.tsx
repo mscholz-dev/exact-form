@@ -11,6 +11,7 @@ import FormInput from "./FormInput";
 import IconPassword from "../../../public/icons/password.svg";
 // import { useRouter } from "next/router";
 import FormPage from "./FormPage";
+import useTranslation from "next-translate/useTranslation";
 
 type Form = {
   username: string;
@@ -20,6 +21,8 @@ type Form = {
 };
 
 const FormSignup: FC = () => {
+  const { t } = useTranslation("signup");
+
   // const router = useRouter();
 
   const [form, setForm] = useState<Form>({
@@ -51,10 +54,10 @@ const FormSignup: FC = () => {
     <FormPage>
       <>
         <h1 className="form-page-title">
-          FORMULAIRE D&apos; INSCRIPTION
+          {t("signup:form:title")}
         </h1>
         <p className="form-page-subtitle">
-          Tous les champs sont obligatoires
+          {t("common:form:subtitle:mandatory")}
         </p>
 
         <form
@@ -66,8 +69,12 @@ const FormSignup: FC = () => {
             id="username"
             handleChange={handleChange}
             value={form.username}
-            ariaDescribedby="Veuillez renseigner votre pseudo"
-            title="Pseudo"
+            ariaDescribedby={t(
+              "signup:form:input:username:ariaDescribedby",
+            )}
+            title={t(
+              "signup:form:input:username:title",
+            )}
             mb
             maxLength={60}
             type="text"
@@ -78,8 +85,12 @@ const FormSignup: FC = () => {
             id="email"
             handleChange={handleChange}
             value={form.email}
-            ariaDescribedby="Veuillez renseigner votre email"
-            title="Email"
+            ariaDescribedby={t(
+              "common:form:input:email:ariaDescribedby",
+            )}
+            title={t(
+              "common:form:input:email:title",
+            )}
             mb
             maxLength={255}
             type="email"
@@ -90,8 +101,12 @@ const FormSignup: FC = () => {
             id="password"
             handleChange={handleChange}
             value={form.password}
-            ariaDescribedby="Veuillez renseigner votre mot de passe"
-            title="Mot de passe"
+            ariaDescribedby={t(
+              "common:form:input:password:ariaDescribedby",
+            )}
+            title={t(
+              "common:form:input:password:title",
+            )}
             mb
             maxLength={60}
             type="password"
@@ -101,8 +116,12 @@ const FormSignup: FC = () => {
             id="password2"
             handleChange={handleChange}
             value={form.password2}
-            ariaDescribedby="Veuillez renseigner votre confirmation de mot de passe"
-            title="Confirmer le mot de passe"
+            ariaDescribedby={t(
+              "signup:form:input:password2:ariaDescribedby",
+            )}
+            title={t(
+              "signup:form:input:password2:title",
+            )}
             maxLength={60}
             type="password"
           />
@@ -111,7 +130,7 @@ const FormSignup: FC = () => {
             type="submit"
             className="btn-submit"
           >
-            S&apos;inscrire
+            {t("signup:form:submit")}
           </button>
         </form>
       </>

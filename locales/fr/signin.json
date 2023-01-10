@@ -1,1 +1,6 @@
-{}
+{
+  "meta:title": "Connexion",
+  "form:title": "FORMULAIRE DE CONNEXION",
+
+  "form:submit": "SE CONNECTER"
+}

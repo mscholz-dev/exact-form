@@ -20,6 +20,7 @@ interface Props {
   mb?: boolean;
   maxLength: number;
   type: "text" | "email" | "password";
+  asterix?: boolean;
 }
 
 const FormInput: FC<Props> = ({
@@ -32,6 +33,7 @@ const FormInput: FC<Props> = ({
   mb,
   maxLength,
   type,
+  asterix,
 }) => {
   const [focus, setFocus] =
     useState<boolean>(false);
@@ -82,6 +84,7 @@ const FormInput: FC<Props> = ({
       />
       <span className="form-input-title">
         {title}
+        {asterix ? "*" : ""}
       </span>
 
       {type === "password" && (
