@@ -5,6 +5,7 @@ import React, {
 } from "react";
 import Head from "next/head";
 import Header from "./Header";
+import { ToastContainer } from "react-toastify";
 
 interface Props {
   title: string;
@@ -54,6 +55,7 @@ const Page: FC<Props> = ({
         >
           {children}
         </main>
+        <ToastContainer />
       </div>
     </>
   );

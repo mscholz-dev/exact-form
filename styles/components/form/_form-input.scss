@@ -5,16 +5,15 @@
     border-radius: 2px;
     cursor: text;
     display: flex;
-    padding: 10px 12px;
+    padding: 12px 12px;
     position: relative;
     transition: 0.2s all ease-in-out;
-    width: 100%;
   }
 
   &-icon {
     display: flex;
     height: 26px;
-    fill: $grey-dark;
+    fill: $secondary-color;
     margin-right: 12px;
     transition: 0.2s all ease-in-out;
     width: 26px;
@@ -22,7 +21,7 @@
 
   &-control {
     border: 0;
-    color: $black;
+    color: $tertiary-color;
     margin-top: 8px;
     width: 100%;
   }
@@ -32,7 +31,7 @@
     font-size: 16px;
     left: 48px;
     position: absolute;
-    top: 14px;
+    top: 16px;
     transition: 0.2s all ease-in-out;
   }
 
@@ -59,28 +58,12 @@
       align-items: center;
       cursor: pointer;
       display: flex;
-      fill: $grey-dark;
-      height: 34px;
+      fill: $secondary-color;
+      height: 26px;
       justify-content: center;
-      padding: 4px;
+      margin-left: 8px;
       transition: 0.2s fill ease-in-out;
-      width: 34px;
-
-      &-slash {
-        padding: 3px;
-      }
-    }
-  }
-
-  &-read-only {
-    pointer-events: none;
-
-    input {
-      color: $grey;
-    }
-
-    span {
-      fill: $grey;
+      width: 26px;
     }
   }
 

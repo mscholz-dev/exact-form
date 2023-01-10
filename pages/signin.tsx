@@ -1,17 +1,16 @@
 import React, { FC } from "react";
 import Page from "../templates/layouts/Page";
-import FormSignup from "../templates/components/Form/FormSignup";
+import FormSignin from "../templates/components/Form/FormSignin";
 
-const Register: FC = () => {
+const Login: FC = () => {
   return (
     <Page
-      title="Inscription"
+      title="Connexion"
       description="Créer votre URL de collecte de formulaire en moins de deux minutes!"
-      padding
     >
-      <FormSignup />
+      <FormSignin />
     </Page>
   );
 };
 
-export default Register;
+export default Login;

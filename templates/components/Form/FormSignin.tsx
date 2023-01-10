@@ -5,7 +5,6 @@ import React, {
   ChangeEvent,
 } from "react";
 // import { toast } from "react-toastify";
-import IconUser from "../../../public/icons/user.svg";
 import IconEmail from "../../../public/icons/email.svg";
 import FormInput from "./FormInput";
 import IconPassword from "../../../public/icons/password.svg";
@@ -13,20 +12,16 @@ import IconPassword from "../../../public/icons/password.svg";
 import FormPage from "./FormPage";
 
 type Form = {
-  username: string;
   email: string;
   password: string;
-  password2: string;
 };
 
-const FormSignup: FC = () => {
+const FormSignin: FC = () => {
   // const router = useRouter();
 
   const [form, setForm] = useState<Form>({
-    username: "",
     email: "",
     password: "",
-    password2: "",
   });
 
   const handleChange = (
@@ -51,7 +46,7 @@ const FormSignup: FC = () => {
     <FormPage>
       <>
         <h1 className="form-page-title">
-          FORMULAIRE D&apos; INSCRIPTION
+          FORMULAIRE DE CONNEXION
         </h1>
         <p className="form-page-subtitle">
           Tous les champs sont obligatoires
@@ -61,18 +56,6 @@ const FormSignup: FC = () => {
           method="POST"
           onSubmit={handleSubmit}
         >
-          <FormInput
-            icon={<IconUser />}
-            id="username"
-            handleChange={handleChange}
-            value={form.username}
-            ariaDescribedby="Veuillez renseigner votre pseudo"
-            title="Pseudo"
-            mb
-            maxLength={60}
-            type="text"
-          />
-
           <FormInput
             icon={<IconEmail />}
             id="email"
@@ -96,22 +79,12 @@ const FormSignup: FC = () => {
             maxLength={60}
             type="password"
           />
-          <FormInput
-            icon={<IconPassword />}
-            id="password2"
-            handleChange={handleChange}
-            value={form.password2}
-            ariaDescribedby="Veuillez renseigner votre confirmation de mot de passe"
-            title="Confirmer le mot de passe"
-            maxLength={60}
-            type="password"
-          />
 
           <button
             type="submit"
             className="btn-submit"
           >
-            S&apos;inscrire
+            Se connecter
           </button>
         </form>
       </>
@@ -119,4 +92,4 @@ const FormSignup: FC = () => {
   );
 };
 
-export default FormSignup;
+export default FormSignin;

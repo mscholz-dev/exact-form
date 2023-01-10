@@ -48,12 +48,12 @@ const Header: FC<Props> = ({ myRef }) => {
     {
       id: 4,
       title: "Inscription",
-      url: "/register",
+      url: "/signup",
     },
     {
       id: 5,
       title: "Connexion",
-      url: "/login",
+      url: "/signin",
     },
   ];
 

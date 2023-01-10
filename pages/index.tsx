@@ -6,6 +6,7 @@ const Index: FC = () => {
     <Page
       title="Page d'accueil"
       description="Créer votre URL de collecte de formulaire en moins de deux minutes!"
+      padding
     >
       <h1 style={{ fontSize: "32px" }}>
         Je suis une phrase

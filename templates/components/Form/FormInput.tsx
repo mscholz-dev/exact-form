@@ -2,8 +2,6 @@ import React, {
   useState,
   FC,
   ChangeEvent,
-  Dispatch,
-  Ref,
   SyntheticEvent,
 } from "react";
 import IconEye from "../../../public/icons/eye.svg";
@@ -12,34 +10,28 @@ import IconEyeSlash from "../../../public/icons/eye-slash.svg";
 interface Props {
   icon: JSX.Element;
   id: string;
-  myRef: Ref<HTMLInputElement>;
   handleChange: (
     e: ChangeEvent,
-    setState: Dispatch<string>,
+    id: string,
   ) => void;
-  setState: Dispatch<string>;
-  state: string;
+  value: string;
   ariaDescribedby: string;
   title: string;
   mb?: boolean;
   maxLength: number;
   type: "text" | "email" | "password";
-  readOnly?: boolean;
 }
 
 const FormInput: FC<Props> = ({
   icon,
   id,
-  myRef,
   handleChange,
-  setState,
-  state,
+  value,
   ariaDescribedby,
   title,
   mb,
   maxLength,
   type,
-  readOnly,
 }) => {
   const [focus, setFocus] =
     useState<boolean>(false);
@@ -66,13 +58,11 @@ const FormInput: FC<Props> = ({
       className={`form-input-container${
         focus ? " form-input-focus" : ""
       }${
-        state.length ? " form-input-filled" : ""
+        value.length ? " form-input-filled" : ""
       }${mb ? " form-input-mb" : ""}${
         type === "password"
           ? " form-input-password"
           : ""
-      }${
-        readOnly ? " form-input-read-only" : ""
       }`}
     >
       <span className="form-input-icon">
@@ -80,11 +70,8 @@ const FormInput: FC<Props> = ({
       </span>
       <input
         id={id}
-        ref={myRef}
-        onChange={(e) =>
-          handleChange(e, setState)
-        }
-        value={state}
+        onChange={(e) => handleChange(e, id)}
+        value={value}
         type={inputType}
         className="form-input-control"
         aria-describedby={ariaDescribedby}

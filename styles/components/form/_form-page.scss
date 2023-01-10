@@ -1,55 +1,91 @@
 .form-page {
-  overflow: hidden;
+  margin: 0 auto;
+  padding: 96px 0 0;
 
-  &-main {
-    overflow-x: hidden;
-    width: 100vw;
-
-    @include responsive(t-xs) {
-      display: flex;
-      flex-direction: row-reverse;
-      overflow: visible;
-    }
+  @include responsive(t-xs) {
+    display: flex;
+    max-width: none;
+    padding: 0;
   }
 
-  &-form {
-    margin: 0 auto 24px;
+  &-article {
+    padding: 0 12px;
+    width: calc(100% - 24px);
 
     @include responsive(t-xs) {
-      align-items: center;
       display: flex;
-      margin-bottom: 0;
-      max-width: 792px;
-      padding: 0 48px;
+      flex-direction: column;
+      justify-content: center;
+      width: calc(70% - 24px);
     }
 
-    &-text {
-      font-size: 14px;
-      margin-bottom: 32px;
+    @include responsive(t-xl) {
+      width: calc(50% - 24px);
     }
 
-    &-large {
-      @include responsive(t-xs) {
-        max-width: 600px;
-        width: 100%;
-      }
+    & > div {
+      margin: auto;
+      max-width: 540px;
+      width: 100%;
     }
   }
 
   &-aside {
-    display: flex;
-    min-height: 330px;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
+    background: linear-gradient(
+      90deg,
+      $primary-color-light,
+      $tertiary-color
+    );
+    background-size: 400% 100%;
+    animation: changeBackground 10s ease infinite;
+    display: none;
 
     @include responsive(t-xs) {
-      margin-top: -96px;
-      width: 50%;
+      display: block;
+      height: 100vh;
+      width: 30%;
     }
 
-    @include responsive(d-xs) {
-      width: 40%;
+    @include responsive(t-xl) {
+      width: 50%;
     }
+  }
+
+  &-side {
+    display: flex;
+
+    & > .form-input-container {
+      width: 50%;
+
+      &:first-child {
+        margin-right: 6px;
+      }
+
+      &:last-child {
+        margin-left: 6px;
+      }
+    }
+  }
+
+  &-title {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  &-subtitle {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+}
+
+@keyframes changeBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
