@@ -12,6 +12,8 @@
   "form:subtitle:mandatory": "All fields are required",
   "form:subtitle:optional": "All fields with an asterisk are required",
 
+  "form:error:random": "Something went wrong",
+
   "form:input:lastName:title": "Last name",
   "form:input:lastName:ariaDescribedby": "Please enter your last name",
   "form:input:lastName:error:empty": "Field Last name is required",
@@ -26,12 +28,16 @@
   "form:input:username:ariaDescribedby": "Please enter your username",
   "form:input:username:error:empty": "Field Username is required",
   "form:input:username:error:long": "Field Username must contain 60 characters maximum",
+  "form:input:username:error:exists": "Username already exists",
 
   "form:input:email:title": "Email",
   "form:input:email:ariaDescribedby": "Please enter your email",
   "form:input:email:error:empty": "Field Email is required",
   "form:input:email:error:long": "Field Email must contain 255 characters maximum",
   "form:input:email:error:format": "Field Email must be a valid email",
+  "form:input:email:error:exists": "Email already exists",
+
+  "form:input:usernameAndEmail:error:exist": "Username and Email already exist",
 
   "form:input:phone:title": "Phone",
   "form:input:phone:ariaDescribedby": "Please enter your phone",

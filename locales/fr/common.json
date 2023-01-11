@@ -12,6 +12,8 @@
   "form:subtitle:mandatory": "Tous les champs sont obligatoires",
   "form:subtitle:optional": "Tous les champs avec un astérisque sont obligatoires",
 
+  "form:error:random": "Une erreur s'est produite",
+
   "form:input:lastName:title": "Nom",
   "form:input:lastName:ariaDescribedby": "Veuillez renseigner votre nom",
   "form:input:lastName:error:empty": "Le champ Nom est requis",
@@ -26,12 +28,16 @@
   "form:input:username:ariaDescribedby": "Veuillez renseigner votre nom d'utilisateur",
   "form:input:username:error:empty": "Le champ Nom d'utilisateur est requis",
   "form:input:username:error:long": "Le champ Nom d'utilisateur doit contenir 60 caractères maximum",
+  "form:input:username:error:exists": "Nom d'utilisateur déjà existant",
 
   "form:input:email:title": "Email",
   "form:input:email:ariaDescribedby": "Veuillez renseigner votre email",
   "form:input:email:error:empty": "Le champ Email est requis",
   "form:input:email:error:long": "Le champ Email doit contenir 255 caractères maximum",
   "form:input:email:error:format": "Le champ Email doit être une email valide",
+  "form:input:email:error:exists": "Email déjà existant",
+
+  "form:input:usernameAndEmail:error:exist": "Nom d'utilisateur et Email déjà existant",
 
   "form:input:phone:title": "Téléphone",
   "form:input:phone:ariaDescribedby": "Veuillez renseigner votre téléphone",

@@ -15,7 +15,10 @@ import useTranslation from "next-translate/useTranslation";
 import {
   handleValidator,
   handleErrorStyle,
+  handleError,
 } from "../../../utils/form";
+import UserApi from "../../../pages/api/user";
+import { AxiosError } from "axios";
 
 type Form = {
   username: string;
@@ -77,7 +80,26 @@ const FormSignup: FC = () => {
       return;
     }
 
-    //TODO: add api call
+    try {
+      await UserApi.create(form);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage = handleError(
+          err.response?.data.message,
+          t,
+        );
+
+        toast.error(errorMessage);
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t(
+        "common:form:error:random",
+      );
+      toast.error(errorMessage);
+    }
 
     router.push("/");
   };
