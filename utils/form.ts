@@ -10,7 +10,7 @@ export const handleValidator = (
   switch (id) {
     // username
     case "username":
-      if (!value.length)
+      if (!value)
         return t(
           "common:form:input:username:error:empty",
         );
@@ -22,7 +22,7 @@ export const handleValidator = (
 
     // email
     case "email":
-      if (!value.length)
+      if (!value)
         return t(
           "common:form:input:email:error:empty",
         );
@@ -38,7 +38,7 @@ export const handleValidator = (
 
     // password
     case "password":
-      if (!value.length)
+      if (!value)
         return t(
           "common:form:input:password:error:empty",
         );
@@ -50,7 +50,7 @@ export const handleValidator = (
 
     // password2
     case "password2":
-      if (!value.length)
+      if (!value)
         return t(
           "common:form:input:password2:error:empty",
         );
@@ -62,7 +62,7 @@ export const handleValidator = (
 
     // lastName
     case "lastName":
-      if (!value.length)
+      if (!value)
         return t(
           "common:form:input:lastName:error:empty",
         );
@@ -74,7 +74,7 @@ export const handleValidator = (
 
     // firstName
     case "firstName":
-      if (!value.length)
+      if (!value)
         return t(
           "common:form:input:firstName:error:empty",
         );
@@ -86,10 +86,7 @@ export const handleValidator = (
 
     // phone
     case "phone":
-      if (
-        value.length !== 0 &&
-        !phoneRegex.test(value)
-      )
+      if (value && !phoneRegex.test(value))
         return t(
           "common:form:input:phone:error:format",
         );
@@ -97,7 +94,7 @@ export const handleValidator = (
 
     // message
     case "message":
-      if (!value.length)
+      if (!value)
         return t(
           "common:form:input:message:error:empty",
         );
