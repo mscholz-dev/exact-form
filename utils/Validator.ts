@@ -1,114 +1,41 @@
 import type { Translate } from "next-translate";
-import RegexClass from "./Regex";
-const Regex = new RegexClass();
+
+type InspectData = {
+  username?: string;
+  email?: string;
+  password?: string;
+  password2?: string;
+};
+
+type InspectDataErrors = {
+  key: string;
+  message: string;
+}[];
 
 export default class Validator {
-  errorFrontMessage(
-    id: string,
-    value: string,
+  inspectData(
+    schema: InspectData,
+    validFunc: Function,
     t: Translate,
-  ): string {
-    switch (id) {
-      // username
-      case "username":
-        if (!value)
-          return t(
-            "common:form:input:username:error:empty",
-          );
-        if (value.length > 60)
-          return t(
-            "common:form:input:username:error:long",
-          );
-        return "";
+  ): InspectDataErrors {
+    const errors: InspectDataErrors = [];
 
-      // email
-      case "email":
-        if (!value)
-          return t(
-            "common:form:input:email:error:empty",
-          );
-        if (value.length > 255)
-          return t(
-            "common:form:input:email:error:long",
-          );
-        if (!Regex.email(value))
-          return t(
-            "common:form:input:email:error:format",
-          );
-        return "";
+    Object.entries(schema).forEach((item) => {
+      const errorMessage = validFunc(
+        item[0],
+        item[1],
+        t,
+      );
 
-      // password
-      case "password":
-        if (!value)
-          return t(
-            "common:form:input:password:error:empty",
-          );
-        if (value.length > 60)
-          return t(
-            "common:form:input:password:error:long",
-          );
-        return "";
+      if (errorMessage.length !== 0) {
+        errors.push({
+          key: item[0],
+          message: errorMessage,
+        });
+      }
+    });
 
-      // password2
-      case "password2":
-        if (!value)
-          return t(
-            "common:form:input:password2:error:empty",
-          );
-        if (value.length > 60)
-          return t(
-            "common:form:input:password2:error:long",
-          );
-        return "";
-
-      // lastName
-      case "lastName":
-        if (!value)
-          return t(
-            "common:form:input:lastName:error:empty",
-          );
-        if (value.length > 60)
-          return t(
-            "common:form:input:lastName:error:long",
-          );
-        return "";
-
-      // firstName
-      case "firstName":
-        if (!value)
-          return t(
-            "common:form:input:firstName:error:empty",
-          );
-        if (value.length > 60)
-          return t(
-            "common:form:input:firstName:error:long",
-          );
-        return "";
-
-      // phone
-      case "phone":
-        if (value && !Regex.phone(value))
-          return t(
-            "common:form:input:phone:error:format",
-          );
-        return "";
-
-      // message
-      case "message":
-        if (!value)
-          return t(
-            "common:form:input:message:error:empty",
-          );
-        if (value.length > 10_000)
-          return t(
-            "common:form:input:message:error:long",
-          );
-        return "";
-
-      // default
-      default:
-        return t("common:form:error:random");
-    }
+    return errors;
   }
 
   errorApiMessage(

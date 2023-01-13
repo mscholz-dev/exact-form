@@ -14,9 +14,10 @@ import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
 import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
+import UserValidatorClass from "../../../utils/UserValidator";
 
-import ValidatorClass from "../../../utils/Validator";
-const Validator = new ValidatorClass();
+// class
+const UserValidator = new UserValidatorClass();
 
 type Form = {
   username: string;
@@ -52,30 +53,17 @@ const FormSignup: FC = () => {
   ) => {
     e.preventDefault();
 
-    let error = false;
+    const errors = UserValidator.inspectUserData(
+      form,
+      t,
+    );
 
-    Object.entries(form).forEach((item) => {
-      const errorMessage =
-        Validator.errorFrontMessage(
-          item[0],
-          item[1],
-          t,
-        );
-      if (errorMessage.length !== 0) {
-        error = true;
-        Validator.errorStyle(item[0]);
-        toast.error(errorMessage);
+    if (errors.length) {
+      for (const { key, message } of errors) {
+        UserValidator.errorStyle(key);
+        toast.error(message);
       }
-    });
 
-    if (error) return;
-
-    if (form.password !== form.password2) {
-      const errorMessage = t(
-        "common:form:input:password:error:match",
-      );
-      Validator.errorStyle("password2");
-      toast.error(errorMessage);
       return;
     }
 
@@ -84,7 +72,7 @@ const FormSignup: FC = () => {
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         const errorMessage =
-          Validator.errorApiMessage(
+          UserValidator.errorApiMessage(
             err.response?.data.message,
             t,
           );
