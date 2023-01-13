@@ -37,8 +37,6 @@
   "form:input:email:error:format": "Le champ Email doit être une email valide",
   "form:input:email:error:exists": "Email déjà existant",
 
-  "form:input:usernameAndEmail:error:exist": "Nom d'utilisateur et Email déjà existant",
-
   "form:input:phone:title": "Téléphone",
   "form:input:phone:ariaDescribedby": "Veuillez renseigner votre téléphone",
   "form:input:phone:error:format": "Le champ Téléphone doit être un téléphone valide",

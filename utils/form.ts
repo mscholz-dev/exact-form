@@ -152,12 +152,6 @@ export const handleError = (
         "common:form:input:email:error:exists",
       );
 
-    // username and email
-    case "username and email already exist":
-      return t(
-        "common:form:input:usernameAndEmail:error:exist",
-      );
-
     // password
     case "password required":
       return t(

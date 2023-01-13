@@ -37,8 +37,6 @@
   "form:input:email:error:format": "Field Email must be a valid email",
   "form:input:email:error:exists": "Email already exists",
 
-  "form:input:usernameAndEmail:error:exist": "Username and Email already exist",
-
   "form:input:phone:title": "Phone",
   "form:input:phone:ariaDescribedby": "Please enter your phone",
   "form:input:phone:error:format": "Field Phone must be a valid phone",
