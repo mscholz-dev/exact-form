@@ -14,7 +14,7 @@ import useTranslation from "next-translate/useTranslation";
 import {
   handleValidator,
   handleErrorStyle,
-} from "../../../utils/form";
+} from "../../../utils/Validator";
 
 type Form = {
   email: string;

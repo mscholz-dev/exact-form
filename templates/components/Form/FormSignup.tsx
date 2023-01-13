@@ -12,13 +12,11 @@ import IconPassword from "../../../public/icons/password.svg";
 import { useRouter } from "next/router";
 import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
-import {
-  handleValidator,
-  handleErrorStyle,
-  handleError,
-} from "../../../utils/form";
 import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
+
+import ValidatorClass from "../../../utils/Validator";
+const Validator = new ValidatorClass();
 
 type Form = {
   username: string;
@@ -57,14 +55,15 @@ const FormSignup: FC = () => {
     let error = false;
 
     Object.entries(form).forEach((item) => {
-      const errorMessage = handleValidator(
-        item[0],
-        item[1],
-        t,
-      );
+      const errorMessage =
+        Validator.errorFrontMessage(
+          item[0],
+          item[1],
+          t,
+        );
       if (errorMessage.length !== 0) {
         error = true;
-        handleErrorStyle(item[0]);
+        Validator.errorStyle(item[0]);
         toast.error(errorMessage);
       }
     });
@@ -75,7 +74,7 @@ const FormSignup: FC = () => {
       const errorMessage = t(
         "common:form:input:password:error:match",
       );
-      handleErrorStyle("password2");
+      Validator.errorStyle("password2");
       toast.error(errorMessage);
       return;
     }
@@ -84,10 +83,11 @@ const FormSignup: FC = () => {
       await UserApi.create(form);
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
-        const errorMessage = handleError(
-          err.response?.data.message,
-          t,
-        );
+        const errorMessage =
+          Validator.errorApiMessage(
+            err.response?.data.message,
+            t,
+          );
 
         toast.error(errorMessage);
         return;
