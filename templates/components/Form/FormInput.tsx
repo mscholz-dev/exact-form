@@ -52,6 +52,7 @@ const FormInput: FC<IFormInput> = ({
           ? " form-input-password"
           : ""
       }`}
+      data-cy={`input-${id}`}
     >
       <span className="form-input-icon">
         {icon}
