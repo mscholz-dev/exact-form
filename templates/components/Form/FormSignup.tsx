@@ -2,7 +2,6 @@ import React, {
   useState,
   FC,
   SyntheticEvent,
-  ChangeEvent,
 } from "react";
 import { toast } from "react-toastify";
 import IconUser from "../../../public/icons/user.svg";
@@ -15,38 +14,26 @@ import useTranslation from "next-translate/useTranslation";
 import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/UserValidator";
+import FormClass from "../../../utils/Form";
 
-// class
+// types
+import { TSignupForm } from "../../../utils/type";
+
+// classes
 const UserValidator = new UserValidatorClass();
-
-type Form = {
-  username: string;
-  email: string;
-  password: string;
-  password2: string;
-};
+const Form = new FormClass();
 
 const FormSignup: FC = () => {
   const { t } = useTranslation("signup");
 
   const router = useRouter();
 
-  const [form, setForm] = useState<Form>({
+  const [form, setForm] = useState<TSignupForm>({
     username: "",
     email: "",
     password: "",
     password2: "",
   });
-
-  const handleChange = (
-    e: ChangeEvent,
-    id: string,
-  ) => {
-    setForm({
-      ...form,
-      [id]: (e.target as HTMLInputElement).value,
-    });
-  };
 
   const handleSubmit = async (
     e: SyntheticEvent,
@@ -109,7 +96,14 @@ const FormSignup: FC = () => {
           <FormInput
             icon={<IconUser />}
             id="username"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "username",
+                setForm,
+                form,
+              )
+            }
             value={form.username}
             ariaDescribedby={t(
               "common:form:input:username:ariaDescribedby",
@@ -125,7 +119,14 @@ const FormSignup: FC = () => {
           <FormInput
             icon={<IconEmail />}
             id="email"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "email",
+                setForm,
+                form,
+              )
+            }
             value={form.email}
             ariaDescribedby={t(
               "common:form:input:email:ariaDescribedby",
@@ -141,7 +142,14 @@ const FormSignup: FC = () => {
           <FormInput
             icon={<IconPassword />}
             id="password"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "password",
+                setForm,
+                form,
+              )
+            }
             value={form.password}
             ariaDescribedby={t(
               "common:form:input:password:ariaDescribedby",
@@ -156,7 +164,14 @@ const FormSignup: FC = () => {
           <FormInput
             icon={<IconPassword />}
             id="password2"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "password2",
+                setForm,
+                form,
+              )
+            }
             value={form.password2}
             ariaDescribedby={t(
               "common:form:input:password2:ariaDescribedby",

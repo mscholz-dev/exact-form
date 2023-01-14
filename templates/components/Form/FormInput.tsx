@@ -1,29 +1,15 @@
 import React, {
   useState,
   FC,
-  ChangeEvent,
   SyntheticEvent,
 } from "react";
 import IconEye from "../../../public/icons/eye.svg";
 import IconEyeSlash from "../../../public/icons/eye-slash.svg";
 
-interface Props {
-  icon: JSX.Element;
-  id: string;
-  handleChange: (
-    e: ChangeEvent,
-    id: string,
-  ) => void;
-  value: string;
-  ariaDescribedby: string;
-  title: string;
-  mb?: boolean;
-  maxLength: number;
-  type: "text" | "email" | "password";
-  asterix?: boolean;
-}
+// interfaces
+import { IFormInput } from "../../../utils/interface";
 
-const FormInput: FC<Props> = ({
+const FormInput: FC<IFormInput> = ({
   icon,
   id,
   handleChange,

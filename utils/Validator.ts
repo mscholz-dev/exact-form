@@ -1,24 +1,18 @@
 import type { Translate } from "next-translate";
 
-type InspectData = {
-  username?: string;
-  email?: string;
-  password?: string;
-  password2?: string;
-};
-
-type InspectDataErrors = {
-  key: string;
-  message: string;
-}[];
+// types
+import {
+  TInspectDataErrors,
+  TInspectData,
+} from "./type";
 
 export default class Validator {
   inspectData(
-    schema: InspectData,
+    schema: TInspectData,
     validFunc: Function,
     t: Translate,
-  ): InspectDataErrors {
-    const errors: InspectDataErrors = [];
+  ): TInspectDataErrors {
+    const errors: TInspectDataErrors = [];
 
     Object.entries(schema).forEach((item) => {
       const errorMessage = validFunc(

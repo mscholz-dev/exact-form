@@ -11,17 +11,13 @@ import HeaderItem from "../components/HeaderItem";
 import useTranslation from "next-translate/useTranslation";
 // import setLanguage from "next-translate/setLanguage";
 
-interface Props {
-  myRef: Ref<HTMLHeadingElement>;
-}
+// interfaces
+import { IHeader } from "../../utils/interface";
 
-type HeaderData = {
-  id: number;
-  title: string;
-  url: string;
-}[];
+// types
+import { THeaderData } from "../../utils/type";
 
-const Header: FC<Props> = ({ myRef }) => {
+const Header: FC<IHeader> = ({ myRef }) => {
   const { t } = useTranslation("common");
 
   const headerChildRef =
@@ -35,7 +31,7 @@ const Header: FC<Props> = ({ myRef }) => {
   const [open, setOpen] =
     useState<boolean>(false);
 
-  const headerData: HeaderData = [
+  const headerData: THeaderData = [
     {
       id: 0,
       title: t("common:header:index"),
@@ -48,7 +44,7 @@ const Header: FC<Props> = ({ myRef }) => {
     },
   ];
 
-  const headerRandomData: HeaderData = [
+  const headerRandomData: THeaderData = [
     {
       id: 4,
       title: t("common:header:signup"),

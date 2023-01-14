@@ -1,13 +1,10 @@
 import React, { FC } from "react";
 import Link from "next/link";
 
-interface Props {
-  url: string;
-  pathname: string;
-  title: string;
-}
+// interfaces
+import { IHeaderItem } from "../../utils/interface";
 
-const HeaderItem: FC<Props> = ({
+const HeaderItem: FC<IHeaderItem> = ({
   url,
   pathname,
   title,

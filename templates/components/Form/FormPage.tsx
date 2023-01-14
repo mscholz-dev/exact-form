@@ -1,12 +1,11 @@
 import React, { FC } from "react";
 
-interface Props {
-  children: JSX.Element;
-  largeForm?: boolean;
-  noContainer?: boolean;
-}
+// interfaces
+import { IFormPage } from "../../../utils/interface";
 
-const FormPage: FC<Props> = ({ children }) => {
+const FormPage: FC<IFormPage> = ({
+  children,
+}) => {
   return (
     <section className="form-page">
       <article className="form-page-article">

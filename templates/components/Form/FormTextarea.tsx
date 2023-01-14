@@ -1,23 +1,9 @@
-import React, {
-  useState,
-  FC,
-  ChangeEvent,
-} from "react";
+import React, { useState, FC } from "react";
 
-interface Props {
-  id: string;
-  handleChange: (
-    e: ChangeEvent,
-    id: string,
-  ) => void;
-  value: string;
-  ariaDescribedby: string;
-  title: string;
-  maxLength: number;
-  asterix?: boolean;
-}
+// interfaces
+import { IFormTextarea } from "../../../utils/interface";
 
-const FormTextarea: FC<Props> = ({
+const FormTextarea: FC<IFormTextarea> = ({
   id,
   handleChange,
   value,

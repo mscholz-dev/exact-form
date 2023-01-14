@@ -2,24 +2,18 @@ import Validator from "./Validator";
 import type { Translate } from "next-translate";
 import RegexClass from "./Regex";
 
-// class
+// types
+import {
+  TSignupForm,
+  TInspectDataErrors,
+} from "./type";
+
+// classes
 const Regex = new RegexClass();
-
-type UserSchema = {
-  username: string;
-  email: string;
-  password: string;
-  password2: string;
-};
-
-type InspectDataErrors = {
-  key: string;
-  message: string;
-}[];
 
 export default class UserValidator extends Validator {
   inspectUserData(
-    schema: UserSchema,
+    schema: TSignupForm,
     t: Translate,
   ) {
     const errors = this.inspectData(
@@ -34,8 +28,8 @@ export default class UserValidator extends Validator {
   }
 
   checkPasswords(
-    errors: InspectDataErrors,
-    { password, password2 }: UserSchema,
+    errors: TInspectDataErrors,
+    { password, password2 }: TSignupForm,
     t: Translate,
   ) {
     if (password !== password2) {

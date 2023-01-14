@@ -1,11 +1,9 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 
-interface Props {
-  children: ReactNode;
-  className?: string;
-}
+// interfaces
+import { IWrapper } from "../../utils/interface";
 
-const Wrapper: FC<Props> = ({
+const Wrapper: FC<IWrapper> = ({
   children,
   className,
 }) => {

@@ -1,14 +1,10 @@
 import api from "./index";
 
-type Create = {
-  username: string;
-  email: string;
-  password: string;
-  password2: string;
-};
+// types
+import { TSignupForm } from "../../utils/type";
 
 export default class UserApi {
-  static async create(form: Create) {
+  static async create(form: TSignupForm) {
     return await api
       .post(`/user`, form, {
         headers: {

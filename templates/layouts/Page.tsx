@@ -1,21 +1,12 @@
-import React, {
-  FC,
-  ReactNode,
-  useRef,
-} from "react";
+import React, { FC, useRef } from "react";
 import Head from "next/head";
 import Header from "./Header";
 import { ToastContainer } from "react-toastify";
 
-interface Props {
-  title: string;
-  children: ReactNode;
-  className?: string;
-  description: string;
-  padding?: boolean;
-}
+// interfaces
+import { IPage } from "../../utils/interface";
 
-const Page: FC<Props> = ({
+const Page: FC<IPage> = ({
   title,
   children,
   className,
