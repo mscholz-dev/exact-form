@@ -3,7 +3,7 @@ import Page from "../templates/layouts/Page";
 import FormSignup from "../templates/components/Form/FormSignup";
 import useTranslation from "next-translate/useTranslation";
 
-const Register: FC = () => {
+const SignUp: FC = () => {
   const { t } = useTranslation("signup");
 
   return (
@@ -16,4 +16,4 @@ const Register: FC = () => {
   );
 };
 
-export default Register;
+export default SignUp;

@@ -3,7 +3,7 @@ import Page from "../templates/layouts/Page";
 import FormSignin from "../templates/components/Form/FormSignin";
 import useTranslation from "next-translate/useTranslation";
 
-const Login: FC = () => {
+const SignIn: FC = () => {
   const { t } = useTranslation("signin");
 
   return (
@@ -16,4 +16,4 @@ const Login: FC = () => {
   );
 };
 
-export default Login;
+export default SignIn;
