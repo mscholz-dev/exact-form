@@ -36,6 +36,7 @@
   "form:input:email:error:long": "Le champ Email doit contenir 255 caractères maximum",
   "form:input:email:error:format": "Le champ Email doit être une email valide",
   "form:input:email:error:exists": "Email déjà existant",
+  "form:input:email:error:found": "Utilisateur non trouvé",
 
   "form:input:phone:title": "Téléphone",
   "form:input:phone:ariaDescribedby": "Veuillez renseigner votre téléphone",
@@ -51,6 +52,7 @@
   "form:input:password:error:empty": "Le champ Mot de passe est requis",
   "form:input:password:error:long": "Le champ Mot de passe doit contenir 60 caractères maximum",
   "form:input:password:error:match": "Les champs Mot de passe ne correspondent pas",
+  "form:input:password:error:incorrect": "Mot de passe incorrect",
 
   "form:input:password2:title": "Confirmer le mot de passe",
   "form:input:password2:ariaDescribedby": "Veuillez confirmer votre mot de passe",

@@ -4,15 +4,12 @@ import {
   SetStateAction,
 } from "react";
 
-// types
-import { TSignupForm } from "./type";
-
 export default class Form {
   handleChange(
     e: ChangeEvent,
     id: string,
-    setter: Dispatch<SetStateAction<TSignupForm>>,
-    state: TSignupForm,
+    setter: Dispatch<SetStateAction<any>>,
+    state: object,
   ): void {
     setter({
       ...state,

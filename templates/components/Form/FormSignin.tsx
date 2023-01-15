@@ -2,7 +2,6 @@ import React, {
   useState,
   FC,
   SyntheticEvent,
-  ChangeEvent,
 } from "react";
 import { toast } from "react-toastify";
 import IconEmail from "../../../public/icons/email.svg";
@@ -11,59 +10,66 @@ import IconPassword from "../../../public/icons/password.svg";
 import { useRouter } from "next/router";
 import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
-import {
-  handleValidator,
-  handleErrorStyle,
-} from "../../../utils/Validator";
+import UserApi from "../../../pages/api/user";
+import { AxiosError } from "axios";
+import UserValidatorClass from "../../../utils/UserValidator";
+import FormClass from "../../../utils/Form";
 
-type Form = {
-  email: string;
-  password: string;
-};
+// types
+import { TSigninForm } from "../../../utils/type";
+
+// classes
+const UserValidator = new UserValidatorClass();
+const Form = new FormClass();
 
 const FormSignin: FC = () => {
   const { t } = useTranslation("signin");
 
   const router = useRouter();
 
-  const [form, setForm] = useState<Form>({
+  const [form, setForm] = useState<TSigninForm>({
     email: "",
     password: "",
   });
-
-  const handleChange = (
-    e: ChangeEvent,
-    id: string,
-  ) => {
-    setForm({
-      ...form,
-      [id]: (e.target as HTMLInputElement).value,
-    });
-  };
 
   const handleSubmit = async (
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
 
-    let error = false;
+    const errors =
+      UserValidator.inspectSigninData(form, t);
 
-    Object.entries(form).forEach((item) => {
-      const errorMessage = handleValidator(
-        item[0],
-        item[1],
-        t,
-      );
-      if (errorMessage.length !== 0) {
-        error = true;
-        handleErrorStyle(item[0]);
-        toast.error(errorMessage);
+    if (errors.length) {
+      for (const { key, message } of errors) {
+        UserValidator.errorStyle(key);
+        toast.error(message);
       }
-    });
 
-    if (error) return;
+      return;
+    }
 
-    //TODO: add api call
+    try {
+      await UserApi.connect(form);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          UserValidator.errorApiMessage(
+            err.response?.data.message,
+            t,
+          );
+
+        toast.error(errorMessage);
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t(
+        "common:form:error:random",
+      );
+      toast.error(errorMessage);
+    }
 
     router.push("/");
   };
@@ -85,7 +91,14 @@ const FormSignin: FC = () => {
           <FormInput
             icon={<IconEmail />}
             id="email"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "email",
+                setForm,
+                form,
+              )
+            }
             value={form.email}
             ariaDescribedby={t(
               "common:form:input:email:ariaDescribedby",
@@ -101,7 +114,14 @@ const FormSignin: FC = () => {
           <FormInput
             icon={<IconPassword />}
             id="password"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "password",
+                setForm,
+                form,
+              )
+            }
             value={form.password}
             ariaDescribedby={t(
               "common:form:input:password:ariaDescribedby",
@@ -117,6 +137,7 @@ const FormSignin: FC = () => {
           <button
             type="submit"
             className="btn-submit"
+            data-cy="btn-form"
           >
             {t("signin:form:submit")}
           </button>

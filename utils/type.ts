@@ -22,3 +22,8 @@ export type THeaderData = {
   title: string;
   url: string;
 }[];
+
+export type TSigninForm = {
+  email: string;
+  password: string;
+};

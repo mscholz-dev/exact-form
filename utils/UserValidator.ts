@@ -6,13 +6,14 @@ import RegexClass from "./Regex";
 import {
   TSignupForm,
   TInspectDataErrors,
+  TSigninForm,
 } from "./type";
 
 // classes
 const Regex = new RegexClass();
 
 export default class UserValidator extends Validator {
-  inspectUserData(
+  inspectSignupData(
     schema: TSignupForm,
     t: Translate,
   ) {
@@ -23,6 +24,19 @@ export default class UserValidator extends Validator {
     );
 
     this.checkPasswords(errors, schema, t);
+
+    return errors;
+  }
+
+  inspectSigninData(
+    schema: TSigninForm,
+    t: Translate,
+  ) {
+    const errors = this.inspectData(
+      schema,
+      this.errorMessage,
+      t,
+    );
 
     return errors;
   }

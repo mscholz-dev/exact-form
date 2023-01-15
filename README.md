@@ -13,3 +13,9 @@ tasks: this is where we will write our custom tasks
 cy.get('locator')
 .should('have.class', 'validClassname')
 .and('not.have.class', 'invalidClassname');
+
+// TODO
+mettre en place la suppression de la db avant et après le passage de cypress
+plus de test pour tous les messages d'erreurs des forms?
+que stocker dans le cookie???
+mettre les bons codes d'erreurs en API

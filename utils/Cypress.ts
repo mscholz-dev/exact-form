@@ -50,4 +50,11 @@ export default class Cypress {
     this.toastContains(cy, getToast, toastValue);
     this.inputStyleError(cy, inputCyData);
   }
+
+  shouldRedirect(
+    cy: Cypress.cy & CyEventEmitter,
+    url: string,
+  ) {
+    cy.url().should("be.equal", url);
+  }
 }

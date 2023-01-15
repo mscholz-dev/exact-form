@@ -74,6 +74,11 @@ export default class Validator {
           "common:form:input:email:error:exists",
         );
 
+      case "user not found":
+        return t(
+          "common:form:input:email:error:found",
+        );
+
       // password
       case "password required":
         return t(
@@ -83,6 +88,11 @@ export default class Validator {
       case "password too long":
         return t(
           "common:form:input:password:error:long",
+        );
+
+      case "password incorrect":
+        return t(
+          "common:form:input:password:error:incorrect",
         );
 
       // password2

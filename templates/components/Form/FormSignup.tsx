@@ -40,10 +40,8 @@ const FormSignup: FC = () => {
   ) => {
     e.preventDefault();
 
-    const errors = UserValidator.inspectUserData(
-      form,
-      t,
-    );
+    const errors =
+      UserValidator.inspectSignupData(form, t);
 
     if (errors.length) {
       for (const { key, message } of errors) {
