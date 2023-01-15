@@ -186,6 +186,7 @@ const FormSignup: FC = () => {
           <button
             type="submit"
             className="btn-submit"
+            data-cy="btn-form"
           >
             {t("signup:form:submit")}
           </button>
