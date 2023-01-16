@@ -46,41 +46,29 @@ export default class Cypress {
     cy.get(get).contains(value);
   }
 
-  // inputStyleError(
-  //   cy: Cypress.cy & CyEventEmitter,
-  //   cyData: string,
-  // ) {
-  //   this.getCyData(cy, cyData).should(
-  //     "have.class",
-  //     "form-input-error",
-  //   );
-  // }
-
-  formError(
-    cy: Cypress.cy & CyEventEmitter,
-    getToast: string,
-    toastValue: string,
-    inputCyData: string,
-  ) {
-    this.toastContains(cy, getToast, toastValue);
-    // this.inputStyleError(cy, inputCyData);
-  }
-
   loopFormError(
     formError: TCypressFormError,
     translation: object,
   ) {
-    for (const {
-      id,
-      toastValue,
-      inputCyData,
-    } of formError)
-      this.formError(
+    for (const { id, toastValue } of formError)
+      this.toastContains(
         cy,
         `#${id + 1}.Toastify__toast--error`,
         translation[toastValue as keyof object],
-        inputCyData,
       );
+  }
+
+  successToastContains(
+    cy: Cypress.cy & CyEventEmitter,
+    id: number,
+    toastValue: string,
+    translation: object,
+  ) {
+    this.toastContains(
+      cy,
+      `#${id + 1}.Toastify__toast--success`,
+      translation[toastValue as keyof object],
+    );
   }
 
   shouldRedirect(

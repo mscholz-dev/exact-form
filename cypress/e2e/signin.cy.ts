@@ -19,13 +19,11 @@ describe("Page: /signin", () => {
           id: 0,
           toastValue:
             "form:input:email:error:empty",
-          inputCyData: "input-email",
         },
         {
           id: 1,
           toastValue:
             "form:input:password:error:empty",
-          inputCyData: "input-password",
         },
       ];
 
@@ -45,7 +43,6 @@ describe("Page: /signin", () => {
           id: 0,
           toastValue:
             "form:input:email:error:found",
-          inputCyData: "input-email",
         },
       ];
 
@@ -78,7 +75,6 @@ describe("Page: /signin", () => {
           id: 0,
           toastValue:
             "form:input:password:error:incorrect",
-          inputCyData: "input-password",
         },
       ];
 

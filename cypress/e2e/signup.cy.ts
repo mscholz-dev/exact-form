@@ -19,25 +19,21 @@ describe("Page: /signup", () => {
           id: 0,
           toastValue:
             "form:input:username:error:empty",
-          inputCyData: "input-username",
         },
         {
           id: 1,
           toastValue:
             "form:input:email:error:empty",
-          inputCyData: "input-email",
         },
         {
           id: 2,
           toastValue:
             "form:input:password:error:empty",
-          inputCyData: "input-password",
         },
         {
           id: 3,
           toastValue:
             "form:input:password2:error:empty",
-          inputCyData: "input-password2",
         },
       ];
 
@@ -57,7 +53,6 @@ describe("Page: /signup", () => {
           id: 0,
           toastValue:
             "form:input:password:error:match",
-          inputCyData: "input-password2",
         },
       ];
 

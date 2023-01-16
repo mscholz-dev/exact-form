@@ -25,6 +25,7 @@ const FormTextarea: FC<IFormTextarea> = ({
       }${
         value.length ? " form-input-filled" : ""
       }`}
+      data-cy={`input-${id}`}
     >
       <textarea
         id={id}

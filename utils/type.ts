@@ -44,5 +44,4 @@ export type TCypressFormData = {
 export type TCypressFormError = {
   id: number;
   toastValue: string;
-  inputCyData: string;
 }[];
