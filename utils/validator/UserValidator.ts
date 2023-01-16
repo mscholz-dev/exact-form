@@ -1,13 +1,13 @@
 import Validator from "./Validator";
 import type { Translate } from "next-translate";
-import RegexClass from "./Regex";
+import RegexClass from "../Regex";
 
 // types
 import {
   TSignupForm,
   TInspectDataErrors,
   TSigninForm,
-} from "./type";
+} from "../type";
 
 // classes
 const Regex = new RegexClass();
@@ -113,38 +113,6 @@ export default class UserValidator extends Validator {
         if (value.length > 60)
           return t(
             "common:form:input:password2:error:long",
-          );
-        return "";
-
-      // lastName
-      case "lastName":
-        if (!value)
-          return t(
-            "common:form:input:lastName:error:empty",
-          );
-        if (value.length > 60)
-          return t(
-            "common:form:input:lastName:error:long",
-          );
-        return "";
-
-      // firstName
-      case "firstName":
-        if (!value)
-          return t(
-            "common:form:input:firstName:error:empty",
-          );
-        if (value.length > 60)
-          return t(
-            "common:form:input:firstName:error:long",
-          );
-        return "";
-
-      // phone
-      case "phone":
-        if (value && !Regex.phone(value))
-          return t(
-            "common:form:input:phone:error:format",
           );
         return "";
 

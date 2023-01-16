@@ -2,7 +2,6 @@ import React, {
   useState,
   FC,
   SyntheticEvent,
-  ChangeEvent,
 } from "react";
 import { toast } from "react-toastify";
 import IconUser from "../../../public/icons/user.svg";
@@ -12,18 +11,18 @@ import FormInput from "./FormInput";
 import FormTextarea from "./FormTextarea";
 import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
-import {
-  handleValidator,
-  handleErrorStyle,
-} from "../../../utils/Validator";
+import ContactApi from "../../../pages/api/contact";
+import { AxiosError } from "axios";
+import ContactValidatorClass from "../../../utils/validator/ContactValidator";
+import FormClass from "../../../utils/Form";
 
-type Form = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  message: string;
-};
+// types
+import { TContactForm } from "../../../utils/type";
+
+// classes
+const ContactValidator =
+  new ContactValidatorClass();
+const Form = new FormClass();
 
 const FormContact: FC = () => {
   const { t } = useTranslation("contact");
@@ -37,49 +36,55 @@ const FormContact: FC = () => {
   };
 
   const [form, setForm] =
-    useState<Form>(defaultForm);
-
-  const handleChange = (
-    e: ChangeEvent,
-    id: string,
-  ) => {
-    setForm({
-      ...form,
-      [id]: (e.target as HTMLInputElement).value,
-    });
-  };
+    useState<TContactForm>(defaultForm);
 
   const handleSubmit = async (
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
 
-    let error = false;
-
-    console.log(form);
-
-    Object.entries(form).forEach((item) => {
-      const errorMessage = handleValidator(
-        item[0],
-        item[1],
+    const errors =
+      ContactValidator.inspectContactData(
+        form,
         t,
       );
-      if (errorMessage.length !== 0) {
-        error = true;
-        handleErrorStyle(item[0]);
-        toast.error(errorMessage);
+
+    if (errors.length) {
+      for (const { key, message } of errors) {
+        ContactValidator.errorStyle(key);
+        toast.error(message);
       }
-    });
 
-    if (error) return;
+      return;
+    }
 
-    //TODO: add api call
+    try {
+      await ContactApi.contact(form);
 
-    const successMessage = t(
-      "contact:form:success",
-    );
-    toast.success(successMessage);
-    setForm(defaultForm);
+      const successMessage = t(
+        "contact:form:success",
+      );
+      toast.success(successMessage);
+      setForm(defaultForm);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          ContactValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+
+        toast.error(errorMessage);
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t(
+        "common:form:error:random",
+      );
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -100,7 +105,14 @@ const FormContact: FC = () => {
             <FormInput
               icon={<IconUser />}
               id="lastName"
-              handleChange={handleChange}
+              handleChange={(e) =>
+                Form.handleChange(
+                  e,
+                  "lastName",
+                  setForm,
+                  form,
+                )
+              }
               value={form.lastName}
               ariaDescribedby={t(
                 "common:form:input:lastName:ariaDescribedby",
@@ -117,7 +129,14 @@ const FormContact: FC = () => {
             <FormInput
               icon={<IconUser />}
               id="firstName"
-              handleChange={handleChange}
+              handleChange={(e) =>
+                Form.handleChange(
+                  e,
+                  "firstName",
+                  setForm,
+                  form,
+                )
+              }
               value={form.firstName}
               ariaDescribedby={t(
                 "common:form:input:firstName:ariaDescribedby",
@@ -135,7 +154,14 @@ const FormContact: FC = () => {
           <FormInput
             icon={<IconEmail />}
             id="email"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "email",
+                setForm,
+                form,
+              )
+            }
             value={form.email}
             ariaDescribedby={t(
               "common:form:input:email:ariaDescribedby",
@@ -152,7 +178,14 @@ const FormContact: FC = () => {
           <FormInput
             icon={<IconPhone />}
             id="phone"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "phone",
+                setForm,
+                form,
+              )
+            }
             value={form.phone}
             ariaDescribedby={t(
               "common:form:input:phone:ariaDescribedby",
@@ -167,7 +200,14 @@ const FormContact: FC = () => {
 
           <FormTextarea
             id="message"
-            handleChange={handleChange}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "message",
+                setForm,
+                form,
+              )
+            }
             value={form.message}
             ariaDescribedby={t(
               "common:form:input:message:ariaDescribedby",
@@ -182,6 +222,7 @@ const FormContact: FC = () => {
           <button
             type="submit"
             className="btn-submit"
+            data-cy="btn-form"
           >
             {t("contact:form:submit")}
           </button>

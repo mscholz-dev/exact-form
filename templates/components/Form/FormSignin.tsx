@@ -12,7 +12,7 @@ import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
 import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
-import UserValidatorClass from "../../../utils/UserValidator";
+import UserValidatorClass from "../../../utils/validator/UserValidator";
 import FormClass from "../../../utils/Form";
 
 // types
