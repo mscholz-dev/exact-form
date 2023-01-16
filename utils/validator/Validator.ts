@@ -168,4 +168,11 @@ export default class Validator {
       "form-input-error",
     );
   }
+
+  formatPhone(string: string): string {
+    return string
+      .replace("+33", "0")
+      .split(" ")
+      .join("");
+  }
 }

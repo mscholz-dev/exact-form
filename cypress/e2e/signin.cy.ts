@@ -17,31 +17,90 @@ describe("Page: /signin", () => {
       const formError = [
         {
           id: 0,
-          toastValue: "email",
+          toastValue:
+            "form:input:email:error:empty",
           inputCyData: "input-email",
         },
         {
           id: 1,
-          toastValue: "password",
+          toastValue:
+            "form:input:password:error:empty",
           inputCyData: "input-password",
         },
       ];
 
       Cypress.clickCyData(cy, "btn-form");
 
-      for (const {
-        id,
-        toastValue,
-        inputCyData,
-      } of formError)
-        Cypress.formError(
-          cy,
-          `#${id + 1}.Toastify__toast--error`,
-          commonTranslations[
-            `form:input:${toastValue}:error:empty` as keyof object
-          ],
-          inputCyData,
-        );
+      Cypress.loopFormError(
+        formError,
+        commonTranslations,
+      );
+    });
+  });
+
+  describe("Sign in with a new email", () => {
+    it("it should throw: user not found", () => {
+      const formError = [
+        {
+          id: 0,
+          toastValue:
+            "form:input:email:error:found",
+          inputCyData: "input-email",
+        },
+      ];
+
+      const formData = [
+        {
+          cyData: "email",
+          value: "new.email@gmail.com",
+        },
+        {
+          cyData: "password",
+          value: data.password,
+        },
+      ];
+
+      Cypress.loopFormFill(formData);
+
+      Cypress.clickCyData(cy, "btn-form");
+
+      Cypress.loopFormError(
+        formError,
+        commonTranslations,
+      );
+    });
+  });
+
+  describe("Sign in with an incorrect password", () => {
+    it("it should throw: password incorrect", () => {
+      const formError = [
+        {
+          id: 0,
+          toastValue:
+            "form:input:password:error:incorrect",
+          inputCyData: "input-password",
+        },
+      ];
+
+      const formData = [
+        {
+          cyData: "email",
+          value: data.email,
+        },
+        {
+          cyData: "password",
+          value: "bad password",
+        },
+      ];
+
+      Cypress.loopFormFill(formData);
+
+      Cypress.clickCyData(cy, "btn-form");
+
+      Cypress.loopFormError(
+        formError,
+        commonTranslations,
+      );
     });
   });
 
@@ -58,12 +117,7 @@ describe("Page: /signin", () => {
         },
       ];
 
-      for (const { cyData, value } of formData)
-        Cypress.inputFill(
-          cy,
-          `input-${cyData}`,
-          value,
-        );
+      Cypress.loopFormFill(formData);
 
       Cypress.clickCyData(cy, "btn-form");
 

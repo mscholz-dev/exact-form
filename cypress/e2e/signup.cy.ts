@@ -17,41 +17,77 @@ describe("Page: /signup", () => {
       const formError = [
         {
           id: 0,
-          toastValue: "username",
+          toastValue:
+            "form:input:username:error:empty",
           inputCyData: "input-username",
         },
         {
           id: 1,
-          toastValue: "email",
+          toastValue:
+            "form:input:email:error:empty",
           inputCyData: "input-email",
         },
         {
           id: 2,
-          toastValue: "password",
+          toastValue:
+            "form:input:password:error:empty",
           inputCyData: "input-password",
         },
         {
           id: 3,
-          toastValue: "password2",
+          toastValue:
+            "form:input:password2:error:empty",
           inputCyData: "input-password2",
         },
       ];
 
       Cypress.clickCyData(cy, "btn-form");
 
-      for (const {
-        id,
-        toastValue,
-        inputCyData,
-      } of formError)
-        Cypress.formError(
-          cy,
-          `#${id + 1}.Toastify__toast--error`,
-          commonTranslations[
-            `form:input:${toastValue}:error:empty` as keyof object
-          ],
-          inputCyData,
-        );
+      Cypress.loopFormError(
+        formError,
+        commonTranslations,
+      );
+    });
+  });
+
+  describe("Sign up with unmatching passwords", () => {
+    it("it should throw: passwords not matching", () => {
+      const formError = [
+        {
+          id: 0,
+          toastValue:
+            "form:input:password:error:match",
+          inputCyData: "input-password2",
+        },
+      ];
+
+      const formData = [
+        {
+          cyData: "username",
+          value: data.username,
+        },
+        {
+          cyData: "email",
+          value: data.email,
+        },
+        {
+          cyData: "password",
+          value: "a",
+        },
+        {
+          cyData: "password2",
+          value: "b",
+        },
+      ];
+
+      Cypress.loopFormFill(formData);
+
+      Cypress.clickCyData(cy, "btn-form");
+
+      Cypress.loopFormError(
+        formError,
+        commonTranslations,
+      );
     });
   });
 
@@ -76,12 +112,7 @@ describe("Page: /signup", () => {
         },
       ];
 
-      for (const { cyData, value } of formData)
-        Cypress.inputFill(
-          cy,
-          `input-${cyData}`,
-          value,
-        );
+      Cypress.loopFormFill(formData);
 
       Cypress.clickCyData(cy, "btn-form");
 

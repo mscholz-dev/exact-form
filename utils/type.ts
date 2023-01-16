@@ -35,3 +35,14 @@ export type TContactForm = {
   phone: string;
   message: string;
 };
+
+export type TCypressFormData = {
+  cyData: string;
+  value: string;
+}[];
+
+export type TCypressFormError = {
+  id: number;
+  toastValue: string;
+  inputCyData: string;
+}[];

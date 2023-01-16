@@ -13,6 +13,11 @@ export default class ContactValidator extends Validator {
     schema: TContactForm,
     t: Translate,
   ) {
+    schema = {
+      ...schema,
+      phone: this.formatPhone(schema.phone || ""),
+    };
+
     const errors = this.inspectData(
       schema,
       this.errorMessage,

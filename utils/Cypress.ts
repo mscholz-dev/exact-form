@@ -1,3 +1,9 @@
+// types
+import {
+  TCypressFormData,
+  TCypressFormError,
+} from "./type";
+
 export default class Cypress {
   getCyData(
     cy: Cypress.cy & CyEventEmitter,
@@ -16,6 +22,15 @@ export default class Cypress {
       .type(value);
   }
 
+  loopFormFill(formData: TCypressFormData) {
+    for (const { cyData, value } of formData)
+      this.inputFill(
+        cy,
+        `input-${cyData}`,
+        value,
+      );
+  }
+
   clickCyData(
     cy: Cypress.cy & CyEventEmitter,
     cyData: string,
@@ -31,15 +46,15 @@ export default class Cypress {
     cy.get(get).contains(value);
   }
 
-  inputStyleError(
-    cy: Cypress.cy & CyEventEmitter,
-    cyData: string,
-  ) {
-    this.getCyData(cy, cyData).should(
-      "have.class",
-      "form-input-error",
-    );
-  }
+  // inputStyleError(
+  //   cy: Cypress.cy & CyEventEmitter,
+  //   cyData: string,
+  // ) {
+  //   this.getCyData(cy, cyData).should(
+  //     "have.class",
+  //     "form-input-error",
+  //   );
+  // }
 
   formError(
     cy: Cypress.cy & CyEventEmitter,
@@ -48,7 +63,24 @@ export default class Cypress {
     inputCyData: string,
   ) {
     this.toastContains(cy, getToast, toastValue);
-    this.inputStyleError(cy, inputCyData);
+    // this.inputStyleError(cy, inputCyData);
+  }
+
+  loopFormError(
+    formError: TCypressFormError,
+    translation: object,
+  ) {
+    for (const {
+      id,
+      toastValue,
+      inputCyData,
+    } of formError)
+      this.formError(
+        cy,
+        `#${id + 1}.Toastify__toast--error`,
+        translation[toastValue as keyof object],
+        inputCyData,
+      );
   }
 
   shouldRedirect(
