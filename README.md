@@ -19,3 +19,4 @@ mettre en place la suppression de la db avant et après le passage de cypress
 plus de test pour tous les messages d'erreurs des forms?
 que stocker dans le cookie???
 mettre les bons codes d'erreurs en API
+mettre en place la trad dans les mails selon la locale
