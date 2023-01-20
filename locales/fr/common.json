@@ -57,5 +57,8 @@
   "form:input:password2:title": "Confirmer le mot de passe",
   "form:input:password2:ariaDescribedby": "Veuillez confirmer votre mot de passe",
   "form:input:password2:error:empty": "Le champ Confirmer le mot de passe est requis",
-  "form:input:password2:error:long": "Le champ Confirmer le mot de passe doit contenir 60 caractères maximum"
+  "form:input:password2:error:long": "Le champ Confirmer le mot de passe doit contenir 60 caractères maximum",
+
+  "form:locale:error:empty": "Langage is requis",
+  "form:locale:error:format": "Langage est invalide"
 }

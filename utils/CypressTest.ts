@@ -4,7 +4,7 @@ import {
   TCypressFormError,
 } from "./type";
 
-export default class Cypress {
+export default class CypressTest {
   getCyData(
     cy: Cypress.cy & CyEventEmitter,
     cyData: string,

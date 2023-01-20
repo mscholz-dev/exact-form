@@ -17,14 +17,17 @@ import ContactValidatorClass from "../../../utils/validator/ContactValidator";
 import FormClass from "../../../utils/Form";
 
 // types
-import { TContactForm } from "../../../utils/type";
+import {
+  TContactForm,
+  TLocale,
+} from "../../../utils/type";
 
 // classes
 const ContactValidator =
   new ContactValidatorClass();
 const Form = new FormClass();
 
-const FormContact: FC = () => {
+const FormContact: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation("contact");
 
   const defaultForm = {
@@ -33,6 +36,7 @@ const FormContact: FC = () => {
     email: "",
     phone: "",
     message: "",
+    locale,
   };
 
   const [form, setForm] =

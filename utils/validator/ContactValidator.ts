@@ -93,6 +93,18 @@ export default class ContactValidator extends Validator {
           );
         return "";
 
+      // locale
+      case "locale":
+        if (!value)
+          return t(
+            "common:form:locale:error:empty",
+          );
+        if (value !== "fr" && value !== "en")
+          return t(
+            "common:form:locale:error:format",
+          );
+        return "";
+
       // default
       default:
         return t("common:form:error:random");

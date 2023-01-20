@@ -1,15 +1,17 @@
-import CypressClass from "../../utils/Cypress";
+import CypressTestClass from "../../utils/CypressTest";
 import commonTranslations from "../../locales/fr/common.json";
 import contactTranslations from "../../locales/fr/contact.json";
 import data from "../../utils/data";
+import TestApi from "../../pages/api/test";
 
 // classes
-const Cypress = new CypressClass();
+const CypressTest = new CypressTestClass();
 
 const url = "http://localhost:3000";
 
 describe("Page: /contact", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
+    await TestApi.reset();
     cy.visit(`${url}/fr/contact`);
   });
 
@@ -38,9 +40,9 @@ describe("Page: /contact", () => {
         },
       ];
 
-      Cypress.clickCyData(cy, "btn-form");
+      CypressTest.clickCyData(cy, "btn-form");
 
-      Cypress.loopFormError(
+      CypressTest.loopFormError(
         formError,
         commonTranslations,
       );
@@ -80,11 +82,11 @@ describe("Page: /contact", () => {
         },
       ];
 
-      Cypress.loopFormFill(formData);
+      CypressTest.loopFormFill(formData);
 
-      Cypress.clickCyData(cy, "btn-form");
+      CypressTest.clickCyData(cy, "btn-form");
 
-      Cypress.loopFormError(
+      CypressTest.loopFormError(
         formError,
         commonTranslations,
       );
@@ -112,11 +114,11 @@ describe("Page: /contact", () => {
         },
       ];
 
-      Cypress.loopFormFill(formData);
+      CypressTest.loopFormFill(formData);
 
-      Cypress.clickCyData(cy, "btn-form");
+      CypressTest.clickCyData(cy, "btn-form");
 
-      Cypress.successToastContains(
+      CypressTest.successToastContains(
         cy,
         0,
         "form:success",
@@ -150,11 +152,11 @@ describe("Page: /contact", () => {
         },
       ];
 
-      Cypress.loopFormFill(formData);
+      CypressTest.loopFormFill(formData);
 
-      Cypress.clickCyData(cy, "btn-form");
+      CypressTest.clickCyData(cy, "btn-form");
 
-      Cypress.successToastContains(
+      CypressTest.successToastContains(
         cy,
         0,
         "form:success",

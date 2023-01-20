@@ -11,7 +11,8 @@ export default class UserApi {
     return await api
       .post(`/user/create`, form, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type":
+            "application/x-www-form-urlencoded",
           accept: "application/json",
         },
       })
@@ -22,7 +23,8 @@ export default class UserApi {
     return await api
       .post(`/user/connect`, form, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type":
+            "application/x-www-form-urlencoded",
           accept: "application/json",
         },
       })
