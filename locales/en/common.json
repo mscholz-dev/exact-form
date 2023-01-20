@@ -57,5 +57,8 @@
   "form:input:password2:title": "Confirm password",
   "form:input:password2:ariaDescribedby": "Please confirm your password",
   "form:input:password2:error:empty": "Field Confirm password is required",
-  "form:input:password2:error:long": "Field Confirm password must contain 60 characters maximum"
+  "form:input:password2:error:long": "Field Confirm password must contain 60 characters maximum",
+
+  "form:locale:error:empty": "Language is required",
+  "form:locale:error:format": "Language is not valid"
 }

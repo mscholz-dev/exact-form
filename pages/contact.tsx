@@ -3,7 +3,10 @@ import Page from "../templates/layouts/Page";
 import FormContact from "../templates/components/Form/FormContact";
 import useTranslation from "next-translate/useTranslation";
 
-const Contact: FC = () => {
+// types
+import { TLocale } from "../utils/type";
+
+const Contact: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation("contact");
 
   return (
@@ -11,9 +14,15 @@ const Contact: FC = () => {
       title={t("contact:meta:title")}
       description={t("common:meta:description")}
     >
-      <FormContact />
+      <FormContact locale={locale} />
     </Page>
   );
 };
 
 export default Contact;
+
+export const getServerSideProps = async ({
+  locale,
+}: TLocale) => {
+  return { props: { locale } };
+};

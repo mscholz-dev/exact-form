@@ -151,6 +151,17 @@ export default class Validator {
           "common:form:input:message:error:long",
         );
 
+      // locale
+      case "locale required":
+        return t(
+          "common:form:locale:error:empty",
+        );
+
+      case "locale invalid":
+        return t(
+          "common:form:locale:error:format",
+        );
+
       // default
       default:
         return t("common:form:error:random");

@@ -1,14 +1,14 @@
-import CypressClass from "../../utils/Cypress";
+import CypressTestClass from "../../utils/CypressTest";
 import commonTranslations from "../../locales/fr/common.json";
 import data from "../../utils/data";
 
 // classes
-const Cypress = new CypressClass();
+const CypressTest = new CypressTestClass();
 
 const url = "http://localhost:3000";
 
 describe("Page: /signin", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     cy.visit(`${url}/fr/signin`);
   });
 
@@ -27,9 +27,9 @@ describe("Page: /signin", () => {
         },
       ];
 
-      Cypress.clickCyData(cy, "btn-form");
+      CypressTest.clickCyData(cy, "btn-form");
 
-      Cypress.loopFormError(
+      CypressTest.loopFormError(
         formError,
         commonTranslations,
       );
@@ -57,11 +57,11 @@ describe("Page: /signin", () => {
         },
       ];
 
-      Cypress.loopFormFill(formData);
+      CypressTest.loopFormFill(formData);
 
-      Cypress.clickCyData(cy, "btn-form");
+      CypressTest.clickCyData(cy, "btn-form");
 
-      Cypress.loopFormError(
+      CypressTest.loopFormError(
         formError,
         commonTranslations,
       );
@@ -89,11 +89,11 @@ describe("Page: /signin", () => {
         },
       ];
 
-      Cypress.loopFormFill(formData);
+      CypressTest.loopFormFill(formData);
 
-      Cypress.clickCyData(cy, "btn-form");
+      CypressTest.clickCyData(cy, "btn-form");
 
-      Cypress.loopFormError(
+      CypressTest.loopFormError(
         formError,
         commonTranslations,
       );
@@ -113,11 +113,11 @@ describe("Page: /signin", () => {
         },
       ];
 
-      Cypress.loopFormFill(formData);
+      CypressTest.loopFormFill(formData);
 
-      Cypress.clickCyData(cy, "btn-form");
+      CypressTest.clickCyData(cy, "btn-form");
 
-      Cypress.shouldRedirect(cy, `${url}/fr`);
+      CypressTest.shouldRedirect(cy, `${url}/fr`);
     });
   });
 });

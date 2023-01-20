@@ -8,7 +8,8 @@ export default class ContactApi {
     return await api
       .post(`/contact/contact`, form, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type":
+            "application/x-www-form-urlencoded",
           accept: "application/json",
         },
       })

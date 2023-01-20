@@ -45,3 +45,7 @@ export type TCypressFormError = {
   id: number;
   toastValue: string;
 }[];
+
+export type TLocale = {
+  locale: string;
+};
