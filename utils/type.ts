@@ -27,6 +27,7 @@ export type THeaderData = {
 export type TSigninForm = {
   email: string;
   password: string;
+  locale: string;
 };
 
 export type TContactForm = {
