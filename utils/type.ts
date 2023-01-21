@@ -3,6 +3,7 @@ export type TSignupForm = {
   email: string;
   password: string;
   password2: string;
+  locale: string;
 };
 
 export type TInspectData = {
@@ -34,6 +35,7 @@ export type TContactForm = {
   email: string;
   phone: string;
   message: string;
+  locale: string;
 };
 
 export type TCypressFormData = {

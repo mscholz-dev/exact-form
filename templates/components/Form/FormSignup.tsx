@@ -17,13 +17,16 @@ import UserValidatorClass from "../../../utils/validator/UserValidator";
 import FormClass from "../../../utils/Form";
 
 // types
-import { TSignupForm } from "../../../utils/type";
+import {
+  TSignupForm,
+  TLocale,
+} from "../../../utils/type";
 
 // classes
 const UserValidator = new UserValidatorClass();
 const Form = new FormClass();
 
-const FormSignup: FC = () => {
+const FormSignup: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation("signup");
 
   const router = useRouter();
@@ -33,6 +36,7 @@ const FormSignup: FC = () => {
     email: "",
     password: "",
     password2: "",
+    locale,
   });
 
   const handleSubmit = async (

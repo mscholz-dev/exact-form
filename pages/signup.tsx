@@ -3,7 +3,10 @@ import Page from "../templates/layouts/Page";
 import FormSignup from "../templates/components/Form/FormSignup";
 import useTranslation from "next-translate/useTranslation";
 
-const SignUp: FC = () => {
+// types
+import { TLocale } from "../utils/type";
+
+const SignUp: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation("signup");
 
   return (
@@ -11,9 +14,15 @@ const SignUp: FC = () => {
       title={t("signup:meta:title")}
       description={t("common:meta:description")}
     >
-      <FormSignup />
+      <FormSignup locale={locale} />
     </Page>
   );
 };
 
 export default SignUp;
+
+export const getServerSideProps = async ({
+  locale,
+}: TLocale) => {
+  return { props: { locale } };
+};
