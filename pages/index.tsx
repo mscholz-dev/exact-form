@@ -1,9 +1,20 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import Page from "../templates/layouts/Page";
 import useTranslation from "next-translate/useTranslation";
+import AuthApi from "./api/auth";
 
 const Index: FC = () => {
   const { t } = useTranslation("index");
+
+  const isAuth = async () => {
+    const res = await AuthApi.index();
+
+    console.log(res.data);
+  };
+
+  useEffect(() => {
+    isAuth();
+  }, []);
 
   return (
     <Page
