@@ -54,7 +54,7 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
     }
 
     try {
-      await UserApi.connect(form);
+      await UserApi.connection(form);
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         const errorMessage =

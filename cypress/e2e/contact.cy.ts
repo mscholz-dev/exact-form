@@ -11,7 +11,7 @@ const url = "http://localhost:3000";
 
 describe("Page: /contact", () => {
   beforeEach(async () => {
-    await TestApi.reset();
+    await TestApi.newDB();
     cy.visit(`${url}/fr/contact`);
   });
 

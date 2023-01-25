@@ -10,7 +10,7 @@ const url = "http://localhost:3000";
 
 describe("Page: /signup", () => {
   beforeEach(async () => {
-    await TestApi.reset();
+    await TestApi.newDB();
     cy.visit(`${url}/fr/signup`);
   });
 

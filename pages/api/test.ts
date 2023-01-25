@@ -1,11 +1,11 @@
 import api from "./index";
 
 export default class TestApi {
-  static async reset() {
+  static async newDB() {
     return await api
-      .post(
-        `/test/reset`,
-        {},
+      .get(
+        `/test/new-db`,
+
         {
           headers: {
             accept: "application/json",

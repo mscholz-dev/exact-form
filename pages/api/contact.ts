@@ -6,7 +6,7 @@ import { TContactForm } from "../../utils/type";
 export default class ContactApi {
   static async contact(form: TContactForm) {
     return await api
-      .post(`/contact/contact`, form, {
+      .post(`/contact`, form, {
         headers: {
           "Content-Type":
             "application/x-www-form-urlencoded",

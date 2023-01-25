@@ -9,7 +9,7 @@ import {
 export default class UserApi {
   static async create(form: TSignupForm) {
     return await api
-      .post(`/user/create`, form, {
+      .post(`/user`, form, {
         headers: {
           "Content-Type":
             "application/x-www-form-urlencoded",
@@ -19,9 +19,9 @@ export default class UserApi {
       .then((res) => res);
   }
 
-  static async connect(form: TSigninForm) {
+  static async connection(form: TSigninForm) {
     return await api
-      .post(`/user/connect`, form, {
+      .post(`/user/connection`, form, {
         headers: {
           "Content-Type":
             "application/x-www-form-urlencoded",
