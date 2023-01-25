@@ -22,7 +22,7 @@ const SignUp: FC<TLocale> = ({ locale }) => {
 
   const isAuth = async () => {
     try {
-      const res = await AuthApi.index(undefined);
+      const res = await AuthApi.index();
       setCookie(res.data as TCookie);
     } catch (err) {
       return;

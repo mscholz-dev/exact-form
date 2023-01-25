@@ -66,7 +66,3 @@ export interface IFormPage {
   largeForm?: boolean;
   noContainer?: boolean;
 }
-
-export interface IIndex {
-  cookieProps: TCookie;
-}
