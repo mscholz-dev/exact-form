@@ -6,11 +6,15 @@ import React, {
 import Page from "../templates/layouts/Page";
 import useTranslation from "next-translate/useTranslation";
 import AuthApi from "./api/auth";
+import { GetServerSidePropsContext } from "next";
 
 // types
 import { TCookie } from "../utils/type";
 
-const Index: FC = () => {
+// interfaces
+import { IIndex } from "../utils/interface";
+
+const Index: FC<IIndex> = ({ cookieProps }) => {
   const { t } = useTranslation("index");
 
   const [cookie, setCookie] = useState({
@@ -19,18 +23,20 @@ const Index: FC = () => {
     role: "",
   });
 
-  const isAuth = async () => {
-    try {
-      const res = await AuthApi.index();
-      setCookie(res.data as TCookie);
-    } catch (err) {
-      return;
-    }
-  };
+  // const isAuth = async () => {
+  //   try {
+  //     const res = await AuthApi.index();
+  //     setCookie(res.data as TCookie);
+  //   } catch (err) {
+  //     return;
+  //   }
+  // };
 
   useEffect(() => {
-    isAuth();
-  }, []);
+    if (!cookieProps.role) return;
+
+    setCookie(cookieProps);
+  }, [cookieProps]);
 
   return (
     <Page
@@ -50,3 +56,30 @@ const Index: FC = () => {
 };
 
 export default Index;
+
+export const getServerSideProps = async (
+  ctx: GetServerSidePropsContext,
+) => {
+  try {
+    console.log(ctx.req.headers.cookie);
+
+    const res = await AuthApi.index(
+      ctx.req.headers.cookie,
+    );
+    return {
+      props: {
+        cookieProps: res.data,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        cookieProps: {
+          email: "",
+          username: "",
+          role: "",
+        },
+      },
+    };
+  }
+};
