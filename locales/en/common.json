@@ -8,6 +8,7 @@
   "header:signup": "Sign up",
   "header:signin": "Sign in",
   "header:contact": "Contact",
+  "header:profile": "Profile",
 
   "form:subtitle:mandatory": "All fields are required",
   "form:subtitle:optional": "All fields with an asterisk are required",

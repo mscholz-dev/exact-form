@@ -1,15 +1,31 @@
-import React, { FC, useEffect } from "react";
+import React, {
+  FC,
+  useEffect,
+  useState,
+} from "react";
 import Page from "../templates/layouts/Page";
 import useTranslation from "next-translate/useTranslation";
 import AuthApi from "./api/auth";
 
+// types
+import { TCookie } from "../utils/type";
+
 const Index: FC = () => {
   const { t } = useTranslation("index");
 
-  const isAuth = async () => {
-    const res = await AuthApi.index();
+  const [cookie, setCookie] = useState({
+    email: "",
+    username: "",
+    role: "",
+  });
 
-    console.log(res.data);
+  const isAuth = async () => {
+    try {
+      const res = await AuthApi.index();
+      setCookie(res.data as TCookie);
+    } catch (err) {
+      return;
+    }
   };
 
   useEffect(() => {
@@ -21,6 +37,7 @@ const Index: FC = () => {
       title={t("index:meta:title")}
       description={t("common:meta:description")}
       padding
+      cookie={cookie as TCookie}
     >
       <h1 style={{ fontSize: "32px" }}>
         Je suis une phrase

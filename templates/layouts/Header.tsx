@@ -17,7 +17,10 @@ import { IHeader } from "../../utils/interface";
 // types
 import { THeaderData } from "../../utils/type";
 
-const Header: FC<IHeader> = ({ myRef }) => {
+const Header: FC<IHeader> = ({
+  myRef,
+  cookie,
+}) => {
   const { t } = useTranslation("common");
 
   const headerChildRef =
@@ -46,14 +49,22 @@ const Header: FC<IHeader> = ({ myRef }) => {
 
   const headerRandomData: THeaderData = [
     {
-      id: 4,
+      id: 0,
       title: t("common:header:signup"),
       url: "/signup",
     },
     {
-      id: 5,
+      id: 1,
       title: t("common:header:signin"),
       url: "/signin",
+    },
+  ];
+
+  const headerClientData: THeaderData = [
+    {
+      id: 0,
+      title: t("common:header:profile"),
+      url: "/profile",
     },
   ];
 
@@ -182,16 +193,17 @@ const Header: FC<IHeader> = ({ myRef }) => {
               ),
             )}
 
-            {headerRandomData.map(
-              ({ id, title, url }) => (
-                <HeaderItem
-                  key={id}
-                  url={url}
-                  pathname={pathname}
-                  title={title}
-                />
-              ),
-            )}
+            {(!cookie.role
+              ? headerRandomData
+              : headerClientData
+            ).map(({ id, title, url }) => (
+              <HeaderItem
+                key={id}
+                url={url}
+                pathname={pathname}
+                title={title}
+              />
+            ))}
 
             <div className="btn-header-container">
               <Link

@@ -53,14 +53,8 @@ export type TLocale = {
   locale: string;
 };
 
-export type TAuthIndexInvalid = {
-  isAuth: boolean;
-  reason: string;
-};
-
-export type TAuthIndexValid = {
-  isAuth: boolean;
-  username: string;
+export type TCookie = {
   email: string;
-  role: "CLIENT" | "ADMIN" | "SUPER_ADMIN";
+  username: string;
+  role: "" | "CLIENT" | "ADMIN" | "SUPER_ADMIN";
 };

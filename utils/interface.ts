@@ -4,6 +4,9 @@ import {
   Ref,
 } from "react";
 
+// types
+import { TCookie } from "./type";
+
 export interface IFormInput {
   icon: JSX.Element;
   id: string;
@@ -26,10 +29,12 @@ export interface IPage {
   className?: string;
   description: string;
   padding?: boolean;
+  cookie: TCookie;
 }
 
 export interface IHeader {
   myRef: Ref<HTMLHeadingElement>;
+  cookie: TCookie;
 }
 
 export interface IWrapper {
