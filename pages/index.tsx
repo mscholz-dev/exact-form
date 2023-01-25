@@ -23,15 +23,6 @@ const Index: FC<IIndex> = ({ cookieProps }) => {
     role: "",
   });
 
-  // const isAuth = async () => {
-  //   try {
-  //     const res = await AuthApi.index();
-  //     setCookie(res.data as TCookie);
-  //   } catch (err) {
-  //     return;
-  //   }
-  // };
-
   useEffect(() => {
     if (!cookieProps.role) return;
 
