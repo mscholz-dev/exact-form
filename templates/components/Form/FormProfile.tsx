@@ -9,6 +9,7 @@ import IconUser from "../../../public/icons/user.svg";
 import IconPassword from "../../../public/icons/password.svg";
 import IconEmail from "../../../public/icons/email.svg";
 import IconRole from "../../../public/icons/role.svg";
+import IconEdit from "../../../public/icons/edit.svg";
 import FormInput from "./FormInput";
 import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
@@ -36,7 +37,6 @@ const FormProfile: FC<TCookie> = ({
 
   const defaultForm = {
     username: "",
-    email: "",
     oldPassword: "",
     newPassword: "",
     newPassword2: "",
@@ -93,15 +93,39 @@ const FormProfile: FC<TCookie> = ({
     // }
   };
 
+  const handleChangeEmail = () => {
+    try {
+      // call API
+
+      const successMessage = t(
+        "profile:form:change:email:success",
+      );
+      toast.success(successMessage);
+    } catch (err: unknown) {
+      // if (err instanceof AxiosError) {
+      //   const errorMessage =
+      //     ContactValidator.errorApiMessage(
+      //       err?.response?.data.message,
+      //       t,
+      //     );
+      //   toast.error(errorMessage);
+      //   return;
+      // }
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+    }
+  };
+
   useEffect(() => {
     setForm({
       ...form,
       username,
-      email,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username, email]);
+  }, [email]);
 
   return (
     <FormPage>
@@ -137,28 +161,36 @@ const FormProfile: FC<TCookie> = ({
             type="text"
           />
 
-          <FormInput
-            icon={<IconEmail />}
-            id="email"
-            handleChange={(e) =>
-              Form.handleChange(
-                e,
-                "email",
-                setForm,
-                form,
-              )
-            }
-            value={form.email}
-            ariaDescribedby={t(
-              "form:input:email:ariaDescribedby",
-            )}
-            title={t(
-              "form:input:email:edit:title",
-            )}
-            mb
-            maxLength={255}
-            type="email"
-          />
+          <div className="form-page-change-email">
+            <FormInput
+              icon={<IconEmail />}
+              id="email"
+              handleChange={(e) =>
+                Form.handleChange(
+                  e,
+                  "email",
+                  setForm,
+                  form,
+                )
+              }
+              value={email}
+              ariaDescribedby={t(
+                "form:input:email:ariaDescribedby",
+              )}
+              title={t("form:input:email:title")}
+              maxLength={255}
+              type="email"
+              readOnly
+            />
+
+            <button
+              type="button"
+              className="btn-edit"
+              onClick={handleChangeEmail}
+            >
+              <IconEdit />
+            </button>
+          </div>
 
           <FormInput
             icon={<IconRole />}

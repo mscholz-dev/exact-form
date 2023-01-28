@@ -86,6 +86,17 @@
     font-size: 18px;
     margin-bottom: 24px;
   }
+
+  &-change-email {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+    .form-input-container {
+      width: 100%;
+    }
+  }
 }
 
 @keyframes changeBackground {

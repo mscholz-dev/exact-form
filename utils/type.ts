@@ -61,7 +61,6 @@ export type TCookie = {
 
 export type TProfileForm = {
   username: string;
-  email: string;
   oldPassword: string;
   newPassword: string;
   newPassword2: string;
