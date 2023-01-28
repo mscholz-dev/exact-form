@@ -12,7 +12,7 @@ import AuthApi from "./api/auth";
 import { TLocale, TCookie } from "../utils/type";
 
 const SignIn: FC<TLocale> = ({ locale }) => {
-  const { t } = useTranslation("signin");
+  const { t } = useTranslation();
 
   const [cookie, setCookie] = useState({
     email: "",

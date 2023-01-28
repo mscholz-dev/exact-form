@@ -110,4 +110,15 @@
       fill: $error-color;
     }
   }
+
+  &-read-only {
+    background: $light;
+    pointer-events: none;
+
+    .form-input {
+      &-control {
+        background: $light;
+      }
+    }
+  }
 }

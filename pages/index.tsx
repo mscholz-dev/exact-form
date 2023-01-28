@@ -11,7 +11,7 @@ import AuthApi from "./api/auth";
 import { TCookie } from "../utils/type";
 
 const Index: FC = () => {
-  const { t } = useTranslation("index");
+  const { t } = useTranslation();
 
   const [cookie, setCookie] = useState({
     email: "",

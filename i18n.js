@@ -7,8 +7,9 @@ module.exports = {
   pages: {
     "*": ["common"],
     "/": ["index"],
-    "/signup": ["signup"],
-    "/signin": ["signin"],
-    "/contact": ["contact"],
+    "/signup": ["signup", "form"],
+    "/signin": ["signin", "form"],
+    "/contact": ["contact", "form"],
+    "/profile": ["profile", "form"],
   },
 };

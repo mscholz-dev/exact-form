@@ -1,18 +1,21 @@
 import React, {
   FC,
-  useEffect,
   useState,
+  useEffect,
 } from "react";
 import Page from "../templates/layouts/Page";
-import FormContact from "../templates/components/Form/FormContact";
 import useTranslation from "next-translate/useTranslation";
 import AuthApi from "./api/auth";
+import { useRouter } from "next/router";
+import FormProfile from "../templates/components/Form/FormProfile";
 
 // types
-import { TLocale, TCookie } from "../utils/type";
+import { TCookie } from "../utils/type";
 
-const Contact: FC<TLocale> = ({ locale }) => {
+const Profile: FC = () => {
   const { t } = useTranslation();
+
+  const router = useRouter();
 
   const [cookie, setCookie] = useState({
     email: "",
@@ -25,29 +28,26 @@ const Contact: FC<TLocale> = ({ locale }) => {
       const res = await AuthApi.index();
       setCookie(res.data as TCookie);
     } catch (err) {
+      router.push("/");
       return;
     }
   };
 
   useEffect(() => {
     isAuth();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Page
-      title={t("contact:meta:title")}
+      title={t("profile:meta:title")}
       description={t("common:meta:description")}
       cookie={cookie as TCookie}
     >
-      <FormContact locale={locale} />
+      <FormProfile {...(cookie as TCookie)} />
     </Page>
   );
 };
 
-export default Contact;
-
-export const getServerSideProps = async ({
-  locale,
-}: TLocale) => {
-  return { props: { locale } };
-};
+export default Profile;

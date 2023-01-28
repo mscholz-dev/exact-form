@@ -84,9 +84,7 @@ const FormContact: FC<TLocale> = ({ locale }) => {
 
       // error not expected
       console.error(err);
-      const errorMessage = t(
-        "common:form:error:random",
-      );
+      const errorMessage = t("form:error:random");
       toast.error(errorMessage);
     }
   };
@@ -98,7 +96,7 @@ const FormContact: FC<TLocale> = ({ locale }) => {
           {t("contact:form:title")}
         </h1>
         <p className="form-page-subtitle">
-          {t("common:form:subtitle:optional")}
+          {t("form:subtitle:optional")}
         </p>
 
         <form
@@ -119,10 +117,10 @@ const FormContact: FC<TLocale> = ({ locale }) => {
               }
               value={form.lastName}
               ariaDescribedby={t(
-                "common:form:input:lastName:ariaDescribedby",
+                "form:input:lastName:ariaDescribedby",
               )}
               title={t(
-                "common:form:input:lastName:title",
+                "form:input:lastName:title",
               )}
               mb
               maxLength={60}
@@ -143,10 +141,10 @@ const FormContact: FC<TLocale> = ({ locale }) => {
               }
               value={form.firstName}
               ariaDescribedby={t(
-                "common:form:input:firstName:ariaDescribedby",
+                "form:input:firstName:ariaDescribedby",
               )}
               title={t(
-                "common:form:input:firstName:title",
+                "form:input:firstName:title",
               )}
               mb
               maxLength={60}
@@ -168,11 +166,9 @@ const FormContact: FC<TLocale> = ({ locale }) => {
             }
             value={form.email}
             ariaDescribedby={t(
-              "common:form:input:email:ariaDescribedby",
+              "form:input:email:ariaDescribedby",
             )}
-            title={t(
-              "common:form:input:email:title",
-            )}
+            title={t("form:input:email:title")}
             mb
             maxLength={255}
             type="email"
@@ -192,11 +188,9 @@ const FormContact: FC<TLocale> = ({ locale }) => {
             }
             value={form.phone}
             ariaDescribedby={t(
-              "common:form:input:phone:ariaDescribedby",
+              "form:input:phone:ariaDescribedby",
             )}
-            title={t(
-              "common:form:input:phone:title",
-            )}
+            title={t("form:input:phone:title")}
             mb
             maxLength={60}
             type="text"
@@ -214,11 +208,9 @@ const FormContact: FC<TLocale> = ({ locale }) => {
             }
             value={form.message}
             ariaDescribedby={t(
-              "common:form:input:message:ariaDescribedby",
+              "form:input:message:ariaDescribedby",
             )}
-            title={t(
-              "common:form:input:message:title",
-            )}
+            title={t("form:input:message:title")}
             maxLength={10_000}
             asterix
           />

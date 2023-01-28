@@ -70,6 +70,16 @@
   &-title {
     font-size: 32px;
     margin-bottom: 8px;
+
+    &-margin {
+      margin-bottom: 24px;
+    }
+
+    &-two {
+      font-size: 20px;
+      margin-bottom: 12px;
+      margin-top: 24px;
+    }
   }
 
   &-subtitle {

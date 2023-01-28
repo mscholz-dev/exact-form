@@ -1,0 +1,73 @@
+{
+  "subtitle:mandatory": "All fields are required",
+  "subtitle:optional": "All fields with an asterisk are required",
+  "subtitle:changePassword": "Change Password",
+
+  "error:random": "Something went wrong",
+
+  "input:lastName:title": "Last name",
+  "input:lastName:ariaDescribedby": "Please enter your last name",
+  "input:lastName:error:empty": "Field Last name is required",
+  "input:lastName:error:long": "Field Last name must contain 60 characters maximum",
+
+  "input:firstName:title": "First name",
+  "input:firstName:ariaDescribedby": "Please enter your first name",
+  "input:firstName:error:empty": "Field First name is required",
+  "input:firstName:error:long": "Field First name must contain 60 characters maximum",
+
+  "input:username:title": "Username",
+  "input:username:edit:title": "Change Username",
+  "input:username:ariaDescribedby": "Please enter your username",
+  "input:username:error:empty": "Field Username is required",
+  "input:username:error:long": "Field Username must contain 60 characters maximum",
+  "input:username:error:exists": "Username already exists",
+
+  "input:email:title": "Email",
+  "input:email:edit:title": "Change Email",
+  "input:email:ariaDescribedby": "Please enter your email",
+  "input:email:error:empty": "Field Email is required",
+  "input:email:error:long": "Field Email must contain 255 characters maximum",
+  "input:email:error:format": "Field Email must be a valid email",
+  "input:email:error:exists": "Email already exists",
+  "input:email:error:found": "User not found",
+
+  "input:phone:title": "Phone",
+  "input:phone:ariaDescribedby": "Please enter your phone",
+  "input:phone:error:format": "Field Phone must be a valid phone",
+
+  "input:role:title": "Role",
+  "input:role:ariaDescribedby": "Please enter your role",
+
+  "input:message:title": "Message",
+  "input:message:ariaDescribedby": "Please enter your message",
+  "input:message:error:empty": "Field Message is required",
+  "input:message:error:long": "Field Message must contain 10 000 characters maximum",
+
+  "input:password:title": "Password",
+  "input:password:ariaDescribedby": "Please enter your password",
+  "input:password:error:empty": "Field Password is required",
+  "input:password:error:long": "Field Password must contain 60 characters maximum",
+  "input:password:error:match": "Fields Passwords not matching",
+  "input:password:new:error:match": "Fields New passwords not matching",
+  "input:password:error:incorrect": "Password incorrect",
+
+  "input:password2:title": "Confirm password",
+  "input:password2:ariaDescribedby": "Please confirm your password",
+  "input:password2:error:empty": "Field Confirm password is required",
+  "input:password2:error:long": "Field Confirm password must contain 60 characters maximum",
+
+  "input:password:edit:old:title": "Old password",
+  "input:oldPassword:error:empty": "Field Old password is required",
+  "input:oldPassword:error:long": "Field Old password must contain 60 characters maximum",
+
+  "input:password:edit:new:title": "New password",
+  "input:newPassword:error:empty": "Field New password is required",
+  "input:newPassword:error:long": "Field New password must contain 60 characters maximum",
+
+  "input:password:edit:new2:title": "Confirm new password",
+  "input:newPassword2:error:empty": "Field Confirm new password is required",
+  "input:newPassword2:error:long": "Field Confirm new password must contain 60 characters maximum",
+
+  "locale:error:empty": "Language is required",
+  "locale:error:format": "Language is not valid"
+}

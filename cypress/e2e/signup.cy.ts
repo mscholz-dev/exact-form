@@ -1,5 +1,5 @@
 import CypressTestClass from "../../utils/CypressTest";
-import commonTranslations from "../../locales/fr/common.json";
+import formTranslations from "../../locales/fr/form.json";
 import data from "../../utils/data";
 import TestApi from "../../pages/api/test";
 
@@ -20,22 +20,21 @@ describe("Page: /signup", () => {
         {
           id: 0,
           toastValue:
-            "form:input:username:error:empty",
+            "input:username:error:empty",
         },
         {
           id: 1,
-          toastValue:
-            "form:input:email:error:empty",
+          toastValue: "input:email:error:empty",
         },
         {
           id: 2,
           toastValue:
-            "form:input:password:error:empty",
+            "input:password:error:empty",
         },
         {
           id: 3,
           toastValue:
-            "form:input:password2:error:empty",
+            "input:password2:error:empty",
         },
       ];
 
@@ -43,7 +42,7 @@ describe("Page: /signup", () => {
 
       CypressTest.loopFormError(
         formError,
-        commonTranslations,
+        formTranslations,
       );
     });
   });
@@ -54,7 +53,7 @@ describe("Page: /signup", () => {
         {
           id: 0,
           toastValue:
-            "form:input:password:error:match",
+            "input:password:error:match",
         },
       ];
 
@@ -83,7 +82,7 @@ describe("Page: /signup", () => {
 
       CypressTest.loopFormError(
         formError,
-        commonTranslations,
+        formTranslations,
       );
     });
   });

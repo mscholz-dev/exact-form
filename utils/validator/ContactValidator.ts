@@ -37,11 +37,11 @@ export default class ContactValidator extends Validator {
       case "lastName":
         if (!value)
           return t(
-            "common:form:input:lastName:error:empty",
+            "form:input:lastName:error:empty",
           );
         if (value.length > 60)
           return t(
-            "common:form:input:lastName:error:long",
+            "form:input:lastName:error:long",
           );
         return "";
 
@@ -49,11 +49,11 @@ export default class ContactValidator extends Validator {
       case "firstName":
         if (!value)
           return t(
-            "common:form:input:firstName:error:empty",
+            "form:input:firstName:error:empty",
           );
         if (value.length > 60)
           return t(
-            "common:form:input:firstName:error:long",
+            "form:input:firstName:error:long",
           );
         return "";
 
@@ -61,15 +61,13 @@ export default class ContactValidator extends Validator {
       case "email":
         if (!value)
           return t(
-            "common:form:input:email:error:empty",
+            "form:input:email:error:empty",
           );
         if (value.length > 255)
-          return t(
-            "common:form:input:email:error:long",
-          );
+          return t("form:input:email:error:long");
         if (!Regex.email(value))
           return t(
-            "common:form:input:email:error:format",
+            "form:input:email:error:format",
           );
         return "";
 
@@ -77,7 +75,7 @@ export default class ContactValidator extends Validator {
       case "phone":
         if (value && !Regex.phone(value))
           return t(
-            "common:form:input:phone:error:format",
+            "form:input:phone:error:format",
           );
         return "";
 
@@ -85,29 +83,25 @@ export default class ContactValidator extends Validator {
       case "message":
         if (!value)
           return t(
-            "common:form:input:message:error:empty",
+            "form:input:message:error:empty",
           );
         if (value.length > 10_000)
           return t(
-            "common:form:input:message:error:long",
+            "form:input:message:error:long",
           );
         return "";
 
       // locale
       case "locale":
         if (!value)
-          return t(
-            "common:form:locale:error:empty",
-          );
+          return t("form:locale:error:empty");
         if (value !== "fr" && value !== "en")
-          return t(
-            "common:form:locale:error:format",
-          );
+          return t("form:locale:error:format");
         return "";
 
       // default
       default:
-        return t("common:form:error:random");
+        return t("form:error:random");
     }
   }
 }

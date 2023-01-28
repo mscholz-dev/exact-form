@@ -72,9 +72,7 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
 
       // error not expected
       console.error(err);
-      const errorMessage = t(
-        "common:form:error:random",
-      );
+      const errorMessage = t("form:error:random");
       toast.error(errorMessage);
     }
 
@@ -88,7 +86,7 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
           {t("signup:form:title")}
         </h1>
         <p className="form-page-subtitle">
-          {t("common:form:subtitle:mandatory")}
+          {t("form:subtitle:mandatory")}
         </p>
 
         <form
@@ -108,11 +106,9 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             }
             value={form.username}
             ariaDescribedby={t(
-              "common:form:input:username:ariaDescribedby",
+              "form:input:username:ariaDescribedby",
             )}
-            title={t(
-              "common:form:input:username:title",
-            )}
+            title={t("form:input:username:title")}
             mb
             maxLength={60}
             type="text"
@@ -131,11 +127,9 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             }
             value={form.email}
             ariaDescribedby={t(
-              "common:form:input:email:ariaDescribedby",
+              "form:input:email:ariaDescribedby",
             )}
-            title={t(
-              "common:form:input:email:title",
-            )}
+            title={t("form:input:email:title")}
             mb
             maxLength={255}
             type="email"
@@ -154,11 +148,9 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             }
             value={form.password}
             ariaDescribedby={t(
-              "common:form:input:password:ariaDescribedby",
+              "form:input:password:ariaDescribedby",
             )}
-            title={t(
-              "common:form:input:password:title",
-            )}
+            title={t("form:input:password:title")}
             mb
             maxLength={60}
             type="password"
@@ -176,10 +168,10 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             }
             value={form.password2}
             ariaDescribedby={t(
-              "common:form:input:password2:ariaDescribedby",
+              "form:input:password2:ariaDescribedby",
             )}
             title={t(
-              "common:form:input:password2:title",
+              "form:input:password2:title",
             )}
             maxLength={60}
             type="password"

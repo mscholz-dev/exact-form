@@ -69,9 +69,7 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
 
       // error not expected
       console.error(err);
-      const errorMessage = t(
-        "common:form:error:random",
-      );
+      const errorMessage = t("form:error:random");
       toast.error(errorMessage);
     }
 
@@ -85,7 +83,7 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
           {t("signin:form:title")}
         </h1>
         <p className="form-page-subtitle">
-          {t("common:form:subtitle:mandatory")}
+          {t("form:subtitle:mandatory")}
         </p>
 
         <form
@@ -105,11 +103,9 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
             }
             value={form.email}
             ariaDescribedby={t(
-              "common:form:input:email:ariaDescribedby",
+              "form:input:email:ariaDescribedby",
             )}
-            title={t(
-              "common:form:input:email:title",
-            )}
+            title={t("form:input:email:title")}
             mb
             maxLength={255}
             type="email"
@@ -128,11 +124,9 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
             }
             value={form.password}
             ariaDescribedby={t(
-              "common:form:input:password:ariaDescribedby",
+              "form:input:password:ariaDescribedby",
             )}
-            title={t(
-              "common:form:input:password:title",
-            )}
+            title={t("form:input:password:title")}
             mb
             maxLength={60}
             type="password"

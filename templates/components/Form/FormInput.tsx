@@ -20,6 +20,7 @@ const FormInput: FC<IFormInput> = ({
   maxLength,
   type,
   asterix,
+  readOnly,
 }) => {
   const [focus, setFocus] =
     useState<boolean>(false);
@@ -51,6 +52,8 @@ const FormInput: FC<IFormInput> = ({
         type === "password"
           ? " form-input-password"
           : ""
+      }${
+        readOnly ? " form-input-read-only" : ""
       }`}
       data-cy={`input-${id}`}
     >

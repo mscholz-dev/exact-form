@@ -1,5 +1,5 @@
 import CypressTestClass from "../../utils/CypressTest";
-import commonTranslations from "../../locales/fr/common.json";
+import formTranslations from "../../locales/fr/form.json";
 import data from "../../utils/data";
 
 // classes
@@ -17,13 +17,12 @@ describe("Page: /signin", () => {
       const formError = [
         {
           id: 0,
-          toastValue:
-            "form:input:email:error:empty",
+          toastValue: "input:email:error:empty",
         },
         {
           id: 1,
           toastValue:
-            "form:input:password:error:empty",
+            "input:password:error:empty",
         },
       ];
 
@@ -31,7 +30,7 @@ describe("Page: /signin", () => {
 
       CypressTest.loopFormError(
         formError,
-        commonTranslations,
+        formTranslations,
       );
     });
   });
@@ -41,8 +40,7 @@ describe("Page: /signin", () => {
       const formError = [
         {
           id: 0,
-          toastValue:
-            "form:input:email:error:found",
+          toastValue: "input:email:error:found",
         },
       ];
 
@@ -63,7 +61,7 @@ describe("Page: /signin", () => {
 
       CypressTest.loopFormError(
         formError,
-        commonTranslations,
+        formTranslations,
       );
     });
   });
@@ -74,7 +72,7 @@ describe("Page: /signin", () => {
         {
           id: 0,
           toastValue:
-            "form:input:password:error:incorrect",
+            "input:password:error:incorrect",
         },
       ];
 
@@ -95,7 +93,7 @@ describe("Page: /signin", () => {
 
       CypressTest.loopFormError(
         formError,
-        commonTranslations,
+        formTranslations,
       );
     });
   });

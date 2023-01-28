@@ -40,131 +40,113 @@ export default class Validator {
       // username
       case "username required":
         return t(
-          "common:form:input:username:error:empty",
+          "form:input:username:error:empty",
         );
 
       case "username too long":
         return t(
-          "common:form:input:username:error:long",
+          "form:input:username:error:long",
         );
 
       case "username already exists":
         return t(
-          "common:form:input:username:error:exists",
+          "form:input:username:error:exists",
         );
 
       // email
       case "email required":
-        return t(
-          "common:form:input:email:error:empty",
-        );
+        return t("form:input:email:error:empty");
 
       case "email too long":
-        return t(
-          "common:form:input:email:error:long",
-        );
+        return t("form:input:email:error:long");
 
       case "email invalid":
-        return t(
-          "common:form:input:email:error:format",
-        );
+        return t("form:input:email:error:format");
 
       case "email already exists":
-        return t(
-          "common:form:input:email:error:exists",
-        );
+        return t("form:input:email:error:exists");
 
       case "user not found":
-        return t(
-          "common:form:input:email:error:found",
-        );
+        return t("form:input:email:error:found");
 
       // password
       case "password required":
         return t(
-          "common:form:input:password:error:empty",
+          "form:input:password:error:empty",
         );
 
       case "password too long":
         return t(
-          "common:form:input:password:error:long",
+          "form:input:password:error:long",
         );
 
       case "password incorrect":
         return t(
-          "common:form:input:password:error:incorrect",
+          "form:input:password:error:incorrect",
         );
 
       // password2
       case "password2 required":
         return t(
-          "common:form:input:password2:error:empty",
+          "form:input:password2:error:empty",
         );
 
       case "password2 too long":
         return t(
-          "common:form:input:password2:error:long",
+          "form:input:password2:error:long",
         );
 
       // passwords
       case "passwords not matching":
         return t(
-          "common:form:input:password:error:match",
+          "form:input:password:error:match",
         );
 
       // lastName
       case "lastName required":
         return t(
-          "common:form:input:lastName:error:empty",
+          "form:input:lastName:error:empty",
         );
 
       case "lastName too long":
         return t(
-          "common:form:input:lastName:error:long",
+          "form:input:lastName:error:long",
         );
 
       // firstName
       case "firstName required":
         return t(
-          "common:form:input:firstName:error:empty",
+          "form:input:firstName:error:empty",
         );
 
       case "firstName too long":
         return t(
-          "common:form:input:firstName:error:long",
+          "form:input:firstName:error:long",
         );
 
       // phone
       case "phone invalid":
-        return t(
-          "common:form:input:phone:error:format",
-        );
+        return t("form:input:phone:error:format");
 
       // message
       case "message required":
         return t(
-          "common:form:input:message:error:empty",
+          "form:input:message:error:empty",
         );
 
       case "message too long":
-        return t(
-          "common:form:input:message:error:long",
-        );
+        return t("form:input:message:error:long");
 
       // locale
       case "locale required":
-        return t(
-          "common:form:locale:error:empty",
-        );
+        return t("form:locale:error:empty");
 
       case "locale invalid":
-        return t(
-          "common:form:locale:error:format",
-        );
+        return t("form:locale:error:format");
 
       // default
       default:
-        return t("common:form:error:random");
+        return t("form:error:random");
     }
   }
 

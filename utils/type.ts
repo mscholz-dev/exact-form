@@ -58,3 +58,11 @@ export type TCookie = {
   username: string;
   role: "" | "CLIENT" | "ADMIN" | "SUPER_ADMIN";
 };
+
+export type TProfileForm = {
+  username: string;
+  email: string;
+  oldPassword: string;
+  newPassword: string;
+  newPassword2: string;
+};

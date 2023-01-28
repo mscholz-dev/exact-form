@@ -21,6 +21,7 @@ export interface IFormInput {
   maxLength: number;
   type: "text" | "email" | "password";
   asterix?: boolean;
+  readOnly?: boolean;
 }
 
 export interface IPage {
