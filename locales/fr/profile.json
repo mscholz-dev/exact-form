@@ -4,5 +4,7 @@
 
   "form:change:email:success": "Nous vous avons envoyé un email de vérification à votre adresse email actuelle",
 
+  "form:success": "Profil mis à jour !",
+
   "form:submit": "SAUVEGARDER"
 }

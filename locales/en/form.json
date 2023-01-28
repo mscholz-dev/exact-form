@@ -57,8 +57,8 @@
   "input:password2:error:long": "Field Confirm password must contain 60 characters maximum",
 
   "input:password:edit:old:title": "Old password",
-  "input:oldPassword:error:empty": "Field Old password is required",
   "input:oldPassword:error:long": "Field Old password must contain 60 characters maximum",
+  "input:oldPassword:error:incorrect": "Field Old password incorrect",
 
   "input:password:edit:new:title": "New password",
   "input:newPassword:error:empty": "Field New password is required",
@@ -69,5 +69,8 @@
   "input:newPassword2:error:long": "Field Confirm new password must contain 60 characters maximum",
 
   "locale:error:empty": "Language is required",
-  "locale:error:format": "Language is not valid"
+  "locale:error:format": "Language is not valid",
+
+  "cookie:error:found": "User cookie not found",
+  "cookie:error:invalid": "User cookie invalid"
 }

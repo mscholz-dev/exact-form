@@ -10,9 +10,9 @@ import { useRouter } from "next/router";
 import FormProfile from "../templates/components/Form/FormProfile";
 
 // types
-import { TCookie } from "../utils/type";
+import { TCookie, TLocale } from "../utils/type";
 
-const Profile: FC = () => {
+const Profile: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation();
 
   const router = useRouter();
@@ -45,9 +45,18 @@ const Profile: FC = () => {
       description={t("common:meta:description")}
       cookie={cookie as TCookie}
     >
-      <FormProfile {...(cookie as TCookie)} />
+      <FormProfile
+        {...(cookie as TCookie)}
+        locale={locale}
+      />
     </Page>
   );
 };
 
 export default Profile;
+
+export const getServerSideProps = async ({
+  locale,
+}: TLocale) => {
+  return { props: { locale } };
+};

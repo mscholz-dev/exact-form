@@ -102,6 +102,45 @@ export default class Validator {
           "form:input:password:error:match",
         );
 
+      // oldPassword
+      case "oldPassword too long":
+        return t(
+          "form:input:oldPassword:error:long",
+        );
+
+      case "oldPassword incorrect":
+        return t(
+          "form:input:oldPassword:error:incorrect",
+        );
+
+      // newPassword
+      case "newPassword required":
+        return t(
+          "form:input:newPassword:error:empty",
+        );
+
+      case "newPassword too long":
+        return t(
+          "form:input:newPassword:error:long",
+        );
+
+      // newPassword2
+      case "newPassword2 required":
+        return t(
+          "form:input:newPassword2:error:empty",
+        );
+
+      case "newPassword2 too long":
+        return t(
+          "form:input:newPassword2:error:long",
+        );
+
+      // newPasswords
+      case "newPasswords not matching":
+        return t(
+          "form:input:password:new:error:match",
+        );
+
       // lastName
       case "lastName required":
         return t(
@@ -143,6 +182,13 @@ export default class Validator {
 
       case "locale invalid":
         return t("form:locale:error:format");
+
+      // cookie
+      case "user cookie not found":
+        return t("form:cookie:error:found");
+
+      case "user cookie invalid":
+        return t("form:cookie:error:invalid");
 
       // default
       default:

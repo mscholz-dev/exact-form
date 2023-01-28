@@ -13,7 +13,7 @@ import IconEdit from "../../../public/icons/edit.svg";
 import FormInput from "./FormInput";
 import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
-// import ContactApi from "../../../pages/api/contact";
+import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/validator/UserValidator";
 import FormClass from "../../../utils/Form";
@@ -21,6 +21,7 @@ import FormClass from "../../../utils/Form";
 // types
 import {
   TCookie,
+  TLocale,
   TProfileForm,
 } from "../../../utils/type";
 
@@ -28,10 +29,11 @@ import {
 const UserValidator = new UserValidatorClass();
 const Form = new FormClass();
 
-const FormProfile: FC<TCookie> = ({
+const FormProfile: FC<TCookie & TLocale> = ({
   username,
   email,
   role,
+  locale,
 }) => {
   const { t } = useTranslation("contact");
 
@@ -62,35 +64,36 @@ const FormProfile: FC<TCookie> = ({
       return;
     }
 
-    toast.success("OK");
+    try {
+      await UserApi.update(form);
 
-    // try {
-    //   await ContactApi.contact(form);
+      const successMessage = t(
+        "profile:form:success",
+      );
+      toast.success(successMessage);
+      setForm({
+        ...form,
+        oldPassword: "",
+        newPassword: "",
+        newPassword2: "",
+      });
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          UserValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
 
-    //   const successMessage = t(
-    //     "contact:form:success",
-    //   );
-    //   toast.success(successMessage);
-    //   setForm(defaultForm);
-    // } catch (err: unknown) {
-    //   if (err instanceof AxiosError) {
-    //     const errorMessage =
-    //       ContactValidator.errorApiMessage(
-    //         err?.response?.data.message,
-    //         t,
-    //       );
+        toast.error(errorMessage);
+        return;
+      }
 
-    //     toast.error(errorMessage);
-    //     return;
-    //   }
-
-    //   // error not expected
-    //   console.error(err);
-    //   const errorMessage = t(
-    //     "form:error:random",
-    //   );
-    //   toast.error(errorMessage);
-    // }
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+    }
   };
 
   const handleChangeEmail = () => {

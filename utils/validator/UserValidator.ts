@@ -62,31 +62,54 @@ export default class UserValidator extends Validator {
     { password, password2 }: TSignupForm,
     t: Translate,
   ) {
-    if (password !== password2) {
+    if (password !== password2)
       errors.push({
         key: "password2",
         message: t(
           "form:input:password:error:match",
         ),
       });
-    }
 
     return errors;
   }
 
   checkChangePasswords(
     errors: TInspectDataErrors,
-    { newPassword, newPassword2 }: TProfileForm,
+    {
+      oldPassword,
+      newPassword,
+      newPassword2,
+    }: TProfileForm,
     t: Translate,
   ) {
-    if (newPassword !== newPassword2) {
+    if (!oldPassword) return errors;
+
+    if (!newPassword)
+      errors.push({
+        key: "newPassword",
+        message: t(
+          "form:input:newPassword:error:empty",
+        ),
+      });
+
+    if (!newPassword2) {
+      errors.push({
+        key: "newPassword2",
+        message: t(
+          "form:input:newPassword2:error:empty",
+        ),
+      });
+
+      return errors;
+    }
+
+    if (newPassword !== newPassword2)
       errors.push({
         key: "newPassword2",
         message: t(
           "form:input:password:new:error:match",
         ),
       });
-    }
 
     return errors;
   }
@@ -149,10 +172,6 @@ export default class UserValidator extends Validator {
 
       // oldPassword
       case "oldPassword":
-        if (!value)
-          return t(
-            "form:input:oldPassword:error:empty",
-          );
         if (value.length > 60)
           return t(
             "form:input:oldPassword:error:long",
@@ -161,10 +180,6 @@ export default class UserValidator extends Validator {
 
       // newPassword
       case "newPassword":
-        if (!value)
-          return t(
-            "form:input:newPassword:error:empty",
-          );
         if (value.length > 60)
           return t(
             "form:input:newPassword:error:long",
@@ -173,10 +188,6 @@ export default class UserValidator extends Validator {
 
       // newPassword2
       case "newPassword2":
-        if (!value)
-          return t(
-            "form:input:newPassword2:error:empty",
-          );
         if (value.length > 60)
           return t(
             "form:input:newPassword2:error:long",
