@@ -35,7 +35,7 @@ const FormProfile: FC<TCookie & TLocale> = ({
   role,
   locale,
 }) => {
-  const { t } = useTranslation("contact");
+  const { t } = useTranslation();
 
   const defaultForm = {
     username: "",

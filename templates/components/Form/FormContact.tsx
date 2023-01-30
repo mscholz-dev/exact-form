@@ -28,7 +28,7 @@ const ContactValidator =
 const Form = new FormClass();
 
 const FormContact: FC<TLocale> = ({ locale }) => {
-  const { t } = useTranslation("contact");
+  const { t } = useTranslation();
 
   const defaultForm = {
     firstName: "",

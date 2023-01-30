@@ -27,7 +27,7 @@ const UserValidator = new UserValidatorClass();
 const Form = new FormClass();
 
 const FormSignup: FC<TLocale> = ({ locale }) => {
-  const { t } = useTranslation("signup");
+  const { t } = useTranslation();
 
   const router = useRouter();
 

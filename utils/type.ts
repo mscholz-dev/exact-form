@@ -65,3 +65,8 @@ export type TProfileForm = {
   newPassword: string;
   newPassword2: string;
 };
+
+export type TChangeEmailForm = {
+  email: string;
+  email2: string;
+};

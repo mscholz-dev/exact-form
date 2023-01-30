@@ -67,3 +67,8 @@ export interface IFormPage {
   largeForm?: boolean;
   noContainer?: boolean;
 }
+
+export interface IFormChangeEmail {
+  email: string;
+  locale: string;
+}

@@ -11,5 +11,9 @@ module.exports = {
     "/signin": ["signin", "form"],
     "/contact": ["contact", "form"],
     "/profile": ["profile", "form"],
+    "/change-email/[token]": [
+      "change-email",
+      "form",
+    ],
   },
 };
