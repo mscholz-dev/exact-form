@@ -1,6 +1,10 @@
-Cypress.Cookies.debug(true);
+import TestApi from "../../pages/api/test";
 
-// import "./signup.cy";
-// import "./signin.cy";
+before(async () => {
+  await TestApi.newDB();
+});
+
+import "./signup.cy";
+import "./signin.cy";
 import "./profile.cy";
-// import "./contact.cy";
+import "./contact.cy";
