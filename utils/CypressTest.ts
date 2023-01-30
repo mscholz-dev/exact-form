@@ -77,4 +77,22 @@ export default class CypressTest {
   ) {
     cy.url().should("be.equal", url);
   }
+
+  compareInputValue(
+    cy: Cypress.cy & CyEventEmitter,
+    cyData: string,
+    data: string,
+  ) {
+    cy.get(`[data-cy=${cyData}] input`).should(
+      "have.value",
+      data,
+    );
+  }
+
+  clearInputValue(
+    cy: Cypress.cy & CyEventEmitter,
+    cyData: string,
+  ) {
+    cy.get(`[data-cy=${cyData}] input`).clear();
+  }
 }
