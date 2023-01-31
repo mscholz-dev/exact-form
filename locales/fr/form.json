@@ -88,5 +88,6 @@
   "cookie:error:found": "Cookie utilisateur non trouvé",
   "cookie:error:invalid": "Cookie utilisateur invalide",
 
-  "token:error:exists": "Demande de changement d'email déjà envoyée aujourd'hui"
+  "token:error:exists": "Demande de changement d'email déjà envoyée aujourd'hui",
+  "token:error:found": "Veuillez refaire une demande de changement d'email"
 }

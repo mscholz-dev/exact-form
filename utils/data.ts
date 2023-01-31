@@ -1,6 +1,7 @@
 const data = {
   username: "mscholz.dev",
   email: "mscholz.dev@gmail.com",
+  email2: "scholzmorgan16@yahoo.fr",
   lastName: "Scholz",
   firstName: "Morgan",
   phone: "0649495137",

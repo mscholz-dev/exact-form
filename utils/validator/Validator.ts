@@ -31,7 +31,7 @@ export default class Validator {
 
     return errors;
   }
-  //TODO: add new messages error
+
   errorApiMessage(
     message: string,
     t: Translate,
@@ -68,6 +68,49 @@ export default class Validator {
 
       case "user not found":
         return t("form:input:email:error:found");
+
+      // newEmail
+      case "newEmail required":
+        return t(
+          "form:input:newEmail:error:empty",
+        );
+
+      case "newEmail too long":
+        return t(
+          "form:input:newEmail:error:long",
+        );
+
+      case "newEmail invalid":
+        return t(
+          "form:input:newEmail:error:format",
+        );
+
+      case "newEmail must be different":
+        return t(
+          "form:input:newEmail:error:different",
+        );
+
+      // newEmail2
+      case "newEmail2 required":
+        return t(
+          "form:input:newEmail2:error:empty",
+        );
+
+      case "newEmail2 too long":
+        return t(
+          "form:input:newEmail2:error:long",
+        );
+
+      case "newEmail2 invalid":
+        return t(
+          "form:input:newEmail2:error:format",
+        );
+
+      // newEmails
+      case "newEmails not matching":
+        return t(
+          "form:input:newEmail2:error:match",
+        );
 
       // password
       case "password required":
@@ -191,8 +234,14 @@ export default class Validator {
         return t("form:cookie:error:invalid");
 
       // token
+      case "token required":
+        return t("form:error:random");
+
       case "token already exists":
         return t("form:token:error:exists");
+
+      case "token not found":
+        return t("form:token:error:found");
 
       // default
       default:
