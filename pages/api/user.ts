@@ -5,6 +5,7 @@ import {
   TSignupForm,
   TSigninForm,
   TProfileForm,
+  TLocale,
 } from "../../utils/type";
 
 export default class UserApi {
@@ -35,6 +36,18 @@ export default class UserApi {
   static async update(form: TProfileForm) {
     return await api
       .put(`/user`, form, {
+        headers: {
+          "Content-Type":
+            "application/x-www-form-urlencoded",
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
+
+  static async createEmailToken(form: TLocale) {
+    return await api
+      .post(`/user/email`, form, {
         headers: {
           "Content-Type":
             "application/x-www-form-urlencoded",

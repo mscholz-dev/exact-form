@@ -67,6 +67,6 @@ export type TProfileForm = {
 };
 
 export type TChangeEmailForm = {
-  email: string;
-  email2: string;
+  newEmail: string;
+  newEmail2: string;
 };

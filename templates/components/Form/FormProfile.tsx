@@ -96,24 +96,27 @@ const FormProfile: FC<TCookie & TLocale> = ({
     }
   };
 
-  const handleChangeEmail = () => {
+  const handleChangeEmail = async () => {
     try {
       // call API
+      await UserApi.createEmailToken({ locale });
 
       const successMessage = t(
         "profile:form:change:email:success",
       );
       toast.success(successMessage);
     } catch (err: unknown) {
-      // if (err instanceof AxiosError) {
-      //   const errorMessage =
-      //     ContactValidator.errorApiMessage(
-      //       err?.response?.data.message,
-      //       t,
-      //     );
-      //   toast.error(errorMessage);
-      //   return;
-      // }
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          UserValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+
+        toast.error(errorMessage);
+        return;
+      }
+
       // error not expected
       console.error(err);
       const errorMessage = t("form:error:random");
@@ -190,6 +193,7 @@ const FormProfile: FC<TCookie & TLocale> = ({
               type="button"
               className="btn-edit"
               onClick={handleChangeEmail}
+              data-cy="btn-change-email-form"
             >
               <IconEdit />
             </button>

@@ -31,6 +31,12 @@
   "input:email:error:exists": "Email already exists",
   "input:email:error:found": "User not found",
 
+  "input:newEmail:title": "New email",
+  "input:newEmail:ariaDescribedby": "Please enter your new email",
+
+  "input:newEmail2:title": "Confirm new email",
+  "input:newEmail2:ariaDescribedby": "Please confirm your new email",
+
   "input:phone:title": "Phone",
   "input:phone:ariaDescribedby": "Please enter your phone",
   "input:phone:error:format": "Field Phone must be a valid phone",
@@ -72,5 +78,7 @@
   "locale:error:format": "Language is not valid",
 
   "cookie:error:found": "User cookie not found",
-  "cookie:error:invalid": "User cookie invalid"
+  "cookie:error:invalid": "User cookie invalid",
+
+  "token:error:exists": "Change email request already sent for today"
 }

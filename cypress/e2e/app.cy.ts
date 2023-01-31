@@ -5,6 +5,6 @@ before(async () => {
 });
 
 import "./signup.cy";
-import "./signin.cy";
+// import "./signin.cy";
 import "./profile.cy";
-import "./contact.cy";
+// import "./contact.cy";

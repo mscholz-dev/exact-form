@@ -284,36 +284,6 @@ describe("Page: /profile", () => {
     );
   });
 
-  it("it should update username and password", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
-
-    CypressTest.clearInputValue(
-      cy,
-      "input-username",
-    );
-
-    const formData = [
-      {
-        cyData: "username",
-        value: `fr2.${data.username}`,
-      },
-    ];
-
-    CypressTest.loopFormFill(formData);
-
-    CypressTest.clickCyData(cy, "btn-form");
-
-    CypressTest.successToastContains(
-      cy,
-      0,
-      "form:success",
-      profileTranslations,
-    );
-  });
-
   it("it should throw: username already exists", () => {
     cy.setCookie("user", data.validFrJwt);
 
@@ -342,6 +312,49 @@ describe("Page: /profile", () => {
     CypressTest.loopFormFill(formData);
 
     CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should send an fr email for change email", () => {
+    cy.setCookie("user", data.validFrJwt);
+
+    // wait API auth call
+    cy.wait(1000);
+
+    CypressTest.clickCyData(
+      cy,
+      "btn-change-email-form",
+    );
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "form:change:email:success",
+      profileTranslations,
+    );
+  });
+
+  it("it should throw: token already exists", () => {
+    cy.setCookie("user", data.validFrJwt);
+
+    // wait API auth call
+    cy.wait(1000);
+
+    const formError = [
+      {
+        id: 0,
+        toastValue: "token:error:exists",
+      },
+    ];
+
+    CypressTest.clickCyData(
+      cy,
+      "btn-change-email-form",
+    );
 
     CypressTest.loopFormError(
       formError,

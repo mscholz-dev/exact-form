@@ -10,4 +10,16 @@ export default class AuthApi {
       })
       .then((res) => res);
   }
+
+  static async hasEmailToken(
+    token: string | undefined,
+  ) {
+    return await api
+      .get(`/auth/token/email/${token}`, {
+        headers: {
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }

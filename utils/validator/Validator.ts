@@ -190,6 +190,10 @@ export default class Validator {
       case "user cookie invalid":
         return t("form:cookie:error:invalid");
 
+      // token
+      case "token already exists":
+        return t("form:token:error:exists");
+
       // default
       default:
         return t("form:error:random");

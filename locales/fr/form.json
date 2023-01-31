@@ -31,6 +31,12 @@
   "input:email:error:exists": "Email déjà existant",
   "input:email:error:found": "Utilisateur non trouvé",
 
+  "input:newEmail:title": "Nouvelle email",
+  "input:newEmail:ariaDescribedby": "Veuillez renseigner votre nouvelle email",
+
+  "input:newEmail2:title": "Confirmer la nouvelle email",
+  "input:newEmail2:ariaDescribedby": "Veuillez confirmer votre nouvelle email",
+
   "input:phone:title": "Téléphone",
   "input:phone:ariaDescribedby": "Veuillez renseigner votre téléphone",
   "input:phone:error:format": "Le champ Téléphone doit être un téléphone valide",
@@ -72,5 +78,7 @@
   "locale:error:format": "Langage est invalide",
 
   "cookie:error:found": "Cookie utilisateur non trouvé",
-  "cookie:error:invalid": "Cookie utilisateur invalide"
+  "cookie:error:invalid": "Cookie utilisateur invalide",
+
+  "token:error:exists": "Demande de changement d'email déjà envoyée aujourd'hui"
 }

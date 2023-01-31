@@ -34,8 +34,8 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
   const { t } = useTranslation();
 
   const defaultForm = {
-    email: "",
-    email2: "",
+    newEmail: "",
+    newEmail2: "",
   };
 
   const [form, setForm] =
@@ -103,20 +103,20 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
         >
           <FormInput
             icon={<IconEmail />}
-            id="email"
+            id="newEmail"
             handleChange={(e) =>
               Form.handleChange(
                 e,
-                "email",
+                "newEmail",
                 setForm,
                 form,
               )
             }
-            value={email}
+            value={form.newEmail}
             ariaDescribedby={t(
-              "form:input:email:ariaDescribedby",
+              "form:input:newEmail:ariaDescribedby",
             )}
-            title={t("form:input:email:title")}
+            title={t("form:input:newEmail:title")}
             maxLength={255}
             type="email"
             mb
@@ -128,20 +128,22 @@ FAIRE ENVOIE TOKEN FRONT
 -------------------------------- */}
           <FormInput
             icon={<IconEmail />}
-            id="email2"
+            id="newEmail2"
             handleChange={(e) =>
               Form.handleChange(
                 e,
-                "email2",
+                "newEmail2",
                 setForm,
                 form,
               )
             }
-            value={email}
+            value={form.newEmail2}
             ariaDescribedby={t(
-              "form:input:email:ariaDescribedby",
+              "form:input:newEmail2:ariaDescribedby",
             )}
-            title={t("form:input:email:title")}
+            title={t(
+              "form:input:newEmail2:title",
+            )}
             maxLength={255}
             type="email"
           />

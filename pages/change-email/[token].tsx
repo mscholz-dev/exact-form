@@ -26,10 +26,13 @@ const ChangeEmail: FC<TLocale> = ({ locale }) => {
     role: "",
   });
 
-  const isAuth = async () => {
+  const hasEmailToken = async () => {
     try {
-      const res = await AuthApi.index();
+      const res = await AuthApi.hasEmailToken(
+        router.query.token as string | undefined,
+      );
       setCookie(res.data as TCookie);
+      console.log(res.data);
     } catch (err) {
       router.push("/");
       return;
@@ -37,7 +40,7 @@ const ChangeEmail: FC<TLocale> = ({ locale }) => {
   };
 
   useEffect(() => {
-    isAuth();
+    hasEmailToken();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

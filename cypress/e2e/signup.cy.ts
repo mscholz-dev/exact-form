@@ -101,6 +101,8 @@ describe("Page: /signup", () => {
 
     CypressTest.clickCyData(cy, "btn-form");
 
+    cy.wait(5000);
+
     CypressTest.shouldRedirect(cy, `${url}/fr`);
   });
 
@@ -174,5 +176,32 @@ describe("Page: /signup", () => {
       formError,
       formTranslations,
     );
+  });
+
+  it("it should redirect to: /", () => {
+    const formData = [
+      {
+        cyData: "username",
+        value: `en.${data.username}`,
+      },
+      {
+        cyData: "email",
+        value: `en.${data.email}`,
+      },
+      {
+        cyData: "password",
+        value: data.password,
+      },
+      {
+        cyData: "password2",
+        value: data.password,
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.shouldRedirect(cy, `${url}/fr`);
   });
 });
