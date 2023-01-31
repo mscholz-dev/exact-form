@@ -33,9 +33,17 @@
 
   "input:newEmail:title": "New email",
   "input:newEmail:ariaDescribedby": "Please enter your new email",
+  "input:newEmail:error:empty": "Field New email is required",
+  "input:newEmail:error:long": "Field New email must contain 255 characters maximum",
+  "input:newEmail:error:format": "Field New email must be a valid email",
+  "input:newEmail:error:different": "Field New email must be different than current email",
 
   "input:newEmail2:title": "Confirm new email",
   "input:newEmail2:ariaDescribedby": "Please confirm your new email",
+  "input:newEmail2:error:empty": "Field Confirm new email is required",
+  "input:newEmail2:error:long": "Field Confirm new email must contain 255 characters maximum",
+  "input:newEmail2:error:format": "Field Confirm new email must be a valid email",
+  "input:newEmail2:error:match": "Fields New emails not matching",
 
   "input:phone:title": "Phone",
   "input:phone:ariaDescribedby": "Please enter your phone",

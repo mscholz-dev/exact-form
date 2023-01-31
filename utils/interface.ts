@@ -71,4 +71,5 @@ export interface IFormPage {
 export interface IFormChangeEmail {
   email: string;
   locale: string;
+  token: string | undefined;
 }

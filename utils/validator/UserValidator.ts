@@ -8,6 +8,7 @@ import {
   TInspectDataErrors,
   TSigninForm,
   TProfileForm,
+  TChangeEmailForm,
 } from "../type";
 
 // classes
@@ -53,6 +54,44 @@ export default class UserValidator extends Validator {
     );
 
     this.checkChangePasswords(errors, schema, t);
+
+    return errors;
+  }
+
+  inspectChangeEmail(
+    schema: TChangeEmailForm,
+    t: Translate,
+    email: string,
+  ) {
+    const errors = this.inspectData(
+      schema,
+      this.errorMessage,
+      t,
+    );
+
+    if (
+      schema.newEmail &&
+      schema.newEmail2 &&
+      schema.newEmail !== schema.newEmail2
+    )
+      errors.push({
+        key: "newEmail2",
+        message: t(
+          "form:input:newEmail2:error:match",
+        ),
+      });
+
+    if (
+      schema.newEmail &&
+      schema.newEmail2 &&
+      email === schema.newEmail
+    )
+      errors.push({
+        key: "newEmail",
+        message: t(
+          "form:input:newEmail:error:different",
+        ),
+      });
 
     return errors;
   }
@@ -146,6 +185,38 @@ export default class UserValidator extends Validator {
           );
         return "";
 
+      // newEmail
+      case "newEmail":
+        if (!value)
+          return t(
+            "form:input:newEmail:error:empty",
+          );
+        if (value.length > 255)
+          return t(
+            "form:input:newEmail:error:long",
+          );
+        if (!Regex.email(value))
+          return t(
+            "form:input:newEmail:error:format",
+          );
+        return "";
+
+      // newEmail2
+      case "newEmail2":
+        if (!value)
+          return t(
+            "form:input:newEmail2:error:empty",
+          );
+        if (value.length > 255)
+          return t(
+            "form:input:newEmail2:error:long",
+          );
+        if (!Regex.email(value))
+          return t(
+            "form:input:newEmail2:error:format",
+          );
+        return "";
+
       // password
       case "password":
         if (!value)
@@ -212,6 +283,11 @@ export default class UserValidator extends Validator {
           return t("form:locale:error:empty");
         if (value !== "fr" && value !== "en")
           return t("form:locale:error:format");
+        return "";
+
+      // token
+      case "token":
+        if (!value) return t("form:error:random");
         return "";
 
       // default

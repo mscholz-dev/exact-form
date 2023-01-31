@@ -11,6 +11,7 @@ export type TInspectData = {
   email?: string;
   password?: string;
   password2?: string;
+  locale?: string;
 };
 
 export type TInspectDataErrors = {
@@ -69,4 +70,6 @@ export type TProfileForm = {
 export type TChangeEmailForm = {
   newEmail: string;
   newEmail2: string;
+  token: string | undefined;
+  locale: string;
 };

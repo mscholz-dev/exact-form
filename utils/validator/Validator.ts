@@ -31,7 +31,7 @@ export default class Validator {
 
     return errors;
   }
-
+  //TODO: add new messages error
   errorApiMessage(
     message: string,
     t: Translate,

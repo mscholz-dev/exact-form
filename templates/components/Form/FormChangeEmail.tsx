@@ -30,12 +30,15 @@ const Form = new FormClass();
 const FormChangeEmail: FC<IFormChangeEmail> = ({
   email,
   locale,
+  token,
 }) => {
   const { t } = useTranslation();
 
   const defaultForm = {
     newEmail: "",
     newEmail2: "",
+    locale,
+    token,
   };
 
   const [form, setForm] =
@@ -46,48 +49,47 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
   ) => {
     e.preventDefault();
 
-    // const errors =
-    //   UserValidator.inspectProfileData(form, t);
+    const errors =
+      UserValidator.inspectChangeEmail(
+        form,
+        t,
+        email,
+      );
 
-    // if (errors.length) {
-    //   for (const { key, message } of errors) {
-    //     UserValidator.errorStyle(key);
-    //     toast.error(message);
-    //   }
+    if (errors.length) {
+      for (const { key, message } of errors) {
+        UserValidator.errorStyle(key);
+        toast.error(message);
+      }
 
-    //   return;
-    // }
+      return;
+    }
 
-    // try {
-    //   await UserApi.update(form);
+    try {
+      await UserApi.updateEmail(form);
 
-    //   const successMessage = t(
-    //     "profile:form:success",
-    //   );
-    //   toast.success(successMessage);
-    //   setForm({
-    //     ...form,
-    //     oldPassword: "",
-    //     newPassword: "",
-    //     newPassword2: "",
-    //   });
-    // } catch (err: unknown) {
-    //   if (err instanceof AxiosError) {
-    //     const errorMessage =
-    //       UserValidator.errorApiMessage(
-    //         err?.response?.data.message,
-    //         t,
-    //       );
+      const successMessage = t(
+        "change-email:form:success",
+      );
+      toast.success(successMessage);
+      setForm(defaultForm);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          UserValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
 
-    //     toast.error(errorMessage);
-    //     return;
-    //   }
+        toast.error(errorMessage);
+        return;
+      }
 
-    //   // error not expected
-    //   console.error(err);
-    //   const errorMessage = t("form:error:random");
-    //   toast.error(errorMessage);
-    // }
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -121,11 +123,7 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
             type="email"
             mb
           />
-          {/* -----------------------
-MODIFIER LES NOMS EMAIL TRAD FORM
 
-FAIRE ENVOIE TOKEN FRONT
--------------------------------- */}
           <FormInput
             icon={<IconEmail />}
             id="newEmail2"

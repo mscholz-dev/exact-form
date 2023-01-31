@@ -20,6 +20,8 @@ const ChangeEmail: FC<TLocale> = ({ locale }) => {
 
   const router = useRouter();
 
+  const token = router.query.token;
+
   const [cookie, setCookie] = useState({
     email: "",
     username: "",
@@ -29,10 +31,9 @@ const ChangeEmail: FC<TLocale> = ({ locale }) => {
   const hasEmailToken = async () => {
     try {
       const res = await AuthApi.hasEmailToken(
-        router.query.token as string | undefined,
+        token as string | undefined,
       );
       setCookie(res.data as TCookie);
-      console.log(res.data);
     } catch (err) {
       router.push("/");
       return;
@@ -54,6 +55,7 @@ const ChangeEmail: FC<TLocale> = ({ locale }) => {
       <FormChangeEmail
         email={cookie.email}
         locale={locale}
+        token={token as string | undefined}
       />
     </Page>
   );

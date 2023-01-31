@@ -33,9 +33,17 @@
 
   "input:newEmail:title": "Nouvelle email",
   "input:newEmail:ariaDescribedby": "Veuillez renseigner votre nouvelle email",
+  "input:newEmail:error:empty": "Le champ Nouvelle email est requis",
+  "input:newEmail:error:long": "Le champ Nouvelle email doit contenir 255 caractères maximum",
+  "input:newEmail:error:format": "Le champ Nouvelle email doit être une email valide",
+  "input:newEmail:error:different": "Le champ nouvelle email doit être différent de l'email courante",
 
   "input:newEmail2:title": "Confirmer la nouvelle email",
   "input:newEmail2:ariaDescribedby": "Veuillez confirmer votre nouvelle email",
+  "input:newEmail2:error:empty": "Le champ Confirmer la nouvelle email est requis",
+  "input:newEmail2:error:long": "Le champ Confirmer la nouvelle email doit contenir 255 caractères maximum",
+  "input:newEmail2:error:format": "Le champ Confirmer la nouvelle email doit être une email valide",
+  "input:newEmail2:error:match": "Les champs Nouvelles emails ne correspondent pas",
 
   "input:phone:title": "Téléphone",
   "input:phone:ariaDescribedby": "Veuillez renseigner votre téléphone",
@@ -74,7 +82,7 @@
   "input:newPassword2:error:empty": "Le champ Confirmer le nouveau mot de passe est requis",
   "input:newPassword2:error:long": "Le champ Confirmer le nouveau mot de passe doit contenir 60 caractères maximum",
 
-  "locale:error:empty": "Langage is requis",
+  "locale:error:empty": "Langage est requis",
   "locale:error:format": "Langage est invalide",
 
   "cookie:error:found": "Cookie utilisateur non trouvé",
