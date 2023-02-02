@@ -27,12 +27,12 @@
 }
 
 .btn {
-  &-header {
+  &-contact {
     @extend %btn;
     height: 40px;
     margin-top: 0;
     min-height: 40px;
-    width: 96px;
+    width: 110px;
 
     &-container {
       padding-top: 8px;
@@ -40,6 +40,33 @@
       @include responsive(t-xs) {
         padding-top: 0;
       }
+    }
+  }
+
+  &-disconnect {
+    @extend %btn;
+    background: $primary-color-light;
+    background: linear-gradient(
+      90deg,
+      $white 50%,
+      $primary-color-light 50%
+    );
+    background-position: right;
+    background-size: 200% 100%;
+    border: 1px solid $primary-color-light;
+    height: 42px;
+    margin-top: 8px;
+    min-height: 40px;
+    width: 112px;
+
+    &:hover {
+      background-position: left;
+      color: $primary-color-light;
+    }
+
+    @include responsive(t-xs) {
+      margin-top: 0;
+      margin-right: 12px;
     }
   }
 

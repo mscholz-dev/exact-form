@@ -71,4 +71,16 @@ export default class UserApi {
       })
       .then((res) => res);
   }
+
+  static async disconnection() {
+    return await api
+      .get(`/user/disconnection`, {
+        headers: {
+          "Content-Type":
+            "application/x-www-form-urlencoded",
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }

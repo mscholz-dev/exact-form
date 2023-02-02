@@ -23,6 +23,7 @@ export type THeaderData = {
   id: number;
   title: string;
   url: string;
+  avatar: string;
 }[];
 
 export type TSigninForm = {

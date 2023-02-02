@@ -1,8 +1,8 @@
 .link {
   align-items: center;
+  display: flex;
   color: $black;
   cursor: pointer;
-  display: flex;
   position: relative;
   text-decoration: none;
   transition: 0.25s all ease-in-out;

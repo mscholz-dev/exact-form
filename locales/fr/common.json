@@ -8,6 +8,7 @@
   "header:signin": "Connexion",
   "header:contact": "Contact",
   "header:profile": "Profil",
+  "header:disconnection": "Déconnexion",
 
   "role:client": "Client",
   "role:admin": "Administrateur",

@@ -1,0 +1,36 @@
+.avatar {
+  display: inline-block;
+
+  &-profile {
+    height: 32px;
+    width: 32px;
+
+    &-container {
+      align-items: center;
+      display: flex;
+      margin-bottom: 12px;
+
+      & > p {
+        font-family: $secondary-font-semi-bold;
+        font-size: 18px;
+        margin-right: 12px;
+      }
+    }
+  }
+
+  &-header {
+    height: 20px;
+    margin-right: 8px;
+    width: 20px;
+
+    &-container {
+      align-items: center;
+      display: flex;
+      text-decoration: none;
+
+      .link {
+        height: 32px;
+      }
+    }
+  }
+}

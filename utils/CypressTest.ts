@@ -12,23 +12,28 @@ export default class CypressTest {
     return cy.get(`[data-cy=${cyData}]`);
   }
 
+  shouldNotExistByCyData(
+    cy: Cypress.cy & CyEventEmitter,
+    cyData: string,
+  ) {
+    return cy
+      .get(`[data-cy=${cyData}]`)
+      .should("not.exist");
+  }
+
   inputFill(
     cy: Cypress.cy & CyEventEmitter,
     cyData: string,
     value: string,
   ) {
-    this.getCyData(cy, cyData)
-      .click()
-      .type(value);
+    this.clearInputValue(cy, cyData);
+
+    this.getCyData(cy, cyData).type(value);
   }
 
   loopFormFill(formData: TCypressFormData) {
     for (const { cyData, value } of formData)
-      this.inputFill(
-        cy,
-        `input-${cyData}`,
-        value,
-      );
+      this.inputFill(cy, cyData, value);
   }
 
   clickCyData(
@@ -85,7 +90,7 @@ export default class CypressTest {
     cyData: string,
     data: string,
   ) {
-    cy.get(`[data-cy=${cyData}] input`).should(
+    cy.get(`[data-cy=${cyData}]`).should(
       "have.value",
       data,
     );
@@ -95,7 +100,7 @@ export default class CypressTest {
     cy: Cypress.cy & CyEventEmitter,
     cyData: string,
   ) {
-    cy.get(`[data-cy=${cyData}] input`).clear();
+    cy.get(`[data-cy=${cyData}]`).clear();
   }
 
   setCookie(

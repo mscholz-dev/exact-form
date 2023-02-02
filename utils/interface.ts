@@ -53,6 +53,7 @@ export interface IHeaderItem {
   url: string;
   pathname: string;
   title: string;
+  avatar: string;
 }
 
 export interface IFormTextarea {
@@ -78,4 +79,9 @@ export interface IFormChangeEmail {
   email: string;
   locale: string;
   token: string | undefined;
+}
+
+export interface IAvatar {
+  seed: string;
+  className?: string;
 }

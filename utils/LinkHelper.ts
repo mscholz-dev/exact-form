@@ -5,7 +5,9 @@ export default class LinkHelper {
   ): string {
     // locale: en
     if (locale === "en")
-      return `/${locale}/${pathname}`;
+      return `/${locale}${
+        pathname ? `/${pathname}` : ""
+      }`;
 
     // locale: fr
     switch (pathname) {
@@ -19,7 +21,9 @@ export default class LinkHelper {
         return "/fr/profil";
 
       default:
-        return `/fr/${pathname}`;
+        return `/fr${
+          pathname ? `/${pathname}` : ""
+        }`;
     }
   }
 }

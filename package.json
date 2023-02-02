@@ -12,6 +12,8 @@
     "git:deploy": "git checkout prod && git merge main && git push && git checkout main"
   },
   "dependencies": {
+    "@dicebear/collection": "^5.2.0",
+    "@dicebear/core": "^5.2.0",
     "@svgr/webpack": "^6.5.1",
     "axios": "^1.2.2",
     "next": "13.1.1",

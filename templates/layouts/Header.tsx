@@ -3,6 +3,7 @@ import React, {
   useEffect,
   FC,
   useRef,
+  MouseEvent,
 } from "react";
 import Link from "next/link";
 import Brand from "../../public/icons/brand.svg";
@@ -10,15 +11,21 @@ import HeaderItem from "../components/HeaderItem";
 import useTranslation from "next-translate/useTranslation";
 // import setLanguage from "next-translate/setLanguage";
 import LinkHelperClass from "../../utils/LinkHelper";
+import { toast } from "react-toastify";
+import UserApi from "../../pages/api/user";
+import { useRouter } from "next/router";
+import UserValidatorClass from "../../utils/validator/UserValidator";
 
 // interfaces
 import { IHeader } from "../../utils/interface";
 
 // types
 import { THeaderData } from "../../utils/type";
+import { AxiosError } from "axios";
 
 // classes
 const LinkHelper = new LinkHelperClass();
+const UserValidator = new UserValidatorClass();
 
 const Header: FC<IHeader> = ({
   myRef,
@@ -26,6 +33,8 @@ const Header: FC<IHeader> = ({
   locale,
 }) => {
   const { t } = useTranslation("common");
+
+  const router = useRouter();
 
   const headerChildRef =
     useRef<HTMLDivElement>(null);
@@ -43,6 +52,7 @@ const Header: FC<IHeader> = ({
       id: 0,
       title: t("common:header:index"),
       url: LinkHelper.translate(locale, ""),
+      avatar: "",
     },
   ];
 
@@ -51,13 +61,54 @@ const Header: FC<IHeader> = ({
       id: 0,
       title: t("common:header:signup"),
       url: LinkHelper.translate(locale, "signup"),
+      avatar: "",
     },
     {
       id: 1,
       title: t("common:header:signin"),
       url: LinkHelper.translate(locale, "signin"),
+      avatar: "",
     },
   ];
+
+  const handleDisconnect = async (
+    e: MouseEvent<HTMLButtonElement>,
+  ) => {
+    e.preventDefault();
+
+    try {
+      await UserApi.disconnection();
+
+      if (router.pathname === "/") {
+        router.reload();
+        return;
+      }
+
+      router.push(
+        LinkHelper.translate(locale, ""),
+        undefined,
+        { shallow: false },
+      );
+
+      return;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          UserValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+
+        toast.error(errorMessage);
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+    }
+  };
 
   const headerClientData: THeaderData = [
     {
@@ -67,6 +118,7 @@ const Header: FC<IHeader> = ({
         locale,
         "profile",
       ),
+      avatar: cookie.username,
     },
   ];
 
@@ -185,12 +237,13 @@ const Header: FC<IHeader> = ({
             className="header-list-container"
           >
             {headerData.map(
-              ({ id, title, url }) => (
+              ({ id, title, url, avatar }) => (
                 <HeaderItem
                   key={id}
                   url={url}
                   pathname={pathname}
                   title={title}
+                  avatar={avatar}
                 />
               ),
             )}
@@ -198,19 +251,36 @@ const Header: FC<IHeader> = ({
             {(!cookie.role
               ? headerRandomData
               : headerClientData
-            ).map(({ id, title, url }) => (
-              <HeaderItem
-                key={id}
-                url={url}
-                pathname={pathname}
-                title={title}
-              />
-            ))}
+            ).map(
+              ({ id, title, url, avatar }) => (
+                <HeaderItem
+                  key={id}
+                  url={url}
+                  pathname={pathname}
+                  title={title}
+                  avatar={avatar}
+                />
+              ),
+            )}
 
-            <div className="btn-header-container">
+            {cookie.role && (
+              <div>
+                <button
+                  className="btn-disconnect"
+                  onClick={handleDisconnect}
+                  data-cy="btn-disconnection"
+                >
+                  {t(
+                    "common:header:disconnection",
+                  )}
+                </button>
+              </div>
+            )}
+
+            <div className="btn-contact-container">
               <Link
                 href="/contact"
-                className="btn-header"
+                className="btn-contact"
               >
                 {t("common:header:contact")}
               </Link>

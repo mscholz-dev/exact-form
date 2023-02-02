@@ -2,6 +2,8 @@
   "meta:title": "Profil",
   "form:title": "PROFIL",
 
+  "form:avatar:title": "Mon identicon",
+
   "form:change:email:success": "Nous vous avons envoyé un email de vérification à votre adresse email actuelle",
 
   "form:success": "Profil mis à jour !",

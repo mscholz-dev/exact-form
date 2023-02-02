@@ -24,6 +24,7 @@ import {
   TLocale,
   TProfileForm,
 } from "../../../utils/type";
+import Avatar from "../Avatar";
 
 // classes
 const UserValidator = new UserValidatorClass();
@@ -144,6 +145,16 @@ const FormProfile: FC<TCookie & TLocale> = ({
           method="PUT"
           onSubmit={handleSubmit}
         >
+          <div className="avatar-profile-container">
+            <p>
+              {t("profile:form:avatar:title")}
+            </p>
+            <Avatar
+              seed={username}
+              className="avatar-profile"
+            />
+          </div>
+
           <FormInput
             icon={<IconUser />}
             id="username"

@@ -46,17 +46,17 @@ describe("Page: /profile", () => {
 
     CypressTest.compareInputValue(
       cy,
-      "input-username",
+      "username",
       data.username,
     );
     CypressTest.compareInputValue(
       cy,
-      "input-email",
+      "email",
       data.email,
     );
     CypressTest.compareInputValue(
       cy,
-      "input-role",
+      "role",
       data.client,
     );
 
@@ -90,10 +90,7 @@ describe("Page: /profile", () => {
       },
     ];
 
-    CypressTest.clearInputValue(
-      cy,
-      "input-username",
-    );
+    CypressTest.clearInputValue(cy, "username");
 
     CypressTest.clickCyData(cy, "btn-form");
 
@@ -263,11 +260,6 @@ describe("Page: /profile", () => {
       data.validFrJwt,
     );
 
-    CypressTest.clearInputValue(
-      cy,
-      "input-username",
-    );
-
     const formData = [
       {
         cyData: "username",
@@ -311,11 +303,6 @@ describe("Page: /profile", () => {
         toastValue: "input:username:error:exists",
       },
     ];
-
-    CypressTest.clearInputValue(
-      cy,
-      "input-username",
-    );
 
     const formData = [
       {

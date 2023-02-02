@@ -55,7 +55,6 @@ const FormInput: FC<IFormInput> = ({
       }${
         readOnly ? " form-input-read-only" : ""
       }`}
-      data-cy={`input-${id}`}
     >
       <span className="form-input-icon">
         {icon}
@@ -71,6 +70,7 @@ const FormInput: FC<IFormInput> = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         maxLength={maxLength}
+        data-cy={id}
       />
       <span className="form-input-title">
         {title}
