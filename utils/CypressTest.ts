@@ -100,7 +100,7 @@ export default class CypressTest {
     cy: Cypress.cy & CyEventEmitter,
     cyData: string,
   ) {
-    cy.get(`[data-cy=${cyData}]`).clear();
+    cy.get(`[data-cy=${cyData}]`).focus().clear();
   }
 
   setCookie(
