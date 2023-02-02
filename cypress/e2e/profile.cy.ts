@@ -18,22 +18,31 @@ describe("Page: /profile", () => {
   });
 
   it("it should redirect to: /", () => {
-    cy.setCookie("user", `${data.validFrJwt}!`);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      `${data.validFrJwt}!`,
+    );
 
     CypressTest.shouldRedirect(cy, `${url}/fr`);
   });
 
   it("it should redirect to: /", () => {
-    cy.setCookie("user", data.userNotFoundJwt);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.userNotFoundJwt,
+    );
 
     CypressTest.shouldRedirect(cy, `${url}/fr`);
   });
 
   it("it should appear a valid toast", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     CypressTest.compareInputValue(
       cy,
@@ -68,10 +77,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should throw: username required", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     const formError = [
       {
@@ -94,10 +104,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should throw: newPassword required", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     const formError = [
       {
@@ -130,10 +141,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should throw: newPassword2 required", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     const formError = [
       {
@@ -165,10 +177,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should throw: newPasswords not matching", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     const formError = [
       {
@@ -204,10 +217,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should throw: oldPassword incorrect", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     const formError = [
       {
@@ -243,10 +257,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should update username and password", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     CypressTest.clearInputValue(
       cy,
@@ -285,11 +300,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should throw: username already exists", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
-
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
     const formError = [
       {
         id: 0,
@@ -320,10 +335,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should send an fr email for change email", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     CypressTest.clickCyData(
       cy,
@@ -339,10 +355,11 @@ describe("Page: /profile", () => {
   });
 
   it("it should throw: token already exists", () => {
-    cy.setCookie("user", data.validFrJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     const formError = [
       {

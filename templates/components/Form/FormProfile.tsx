@@ -203,7 +203,7 @@ const FormProfile: FC<TCookie & TLocale> = ({
             icon={<IconRole />}
             id="role"
             handleChange={() => {}}
-            value={role}
+            value={Form.displayRole(role, t)}
             ariaDescribedby={t(
               "form:input:role:ariaDescribedby",
             )}

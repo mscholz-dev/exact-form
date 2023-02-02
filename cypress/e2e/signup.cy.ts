@@ -101,8 +101,6 @@ describe("Page: /signup", () => {
 
     CypressTest.clickCyData(cy, "btn-form");
 
-    cy.wait(5000);
-
     CypressTest.shouldRedirect(cy, `${url}/fr`);
   });
 

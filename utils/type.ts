@@ -73,3 +73,9 @@ export type TChangeEmailForm = {
   token: string | undefined;
   locale: string;
 };
+
+export type TRole =
+  | ""
+  | "CLIENT"
+  | "ADMIN"
+  | "SUPER_ADMIN";

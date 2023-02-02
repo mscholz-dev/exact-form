@@ -75,7 +75,9 @@ export default class CypressTest {
     cy: Cypress.cy & CyEventEmitter,
     url: string,
   ) {
-    cy.url().should("be.equal", url);
+    cy.url().should("be.equal", url, {
+      timeout: 10_000,
+    });
   }
 
   compareInputValue(
@@ -94,5 +96,15 @@ export default class CypressTest {
     cyData: string,
   ) {
     cy.get(`[data-cy=${cyData}] input`).clear();
+  }
+
+  setCookie(
+    cy: Cypress.cy & CyEventEmitter,
+    name: string,
+    value: string,
+  ) {
+    cy.setCookie(name, value, {
+      timeout: 1_000,
+    });
   }
 }

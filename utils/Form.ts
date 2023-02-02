@@ -3,6 +3,10 @@ import {
   Dispatch,
   SetStateAction,
 } from "react";
+import { Translate } from "next-translate";
+
+// types
+import { TRole } from "./type";
 
 export default class Form {
   handleChange(
@@ -15,5 +19,24 @@ export default class Form {
       ...state,
       [id]: (e.target as HTMLInputElement).value,
     });
+  }
+
+  displayRole(
+    role: string,
+    t: Translate,
+  ): string {
+    switch (role) {
+      case "CLIENT":
+        return t("common:role:client");
+
+      case "ADMIN":
+        return t("common:role:admin");
+
+      case "SUPER_ADMIN":
+        return t("common:role:superAdmin");
+
+      default:
+        return "";
+    }
   }
 }

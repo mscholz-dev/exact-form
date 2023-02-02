@@ -8,5 +8,9 @@
   "header:signup": "Inscription",
   "header:signin": "Connexion",
   "header:contact": "Contact",
-  "header:profile": "Profil"
+  "header:profile": "Profil",
+
+  "role:client": "Client",
+  "role:admin": "Administrateur",
+  "role:superAdmin": "Super administrateur"
 }

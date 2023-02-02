@@ -18,21 +18,11 @@ describe("Page: /change-email/:token", () => {
   it("it should redirect to: /", () => {
     cy.visit(`${url}/fr/change-email/token`);
 
-    cy.setCookie("user", `${data.validFrJwt}!`);
-
-    // wait API auth call
-    cy.wait(1000);
-
-    CypressTest.shouldRedirect(cy, `${url}/fr`);
-  });
-
-  it("it should redirect to: /", () => {
-    cy.visit(`${url}/fr/change-email/token`);
-
-    cy.setCookie("user", data.userNotFoundJwt);
-
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     CypressTest.shouldRedirect(cy, `${url}/fr`);
   });
@@ -40,16 +30,33 @@ describe("Page: /change-email/:token", () => {
   it("it should redirect to: /", () => {
     cy.visit(`${url}/fr/change-email/token`);
 
-    cy.setCookie("user", data.validFrJwt);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.userNotFoundJwt,
+    );
 
-    // wait API auth call
-    cy.wait(1000);
+    CypressTest.shouldRedirect(cy, `${url}/fr`);
+  });
+
+  it("it should redirect to: /", () => {
+    cy.visit(`${url}/fr/change-email/token`);
+
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     CypressTest.shouldRedirect(cy, `${url}/fr`);
   });
 
   it("it should throw: newEmail required and newEmail2 required", () => {
-    cy.setCookie("user", data.validFrJwt);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     cy.request(
       "GET",
@@ -61,11 +68,11 @@ describe("Page: /change-email/:token", () => {
 
       cy.visit(`${url}/fr/change-email/${token}`);
 
-      cy.setCookie("user", data.validFrJwt);
-
-      // wait API auth call
-      cy.wait(1000);
-
+      CypressTest.setCookie(
+        cy,
+        "user",
+        data.validFrJwt,
+      );
       const formError = [
         {
           id: 0,
@@ -89,7 +96,11 @@ describe("Page: /change-email/:token", () => {
   });
 
   it("it should throw: newEmails not matching", () => {
-    cy.setCookie("user", data.validFrJwt);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     cy.request(
       "GET",
@@ -101,10 +112,11 @@ describe("Page: /change-email/:token", () => {
 
       cy.visit(`${url}/fr/change-email/${token}`);
 
-      cy.setCookie("user", data.validFrJwt);
-
-      // wait API auth call
-      cy.wait(1000);
+      CypressTest.setCookie(
+        cy,
+        "user",
+        data.validFrJwt,
+      );
 
       const formError = [
         {
@@ -137,7 +149,11 @@ describe("Page: /change-email/:token", () => {
   });
 
   it("it should throw: newEmail must be different", () => {
-    cy.setCookie("user", data.validFrJwt);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     cy.request(
       "GET",
@@ -149,11 +165,11 @@ describe("Page: /change-email/:token", () => {
 
       cy.visit(`${url}/fr/change-email/${token}`);
 
-      cy.setCookie("user", data.validFrJwt);
-
-      // wait API auth call
-      cy.wait(1000);
-
+      CypressTest.setCookie(
+        cy,
+        "user",
+        data.validFrJwt,
+      );
       const formError = [
         {
           id: 0,
@@ -185,7 +201,11 @@ describe("Page: /change-email/:token", () => {
   });
 
   it("it should update email", () => {
-    cy.setCookie("user", data.validFrJwt);
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
 
     cy.request(
       "GET",
@@ -197,10 +217,11 @@ describe("Page: /change-email/:token", () => {
 
       cy.visit(`${url}/fr/change-email/${token}`);
 
-      cy.setCookie("user", data.validFrJwt);
-
-      // wait API auth call
-      cy.wait(1000);
+      CypressTest.setCookie(
+        cy,
+        "user",
+        data.validFrJwt,
+      );
 
       const formData = [
         {

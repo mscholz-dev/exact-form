@@ -5,7 +5,7 @@ before(async () => {
 });
 
 import "./signup.cy";
-// import "./signin.cy";
+import "./signin.cy";
 import "./profile.cy";
 import "./change-email.cy";
-// import "./contact.cy";
+import "./contact.cy";
