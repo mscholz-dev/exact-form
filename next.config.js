@@ -46,4 +46,73 @@ module.exports = nextTranslate({
       },
     ];
   },
+  // redirect to translate routes
+  async redirects() {
+    return [
+      // signup
+      {
+        source: "/fr/signup",
+        destination: "/fr/inscription",
+        permanent: true,
+        locale: false,
+      },
+
+      // signin
+      {
+        source: "/fr/signin",
+        destination: "/fr/connexion",
+        permanent: true,
+        locale: false,
+      },
+
+      // profile
+      {
+        source: "/fr/profile",
+        destination: "/fr/profil",
+        permanent: true,
+        locale: false,
+      },
+
+      // change-email
+      {
+        source: "/fr/change-email/:token",
+        destination: "/fr/modifier-email/:token",
+        permanent: true,
+        locale: false,
+      },
+    ];
+  },
+
+  // translate routes
+  async rewrites() {
+    return [
+      // signup
+      {
+        source: "/fr/inscription",
+        destination: "/fr/signup",
+        locale: false,
+      },
+
+      // signin
+      {
+        source: "/fr/connexion",
+        destination: "/fr/signin",
+        locale: false,
+      },
+
+      // profile
+      {
+        source: "/fr/profil",
+        destination: "/fr/profile",
+        locale: false,
+      },
+
+      // change-email
+      {
+        source: "/fr/modifier-email/:token",
+        destination: "/fr/change-email/:token",
+        locale: false,
+      },
+    ];
+  },
 });

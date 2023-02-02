@@ -14,6 +14,7 @@ import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/validator/UserValidator";
 import FormClass from "../../../utils/Form";
+import LinkHelperClass from "../../../utils/LinkHelper";
 
 // types
 import {
@@ -24,6 +25,7 @@ import {
 // classes
 const UserValidator = new UserValidatorClass();
 const Form = new FormClass();
+const LinkHelper = new LinkHelperClass();
 
 const FormSignin: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation();
@@ -73,7 +75,7 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
       toast.error(errorMessage);
     }
 
-    router.push("/");
+    router.push(LinkHelper.translate(locale, ""));
   };
 
   return (

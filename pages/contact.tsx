@@ -38,6 +38,7 @@ const Contact: FC<TLocale> = ({ locale }) => {
       title={t("contact:meta:title")}
       description={t("common:meta:description")}
       cookie={cookie as TCookie}
+      locale={locale}
     >
       <FormContact locale={locale} />
     </Page>

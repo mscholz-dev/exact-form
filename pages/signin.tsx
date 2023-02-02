@@ -38,6 +38,7 @@ const SignIn: FC<TLocale> = ({ locale }) => {
       title={t("signin:meta:title")}
       description={t("common:meta:description")}
       cookie={cookie as TCookie}
+      locale={locale}
     >
       <FormSignin locale={locale} />
     </Page>

@@ -4,11 +4,11 @@ import "../styles/main.scss";
 import "react-toastify/dist/ReactToastify.css";
 import "regenerator-runtime/runtime";
 
-const MyApp: FC<AppProps> = ({
+const App: FC<AppProps> = ({
   Component,
   pageProps,
 }) => {
   return <Component {...pageProps} />;
 };
 
-export default MyApp;
+export default App;

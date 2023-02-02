@@ -8,9 +8,13 @@ import useTranslation from "next-translate/useTranslation";
 import AuthApi from "./api/auth";
 import { useRouter } from "next/router";
 import FormProfile from "../templates/components/Form/FormProfile";
+import LinkHelperClass from "../utils/LinkHelper";
 
 // types
 import { TCookie, TLocale } from "../utils/type";
+
+// classes
+const LinkHelper = new LinkHelperClass();
 
 const Profile: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation();
@@ -28,7 +32,9 @@ const Profile: FC<TLocale> = ({ locale }) => {
       const res = await AuthApi.index();
       setCookie(res.data as TCookie);
     } catch (err) {
-      router.push("/");
+      router.push(
+        LinkHelper.translate(locale, ""),
+      );
       return;
     }
   };
@@ -44,6 +50,7 @@ const Profile: FC<TLocale> = ({ locale }) => {
       title={t("profile:meta:title")}
       description={t("common:meta:description")}
       cookie={cookie as TCookie}
+      locale={locale}
     >
       <FormProfile
         {...(cookie as TCookie)}

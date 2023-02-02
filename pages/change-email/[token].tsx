@@ -8,12 +8,16 @@ import useTranslation from "next-translate/useTranslation";
 import AuthApi from "../api/auth";
 import { useRouter } from "next/router";
 import FormChangeEmail from "../../templates/components/Form/FormChangeEmail";
+import LinkHelperClass from "../../utils/LinkHelper";
 
 // types
 import {
   TCookie,
   TLocale,
 } from "../../utils/type";
+
+// classes
+const LinkHelper = new LinkHelperClass();
 
 const ChangeEmail: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation();
@@ -35,7 +39,9 @@ const ChangeEmail: FC<TLocale> = ({ locale }) => {
       );
       setCookie(res.data as TCookie);
     } catch (err) {
-      router.push("/");
+      router.push(
+        LinkHelper.translate(locale, ""),
+      );
       return;
     }
   };
@@ -51,6 +57,7 @@ const ChangeEmail: FC<TLocale> = ({ locale }) => {
       title={t("change-email:meta:title")}
       description={t("common:meta:description")}
       cookie={cookie as TCookie}
+      locale={locale}
     >
       <FormChangeEmail
         email={cookie.email}

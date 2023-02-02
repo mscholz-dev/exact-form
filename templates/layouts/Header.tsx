@@ -2,7 +2,6 @@ import React, {
   useState,
   useEffect,
   FC,
-  Ref,
   useRef,
 } from "react";
 import Link from "next/link";
@@ -10,6 +9,7 @@ import Brand from "../../public/icons/brand.svg";
 import HeaderItem from "../components/HeaderItem";
 import useTranslation from "next-translate/useTranslation";
 // import setLanguage from "next-translate/setLanguage";
+import LinkHelperClass from "../../utils/LinkHelper";
 
 // interfaces
 import { IHeader } from "../../utils/interface";
@@ -17,9 +17,13 @@ import { IHeader } from "../../utils/interface";
 // types
 import { THeaderData } from "../../utils/type";
 
+// classes
+const LinkHelper = new LinkHelperClass();
+
 const Header: FC<IHeader> = ({
   myRef,
   cookie,
+  locale,
 }) => {
   const { t } = useTranslation("common");
 
@@ -38,12 +42,7 @@ const Header: FC<IHeader> = ({
     {
       id: 0,
       title: t("common:header:index"),
-      url: "/",
-    },
-    {
-      id: 1,
-      title: t("common:header:documentation"),
-      url: "/documentation",
+      url: LinkHelper.translate(locale, ""),
     },
   ];
 
@@ -51,12 +50,12 @@ const Header: FC<IHeader> = ({
     {
       id: 0,
       title: t("common:header:signup"),
-      url: "/signup",
+      url: LinkHelper.translate(locale, "signup"),
     },
     {
       id: 1,
       title: t("common:header:signin"),
-      url: "/signin",
+      url: LinkHelper.translate(locale, "signin"),
     },
   ];
 
@@ -64,7 +63,10 @@ const Header: FC<IHeader> = ({
     {
       id: 0,
       title: t("common:header:profile"),
-      url: "/profile",
+      url: LinkHelper.translate(
+        locale,
+        "profile",
+      ),
     },
   ];
 

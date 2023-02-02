@@ -8,9 +8,12 @@ import useTranslation from "next-translate/useTranslation";
 import AuthApi from "./api/auth";
 
 // types
-import { TCookie } from "../utils/type";
+import { TCookie, TLocale } from "../utils/type";
 
-const Index: FC = () => {
+// interfaces
+import { IIndex } from "../utils/interface";
+
+const Index: FC<IIndex> = ({ locale }) => {
   const { t } = useTranslation();
 
   const [cookie, setCookie] = useState({
@@ -38,6 +41,7 @@ const Index: FC = () => {
       description={t("common:meta:description")}
       padding
       cookie={cookie as TCookie}
+      locale={locale}
     >
       <h1 style={{ fontSize: "32px" }}>
         Je suis une phrase
@@ -50,3 +54,9 @@ const Index: FC = () => {
 };
 
 export default Index;
+
+export const getServerSideProps = async ({
+  locale,
+}: TLocale) => {
+  return { props: { locale } };
+};

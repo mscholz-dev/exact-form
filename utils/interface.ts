@@ -7,6 +7,10 @@ import {
 // types
 import { TCookie } from "./type";
 
+export interface IIndex {
+  locale: string;
+}
+
 export interface IFormInput {
   icon: JSX.Element;
   id: string;
@@ -31,11 +35,13 @@ export interface IPage {
   description: string;
   padding?: boolean;
   cookie: TCookie;
+  locale: string;
 }
 
 export interface IHeader {
   myRef: Ref<HTMLHeadingElement>;
   cookie: TCookie;
+  locale: string;
 }
 
 export interface IWrapper {

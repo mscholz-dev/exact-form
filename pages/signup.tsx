@@ -38,6 +38,7 @@ const SignUp: FC<TLocale> = ({ locale }) => {
       title={t("signup:meta:title")}
       description={t("common:meta:description")}
       cookie={cookie as TCookie}
+      locale={locale}
     >
       <FormSignup locale={locale} />
     </Page>
@@ -49,5 +50,7 @@ export default SignUp;
 export const getServerSideProps = async ({
   locale,
 }: TLocale) => {
-  return { props: { locale } };
+  return {
+    props: { locale },
+  };
 };

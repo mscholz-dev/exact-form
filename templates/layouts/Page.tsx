@@ -13,6 +13,7 @@ const Page: FC<IPage> = ({
   description,
   padding,
   cookie,
+  locale,
 }) => {
   const headerRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +35,11 @@ const Page: FC<IPage> = ({
         />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <Header myRef={headerRef} cookie={cookie} />
+      <Header
+        myRef={headerRef}
+        cookie={cookie}
+        locale={locale}
+      />
       <div
         className={`body-wrapper${
           className ? ` ${className}` : ""
