@@ -34,3 +34,8 @@ svg {
   background-color: $primary-color;
   color: $white;
 }
+
+*:focus-visible {
+  outline: 2px solid $primary-color-light;
+  border-radius: 2px;
+}

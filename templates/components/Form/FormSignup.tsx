@@ -22,6 +22,7 @@ import {
   TSignupForm,
   TLocale,
 } from "../../../utils/type";
+import FormCheckbox from "./FormCheckbox";
 
 // classes
 const UserValidator = new UserValidatorClass();
@@ -177,7 +178,10 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             )}
             maxLength={60}
             type="password"
+            mb
           />
+
+          <FormCheckbox />
 
           <button
             type="submit"
