@@ -85,3 +85,14 @@ export interface IAvatar {
   seed: string;
   className?: string;
 }
+
+export interface IFormCheckbox {
+  id: string;
+  handleChange: (
+    e: ChangeEvent,
+    id: string,
+  ) => void;
+  value: boolean;
+  title: string;
+  ariaDescribedby: string;
+}

@@ -1,10 +1,14 @@
 import React, { FC, useState } from "react";
 import IconCheck from "../../../public/icons/check.svg";
 
-const FormCheckbox: FC = ({
+// interfaces
+import { IFormCheckbox } from "../../../utils/interface";
+
+const FormCheckbox: FC<IFormCheckbox> = ({
   id,
   handleChange,
   value,
+  title,
   ariaDescribedby,
 }) => {
   const [focus, setFocus] =
@@ -14,10 +18,6 @@ const FormCheckbox: FC = ({
 
   const handleFocus = (): void => setFocus(true);
   const handleBlur = (): void => setFocus(false);
-
-  const handleChange = () => {
-    setChecked(!checked);
-  };
 
   return (
     <label
@@ -32,16 +32,15 @@ const FormCheckbox: FC = ({
       </span>
 
       <span className="form-checkbox-text">
-        En cochant cette case, vous accepter de
-        recevoir une newsletter
+        {title}
       </span>
 
       <input
         id={id}
         type="checkbox"
         className="form-checkbox-control"
-        checked={checked}
-        onChange={handleChange}
+        checked={value}
+        onChange={(e) => handleChange(e, id)}
         onFocus={handleFocus}
         onBlur={handleBlur}
         aria-describedby={ariaDescribedby}

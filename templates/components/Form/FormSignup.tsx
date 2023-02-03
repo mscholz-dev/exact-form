@@ -181,7 +181,22 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             mb
           />
 
-          <FormCheckbox />
+          <FormCheckbox
+            id="market"
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "market",
+                setForm,
+                form,
+              )
+            }
+            value={form.market}
+            title={t("form:input:market:title")}
+            ariaDescribedby={t(
+              "form:input:market:ariaDescribedby",
+            )}
+          />
 
           <button
             type="submit"

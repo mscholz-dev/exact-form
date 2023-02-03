@@ -57,6 +57,9 @@
   "input:message:error:empty": "Le champ Message est requis",
   "input:message:error:long": "Le champ Message doit contenir 10 000 caractères maximum",
 
+  "input:market:title": "",
+  "input:market:ariaDescribedby": "",
+
   "input:password:title": "Mot de passe",
   "input:password:ariaDescribedby": "Veuillez renseigner votre mot de passe",
   "input:password:error:empty": "Le champ Mot de passe est requis",
