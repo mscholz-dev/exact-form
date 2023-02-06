@@ -9,6 +9,7 @@
   "header:contact": "Contact",
   "header:profile": "Profile",
   "header:disconnection": "Disconnection",
+  "header:form": "Form",
 
   "role:client": "Customer",
   "role:admin": "Administrator",

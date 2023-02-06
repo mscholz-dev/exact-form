@@ -5,7 +5,7 @@ import {
 } from "react";
 
 // types
-import { TCookie } from "./type";
+import { TCookie, TCardForm } from "./type";
 
 export interface IIndex {
   locale: string;
@@ -109,4 +109,25 @@ export interface IFormProfile {
   locale: string;
   market: boolean;
   setUsername: (username: string) => void;
+}
+
+export interface IForm {
+  locale: string;
+}
+
+export interface ICardPage {
+  items: TCardForm[];
+  locale: string;
+}
+
+export interface ICardForm {
+  name: string;
+  keyName: string;
+  timezone: {
+    name: string;
+    offset: number;
+  };
+  items: number;
+  owner: string;
+  locale: string;
 }

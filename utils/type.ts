@@ -82,3 +82,14 @@ export type TRole =
   | "CLIENT"
   | "ADMIN"
   | "SUPER_ADMIN";
+
+export type TCardForm = {
+  name: string;
+  key: string;
+  timezone: {
+    name: string;
+    offset: number;
+  };
+  items: number;
+  owner: string;
+};

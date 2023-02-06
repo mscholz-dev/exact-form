@@ -71,6 +71,24 @@ const Header: FC<IHeader> = ({
     },
   ];
 
+  const headerClientData: THeaderData = [
+    {
+      id: 0,
+      title: t("common:header:form"),
+      url: LinkHelper.translate(locale, "form"),
+      avatar: "",
+    },
+    {
+      id: 1,
+      title: t("common:header:profile"),
+      url: LinkHelper.translate(
+        locale,
+        "profile",
+      ),
+      avatar: cookie.username,
+    },
+  ];
+
   const handleDisconnect = async (
     e: MouseEvent<HTMLButtonElement>,
   ) => {
@@ -109,18 +127,6 @@ const Header: FC<IHeader> = ({
       toast.error(errorMessage);
     }
   };
-
-  const headerClientData: THeaderData = [
-    {
-      id: 0,
-      title: t("common:header:profile"),
-      url: LinkHelper.translate(
-        locale,
-        "profile",
-      ),
-      avatar: cookie.username,
-    },
-  ];
 
   const handleHeaderSize = (
     isOpen?: boolean | undefined,

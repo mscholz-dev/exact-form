@@ -15,5 +15,6 @@ module.exports = {
       "change-email",
       "form",
     ],
+    "/form": ["form-page"],
   },
 };

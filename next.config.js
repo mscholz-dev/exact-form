@@ -104,6 +104,20 @@ module.exports = nextTranslate({
         permanent: true,
         locale: false,
       },
+
+      // form
+      {
+        source: "/fr/form",
+        destination: "/fr/formulaire",
+        permanent: true,
+        locale: false,
+      },
+      {
+        source: "/en/formulaire",
+        destination: "/en/form",
+        permanent: true,
+        locale: false,
+      },
     ];
   },
 
@@ -135,6 +149,13 @@ module.exports = nextTranslate({
       {
         source: "/fr/modifier-email/:token",
         destination: "/fr/change-email/:token",
+        locale: false,
+      },
+
+      // form
+      {
+        source: "/fr/formulaire",
+        destination: "/fr/form",
         locale: false,
       },
     ];

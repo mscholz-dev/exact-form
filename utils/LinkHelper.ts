@@ -20,6 +20,9 @@ export default class LinkHelper {
       case "profile":
         return "/fr/profil";
 
+      case "form":
+        return "/fr/formulaire";
+
       default:
         return `/fr${
           pathname ? `/${pathname}` : ""
