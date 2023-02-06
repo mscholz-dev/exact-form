@@ -5,9 +5,6 @@ import {
 } from "react";
 import { Translate } from "next-translate";
 
-// types
-import { TRole } from "./type";
-
 export default class Form {
   handleChange(
     e: ChangeEvent,
@@ -21,6 +18,18 @@ export default class Form {
     });
   }
 
+  handleCheckboxChange(
+    e: ChangeEvent,
+    id: string,
+    setter: Dispatch<SetStateAction<any>>,
+    state: object,
+  ): void {
+    setter({
+      ...state,
+      [id]: (e.target as HTMLInputElement)
+        .checked,
+    });
+  }
   displayRole(
     role: string,
     t: Translate,

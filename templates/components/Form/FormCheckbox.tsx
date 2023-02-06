@@ -13,8 +13,6 @@ const FormCheckbox: FC<IFormCheckbox> = ({
 }) => {
   const [focus, setFocus] =
     useState<boolean>(false);
-  const [checked, setChecked] =
-    useState<boolean>(true);
 
   const handleFocus = (): void => setFocus(true);
   const handleBlur = (): void => setFocus(false);
@@ -23,9 +21,7 @@ const FormCheckbox: FC<IFormCheckbox> = ({
     <label
       className={`form-checkbox${
         focus ? " form-checkbox-focus" : ""
-      }${
-        checked ? " form-checkbox-checked" : ""
-      }`}
+      }${value ? " form-checkbox-checked" : ""}`}
     >
       <span className="form-checkbox-icon">
         <IconCheck />
@@ -40,6 +36,7 @@ const FormCheckbox: FC<IFormCheckbox> = ({
         type="checkbox"
         className="form-checkbox-control"
         checked={value}
+        value={id}
         onChange={(e) => handleChange(e, id)}
         onFocus={handleFocus}
         onBlur={handleBlur}

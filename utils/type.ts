@@ -3,6 +3,7 @@ export type TSignupForm = {
   email: string;
   password: string;
   password2: string;
+  market: boolean;
   locale: string;
 };
 
@@ -66,6 +67,7 @@ export type TProfileForm = {
   oldPassword: string;
   newPassword: string;
   newPassword2: string;
+  market: boolean;
 };
 
 export type TChangeEmailForm = {

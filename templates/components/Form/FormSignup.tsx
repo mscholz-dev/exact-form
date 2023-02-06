@@ -2,6 +2,7 @@ import React, {
   useState,
   FC,
   SyntheticEvent,
+  useEffect,
 } from "react";
 import { toast } from "react-toastify";
 import IconUser from "../../../public/icons/user.svg";
@@ -39,6 +40,7 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
     email: "",
     password: "",
     password2: "",
+    market: true,
     locale,
   });
 
@@ -81,6 +83,8 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
 
     router.push(LinkHelper.translate(locale, ""));
   };
+
+  useEffect(() => console.log(form), [form]);
 
   return (
     <FormPage>
@@ -184,7 +188,7 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
           <FormCheckbox
             id="market"
             handleChange={(e) =>
-              Form.handleChange(
+              Form.handleCheckboxChange(
                 e,
                 "market",
                 setForm,

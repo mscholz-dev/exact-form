@@ -56,11 +56,23 @@ module.exports = nextTranslate({
         permanent: true,
         locale: false,
       },
+      {
+        source: "/en/inscription",
+        destination: "/en/signup",
+        permanent: true,
+        locale: false,
+      },
 
       // signin
       {
         source: "/fr/signin",
         destination: "/fr/connexion",
+        permanent: true,
+        locale: false,
+      },
+      {
+        source: "/en/connexion",
+        destination: "/en/signin",
         permanent: true,
         locale: false,
       },
@@ -72,11 +84,23 @@ module.exports = nextTranslate({
         permanent: true,
         locale: false,
       },
+      {
+        source: "/en/profil",
+        destination: "/en/profile",
+        permanent: true,
+        locale: false,
+      },
 
       // change-email
       {
         source: "/fr/change-email/:token",
         destination: "/fr/modifier-email/:token",
+        permanent: true,
+        locale: false,
+      },
+      {
+        source: "/en/modifier-email/:token",
+        destination: "/en/change-email/:token",
         permanent: true,
         locale: false,
       },

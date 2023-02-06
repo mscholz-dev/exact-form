@@ -25,16 +25,20 @@ import {
   TProfileForm,
 } from "../../../utils/type";
 import Avatar from "../Avatar";
+import FormCheckbox from "./FormCheckbox";
 
 // classes
 const UserValidator = new UserValidatorClass();
 const Form = new FormClass();
 
-const FormProfile: FC<TCookie & TLocale> = ({
+const FormProfile: FC<
+  TCookie & TLocale & { market: boolean }
+> = ({
   username,
   email,
   role,
   locale,
+  market,
 }) => {
   const { t } = useTranslation();
 
@@ -43,6 +47,7 @@ const FormProfile: FC<TCookie & TLocale> = ({
     oldPassword: "",
     newPassword: "",
     newPassword2: "",
+    market: true,
   };
 
   const [form, setForm] =
@@ -129,10 +134,11 @@ const FormProfile: FC<TCookie & TLocale> = ({
     setForm({
       ...form,
       username,
+      market,
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
+  }, [username, market]);
 
   return (
     <FormPage>
@@ -296,6 +302,23 @@ const FormProfile: FC<TCookie & TLocale> = ({
             mb
             maxLength={60}
             type="password"
+          />
+
+          <FormCheckbox
+            id="market"
+            handleChange={(e) =>
+              Form.handleCheckboxChange(
+                e,
+                "market",
+                setForm,
+                form,
+              )
+            }
+            value={form.market}
+            title={t("form:input:market:title")}
+            ariaDescribedby={t(
+              "form:input:market:ariaDescribedby",
+            )}
           />
 
           <button

@@ -83,4 +83,16 @@ export default class UserApi {
       })
       .then((res) => res);
   }
+
+  static async profile() {
+    return await api
+      .get(`/user`, {
+        headers: {
+          "Content-Type":
+            "application/x-www-form-urlencoded",
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }

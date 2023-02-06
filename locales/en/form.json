@@ -57,8 +57,8 @@
   "input:message:error:empty": "Field Message is required",
   "input:message:error:long": "Field Message must contain 10 000 characters maximum",
 
-  "input:market:title": "",
-  "input:market:ariaDescribedby": "",
+  "input:market:title": "I’d like to receive occasional Exact Form news and updates",
+  "input:market:ariaDescribedby": "Receive occasional Exact Form news and updates",
 
   "input:password:title": "Password",
   "input:password:ariaDescribedby": "Please enter your password",

@@ -25,7 +25,6 @@ const FormTextarea: FC<IFormTextarea> = ({
       }${
         value.length ? " form-input-filled" : ""
       }`}
-      data-cy={`input-${id}`}
     >
       <textarea
         id={id}
@@ -38,6 +37,7 @@ const FormTextarea: FC<IFormTextarea> = ({
         onBlur={handleBlur}
         rows={4}
         maxLength={maxLength}
+        data-cy={id}
       />
       <span className="form-input-title">
         {title}

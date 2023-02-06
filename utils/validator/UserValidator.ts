@@ -277,6 +277,10 @@ export default class UserValidator extends Validator {
           );
         return "";
 
+      // market
+      case "market":
+        return "";
+
       // locale
       case "locale":
         if (!value)

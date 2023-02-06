@@ -26,9 +26,9 @@ export default class CypressTest {
     cyData: string,
     value: string,
   ) {
-    this.clearInputValue(cy, cyData);
-
-    this.getCyData(cy, cyData).type(value);
+    this.getCyData(cy, cyData)
+      .invoke("val", "")
+      .type(value);
   }
 
   loopFormFill(formData: TCypressFormData) {
@@ -100,7 +100,9 @@ export default class CypressTest {
     cy: Cypress.cy & CyEventEmitter,
     cyData: string,
   ) {
-    cy.get(`[data-cy=${cyData}]`).focus().clear();
+    cy.get(`[data-cy=${cyData}]`)
+      .focus()
+      .invoke("val", "");
   }
 
   setCookie(

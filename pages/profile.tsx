@@ -5,13 +5,13 @@ import React, {
 } from "react";
 import Page from "../templates/layouts/Page";
 import useTranslation from "next-translate/useTranslation";
-import AuthApi from "./api/auth";
 import { useRouter } from "next/router";
 import FormProfile from "../templates/components/Form/FormProfile";
 import LinkHelperClass from "../utils/LinkHelper";
 
 // types
 import { TCookie, TLocale } from "../utils/type";
+import UserApi from "./api/user";
 
 // classes
 const LinkHelper = new LinkHelperClass();
@@ -27,10 +27,14 @@ const Profile: FC<TLocale> = ({ locale }) => {
     role: "",
   });
 
+  const [market, setMarket] =
+    useState<boolean>(true);
+
   const isAuth = async () => {
     try {
-      const res = await AuthApi.index();
+      const res = await UserApi.profile();
       setCookie(res.data as TCookie);
+      setMarket(res.data.market as boolean);
     } catch (err) {
       router.push(
         LinkHelper.translate(locale, ""),
@@ -55,6 +59,7 @@ const Profile: FC<TLocale> = ({ locale }) => {
       <FormProfile
         {...(cookie as TCookie)}
         locale={locale}
+        market={market}
       />
     </Page>
   );
