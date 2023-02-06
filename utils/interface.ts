@@ -96,3 +96,17 @@ export interface IFormCheckbox {
   title: string;
   ariaDescribedby: string;
 }
+
+export interface IBtnLoader {
+  loading: boolean;
+  text: string;
+}
+
+export interface IFormProfile {
+  username: string;
+  email: string;
+  role: "" | "CLIENT" | "ADMIN" | "SUPER_ADMIN";
+  locale: string;
+  market: boolean;
+  setUsername: (username: string) => void;
+}

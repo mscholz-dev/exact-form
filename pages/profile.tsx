@@ -26,7 +26,8 @@ const Profile: FC<TLocale> = ({ locale }) => {
     username: "",
     role: "",
   });
-
+  const [username, setUsername] =
+    useState<string>("");
   const [market, setMarket] =
     useState<boolean>(true);
 
@@ -34,6 +35,7 @@ const Profile: FC<TLocale> = ({ locale }) => {
     try {
       const res = await UserApi.profile();
       setCookie(res.data as TCookie);
+      setUsername(res.data.username as string);
       setMarket(res.data.market as boolean);
     } catch (err) {
       router.push(
@@ -53,13 +55,19 @@ const Profile: FC<TLocale> = ({ locale }) => {
     <Page
       title={t("profile:meta:title")}
       description={t("common:meta:description")}
-      cookie={cookie as TCookie}
+      cookie={
+        {
+          ...cookie,
+          username,
+        } as TCookie
+      }
       locale={locale}
     >
       <FormProfile
         {...(cookie as TCookie)}
         locale={locale}
         market={market}
+        setUsername={setUsername}
       />
     </Page>
   );

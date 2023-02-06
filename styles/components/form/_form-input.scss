@@ -7,7 +7,7 @@
     display: flex;
     padding: 12px 12px;
     position: relative;
-    transition: 0.2s all ease-in-out;
+    transition: 0.2s border ease-in-out;
   }
 
   &-icon {
@@ -15,7 +15,7 @@
     height: 26px;
     fill: $secondary-color;
     margin-right: 12px;
-    transition: 0.2s all ease-in-out;
+    transition: 0.2s fill ease-in-out;
     width: 26px;
   }
 
@@ -33,7 +33,9 @@
     pointer-events: none;
     position: absolute;
     top: 16px;
-    transition: 0.2s all ease-in-out;
+    transition: 0.2s left ease-in-out,
+      0.2s top ease-in-out, 0.2s color ease-in-out,
+      0.2s font-size ease-in-out;
   }
 
   &-mb {

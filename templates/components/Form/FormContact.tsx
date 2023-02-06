@@ -15,6 +15,7 @@ import ContactApi from "../../../pages/api/contact";
 import { AxiosError } from "axios";
 import ContactValidatorClass from "../../../utils/validator/ContactValidator";
 import FormClass from "../../../utils/Form";
+import BtnLoader from "../BtnLoader";
 
 // types
 import {
@@ -41,11 +42,17 @@ const FormContact: FC<TLocale> = ({ locale }) => {
 
   const [form, setForm] =
     useState<TContactForm>(defaultForm);
+  const [loading, setLoading] =
+    useState<boolean>(false);
 
   const handleSubmit = async (
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
+
+    // prevent spamming
+    if (loading) return;
+    setLoading(true);
 
     const errors =
       ContactValidator.inspectContactData(
@@ -59,6 +66,7 @@ const FormContact: FC<TLocale> = ({ locale }) => {
         toast.error(message);
       }
 
+      setLoading(false);
       return;
     }
 
@@ -79,6 +87,7 @@ const FormContact: FC<TLocale> = ({ locale }) => {
           );
 
         toast.error(errorMessage);
+        setLoading(false);
         return;
       }
 
@@ -86,7 +95,11 @@ const FormContact: FC<TLocale> = ({ locale }) => {
       console.error(err);
       const errorMessage = t("form:error:random");
       toast.error(errorMessage);
+      setLoading(false);
+      return;
     }
+
+    setLoading(false);
   };
 
   return (
@@ -215,13 +228,10 @@ const FormContact: FC<TLocale> = ({ locale }) => {
             asterix
           />
 
-          <button
-            type="submit"
-            className="btn-submit"
-            data-cy="btn-form"
-          >
-            {t("contact:form:submit")}
-          </button>
+          <BtnLoader
+            loading={loading}
+            text={t("contact:form:submit")}
+          />
         </form>
       </>
     </FormPage>

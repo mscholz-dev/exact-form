@@ -17,6 +17,7 @@ import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/validator/UserValidator";
 import FormClass from "../../../utils/Form";
 import LinkHelperClass from "../../../utils/LinkHelper";
+import BtnLoader from "../BtnLoader";
 
 // types
 import {
@@ -43,11 +44,17 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
     market: true,
     locale,
   });
+  const [loading, setLoading] =
+    useState<boolean>(false);
 
   const handleSubmit = async (
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
+
+    // prevent spamming
+    if (loading) return;
+    setLoading(true);
 
     const errors =
       UserValidator.inspectSignupData(form, t);
@@ -58,6 +65,7 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
         toast.error(message);
       }
 
+      setLoading(false);
       return;
     }
 
@@ -72,6 +80,7 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
           );
 
         toast.error(errorMessage);
+        setLoading(false);
         return;
       }
 
@@ -79,12 +88,12 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
       console.error(err);
       const errorMessage = t("form:error:random");
       toast.error(errorMessage);
+      setLoading(false);
+      return;
     }
 
     router.push(LinkHelper.translate(locale, ""));
   };
-
-  useEffect(() => console.log(form), [form]);
 
   return (
     <FormPage>
@@ -120,7 +129,6 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             maxLength={60}
             type="text"
           />
-
           <FormInput
             icon={<IconEmail />}
             id="email"
@@ -141,7 +149,6 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             maxLength={255}
             type="email"
           />
-
           <FormInput
             icon={<IconPassword />}
             id="password"
@@ -202,13 +209,10 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             )}
           />
 
-          <button
-            type="submit"
-            className="btn-submit"
-            data-cy="btn-form"
-          >
-            {t("signup:form:submit")}
-          </button>
+          <BtnLoader
+            loading={loading}
+            text={t("signup:form:submit")}
+          />
         </form>
       </>
     </FormPage>

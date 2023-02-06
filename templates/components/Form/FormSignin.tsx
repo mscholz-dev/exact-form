@@ -15,6 +15,7 @@ import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/validator/UserValidator";
 import FormClass from "../../../utils/Form";
 import LinkHelperClass from "../../../utils/LinkHelper";
+import BtnLoader from "../BtnLoader";
 
 // types
 import {
@@ -37,11 +38,17 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
     password: "",
     locale,
   });
+  const [loading, setLoading] =
+    useState<boolean>(false);
 
   const handleSubmit = async (
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
+
+    // prevent spamming
+    if (loading) return;
+    setLoading(true);
 
     const errors =
       UserValidator.inspectSigninData(form, t);
@@ -52,6 +59,7 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
         toast.error(message);
       }
 
+      setLoading(false);
       return;
     }
 
@@ -66,6 +74,7 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
           );
 
         toast.error(errorMessage);
+        setLoading(false);
         return;
       }
 
@@ -73,6 +82,8 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
       console.error(err);
       const errorMessage = t("form:error:random");
       toast.error(errorMessage);
+      setLoading(false);
+      return;
     }
 
     router.push(LinkHelper.translate(locale, ""));
@@ -134,13 +145,10 @@ const FormSignin: FC<TLocale> = ({ locale }) => {
             type="password"
           />
 
-          <button
-            type="submit"
-            className="btn-submit"
-            data-cy="btn-form"
-          >
-            {t("signin:form:submit")}
-          </button>
+          <BtnLoader
+            loading={loading}
+            text={t("signin:form:submit")}
+          />
         </form>
       </>
     </FormPage>

@@ -17,28 +17,27 @@ import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/validator/UserValidator";
 import FormClass from "../../../utils/Form";
-
-// types
-import {
-  TCookie,
-  TLocale,
-  TProfileForm,
-} from "../../../utils/type";
+import BtnLoader from "../BtnLoader";
 import Avatar from "../Avatar";
 import FormCheckbox from "./FormCheckbox";
+
+// types
+import { TProfileForm } from "../../../utils/type";
+
+// interfaces
+import { IFormProfile } from "../../../utils/interface";
 
 // classes
 const UserValidator = new UserValidatorClass();
 const Form = new FormClass();
 
-const FormProfile: FC<
-  TCookie & TLocale & { market: boolean }
-> = ({
+const FormProfile: FC<IFormProfile> = ({
   username,
   email,
   role,
   locale,
   market,
+  setUsername,
 }) => {
   const { t } = useTranslation();
 
@@ -52,11 +51,17 @@ const FormProfile: FC<
 
   const [form, setForm] =
     useState<TProfileForm>(defaultForm);
+  const [loading, setLoading] =
+    useState<boolean>(false);
 
   const handleSubmit = async (
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
+
+    // prevent spamming
+    if (loading) return;
+    setLoading(true);
 
     const errors =
       UserValidator.inspectProfileData(form, t);
@@ -67,6 +72,7 @@ const FormProfile: FC<
         toast.error(message);
       }
 
+      setLoading(false);
       return;
     }
 
@@ -92,6 +98,7 @@ const FormProfile: FC<
           );
 
         toast.error(errorMessage);
+        setLoading(false);
         return;
       }
 
@@ -99,7 +106,11 @@ const FormProfile: FC<
       console.error(err);
       const errorMessage = t("form:error:random");
       toast.error(errorMessage);
+      setLoading(false);
+      return;
     }
+
+    setLoading(false);
   };
 
   const handleChangeEmail = async () => {
@@ -140,6 +151,12 @@ const FormProfile: FC<
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username, market]);
 
+  useEffect(() => {
+    setUsername(form.username);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.username]);
+
   return (
     <FormPage>
       <>
@@ -156,7 +173,7 @@ const FormProfile: FC<
               {t("profile:form:avatar:title")}
             </p>
             <Avatar
-              seed={username}
+              seed={form.username}
               className="avatar-profile"
             />
           </div>
@@ -321,13 +338,10 @@ const FormProfile: FC<
             )}
           />
 
-          <button
-            type="submit"
-            className="btn-submit"
-            data-cy="btn-form"
-          >
-            {t("profile:form:submit")}
-          </button>
+          <BtnLoader
+            loading={loading}
+            text={t("profile:form:submit")}
+          />
         </form>
       </>
     </FormPage>

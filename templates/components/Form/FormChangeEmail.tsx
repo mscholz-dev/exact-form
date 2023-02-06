@@ -12,13 +12,10 @@ import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/validator/UserValidator";
 import FormClass from "../../../utils/Form";
+import BtnLoader from "../BtnLoader";
 
 // types
-import {
-  TCookie,
-  TLocale,
-  TChangeEmailForm,
-} from "../../../utils/type";
+import { TChangeEmailForm } from "../../../utils/type";
 
 // interfaces
 import { IFormChangeEmail } from "../../../utils/interface";
@@ -43,11 +40,17 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
 
   const [form, setForm] =
     useState<TChangeEmailForm>(defaultForm);
+  const [loading, setLoading] =
+    useState<boolean>(false);
 
   const handleSubmit = async (
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
+
+    // prevent spamming
+    if (loading) return;
+    setLoading(true);
 
     const errors =
       UserValidator.inspectChangeEmail(
@@ -62,6 +65,7 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
         toast.error(message);
       }
 
+      setLoading(false);
       return;
     }
 
@@ -82,6 +86,7 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
           );
 
         toast.error(errorMessage);
+        setLoading(false);
         return;
       }
 
@@ -89,7 +94,11 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
       console.error(err);
       const errorMessage = t("form:error:random");
       toast.error(errorMessage);
+      setLoading(false);
+      return;
     }
+
+    setLoading(false);
   };
 
   return (
