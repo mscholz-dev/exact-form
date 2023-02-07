@@ -10,18 +10,32 @@
   max-width: calc(400px - 24px);
   overflow: hidden;
   padding: 24px 12px;
-  transition: 0.2s background ease-in-out;
+  transition: 0.2s background ease-in-out,
+    0.2s color ease-in-out;
   text-decoration: none;
+
+  &:hover {
+    background: $white;
+    color: $primary-color;
+
+    .card-form {
+      &-container {
+        &:after {
+          background: $primary-color;
+        }
+      }
+    }
+  }
 
   @include responsive(t-xs) {
     margin-bottom: 0;
-    width: calc(100% - 24px);
+    width: calc(100% - 28px);
   }
 
   &-title {
     @include ellipsis;
     font-size: 32px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
   }
 
   &-wrapper {
@@ -42,13 +56,20 @@
       position: absolute;
       right: -12px;
       top: 0;
+      transition: 0.2s background ease-in-out;
       width: 1px;
 
       @include responsive(s) {
         right: -24px;
       }
 
-      // @include
+      @include responsive(t-xs) {
+        right: -12px;
+      }
+
+      @include responsive(d-xs) {
+        right: -16px;
+      }
     }
 
     &:last-child {
@@ -59,6 +80,14 @@
 
     @include responsive(s) {
       margin-right: 48px;
+    }
+
+    @include responsive(t-xs) {
+      margin-right: 24px;
+    }
+
+    @include responsive(d-xs) {
+      margin-right: 32px;
     }
   }
 
@@ -103,7 +132,7 @@
 
     @include responsive(t-xs) {
       margin-bottom: 0;
-      width: 100%;
+      width: calc(100% - 4px);
     }
 
     &-icon {

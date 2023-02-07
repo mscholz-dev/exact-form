@@ -28,14 +28,22 @@ const CardForm: FC<ICardForm> = ({
       )}
       className="card-form"
     >
-      <h2 className="card-form-title">{name}</h2>
+      <h2
+        className="card-form-title"
+        title={name}
+      >
+        {name}
+      </h2>
 
       <span className="card-form-wrapper">
         <span className="card-form-container">
           <span className="card-form-text">
             {t("form-page:card:owner")}
           </span>
-          <span className="card-form-value">
+          <span
+            className="card-form-value"
+            title={owner}
+          >
             <Avatar
               seed={owner}
               className="card-form-avatar"

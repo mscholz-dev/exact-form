@@ -16,5 +16,6 @@ module.exports = {
       "form",
     ],
     "/form": ["form-page"],
+    "/form/[key]": ["form-page-key"],
   },
 };

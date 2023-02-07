@@ -139,3 +139,15 @@ export interface ICardFormPreset {
   locale: string;
   title: string;
 }
+
+export interface IFormKey {
+  locale: string;
+}
+
+export interface ITable {
+  data: object[];
+}
+
+export interface ITableHeader {
+  header: string[];
+}

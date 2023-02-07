@@ -24,6 +24,12 @@ export default class LinkHelper {
         return "/fr/formulaire";
 
       default:
+        if (pathname.includes("form"))
+          return `/fr/formulaire/${pathname.replace(
+            "form",
+            "",
+          )}`;
+
         return `/fr${
           pathname ? `/${pathname}` : ""
         }`;
