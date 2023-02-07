@@ -18,7 +18,8 @@
   margin-top: 24px;
   text-decoration: none;
   transition: 0.25s color ease-in-out,
-    0.25s background-position ease-in-out;
+    0.25s background-position ease-in-out,
+    0.25s fill ease-in-out;
   width: 100%;
 
   &:hover {
@@ -119,10 +120,19 @@
       width: 16px;
     }
 
+    &-title {
+      color: $white;
+      transition: 0.25s color ease-in-out;
+    }
+
     &:hover {
       .btn-create {
         &-icon {
           fill: $primary-color;
+        }
+
+        &-title {
+          color: $primary-color;
         }
       }
     }

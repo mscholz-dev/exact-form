@@ -1,3 +1,6 @@
 {
-  "meta:title": "Form"
+  "meta:title": "Form",
+
+  "table:header:ariaDescribedby": "Selectionner tous les champs",
+  "table:body:ariaDescribedby": "Select ce champ"
 }

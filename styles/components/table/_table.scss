@@ -1,2 +1,9 @@
 .table {
+  table-layout: fixed;
+  width: calc(100% - 1px);
+
+  &-title {
+    font-size: 32px;
+    margin-bottom: 32px;
+  }
 }

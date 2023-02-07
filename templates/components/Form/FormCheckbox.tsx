@@ -10,6 +10,7 @@ const FormCheckbox: FC<IFormCheckbox> = ({
   value,
   title,
   ariaDescribedby,
+  small,
 }) => {
   const [focus, setFocus] =
     useState<boolean>(false);
@@ -21,15 +22,19 @@ const FormCheckbox: FC<IFormCheckbox> = ({
     <label
       className={`form-checkbox${
         focus ? " form-checkbox-focus" : ""
-      }${value ? " form-checkbox-checked" : ""}`}
+      }${value ? " form-checkbox-checked" : ""}${
+        small ? " form-checkbox-small" : ""
+      }`}
     >
       <span className="form-checkbox-icon">
         <IconCheck />
       </span>
 
-      <span className="form-checkbox-text">
-        {title}
-      </span>
+      {title && (
+        <span className="form-checkbox-text">
+          {title}
+        </span>
+      )}
 
       <input
         id={id}

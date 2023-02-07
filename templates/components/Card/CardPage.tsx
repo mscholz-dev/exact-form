@@ -1,8 +1,6 @@
-import { title } from "process";
 import React, { FC } from "react";
 import IconPlus from "../../../public/icons/plus.svg";
 import CardForm from "./CardForm";
-import CardFormPreset from "./CardFormPreset";
 import Wrapper from "../../layouts/Wrapper";
 
 // interfaces
@@ -30,17 +28,13 @@ const CardPage: FC<ICardPage> = ({
           <span className="btn-create-icon">
             <IconPlus />
           </span>
-          <span>{createTitle}</span>
+          <span className="btn-create-title">
+            {createTitle}
+          </span>
         </button>
       </article>
 
       <article className="card-page-items">
-        <CardFormPreset
-          locale={locale}
-          pathname="form/create"
-          title={createTitle}
-        />
-
         {items.map(
           (
             { name, key, timezone, items, owner },

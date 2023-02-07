@@ -5,7 +5,9 @@ span,
 a,
 button,
 label,
-input {
+input,
+table {
+  color: $black;
   font-family: $secondary-font-regular;
 }
 
@@ -14,7 +16,9 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+thead {
+  color: $black;
   font-family: $primary-font-bold;
 }
 

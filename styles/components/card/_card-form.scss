@@ -2,7 +2,6 @@
   background: $primary-color;
   border: 2px solid $primary-color;
   border-radius: 4px;
-  color: $white;
   display: flex;
   flex-direction: column;
   height: calc(160px - 48px);
@@ -10,15 +9,21 @@
   max-width: calc(400px - 24px);
   overflow: hidden;
   padding: 24px 12px;
-  transition: 0.2s background ease-in-out,
-    0.2s color ease-in-out;
+  transition: 0.2s background ease-in-out;
   text-decoration: none;
 
   &:hover {
     background: $white;
-    color: $primary-color;
+
+    span {
+      color: $primary-color;
+    }
 
     .card-form {
+      &-title {
+        color: $primary-color;
+      }
+
       &-container {
         &:after {
           background: $primary-color;
@@ -34,8 +39,15 @@
 
   &-title {
     @include ellipsis;
+    color: $white;
     font-size: 32px;
     margin-bottom: 32px;
+    transition: 0.2s color ease-in-out;
+  }
+
+  span {
+    color: $white;
+    transition: 0.2s color ease-in-out;
   }
 
   &-wrapper {
@@ -115,54 +127,5 @@
     min-height: 20px;
     min-width: 20px;
     width: 20px;
-  }
-
-  &-preset {
-    align-items: center;
-    border: 2px solid $primary-color;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    height: 160px;
-    justify-content: center;
-    margin-bottom: 24px;
-    max-width: 400px;
-    transition: 0.2s background ease-in-out;
-    text-decoration: none;
-
-    @include responsive(t-xs) {
-      margin-bottom: 0;
-      width: calc(100% - 4px);
-    }
-
-    &-icon {
-      display: inline-block;
-      height: 20px;
-      fill: $tertiary-color;
-      margin-bottom: 12px;
-      transition: 0.2s fill ease-in-out;
-      width: 20px;
-    }
-
-    &-title {
-      display: inline-block;
-      color: $tertiary-color;
-      font-size: 18px;
-      transition: 0.2s color ease-in-out;
-    }
-
-    &:hover {
-      background: $primary-color;
-
-      .card-form-preset {
-        &-icon {
-          fill: $white;
-        }
-
-        &-title {
-          color: $white;
-        }
-      }
-    }
   }
 }

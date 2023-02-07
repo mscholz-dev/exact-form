@@ -1,7 +1,9 @@
 import {
   ChangeEvent,
+  Dispatch,
   ReactNode,
   Ref,
+  SetStateAction,
 } from "react";
 
 // types
@@ -93,8 +95,9 @@ export interface IFormCheckbox {
     id: string,
   ) => void;
   value: boolean;
-  title: string;
+  title?: string;
   ariaDescribedby: string;
+  small?: boolean;
 }
 
 export interface IBtnLoader {
@@ -134,20 +137,23 @@ export interface ICardForm {
   locale: string;
 }
 
-export interface ICardFormPreset {
-  pathname: string;
-  locale: string;
-  title: string;
-}
-
 export interface IFormKey {
   locale: string;
 }
 
 export interface ITable {
   data: object[];
+  title: string;
 }
 
 export interface ITableHeader {
   header: string[];
+  handleBooleanChange: () => void;
+  selectAll: boolean;
+}
+
+export interface ITableBody {
+  body: object[];
+  selected: Record<string, boolean>;
+  setSelected: Dispatch<SetStateAction<any>>;
 }

@@ -27,6 +27,8 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
 
   const router = useRouter();
 
+  const key = router.query.key;
+
   const [cookie, setCookie] = useState({
     email: "",
     username: "",
@@ -78,7 +80,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
       cookie={cookie as TCookie}
       locale={locale}
     >
-      <Table data={data} />
+      <Table data={data} title={key as string} />
     </Page>
   );
 };

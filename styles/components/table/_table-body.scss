@@ -1,10 +1,10 @@
-.table-header {
+.table-body {
   &-row {
-    border: 1px solid $secondary-color;
   }
 
   &-checkbox {
-    width: 40px;
+    border: 1px solid $secondary-color;
+    vertical-align: middle;
 
     label {
       align-items: center;
@@ -16,10 +16,8 @@
 
   &-column {
     @include ellipsis;
-    font-size: 18px;
-    height: 36px;
+    border: 1px solid $secondary-color;
     padding: 0 4px;
-    text-align: start;
     vertical-align: middle;
   }
 }

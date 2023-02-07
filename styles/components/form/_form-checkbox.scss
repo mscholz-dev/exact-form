@@ -36,6 +36,23 @@
     width: 26px;
   }
 
+  &-small {
+    .form-checkbox {
+      &-icon {
+        height: 12px;
+        min-height: 12px;
+        min-width: 12px;
+        padding: 1px;
+        width: 12px;
+      }
+
+      &-control {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+
   &-focus {
     .form-checkbox {
       &-icon {

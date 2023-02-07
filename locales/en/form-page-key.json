@@ -1,3 +1,6 @@
 {
-  "meta:title": "Formulaire"
+  "meta:title": "Formulaire",
+
+  "table:header:ariaDescribedby": "Select all fields",
+  "table:body:ariaDescribedby": "Select this field"
 }

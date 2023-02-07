@@ -30,6 +30,14 @@ export default class Form {
         .checked,
     });
   }
+
+  handleBooleanChange(
+    setter: Dispatch<SetStateAction<any>>,
+    state: boolean,
+  ): void {
+    setter(!state);
+  }
+
   displayRole(
     role: string,
     t: Translate,

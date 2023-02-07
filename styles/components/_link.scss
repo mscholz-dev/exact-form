@@ -1,7 +1,6 @@
 .link {
   align-items: center;
   display: flex;
-  color: $black;
   cursor: pointer;
   position: relative;
   text-decoration: none;
@@ -20,8 +19,6 @@
   }
 
   &:hover {
-    color: $black;
-
     &:after {
       width: 100%;
     }
