@@ -104,6 +104,33 @@
       fill: $primary-color;
     }
   }
+
+  &-create {
+    @extend %btn;
+    height: 32px;
+    padding: 0 6px;
+    width: auto;
+
+    &-icon {
+      fill: $white;
+      height: 16px;
+      margin-right: 6px;
+      transition: 0.25s fill ease-in-out;
+      width: 16px;
+    }
+
+    &:hover {
+      .btn-create {
+        &-icon {
+          fill: $primary-color;
+        }
+      }
+    }
+
+    @include responsive(t-xs) {
+      margin-top: 0;
+    }
+  }
 }
 
 @keyframes rotate {

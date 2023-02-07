@@ -8,13 +8,13 @@ import useTranslation from "next-translate/useTranslation";
 import AuthApi from "./api/auth";
 import { useRouter } from "next/router";
 import LinkHelperClass from "../utils/LinkHelper";
+import CardPage from "../templates/components/Card/CardPage";
 
 // types
 import { TCookie, TLocale } from "../utils/type";
 
 // interfaces
 import { IForm } from "../utils/interface";
-import CardPage from "../templates/components/Card/CardPage";
 
 // classes
 const LinkHelper = new LinkHelperClass();
@@ -50,14 +50,15 @@ const Form: FC<IForm> = ({ locale }) => {
 
   const formItems = [
     {
-      name: "Contact Form",
+      name: "Contddddddddddddddddddddddddddddact Form",
       key: "0001",
       timezone: {
         name: "Europe",
         offset: 2,
       },
       items: 12,
-      owner: "mscholz.dev",
+      owner:
+        "mschodddddddddddddddddddddddddlz.dev",
     },
     {
       name: "Contact Form",
@@ -102,6 +103,8 @@ const Form: FC<IForm> = ({ locale }) => {
       <CardPage
         locale={locale}
         items={formItems}
+        title={t("form-page:title")}
+        createTitle={t("form-page:createTitle")}
       />
     </Page>
   );

@@ -118,6 +118,8 @@ export interface IForm {
 export interface ICardPage {
   items: TCardForm[];
   locale: string;
+  title: string;
+  createTitle: string;
 }
 
 export interface ICardForm {
@@ -130,4 +132,10 @@ export interface ICardForm {
   items: number;
   owner: string;
   locale: string;
+}
+
+export interface ICardFormPreset {
+  pathname: string;
+  locale: string;
+  title: string;
 }

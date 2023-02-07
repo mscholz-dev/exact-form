@@ -1,0 +1,38 @@
+.card-page {
+  &-header {
+    @include responsive(t-xs) {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &-title {
+    margin-bottom: 12px;
+    @include responsive(t-xs) {
+      margin-bottom: 0;
+    }
+
+    &-label {
+      font-size: 32px;
+      margin-right: 6px;
+    }
+
+    &-number {
+      color: $grey;
+      font-size: 24px;
+    }
+  }
+
+  &-items {
+    margin-top: 24px;
+
+    @include responsive(t-xs) {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 24px;
+      grid-row-gap: 24px;
+      margin-top: 48px;
+    }
+  }
+}

@@ -17,4 +17,19 @@
       max-width: 1000px;
     }
   }
+
+  &-card-container {
+    margin: 0 auto;
+    max-width: 404px;
+    padding: 0 12px;
+
+    @include responsive(t-xs) {
+      max-width: 792px;
+      padding: 0 24px;
+    }
+
+    @include responsive(d-xs) {
+      max-width: 1000px;
+    }
+  }
 }

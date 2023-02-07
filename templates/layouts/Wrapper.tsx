@@ -8,13 +8,13 @@ const Wrapper: FC<IWrapper> = ({
   className,
 }) => {
   return (
-    <div
+    <section
       className={`${
         className ? ` ${className}` : ""
       }`}
     >
       {children}
-    </div>
+    </section>
   );
 };
 

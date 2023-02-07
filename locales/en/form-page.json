@@ -1,3 +1,10 @@
 {
-  "meta:title": "Form"
+  "meta:title": "Form",
+
+  "title": "My forms",
+  "createTitle": "Create new form",
+
+  "card:owner": "Owner",
+  "card:timezone": "Timezone",
+  "card:items": "Items"
 }

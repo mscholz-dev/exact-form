@@ -1,6 +1,7 @@
 @charset "utf-8";
 
-@import "utils/design", "utils/prefix";
+@import "utils/design", "utils/prefix",
+  "utils/ellipsis";
 
 @import "bases/variables", "bases/reset",
   "bases/html";
@@ -9,7 +10,8 @@
   "components/form/form-input",
   "components/form/form-page", "components/avatar",
   "components/form/form-checkbox",
-  "components/card/card-form";
+  "components/card/card-form",
+  "components/card/card-page";
 
 @import "layouts/body", "layouts/footer",
   "layouts/header", "layouts/main",
