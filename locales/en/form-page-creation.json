@@ -1,3 +1,6 @@
 {
-  "meta:title": "CREATION"
+  "meta:title": "CREATION",
+
+  "form:title": "CREATE A NEW FORM",
+  "form:submit": "CREATE"
 }

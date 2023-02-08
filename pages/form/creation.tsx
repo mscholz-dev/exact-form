@@ -17,6 +17,7 @@ import {
 
 // interfaces
 import { IFormCreation } from "../../utils/interface";
+import FormFormCreation from "../../templates/components/Form/FormFormCreation";
 
 // classes
 const LinkHelper = new LinkHelperClass();
@@ -56,11 +57,10 @@ const FormCreation: FC<IFormCreation> = ({
     <Page
       title={t("form-page-creation:meta:title")}
       description={t("common:meta:description")}
-      padding
       cookie={cookie as TCookie}
       locale={locale}
     >
-      <p>test</p>
+      <FormFormCreation locale={locale} />
     </Page>
   );
 };

@@ -7,13 +7,7 @@ export type TSignupForm = {
   locale: string;
 };
 
-export type TInspectData = {
-  username?: string;
-  email?: string;
-  password?: string;
-  password2?: string;
-  locale?: string;
-};
+export type TInspectData = Record<string, any>;
 
 export type TInspectDataErrors = {
   key: string;
@@ -98,4 +92,9 @@ export type TPagingArray = {
   id: number;
   number: number;
   current: boolean;
+};
+
+export type TFormCreationForm = {
+  name: string;
+  timezone: string;
 };

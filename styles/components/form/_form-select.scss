@@ -1,0 +1,63 @@
+.form-select {
+  position: relative;
+
+  &-control {
+    appearance: none;
+    background: $white;
+    border: 1px solid $secondary-color;
+    border-radius: 2px;
+    font-size: 14px;
+    height: 52px;
+    outline: none;
+    padding: 12px 12px 12px 48px;
+    transition: 0.2s border ease-in-out;
+    width: 100%;
+  }
+
+  &-option {
+    font-family: $secondary-font-regular !important;
+  }
+
+  &-icon {
+    display: flex;
+    height: 26px;
+    fill: $secondary-color;
+    left: 12px;
+    margin-right: 12px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.2s fill ease-in-out;
+    width: 26px;
+  }
+
+  &-arrow {
+    display: flex;
+    height: 14px;
+    fill: $black;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transition: 0.2s transform ease-in-out,
+      0.2s fill ease-in-out;
+    width: 14px;
+  }
+
+  &-focus {
+    .form-select {
+      &-control {
+        border: 1px solid $primary-color-light;
+      }
+
+      &-icon {
+        fill: $primary-color-light;
+      }
+
+      &-arrow {
+        fill: $primary-color-light;
+        transform: translateY(-50%) rotate(90deg);
+      }
+    }
+  }
+}

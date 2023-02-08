@@ -14,7 +14,7 @@ import LinkHelperClass from "../../utils/LinkHelper";
 import { toast } from "react-toastify";
 import UserApi from "../../pages/api/user";
 import { useRouter } from "next/router";
-import UserValidatorClass from "../../utils/validator/UserValidator";
+import UserValidatorClass from "../../utils/validators/UserValidator";
 
 // interfaces
 import { IHeader } from "../../utils/interface";

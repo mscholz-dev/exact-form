@@ -31,7 +31,7 @@ export default class ContactValidator extends Validator {
     id: string,
     value: string,
     t: Translate,
-  ) {
+  ): string {
     switch (id) {
       // lastName
       case "lastName":

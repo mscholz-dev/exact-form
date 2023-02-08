@@ -15,7 +15,7 @@ import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
 import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
-import UserValidatorClass from "../../../utils/validator/UserValidator";
+import UserValidatorClass from "../../../utils/validators/UserValidator";
 import FormClass from "../../../utils/Form";
 import BtnLoader from "../BtnLoader";
 import Avatar from "../Avatar";
@@ -265,7 +265,7 @@ const FormProfile: FC<IFormProfile> = ({
             }
             value={form.oldPassword}
             ariaDescribedby={t(
-              "form:input:password:ariaDescribedby",
+              "form:input:password:edit:old:ariaDescribedby",
             )}
             title={t(
               "form:input:password:edit:old:title",
@@ -288,7 +288,7 @@ const FormProfile: FC<IFormProfile> = ({
             }
             value={form.newPassword}
             ariaDescribedby={t(
-              "form:input:password:ariaDescribedby",
+              "form:input:password:edit:new:ariaDescribedby",
             )}
             title={t(
               "form:input:password:edit:new:title",
@@ -311,7 +311,7 @@ const FormProfile: FC<IFormProfile> = ({
             }
             value={form.newPassword2}
             ariaDescribedby={t(
-              "form:input:password:ariaDescribedby",
+              "form:input:password:edit:new2:ariaDescribedby",
             )}
             title={t(
               "form:input:password:edit:new2:title",

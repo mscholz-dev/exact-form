@@ -175,3 +175,10 @@ export interface IPaging {
 export interface IFormCreation {
   locale: string;
 }
+
+export interface IFormSelect {
+  id: string;
+  defaultTitle: string;
+  icon: JSX.Element;
+  options: Array<string>;
+}

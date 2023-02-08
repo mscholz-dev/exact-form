@@ -74,16 +74,25 @@
   "input:password2:error:long": "Field Confirm password must contain 60 characters maximum",
 
   "input:password:edit:old:title": "Old password",
+  "input:password:edit:old:ariaDescribedby": "Please enter your old password",
   "input:oldPassword:error:long": "Field Old password must contain 60 characters maximum",
   "input:oldPassword:error:incorrect": "Field Old password incorrect",
 
   "input:password:edit:new:title": "New password",
+  "input:password:edit:new:ariaDescribedby": "Please enter your new password",
   "input:newPassword:error:empty": "Field New password is required",
   "input:newPassword:error:long": "Field New password must contain 60 characters maximum",
 
   "input:password:edit:new2:title": "Confirm new password",
+  "input:password:edit:new2:ariaDescribedby": "Please confirm your new password",
   "input:newPassword2:error:empty": "Field Confirm new password is required",
   "input:newPassword2:error:long": "Field Confirm new password must contain 60 characters maximum",
+
+  "input:formName:title": "Name",
+  "input:formName:ariaDescribedby": "Please enter a name",
+
+  "input:timezone:title": "Select timezone",
+  "input:timezone:ariaDescribedby": "Please select a timezone",
 
   "locale:error:empty": "Language is required",
   "locale:error:format": "Language is not valid",

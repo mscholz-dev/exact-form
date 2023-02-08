@@ -13,7 +13,7 @@ import FormPage from "./FormPage";
 import useTranslation from "next-translate/useTranslation";
 import ContactApi from "../../../pages/api/contact";
 import { AxiosError } from "axios";
-import ContactValidatorClass from "../../../utils/validator/ContactValidator";
+import ContactValidatorClass from "../../../utils/validators/ContactValidator";
 import FormClass from "../../../utils/Form";
 import BtnLoader from "../BtnLoader";
 
