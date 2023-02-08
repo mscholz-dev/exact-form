@@ -13,34 +13,38 @@ import { AxiosError } from "axios";
 import FormValidatorClass from "../../../utils/validators/FormValidator";
 import FormClass from "../../../utils/Form";
 import BtnLoader from "../BtnLoader";
+import timezone from "../../../utils/timezone.json";
+import FormApi from "../../../pages/api/form";
+import { useRouter } from "next/router";
+import LinkHelperClass from "../../../utils/LinkHelper";
 
 // types
 import {
-  TFormCreationForm,
   TLocale,
+  TFormCreationForm,
 } from "../../../utils/type";
 import FormSelect from "./FormSelect";
 
 // classes
 const FormValidator = new FormValidatorClass();
 const Form = new FormClass();
+const LinkHelper = new LinkHelperClass();
 
 const FormFormCreation: FC<TLocale> = ({
   locale,
 }) => {
   const { t } = useTranslation();
 
-  const defaultForm = {
-    name: "",
-    timezone: "",
-  };
+  const router = useRouter();
 
   const [form, setForm] =
-    useState<TFormCreationForm>(defaultForm);
+    useState<TFormCreationForm>({
+      name: "",
+      timezone: "",
+      locale,
+    });
   const [loading, setLoading] =
     useState<boolean>(false);
-
-  const [timezone, setTimezone] = useState([]);
 
   const handleSubmit = async (
     e: SyntheticEvent,
@@ -64,36 +68,32 @@ const FormFormCreation: FC<TLocale> = ({
       return;
     }
 
-    // try {
-    //   await ContactApi.contact(form);
+    try {
+      await FormApi.create(form);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
 
-    //   const successMessage = t(
-    //     "contact:form:success",
-    //   );
-    //   toast.success(successMessage);
-    //   setForm(defaultForm);
-    // } catch (err: unknown) {
-    //   if (err instanceof AxiosError) {
-    //     const errorMessage =
-    //       ContactValidator.errorApiMessage(
-    //         err?.response?.data.message,
-    //         t,
-    //       );
+        toast.error(errorMessage);
+        setLoading(false);
+        return;
+      }
 
-    //     toast.error(errorMessage);
-    //     setLoading(false);
-    //     return;
-    //   }
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+      setLoading(false);
+      return;
+    }
 
-    //   // error not expected
-    //   console.error(err);
-    //   const errorMessage = t("form:error:random");
-    //   toast.error(errorMessage);
-    //   setLoading(false);
-    //   return;
-    // }
-
-    setLoading(false);
+    router.push(
+      LinkHelper.translate(locale, "form"),
+    );
   };
 
   return (
@@ -137,7 +137,19 @@ const FormFormCreation: FC<TLocale> = ({
             defaultTitle={t(
               "form:input:timezone:title",
             )}
+            ariaDescribedby={t(
+              "form:input:timezone:ariaDescribedby",
+            )}
             options={timezone}
+            handleChange={(e) =>
+              Form.handleChange(
+                e,
+                "timezone",
+                setForm,
+                form,
+              )
+            }
+            value={form.timezone}
           />
 
           <BtnLoader

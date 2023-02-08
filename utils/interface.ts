@@ -179,6 +179,15 @@ export interface IFormCreation {
 export interface IFormSelect {
   id: string;
   defaultTitle: string;
+  ariaDescribedby: string;
   icon: JSX.Element;
-  options: Array<string>;
+  options: Array<{
+    name: string;
+    offset: number;
+  }>;
+  handleChange: (
+    e: ChangeEvent,
+    id: string,
+  ) => void;
+  value: string;
 }

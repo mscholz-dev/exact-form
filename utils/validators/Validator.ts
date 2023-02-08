@@ -243,6 +243,28 @@ export default class Validator {
       case "token not found":
         return t("form:token:error:found");
 
+      // formName
+      case "formName required":
+        return t(
+          "form:input:formName:error:empty",
+        );
+
+      case "formName too long":
+        return t(
+          "form:input:formName:error:long",
+        );
+
+      // timezone
+      case "timezone required":
+        return t(
+          "form:input:timezone:error:empty",
+        );
+
+      case "timezone invalid":
+        return t(
+          "form:input:timezone:error:invalid",
+        );
+
       // default
       default:
         return t("form:error:random");

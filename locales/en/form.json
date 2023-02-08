@@ -90,9 +90,13 @@
 
   "input:formName:title": "Name",
   "input:formName:ariaDescribedby": "Please enter a name",
+  "input:formName:error:empty": "Field Name is required",
+  "input:formName:error:long": "Field Name must contain 60 characters maximum",
 
   "input:timezone:title": "Select timezone",
   "input:timezone:ariaDescribedby": "Please select a timezone",
+  "input:timezone:error:empty": "Field Timezone is required",
+  "input:timezone:error:invalid": "Timezone must be a valid timezone",
 
   "locale:error:empty": "Language is required",
   "locale:error:format": "Language is not valid",

@@ -1,5 +1,6 @@
 import Validator from "./Validator";
 import type { Translate } from "next-translate";
+import timezone from "../timezone.json";
 
 // types
 import { TFormCreationForm } from "../type";
@@ -37,6 +38,28 @@ export default class FormValidator extends Validator {
         return "";
 
       // timezone
+      case "timezone":
+        if (!value)
+          return t(
+            "form:input:timezone:error:empty",
+          );
+        if (
+          !timezone.some(
+            ({ name }) => name === value,
+          )
+        )
+          return t(
+            "form:input:timezone:error:invalid",
+          );
+        return "";
+
+      // locale
+      case "locale":
+        if (!value)
+          return t("form:locale:error:empty");
+        if (value !== "fr" && value !== "en")
+          return t("form:locale:error:format");
+        return "";
 
       // default
       default:

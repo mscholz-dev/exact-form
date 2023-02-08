@@ -7,8 +7,11 @@ import { IFormSelect } from "../../../utils/interface";
 const FormSelect: FC<IFormSelect> = ({
   id,
   defaultTitle,
+  ariaDescribedby,
   icon,
   options,
+  handleChange,
+  value,
 }) => {
   const [focus, setFocus] =
     useState<boolean>(false);
@@ -25,22 +28,30 @@ const FormSelect: FC<IFormSelect> = ({
       <select
         className="form-select-control"
         name={id}
+        onChange={(e) => handleChange(e, id)}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        value={value}
+        aria-describedby={ariaDescribedby}
+        data-cy={id}
       >
         <option
           className="form-select-option"
-          value="default"
+          value=""
         >
           {defaultTitle}
         </option>
-        {options.map((value, index) => (
+        {options.map(({ name }, index) => (
           <option
             key={index}
             className="form-select-option"
-            value={value}
+            value={name}
+            aria-describedby={name.replace(
+              "_",
+              " ",
+            )}
           >
-            {value}
+            {name.replace("_", " ")}
           </option>
         ))}
       </select>

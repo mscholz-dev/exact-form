@@ -97,4 +97,5 @@ export type TPagingArray = {
 export type TFormCreationForm = {
   name: string;
   timezone: string;
+  locale: string;
 };

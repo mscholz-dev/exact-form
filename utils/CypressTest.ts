@@ -27,7 +27,8 @@ export default class CypressTest {
     value: string,
   ) {
     this.getCyData(cy, cyData)
-      .invoke("val", "")
+      .focus()
+      .clear()
       .type(value);
   }
 
@@ -100,9 +101,7 @@ export default class CypressTest {
     cy: Cypress.cy & CyEventEmitter,
     cyData: string,
   ) {
-    cy.get(`[data-cy=${cyData}]`)
-      .focus()
-      .invoke("val", "");
+    cy.get(`[data-cy=${cyData}]`).focus().clear();
   }
 
   setCookie(
@@ -110,8 +109,15 @@ export default class CypressTest {
     name: string,
     value: string,
   ) {
-    cy.setCookie(name, value, {
-      timeout: 1_000,
-    });
+    cy.setCookie(name, value);
+    cy.wait(2_000);
+  }
+
+  selectOption(
+    cy: Cypress.cy & CyEventEmitter,
+    name: string,
+    value: string,
+  ) {
+    this.getCyData(cy, name).select(value);
   }
 }

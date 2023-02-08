@@ -8,6 +8,8 @@ const data = {
   password: "Azerty5!",
   message: "Je suis un message",
   client: "Client",
+  formName: "Wobinit Contact Form",
+  formTimezone: "Europe/Paris",
   string61:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit odio.",
   string256:

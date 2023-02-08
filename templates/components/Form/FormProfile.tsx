@@ -153,9 +153,7 @@ const FormProfile: FC<IFormProfile> = ({
 
   useEffect(() => {
     setUsername(form.username);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form.username]);
+  }, [form.username, setUsername]);
 
   return (
     <FormPage>

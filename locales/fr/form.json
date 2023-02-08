@@ -90,9 +90,13 @@
 
   "input:formName:title": "Nom",
   "input:formName:ariaDescribedby": "Veuillez renseigner un nom",
+  "input:formName:error:empty": "Le champ Nom est requis",
+  "input:formName:error:long": "Le champ Nom doit contenir 60 caractères maximum",
 
   "input:timezone:title": "Selectionner un fuseau horaire",
   "input:timezone:ariaDescribedby": "Veuillez selectionner un fuseau horaire",
+  "input:timezone:error:empty": "Le champ Fuseau horaire est requis",
+  "input:timezone:error:invalid": "Le fuseau horaire doit être un fuseau horaire valide",
 
   "locale:error:empty": "Langage est requis",
   "locale:error:format": "Langage est invalide",
