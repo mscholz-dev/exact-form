@@ -6,10 +6,11 @@ import React, {
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import FormClass from "../../../utils/Form";
+import Paging from "../Paging";
+import Wrapper from "../../layouts/Wrapper";
 
 // interfaces
 import { ITable } from "../../../utils/interface";
-import Wrapper from "../../layouts/Wrapper";
 
 // classes
 const Form = new FormClass();
@@ -28,6 +29,12 @@ const Table: FC<ITable> = ({ data, title }) => {
   >({
     selectAll: false,
   });
+
+  // paging
+  const [currentPage, setCurrentPage] =
+    useState<number>(1);
+  const [maxPage, setMaxPage] =
+    useState<number>(10);
 
   useEffect(() => {
     // create table header with unique keys
@@ -95,6 +102,12 @@ const Table: FC<ITable> = ({ data, title }) => {
           setSelected={setSelected}
         />
       </table>
+
+      <Paging
+        current={currentPage}
+        setCurrent={setCurrentPage}
+        max={maxPage}
+      />
     </Wrapper>
   );
 };

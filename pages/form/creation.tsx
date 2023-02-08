@@ -1,7 +1,7 @@
 import React, {
   FC,
-  useEffect,
   useState,
+  useEffect,
 } from "react";
 import Page from "../../templates/layouts/Page";
 import useTranslation from "next-translate/useTranslation";
@@ -16,18 +16,17 @@ import {
 } from "../../utils/type";
 
 // interfaces
-import { IFormKey } from "../../utils/interface";
-import Table from "../../templates/components/Table/Table";
+import { IFormCreation } from "../../utils/interface";
 
 // classes
 const LinkHelper = new LinkHelperClass();
 
-const FormKey: FC<IFormKey> = ({ locale }) => {
+const FormCreation: FC<IFormCreation> = ({
+  locale,
+}) => {
   const { t } = useTranslation();
 
   const router = useRouter();
-
-  const key = router.query.key;
 
   const [cookie, setCookie] = useState({
     email: "",
@@ -53,40 +52,20 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const data = [
-    {
-      firstName: "Morgan",
-      lastName: "Scholz",
-    },
-    {
-      company: "Wobinit",
-      firstName: "Wob",
-    },
-    {
-      test: "test",
-      uppercase: "TEST",
-      lastName: "tesT",
-    },
-    {
-      projectNumber: "12",
-    },
-  ];
-
-  // TODO: le nom creation sera interdit car il est réservé au nom de la route pour la création de formulaire
   return (
     <Page
-      title={t("form-page-key:meta:title")}
+      title={t("form-page-creation:meta:title")}
       description={t("common:meta:description")}
       padding
       cookie={cookie as TCookie}
       locale={locale}
     >
-      <Table data={data} title={key as string} />
+      <p>test</p>
     </Page>
   );
 };
 
-export default FormKey;
+export default FormCreation;
 
 export const getServerSideProps = async ({
   locale,

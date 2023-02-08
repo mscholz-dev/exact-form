@@ -1,0 +1,45 @@
+.paging {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+
+  &-arrow {
+    &-prev,
+    &-next {
+      cursor: pointer;
+      height: 16px;
+      fill: $black;
+      transition: 0.2s fill ease-in-out;
+      width: 16px;
+    }
+
+    &-prev {
+      margin-right: 12px;
+      transform: rotate(180deg);
+    }
+
+    &-next {
+      margin-left: 12px;
+    }
+  }
+
+  &-item {
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+    transition: 0.2s background ease-in-out,
+      0.2s color ease-in-out;
+    width: 40px;
+  }
+
+  &-current {
+    background: $primary-color;
+    color: $white;
+    font-family: $secondary-font-bold;
+  }
+
+  &-disabled {
+    fill: $secondary-color;
+  }
+}

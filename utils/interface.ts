@@ -123,6 +123,12 @@ export interface ICardPage {
   locale: string;
   title: string;
   createTitle: string;
+  currentPage: number;
+  setCurrentPage: Dispatch<
+    SetStateAction<number>
+  >;
+  maxPage: number;
+  creationPathname: string;
 }
 
 export interface ICardForm {
@@ -155,5 +161,17 @@ export interface ITableHeader {
 export interface ITableBody {
   body: object[];
   selected: Record<string, boolean>;
-  setSelected: Dispatch<SetStateAction<any>>;
+  setSelected: Dispatch<
+    SetStateAction<Record<string, boolean>>
+  >;
+}
+
+export interface IPaging {
+  max: number;
+  current: number;
+  setCurrent: Dispatch<SetStateAction<number>>;
+}
+
+export interface IFormCreation {
+  locale: string;
 }

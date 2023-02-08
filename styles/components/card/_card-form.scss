@@ -128,4 +128,8 @@
     min-width: 20px;
     width: 20px;
   }
+
+  &-owner {
+    @include ellipsis;
+  }
 }

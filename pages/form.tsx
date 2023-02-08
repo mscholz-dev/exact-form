@@ -30,6 +30,12 @@ const Form: FC<IForm> = ({ locale }) => {
     role: "",
   });
 
+  // paging
+  const [currentPage, setCurrentPage] =
+    useState<number>(1);
+  const [maxPage, setMaxPage] =
+    useState<number>(10);
+
   const isAuth = async () => {
     try {
       const res = await AuthApi.index();
@@ -105,6 +111,10 @@ const Form: FC<IForm> = ({ locale }) => {
         items={formItems}
         title={t("form-page:title")}
         createTitle={t("form-page:createTitle")}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        maxPage={maxPage}
+        creationPathname="form/creation"
       />
     </Page>
   );

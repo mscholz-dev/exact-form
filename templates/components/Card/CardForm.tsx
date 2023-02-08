@@ -48,7 +48,9 @@ const CardForm: FC<ICardForm> = ({
               seed={owner}
               className="card-form-avatar"
             />
-            {owner}
+            <span className="card-form-owner">
+              {owner}
+            </span>
           </span>
         </span>
 

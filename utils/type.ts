@@ -93,3 +93,9 @@ export type TCardForm = {
   items: number;
   owner: string;
 };
+
+export type TPagingArray = {
+  id: number;
+  number: number;
+  current: boolean;
+};

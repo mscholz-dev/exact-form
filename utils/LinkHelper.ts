@@ -23,10 +23,14 @@ export default class LinkHelper {
       case "form":
         return "/fr/formulaire";
 
+      case "form/creation":
+        return "/fr/formulaire/creation";
+
       default:
+        // form/:key
         if (pathname.includes("form"))
           return `/fr/formulaire/${pathname.replace(
-            "form",
+            "form/",
             "",
           )}`;
 

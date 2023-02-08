@@ -2,15 +2,25 @@ import React, { FC } from "react";
 import IconPlus from "../../../public/icons/plus.svg";
 import CardForm from "./CardForm";
 import Wrapper from "../../layouts/Wrapper";
+import Link from "next/link";
+import LinkHelperClass from "../../../utils/LinkHelper";
+import Paging from "../Paging";
 
 // interfaces
 import { ICardPage } from "../../../utils/interface";
+
+// classes
+const LinkHelper = new LinkHelperClass();
 
 const CardPage: FC<ICardPage> = ({
   locale,
   items,
   title,
   createTitle,
+  currentPage,
+  setCurrentPage,
+  maxPage,
+  creationPathname,
 }) => {
   return (
     <Wrapper className="card-page wrapper-card-container">
@@ -24,14 +34,20 @@ const CardPage: FC<ICardPage> = ({
           </span>
         </h1>
 
-        <button className="btn-create">
+        <Link
+          href={LinkHelper.translate(
+            locale,
+            creationPathname,
+          )}
+          className="btn-create"
+        >
           <span className="btn-create-icon">
             <IconPlus />
           </span>
           <span className="btn-create-title">
             {createTitle}
           </span>
-        </button>
+        </Link>
       </article>
 
       <article className="card-page-items">
@@ -52,6 +68,12 @@ const CardPage: FC<ICardPage> = ({
           ),
         )}
       </article>
+
+      <Paging
+        current={currentPage}
+        setCurrent={setCurrentPage}
+        max={maxPage}
+      />
     </Wrapper>
   );
 };
