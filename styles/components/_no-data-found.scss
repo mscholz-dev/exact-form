@@ -1,0 +1,23 @@
+.no-data-found {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 96px;
+
+  @include responsive(t-xs) {
+    width: 200%;
+  }
+
+  &-icon {
+    display: flex;
+    fill: $black;
+    height: 64px;
+    margin-bottom: 24px;
+    width: 64px;
+  }
+
+  &-title {
+    font-size: 32px;
+    text-align: center;
+  }
+}

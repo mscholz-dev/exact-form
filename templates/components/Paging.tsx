@@ -46,7 +46,7 @@ const Paging: FC<IPaging> = ({
 
   const scrollTop = (): void =>
     window.scrollTo({
-      top: 400,
+      top: 0,
       behavior: "smooth",
     });
 

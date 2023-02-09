@@ -16,9 +16,9 @@ export default class FormApi {
       .then((res) => res);
   }
 
-  static async getAll() {
+  static async getAll(currentPage: number) {
     return await api
-      .get(`/form`, {
+      .get(`/form?page=${currentPage}`, {
         headers: {
           accept: "application/json",
         },

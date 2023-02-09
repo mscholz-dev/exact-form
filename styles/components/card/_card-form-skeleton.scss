@@ -1,0 +1,35 @@
+.card-form-skeleton {
+  align-items: center;
+  background: $primary-color;
+  border: 2px solid $primary-color;
+  display: flex;
+  border-radius: 4px;
+  height: calc(160px - 48px);
+  justify-content: center;
+  margin-bottom: 24px;
+  padding: 24px 12px;
+  width: calc(400px - 24px);
+
+  @include responsive(t-xs) {
+    margin-bottom: 0;
+    width: calc(100% - 28px);
+  }
+
+  &-icon {
+    animation: rotate 1s linear infinite;
+    display: flex;
+    fill: $white;
+    height: 48px;
+    width: 48px;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

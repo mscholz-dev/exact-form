@@ -6,5 +6,7 @@
 
   "card:owner": "Owner",
   "card:timezone": "Timezone",
-  "card:items": "Items"
+  "card:items": "Items",
+
+  "noDataFound:title": "No form found, create in one now!"
 }

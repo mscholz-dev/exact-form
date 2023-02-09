@@ -6,11 +6,11 @@
   flex-direction: column;
   height: calc(160px - 48px);
   margin-bottom: 24px;
-  max-width: calc(400px - 24px);
   overflow: hidden;
   padding: 24px 12px;
   transition: 0.2s background ease-in-out;
   text-decoration: none;
+  width: calc(400px - 24px);
 
   &:hover {
     background: $white;

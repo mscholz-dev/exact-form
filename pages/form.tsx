@@ -5,7 +5,6 @@ import React, {
 } from "react";
 import Page from "../templates/layouts/Page";
 import useTranslation from "next-translate/useTranslation";
-import AuthApi from "./api/auth";
 import { useRouter } from "next/router";
 import LinkHelperClass from "../utils/LinkHelper";
 import CardPage from "../templates/components/Card/CardPage";
@@ -32,23 +31,31 @@ const Form: FC<IForm> = ({ locale }) => {
   });
 
   const [forms, setForms] = useState([]);
+  const [countAll, setCountAll] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // paging
   const [currentPage, setCurrentPage] =
     useState<number>(1);
-  const [maxPage, setMaxPage] =
-    useState<number>(10);
 
   const isAuthAndGetAll = async () => {
     try {
-      const res = await FormApi.getAll();
+      setLoading(true);
+      const res = await FormApi.getAll(
+        currentPage,
+      );
 
+      // add data
       setCookie({
         username: res.data.username,
         email: res.data.email,
         role: res.data.role,
       });
       setForms(res.data.forms);
+      setCountAll(res.data.countAll);
+
+      // disable loading
+      setLoading(false);
     } catch (err) {
       router.push(
         LinkHelper.translate(locale, ""),
@@ -61,11 +68,7 @@ const Form: FC<IForm> = ({ locale }) => {
     isAuthAndGetAll();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // TODO: add paging, loader/skeleton too, sorting??
-  // add count all in result
-  // component nothing created
+  }, [currentPage]);
 
   return (
     <Page
@@ -82,8 +85,13 @@ const Form: FC<IForm> = ({ locale }) => {
         createTitle={t("form-page:createTitle")}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        maxPage={maxPage}
+        maxPage={(countAll || 0) / 8}
         creationPathname="form/creation"
+        countAll={countAll}
+        noDataFoundTitle={t(
+          "form-page:noDataFound:title",
+        )}
+        loading={loading}
       />
     </Page>
   );

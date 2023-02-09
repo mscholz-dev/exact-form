@@ -5,6 +5,8 @@ import Wrapper from "../../layouts/Wrapper";
 import Link from "next/link";
 import LinkHelperClass from "../../../utils/LinkHelper";
 import Paging from "../Paging";
+import NoDataFound from "../NoDataFound";
+import CardFormSkeleton from "./CardFormSkeleton";
 
 // interfaces
 import { ICardPage } from "../../../utils/interfaces";
@@ -21,6 +23,9 @@ const CardPage: FC<ICardPage> = ({
   setCurrentPage,
   maxPage,
   creationPathname,
+  countAll,
+  noDataFoundTitle,
+  loading,
 }) => {
   return (
     <Wrapper className="card-page wrapper-card-container">
@@ -30,7 +35,7 @@ const CardPage: FC<ICardPage> = ({
             {title}
           </span>
           <span className="card-page-title-number">
-            ({items.length})
+            ({countAll || 0})
           </span>
         </h1>
 
@@ -51,22 +56,52 @@ const CardPage: FC<ICardPage> = ({
       </article>
 
       <article className="card-page-items">
-        {items.map(
-          (
-            { name, key, timezone, items, owner },
-            index,
-          ) => (
-            <CardForm
-              key={index}
-              name={name}
-              keyName={key}
-              timezone={timezone}
-              items={items}
-              owner={owner}
-              locale={locale}
-            />
-          ),
+        {loading && (
+          <>
+            {[...Array(8)].map(
+              (__: undefined, index) => (
+                <CardFormSkeleton key={index} />
+              ),
+            )}
+          </>
         )}
+
+        {!loading &&
+          countAll !== null &&
+          items.length === 0 && (
+            <NoDataFound
+              title={noDataFoundTitle}
+            />
+          )}
+
+        {!loading &&
+          countAll !== null &&
+          items.length !== 0 && (
+            <>
+              {items.map(
+                (
+                  {
+                    name,
+                    key,
+                    timezone,
+                    items,
+                    owner,
+                  },
+                  index,
+                ) => (
+                  <CardForm
+                    key={index}
+                    name={name}
+                    keyName={key}
+                    timezone={timezone}
+                    items={items}
+                    owner={owner}
+                    locale={locale}
+                  />
+                ),
+              )}
+            </>
+          )}
       </article>
 
       <Paging

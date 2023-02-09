@@ -129,6 +129,9 @@ export interface ICardPage {
   >;
   maxPage: number;
   creationPathname: string;
+  countAll: null | number;
+  noDataFoundTitle: string;
+  loading: boolean;
 }
 
 export interface ICardForm {
@@ -187,4 +190,8 @@ export interface IFormSelect {
     id: string,
   ) => void;
   value: string;
+}
+
+export interface INoDataFound {
+  title: string;
 }

@@ -265,6 +265,16 @@ export default class Validator {
           "form:input:timezone:error:invalid",
         );
 
+      // page
+      case "page required":
+        return t("form:error:random");
+
+      case "page must be greater than 0":
+        return t("form:error:random");
+
+      case "page must be a number":
+        return t("form:error:random");
+
       // default
       default:
         return t("form:error:random");
