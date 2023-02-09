@@ -4,7 +4,7 @@ import type { Translate } from "next-translate";
 import {
   TInspectDataErrors,
   TInspectData,
-} from "../type";
+} from "../types";
 
 export default class Validator {
   inspectData(

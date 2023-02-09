@@ -23,7 +23,7 @@ import BtnLoader from "../BtnLoader";
 import {
   TSignupForm,
   TLocale,
-} from "../../../utils/type";
+} from "../../../utils/types";
 import FormCheckbox from "./FormCheckbox";
 
 // classes

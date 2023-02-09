@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import IconCheck from "../../../public/icons/check.svg";
 
 // interfaces
-import { IFormCheckbox } from "../../../utils/interface";
+import { IFormCheckbox } from "../../../utils/interfaces";
 
 const FormCheckbox: FC<IFormCheckbox> = ({
   id,

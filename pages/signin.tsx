@@ -9,7 +9,7 @@ import useTranslation from "next-translate/useTranslation";
 import AuthApi from "./api/auth";
 
 // types
-import { TLocale, TCookie } from "../utils/type";
+import { TLocale, TCookie } from "../utils/types";
 
 const SignIn: FC<TLocale> = ({ locale }) => {
   const { t } = useTranslation();

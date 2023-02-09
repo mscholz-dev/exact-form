@@ -2,7 +2,7 @@
 import {
   TCypressFormData,
   TCypressFormError,
-} from "./type";
+} from "./types";
 
 export default class CypressTest {
   getCyData(

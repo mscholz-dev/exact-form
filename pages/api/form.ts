@@ -1,7 +1,7 @@
 import api from "./index";
 
 // types
-import { TFormCreationForm } from "../../utils/type";
+import { TFormCreationForm } from "../../utils/types";
 
 export default class FormApi {
   static async create(form: TFormCreationForm) {

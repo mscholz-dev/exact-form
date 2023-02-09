@@ -3,7 +3,7 @@ import type { Translate } from "next-translate";
 import RegexClass from "../Regex";
 
 // types
-import { TContactForm } from "../type";
+import { TContactForm } from "../types";
 
 // classes
 const Regex = new RegexClass();

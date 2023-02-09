@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import IconChevron from "../../../public/icons/chevron.svg";
 
 // interfaces
-import { IFormSelect } from "../../../utils/interface";
+import { IFormSelect } from "../../../utils/interfaces";
 
 const FormSelect: FC<IFormSelect> = ({
   id,

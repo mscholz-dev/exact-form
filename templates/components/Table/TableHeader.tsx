@@ -3,7 +3,7 @@ import FormCheckbox from "../Form/FormCheckbox";
 import useTranslation from "next-translate/useTranslation";
 
 // interfaces
-import { ITableHeader } from "../../../utils/interface";
+import { ITableHeader } from "../../../utils/interfaces";
 
 const TableHeader: FC<ITableHeader> = ({
   header,

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 // interfaces
-import { IWrapper } from "../../utils/interface";
+import { IWrapper } from "../../utils/interfaces";
 
 const Wrapper: FC<IWrapper> = ({
   children,

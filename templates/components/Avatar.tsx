@@ -7,7 +7,7 @@ import { createAvatar } from "@dicebear/core";
 import { identicon } from "@dicebear/collection";
 
 // interfaces
-import { IAvatar } from "../../utils/interface";
+import { IAvatar } from "../../utils/interfaces";
 
 const Avatar: FC<IAvatar> = ({
   seed,

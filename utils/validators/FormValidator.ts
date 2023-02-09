@@ -3,7 +3,7 @@ import type { Translate } from "next-translate";
 import timezone from "../timezone.json";
 
 // types
-import { TFormCreationForm } from "../type";
+import { TFormCreationForm } from "../types";
 
 export default class FormValidator extends Validator {
   inspectCreationData(

@@ -11,10 +11,10 @@ import LinkHelperClass from "../utils/LinkHelper";
 import CardPage from "../templates/components/Card/CardPage";
 
 // types
-import { TCookie, TLocale } from "../utils/type";
+import { TCookie, TLocale } from "../utils/types";
 
 // interfaces
-import { IForm } from "../utils/interface";
+import { IForm } from "../utils/interfaces";
 
 // classes
 const LinkHelper = new LinkHelperClass();

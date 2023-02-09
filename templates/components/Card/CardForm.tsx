@@ -5,7 +5,7 @@ import Avatar from "../Avatar";
 import useTranslation from "next-translate/useTranslation";
 
 // interfaces
-import { ICardForm } from "../../../utils/interface";
+import { ICardForm } from "../../../utils/interfaces";
 
 // classes
 const LinkHelper = new LinkHelperClass();

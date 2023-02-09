@@ -13,10 +13,10 @@ import LinkHelperClass from "../../utils/LinkHelper";
 import {
   TCookie,
   TLocale,
-} from "../../utils/type";
+} from "../../utils/types";
 
 // interfaces
-import { IFormKey } from "../../utils/interface";
+import { IFormKey } from "../../utils/interfaces";
 import Table from "../../templates/components/Table/Table";
 
 // classes

@@ -21,7 +21,7 @@ import BtnLoader from "../BtnLoader";
 import {
   TLocale,
   TSigninForm,
-} from "../../../utils/type";
+} from "../../../utils/types";
 
 // classes
 const UserValidator = new UserValidatorClass();

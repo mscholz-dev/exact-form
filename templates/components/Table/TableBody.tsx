@@ -4,7 +4,7 @@ import useTranslation from "next-translate/useTranslation";
 import FormClass from "../../../utils/Form";
 
 // interfaces
-import { ITableBody } from "../../../utils/interface";
+import { ITableBody } from "../../../utils/interfaces";
 
 // classes
 const Form = new FormClass();

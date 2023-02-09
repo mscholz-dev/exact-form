@@ -4,7 +4,7 @@ import Header from "./Header";
 import { ToastContainer } from "react-toastify";
 
 // interfaces
-import { IPage } from "../../utils/interface";
+import { IPage } from "../../utils/interfaces";
 
 const Page: FC<IPage> = ({
   title,

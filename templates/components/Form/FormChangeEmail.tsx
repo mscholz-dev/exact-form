@@ -15,10 +15,10 @@ import FormClass from "../../../utils/Form";
 import BtnLoader from "../BtnLoader";
 
 // types
-import { TChangeEmailForm } from "../../../utils/type";
+import { TChangeEmailForm } from "../../../utils/types";
 
 // interfaces
-import { IFormChangeEmail } from "../../../utils/interface";
+import { IFormChangeEmail } from "../../../utils/interfaces";
 
 // classes
 const UserValidator = new UserValidatorClass();

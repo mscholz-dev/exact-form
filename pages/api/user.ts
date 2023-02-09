@@ -7,7 +7,7 @@ import {
   TProfileForm,
   TLocale,
   TChangeEmailForm,
-} from "../../utils/type";
+} from "../../utils/types";
 
 export default class UserApi {
   static async create(form: TSignupForm) {

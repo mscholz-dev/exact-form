@@ -10,7 +10,7 @@ import Paging from "../Paging";
 import Wrapper from "../../layouts/Wrapper";
 
 // interfaces
-import { ITable } from "../../../utils/interface";
+import { ITable } from "../../../utils/interfaces";
 
 // classes
 const Form = new FormClass();

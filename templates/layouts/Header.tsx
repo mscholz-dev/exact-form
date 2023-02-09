@@ -17,10 +17,10 @@ import { useRouter } from "next/router";
 import UserValidatorClass from "../../utils/validators/UserValidator";
 
 // interfaces
-import { IHeader } from "../../utils/interface";
+import { IHeader } from "../../utils/interfaces";
 
 // types
-import { THeaderData } from "../../utils/type";
+import { THeaderData } from "../../utils/types";
 import { AxiosError } from "axios";
 
 // classes

@@ -10,7 +10,7 @@ import FormProfile from "../templates/components/Form/FormProfile";
 import LinkHelperClass from "../utils/LinkHelper";
 
 // types
-import { TCookie, TLocale } from "../utils/type";
+import { TCookie, TLocale } from "../utils/types";
 import UserApi from "./api/user";
 
 // classes

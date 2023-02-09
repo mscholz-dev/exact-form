@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
 // interfaces
-import { IFormPage } from "../../../utils/interface";
+import { IFormPage } from "../../../utils/interfaces";
 
 const FormPage: FC<IFormPage> = ({
   children,

@@ -2,10 +2,10 @@ import React, { FC, useEffect } from "react";
 import IconChevron from "../../public/icons/chevron.svg";
 
 // interfaces
-import { IPaging } from "../../utils/interface";
+import { IPaging } from "../../utils/interfaces";
 
 // types
-import { TPagingArray } from "../../utils/type";
+import { TPagingArray } from "../../utils/types";
 
 const Paging: FC<IPaging> = ({
   max,

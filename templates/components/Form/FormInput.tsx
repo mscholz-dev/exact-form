@@ -7,7 +7,7 @@ import IconEye from "../../../public/icons/eye.svg";
 import IconEyeSlash from "../../../public/icons/eye-slash.svg";
 
 // interfaces
-import { IFormInput } from "../../../utils/interface";
+import { IFormInput } from "../../../utils/interfaces";
 
 const FormInput: FC<IFormInput> = ({
   icon,

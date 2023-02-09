@@ -14,7 +14,7 @@ import LinkHelperClass from "../../utils/LinkHelper";
 import {
   TCookie,
   TLocale,
-} from "../../utils/type";
+} from "../../utils/types";
 
 // classes
 const LinkHelper = new LinkHelperClass();

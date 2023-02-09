@@ -3,7 +3,7 @@ import Link from "next/link";
 import Avatar from "./Avatar";
 
 // interfaces
-import { IHeaderItem } from "../../utils/interface";
+import { IHeaderItem } from "../../utils/interfaces";
 
 const HeaderItem: FC<IHeaderItem> = ({
   url,

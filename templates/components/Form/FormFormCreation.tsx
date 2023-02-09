@@ -22,7 +22,7 @@ import LinkHelperClass from "../../../utils/LinkHelper";
 import {
   TLocale,
   TFormCreationForm,
-} from "../../../utils/type";
+} from "../../../utils/types";
 import FormSelect from "./FormSelect";
 
 // classes

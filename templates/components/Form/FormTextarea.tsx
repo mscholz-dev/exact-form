@@ -1,7 +1,7 @@
 import React, { useState, FC } from "react";
 
 // interfaces
-import { IFormTextarea } from "../../../utils/interface";
+import { IFormTextarea } from "../../../utils/interfaces";
 
 const FormTextarea: FC<IFormTextarea> = ({
   id,

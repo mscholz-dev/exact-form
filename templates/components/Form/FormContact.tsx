@@ -21,7 +21,7 @@ import BtnLoader from "../BtnLoader";
 import {
   TContactForm,
   TLocale,
-} from "../../../utils/type";
+} from "../../../utils/types";
 
 // classes
 const ContactValidator =

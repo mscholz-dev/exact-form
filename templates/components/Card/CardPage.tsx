@@ -7,7 +7,7 @@ import LinkHelperClass from "../../../utils/LinkHelper";
 import Paging from "../Paging";
 
 // interfaces
-import { ICardPage } from "../../../utils/interface";
+import { ICardPage } from "../../../utils/interfaces";
 
 // classes
 const LinkHelper = new LinkHelperClass();

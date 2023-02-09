@@ -9,7 +9,7 @@ import {
   TSigninForm,
   TProfileForm,
   TChangeEmailForm,
-} from "../type";
+} from "../types";
 
 // classes
 const Regex = new RegexClass();

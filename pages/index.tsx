@@ -8,10 +8,10 @@ import useTranslation from "next-translate/useTranslation";
 import AuthApi from "./api/auth";
 
 // types
-import { TCookie, TLocale } from "../utils/type";
+import { TCookie, TLocale } from "../utils/types";
 
 // interfaces
-import { IIndex } from "../utils/interface";
+import { IIndex } from "../utils/interfaces";
 
 const Index: FC<IIndex> = ({ locale }) => {
   const { t } = useTranslation();

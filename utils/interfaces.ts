@@ -7,7 +7,7 @@ import {
 } from "react";
 
 // types
-import { TCookie, TCardForm } from "./type";
+import { TCookie, TCardForm } from "./types";
 
 export interface IIndex {
   locale: string;

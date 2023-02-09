@@ -22,10 +22,10 @@ import Avatar from "../Avatar";
 import FormCheckbox from "./FormCheckbox";
 
 // types
-import { TProfileForm } from "../../../utils/type";
+import { TProfileForm } from "../../../utils/types";
 
 // interfaces
-import { IFormProfile } from "../../../utils/interface";
+import { IFormProfile } from "../../../utils/interfaces";
 
 // classes
 const UserValidator = new UserValidatorClass();

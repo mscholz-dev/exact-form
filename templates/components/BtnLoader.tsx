@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import IconLoader from "../../public/icons/loader.svg";
 
 // interfaces
-import { IBtnLoader } from "../../utils/interface";
+import { IBtnLoader } from "../../utils/interfaces";
 
 const BtnLoader: FC<IBtnLoader> = ({
   loading,

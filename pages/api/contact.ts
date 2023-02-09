@@ -1,7 +1,7 @@
 import api from "./index";
 
 // types
-import { TContactForm } from "../../utils/type";
+import { TContactForm } from "../../utils/types";
 
 export default class ContactApi {
   static async contact(form: TContactForm) {
