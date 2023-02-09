@@ -5,21 +5,15 @@ module.exports = {
   defaultLocale: "default",
   localeDetection: false,
   pages: {
-    "*": ["common"],
+    "*": ["common", "form"],
     "/": ["index"],
-    "/signup": ["signup", "form"],
-    "/signin": ["signin", "form"],
-    "/contact": ["contact", "form"],
-    "/profile": ["profile", "form"],
-    "/change-email/[token]": [
-      "change-email",
-      "form",
-    ],
+    "/signup": ["signup"],
+    "/signin": ["signin"],
+    "/contact": ["contact"],
+    "/profile": ["profile"],
+    "/change-email/[token]": ["change-email"],
     "/form": ["form-page"],
     "/form/[key]": ["form-page-key"],
-    "/form/creation": [
-      "form-page-creation",
-      "form",
-    ],
+    "/form/creation": ["form-page-creation"],
   },
 };

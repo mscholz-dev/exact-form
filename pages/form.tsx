@@ -15,6 +15,7 @@ import { TCookie, TLocale } from "../utils/types";
 
 // interfaces
 import { IForm } from "../utils/interfaces";
+import FormApi from "./api/form";
 
 // classes
 const LinkHelper = new LinkHelperClass();
@@ -30,16 +31,24 @@ const Form: FC<IForm> = ({ locale }) => {
     role: "",
   });
 
+  const [forms, setForms] = useState([]);
+
   // paging
   const [currentPage, setCurrentPage] =
     useState<number>(1);
   const [maxPage, setMaxPage] =
     useState<number>(10);
 
-  const isAuth = async () => {
+  const isAuthAndGetAll = async () => {
     try {
-      const res = await AuthApi.index();
-      setCookie(res.data as TCookie);
+      const res = await FormApi.getAll();
+
+      setCookie({
+        username: res.data.username,
+        email: res.data.email,
+        role: res.data.role,
+      });
+      setForms(res.data.forms);
     } catch (err) {
       router.push(
         LinkHelper.translate(locale, ""),
@@ -49,54 +58,14 @@ const Form: FC<IForm> = ({ locale }) => {
   };
 
   useEffect(() => {
-    isAuth();
+    isAuthAndGetAll();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const formItems = [
-    {
-      name: "Contddddddddddddddddddddddddddddact Form",
-      key: "0001",
-      timezone: {
-        name: "Europe",
-        offset: 2,
-      },
-      items: 12,
-      owner:
-        "mschodddddddddddddddddddddddddlz.dev",
-    },
-    {
-      name: "Contact Form",
-      key: "0001",
-      timezone: {
-        name: "Europe",
-        offset: 2,
-      },
-      items: 12,
-      owner: "mscholz.dev",
-    },
-    {
-      name: "Contact Form",
-      key: "0001",
-      timezone: {
-        name: "Europe",
-        offset: 2,
-      },
-      items: 12,
-      owner: "mscholz.dev",
-    },
-    {
-      name: "Contact Form",
-      key: "0001",
-      timezone: {
-        name: "Europe",
-        offset: 2,
-      },
-      items: 12,
-      owner: "mscholz.dev",
-    },
-  ];
+  // TODO: add paging, loader/skeleton too, sorting??
+  // add count all in result
+  // component nothing created
 
   return (
     <Page
@@ -108,7 +77,7 @@ const Form: FC<IForm> = ({ locale }) => {
     >
       <CardPage
         locale={locale}
-        items={formItems}
+        items={forms}
         title={t("form-page:title")}
         createTitle={t("form-page:createTitle")}
         currentPage={currentPage}

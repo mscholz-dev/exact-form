@@ -59,7 +59,7 @@ const CardForm: FC<ICardForm> = ({
             {t("form-page:card:timezone")}
           </span>
           <span className="card-form-value">
-            {timezone.name}
+            {timezone}
           </span>
         </span>
 

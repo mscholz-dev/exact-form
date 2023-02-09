@@ -134,10 +134,7 @@ export interface ICardPage {
 export interface ICardForm {
   name: string;
   keyName: string;
-  timezone: {
-    name: string;
-    offset: number;
-  };
+  timezone: string;
   items: number;
   owner: string;
   locale: string;

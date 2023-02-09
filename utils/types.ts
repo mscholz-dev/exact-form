@@ -80,10 +80,7 @@ export type TRole =
 export type TCardForm = {
   name: string;
   key: string;
-  timezone: {
-    name: string;
-    offset: number;
-  };
+  timezone: string;
   items: number;
   owner: string;
 };

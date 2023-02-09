@@ -28,9 +28,9 @@
       padding: 0 24px;
     }
 
-    @include responsive(d-xs) {
-      max-width: 1200px;
-    }
+    // @include responsive(d-xs) {
+    //   max-width: 1200px;
+    // }
   }
 
   &-table-container {

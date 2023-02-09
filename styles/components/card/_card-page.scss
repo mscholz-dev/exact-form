@@ -35,8 +35,8 @@
       margin-top: 48px;
     }
 
-    @include responsive(d-xs) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    // @include responsive(d-xs) {
+    //   grid-template-columns: repeat(3, 1fr);
+    // }
   }
 }

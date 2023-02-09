@@ -15,4 +15,14 @@ export default class FormApi {
       })
       .then((res) => res);
   }
+
+  static async getAll() {
+    return await api
+      .get(`/form`, {
+        headers: {
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }

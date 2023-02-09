@@ -79,9 +79,9 @@
         right: -12px;
       }
 
-      @include responsive(d-xs) {
-        right: -16px;
-      }
+      // @include responsive(d-xs) {
+      //   right: -16px;
+      // }
     }
 
     &:last-child {
@@ -98,9 +98,9 @@
       margin-right: 24px;
     }
 
-    @include responsive(d-xs) {
-      margin-right: 32px;
-    }
+    // @include responsive(d-xs) {
+    //   margin-right: 32px;
+    // }
   }
 
   &-text {
