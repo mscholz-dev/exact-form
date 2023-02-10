@@ -1,11 +1,16 @@
 const data = {
-  username: "mscholz.dev",
-  email: "mscholz.dev@gmail.com",
-  email2: "scholzmorgan16@yahoo.fr",
-  lastName: "Scholz",
-  firstName: "Morgan",
-  phone: "0649495137",
-  password: "Azerty5!",
+  username: "cypress",
+  email: "cypress.mscholz.dev@gmail.com",
+  email2: "cypress2.mscholz.dev@gmail.com",
+
+  usernameSeed: "mscholz.dev",
+  emailSeed: "mscholz.dev@gmail.com",
+  email2Seed: "scholzmorgan16@yahoo.fr",
+
+  lastName: "Doe",
+  firstName: "John",
+  phone: "0102030405",
+  password: "a",
   message: "Je suis un message",
   client: "Client",
   formName: "Wobinit Contact Form",

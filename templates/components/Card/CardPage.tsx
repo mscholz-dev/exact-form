@@ -55,7 +55,10 @@ const CardPage: FC<ICardPage> = ({
         </Link>
       </article>
 
-      <article className="card-page-items">
+      <article
+        className="card-page-items"
+        data-cy="article"
+      >
         {loading && (
           <>
             {[...Array(8)].map(

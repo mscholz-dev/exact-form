@@ -49,7 +49,9 @@ export default class CypressTest {
     get: string,
     value: string,
   ) {
-    cy.get(get).contains(value);
+    cy.get(get).contains(value, {
+      timeout: 10_000,
+    });
   }
 
   loopFormError(
@@ -101,7 +103,10 @@ export default class CypressTest {
     cy: Cypress.cy & CyEventEmitter,
     cyData: string,
   ) {
-    cy.get(`[data-cy=${cyData}]`).focus().clear();
+    cy.get(`[data-cy=${cyData}]`)
+      .click()
+      .focused()
+      .clear();
   }
 
   setCookie(
@@ -110,7 +115,7 @@ export default class CypressTest {
     value: string,
   ) {
     cy.setCookie(name, value);
-    cy.wait(2_000);
+    cy.wait(1_000);
   }
 
   selectOption(
@@ -119,5 +124,16 @@ export default class CypressTest {
     value: string,
   ) {
     this.getCyData(cy, name).select(value);
+  }
+
+  countChildren(
+    cy: Cypress.cy & CyEventEmitter,
+    parentName: string,
+    childrenName: string,
+    length: number,
+  ) {
+    this.getCyData(cy, parentName)
+      .find(childrenName)
+      .should("have.length", length);
   }
 }

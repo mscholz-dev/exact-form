@@ -129,11 +129,11 @@ describe("Page: /change-email/:token", () => {
       const formData = [
         {
           cyData: "newEmail",
-          value: data.email2,
+          value: data.email2Seed,
         },
         {
           cyData: "newEmail2",
-          value: data.email,
+          value: data.emailSeed,
         },
       ];
 
@@ -181,11 +181,11 @@ describe("Page: /change-email/:token", () => {
       const formData = [
         {
           cyData: "newEmail",
-          value: data.email,
+          value: data.emailSeed,
         },
         {
           cyData: "newEmail2",
-          value: data.email,
+          value: data.emailSeed,
         },
       ];
 
@@ -226,11 +226,11 @@ describe("Page: /change-email/:token", () => {
       const formData = [
         {
           cyData: "newEmail",
-          value: data.email2,
+          value: data.email2Seed,
         },
         {
           cyData: "newEmail2",
-          value: data.email2,
+          value: data.email2Seed,
         },
       ];
 

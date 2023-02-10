@@ -105,6 +105,7 @@ const Paging: FC<IPaging> = ({
                 : ""
             }`}
             onClick={handleNextArrow}
+            data-cy="paging-arrow-next"
           >
             <IconChevron />
           </button>

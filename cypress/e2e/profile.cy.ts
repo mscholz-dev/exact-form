@@ -47,12 +47,12 @@ describe("Page: /profile", () => {
     CypressTest.compareInputValue(
       cy,
       "username",
-      data.username,
+      data.usernameSeed,
     );
     CypressTest.compareInputValue(
       cy,
       "email",
-      data.email,
+      data.emailSeed,
     );
     CypressTest.compareInputValue(
       cy,
@@ -159,7 +159,7 @@ describe("Page: /profile", () => {
       },
       {
         cyData: "newPassword",
-        value: "a",
+        value: "b",
       },
     ];
 
@@ -195,7 +195,7 @@ describe("Page: /profile", () => {
       },
       {
         cyData: "newPassword",
-        value: "a",
+        value: "b",
       },
       {
         cyData: "newPassword2",
@@ -235,11 +235,11 @@ describe("Page: /profile", () => {
       },
       {
         cyData: "newPassword",
-        value: "a",
+        value: "b",
       },
       {
         cyData: "newPassword2",
-        value: "a",
+        value: "b",
       },
     ];
 
@@ -263,7 +263,7 @@ describe("Page: /profile", () => {
     const formData = [
       {
         cyData: "username",
-        value: `fr.${data.username}`,
+        value: `fr.${data.usernameSeed}`,
       },
       {
         cyData: "oldPassword",
@@ -271,11 +271,11 @@ describe("Page: /profile", () => {
       },
       {
         cyData: "newPassword",
-        value: "a",
+        value: "b",
       },
       {
         cyData: "newPassword2",
-        value: "a",
+        value: "b",
       },
     ];
 

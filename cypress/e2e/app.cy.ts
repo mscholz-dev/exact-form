@@ -10,6 +10,7 @@ import "./signup.cy";
 import "./signin.cy";
 import "./disconnection.cy";
 import "./form/form.creation.cy";
+import "./form/form.cy";
 import "./profile.cy";
 import "./change-email.cy";
 import "./contact.cy";
