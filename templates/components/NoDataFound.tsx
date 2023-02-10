@@ -6,9 +6,16 @@ import { INoDataFound } from "../../utils/interfaces";
 
 const NoDataFound: FC<INoDataFound> = ({
   title,
+  largeTXS,
 }) => {
   return (
-    <div className="no-data-found">
+    <div
+      className={`no-data-found${
+        largeTXS
+          ? " no-data-found-large-t-xs"
+          : ""
+      }`}
+    >
       <span className="no-data-found-icon">
         <IconDatabase />
       </span>

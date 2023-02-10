@@ -40,7 +40,10 @@
   &-title {
     @include ellipsis;
     color: $white;
+    display: flex;
     font-size: 32px;
+    line-height: 28px;
+    height: 36px;
     margin-bottom: 32px;
     transition: 0.2s color ease-in-out;
   }
@@ -78,10 +81,6 @@
       @include responsive(t-xs) {
         right: -12px;
       }
-
-      // @include responsive(d-xs) {
-      //   right: -16px;
-      // }
     }
 
     &:last-child {
@@ -97,10 +96,6 @@
     @include responsive(t-xs) {
       margin-right: 24px;
     }
-
-    // @include responsive(d-xs) {
-    //   margin-right: 32px;
-    // }
   }
 
   &-text {

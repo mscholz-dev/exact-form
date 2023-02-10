@@ -7,7 +7,11 @@ import {
 } from "react";
 
 // types
-import { TCookie, TCardForm } from "./types";
+import {
+  TCookie,
+  TCardForm,
+  TTableBox,
+} from "./types";
 
 export interface IIndex {
   locale: string;
@@ -148,18 +152,29 @@ export interface IFormKey {
 }
 
 export interface ITable {
-  data: object[];
+  items: {
+    data: object;
+    created_at: Date;
+  }[];
   title: string;
+  countAll: number | null;
+  currentPage: number;
+  setCurrentPage: Dispatch<
+    SetStateAction<number>
+  >;
+  maxPage: number;
+  noDataFoundTitle: string;
+  loading: boolean;
 }
 
 export interface ITableHeader {
-  header: string[];
+  header: TTableBox;
   handleBooleanChange: () => void;
   selectAll: boolean;
 }
 
 export interface ITableBody {
-  body: object[];
+  body: TTableBox[];
   selected: Record<string, boolean>;
   setSelected: Dispatch<
     SetStateAction<Record<string, boolean>>
@@ -194,4 +209,5 @@ export interface IFormSelect {
 
 export interface INoDataFound {
   title: string;
+  largeTXS?: boolean;
 }

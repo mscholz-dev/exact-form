@@ -4,10 +4,6 @@
   flex-direction: column;
   margin-top: 96px;
 
-  @include responsive(t-xs) {
-    width: 200%;
-  }
-
   &-icon {
     display: flex;
     fill: $black;
@@ -19,5 +15,11 @@
   &-title {
     font-size: 32px;
     text-align: center;
+  }
+
+  &-large-t-xs {
+    @include responsive(t-xs) {
+      width: 200%;
+    }
   }
 }

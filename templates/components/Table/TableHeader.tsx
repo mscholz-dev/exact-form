@@ -27,13 +27,13 @@ const TableHeader: FC<ITableHeader> = ({
           />
         </th>
 
-        {header.map((title, index) => (
+        {header.map(({ id, value }) => (
           <th
-            key={index}
+            key={id}
             className="table-header-column"
-            title={title}
+            title={value}
           >
-            {title}
+            {value}
           </th>
         ))}
       </tr>

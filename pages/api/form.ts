@@ -25,4 +25,17 @@ export default class FormApi {
       })
       .then((res) => res);
   }
+
+  static async getSpecificForm(
+    key: string,
+    currentPage: number,
+  ) {
+    return await api
+      .get(`/form/${key}?page=${currentPage}`, {
+        headers: {
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }

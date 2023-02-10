@@ -1,7 +1,6 @@
 @mixin ellipsis {
   overflow: hidden;
-  padding-bottom: 2px;
-  padding-top: 2px;
+  line-height: 18px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

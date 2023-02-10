@@ -96,3 +96,8 @@ export type TFormCreationForm = {
   timezone: string;
   locale: string;
 };
+
+export type TTableBox = {
+  id: number;
+  value: string;
+}[];

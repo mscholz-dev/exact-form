@@ -2,5 +2,7 @@
   "meta:title": "Form",
 
   "table:header:ariaDescribedby": "Selectionner tous les champs",
-  "table:body:ariaDescribedby": "Select ce champ"
+  "table:body:ariaDescribedby": "Select ce champ",
+
+  "noDataFound:title": "Aucune requête trouvée"
 }

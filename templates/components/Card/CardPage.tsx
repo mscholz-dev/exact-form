@@ -74,6 +74,7 @@ const CardPage: FC<ICardPage> = ({
           items.length === 0 && (
             <NoDataFound
               title={noDataFoundTitle}
+              largeTXS
             />
           )}
 

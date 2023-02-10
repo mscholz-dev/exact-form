@@ -3,7 +3,36 @@
   width: calc(100% - 1px);
 
   &-title {
-    font-size: 32px;
     margin-bottom: 32px;
+
+    &-label {
+      font-size: 32px;
+      margin-right: 6px;
+    }
+
+    &-number {
+      font-size: 24px;
+      color: $grey;
+    }
+  }
+
+  &-loader {
+    animation: rotate 1s linear infinite;
+    display: flex;
+    fill: $primary-color;
+    height: 128px;
+    margin: 64px auto 0;
+    transition: 0.25s fill ease-in-out;
+    width: 128px;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

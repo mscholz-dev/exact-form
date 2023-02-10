@@ -18,6 +18,7 @@ import {
 // interfaces
 import { IFormKey } from "../../utils/interfaces";
 import Table from "../../templates/components/Table/Table";
+import FormApi from "../api/form";
 
 // classes
 const LinkHelper = new LinkHelperClass();
@@ -35,10 +36,33 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     role: "",
   });
 
-  const isAuth = async () => {
+  const [name, setName] = useState("");
+  const [items, setItems] = useState([]);
+  const [countAll, setCountAll] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  // paging
+  const [currentPage, setCurrentPage] =
+    useState<number>(1);
+
+  const isAuthAndGetSpecificForm = async () => {
     try {
-      const res = await AuthApi.index();
-      setCookie(res.data as TCookie);
+      setLoading(true);
+      const res = await FormApi.getSpecificForm(
+        key as string,
+        currentPage,
+      );
+
+      // add data
+      setCookie({
+        username: res.data.username,
+        email: res.data.email,
+        role: res.data.role,
+      });
+      setName(res.data.name);
+      setItems(res.data.items);
+      setCountAll(res.data.countAll);
+      setLoading(false);
     } catch (err) {
       router.push(
         LinkHelper.translate(locale, ""),
@@ -48,31 +72,11 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
   };
 
   useEffect(() => {
-    isAuth();
+    isAuthAndGetSpecificForm();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentPage]);
 
-  const data = [
-    {
-      firstName: "Morgan",
-      lastName: "Scholz",
-    },
-    {
-      company: "Wobinit",
-      firstName: "Wob",
-    },
-    {
-      test: "test",
-      uppercase: "TEST",
-      lastName: "tesT",
-    },
-    {
-      projectNumber: "12",
-    },
-  ];
-
-  // TODO: le nom creation sera interdit car il est réservé au nom de la route pour la création de formulaire
   return (
     <Page
       title={t("form-page-key:meta:title")}
@@ -81,7 +85,18 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
       cookie={cookie as TCookie}
       locale={locale}
     >
-      <Table data={data} title={key as string} />
+      <Table
+        items={items}
+        title={name}
+        countAll={countAll}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        maxPage={(countAll || 0) / 50}
+        noDataFoundTitle={t(
+          "form-page-key:noDataFound:title",
+        )}
+        loading={loading}
+      />
     </Page>
   );
 };

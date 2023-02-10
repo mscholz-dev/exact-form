@@ -44,17 +44,15 @@ const TableBody: FC<ITableBody> = ({
             />
           </td>
 
-          {[...(row as keyof object)].map(
-            (column: string, index) => (
-              <td
-                key={index}
-                className="table-body-column"
-                title={column}
-              >
-                {column}
-              </td>
-            ),
-          )}
+          {row.map(({ id, value }) => (
+            <td
+              key={id}
+              className="table-body-column"
+              title={value}
+            >
+              {value}
+            </td>
+          ))}
         </tr>
       ))}
     </tbody>
