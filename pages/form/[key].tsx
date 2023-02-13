@@ -44,9 +44,6 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     useState<number>(1);
 
   const isAuthAndGetSpecificForm = async () => {
-    console.log(router.isReady, router.query);
-    if (!router.isReady) return;
-
     try {
       setLoading(true);
       const res = await FormApi.getSpecificForm(
@@ -77,7 +74,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     isAuthAndGetSpecificForm();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, router.isReady]);
+  }, [currentPage, router.query.key]);
 
   return (
     <Page
