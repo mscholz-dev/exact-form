@@ -44,6 +44,8 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     useState<number>(1);
 
   const isAuthAndGetSpecificForm = async () => {
+    if (!router.query.key) return;
+
     try {
       setLoading(true);
       const res = await FormApi.getSpecificForm(
