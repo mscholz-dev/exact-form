@@ -27,6 +27,8 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
 
   const router = useRouter();
 
+  const key = router.query.key;
+
   const [cookie, setCookie] = useState({
     email: "",
     username: "",
@@ -44,9 +46,6 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     useState<number>(1);
 
   const isAuthAndGetSpecificForm = async () => {
-    const key = router.query.key;
-    console.log(router.query, router.pathname);
-
     try {
       setLoading(true);
       const res = await FormApi.getSpecificForm(
