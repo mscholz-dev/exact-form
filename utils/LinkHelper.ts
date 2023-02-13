@@ -23,8 +23,8 @@ export default class LinkHelper {
       case "form":
         return "/fr/formulaire";
 
-      case "form/creation":
-        return "/fr/formulaire/creation";
+      case "form-creation":
+        return "/fr/formulaire-creation";
 
       default:
         // form/:key

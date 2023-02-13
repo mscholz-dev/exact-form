@@ -86,7 +86,7 @@ const Form: FC<IForm> = ({ locale }) => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         maxPage={(countAll || 0) / 8}
-        creationPathname="form/creation"
+        creationPathname="form-creation"
         countAll={countAll}
         noDataFoundTitle={t(
           "form-page:noDataFound:title",
