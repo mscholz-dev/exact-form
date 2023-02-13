@@ -44,6 +44,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     useState<number>(1);
 
   const isAuthAndGetSpecificForm = async () => {
+    console.log(router.isReady, router.query);
     if (!router.isReady) return;
 
     try {
