@@ -27,8 +27,10 @@ export default class LinkHelper {
         return "/fr/formulaire-creation";
 
       default:
+        console.log(pathname);
+
         // form/:key
-        if (pathname.includes("form"))
+        if (pathname.includes("form/"))
           return `/fr/formulaire/${pathname.replace(
             "form/",
             "",
