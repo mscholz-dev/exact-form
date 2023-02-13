@@ -2,22 +2,28 @@ import React, { FC } from "react";
 import FormCheckbox from "../Form/FormCheckbox";
 import useTranslation from "next-translate/useTranslation";
 import FormClass from "../../../utils/Form";
+import DateHelperClass from "../../../utils/DateHelper";
 
 // interfaces
 import { ITableBody } from "../../../utils/interfaces";
 
 // classes
 const Form = new FormClass();
+const DateHelper = new DateHelperClass();
 
 const TableBody: FC<ITableBody> = ({
   body,
   selected,
   setSelected,
+  locale,
 }) => {
   const { t } = useTranslation();
 
   return (
-    <tbody className="table-body">
+    <tbody
+      className="table-body"
+      data-cy="table-body"
+    >
       {body.map((row, index) => (
         <tr
           key={index}
@@ -48,9 +54,21 @@ const TableBody: FC<ITableBody> = ({
             <td
               key={id}
               className="table-body-column"
-              title={value}
+              title={
+                row.length - 1 === id
+                  ? DateHelper.parseCreatedAt(
+                      value,
+                      locale,
+                    )
+                  : value.toString()
+              }
             >
-              {value}
+              {row.length - 1 === id
+                ? DateHelper.parseCreatedAt(
+                    value,
+                    locale,
+                  )
+                : value.toString()}
             </td>
           ))}
         </tr>

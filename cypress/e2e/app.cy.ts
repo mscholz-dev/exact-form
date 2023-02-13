@@ -10,8 +10,8 @@ import "./form/form.key.cy.ts";
 // import "./change-email.cy";
 // import "./contact.cy";
 
-before(async () => {
-  await TestApi.newDB();
+before(() => {
+  new Cypress.Promise(() => TestApi.newDB());
 });
 
 beforeEach(() => cy.reload(true));

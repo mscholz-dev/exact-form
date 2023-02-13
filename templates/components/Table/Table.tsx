@@ -9,6 +9,7 @@ import FormClass from "../../../utils/Form";
 import Paging from "../Paging";
 import Wrapper from "../../layouts/Wrapper";
 import IconLoader from "../../../public/icons/loader.svg";
+import timezoneData from "../../../utils/timezone.json";
 
 // interfaces
 import { ITable } from "../../../utils/interfaces";
@@ -29,6 +30,8 @@ const Table: FC<ITable> = ({
   maxPage,
   noDataFoundTitle,
   loading,
+  locale,
+  timezone,
 }) => {
   const [header, setHeader] = useState<TTableBox>(
     [],
@@ -49,8 +52,8 @@ const Table: FC<ITable> = ({
   useEffect(() => {
     if (!items.length) return;
 
-    // delete created_at header
     const newHeader: TTableBox = [];
+    const newBody: TTableBox[] = [];
 
     // create table header with unique keys
     for (const object of items) {
@@ -94,14 +97,26 @@ const Table: FC<ITable> = ({
         }
       }
 
-      // TODO: formater la date, ajouter l'offset de la timezone
-      // add created_at column
-      bodyItem.push({
-        id: bodyItem.length,
-        value: object.created_at.toString(),
-      });
+      let newCreatedAt = new Date(
+        object.created_at,
+      );
 
-      body.push(bodyItem);
+      // add timezone offset to created at data
+      timezoneData.some(({ name, offset }) => {
+        if (name === timezone) {
+          newCreatedAt.setHours(
+            newCreatedAt.getHours() + offset - 1,
+          );
+          return;
+        }
+      }),
+        // push created at data
+        bodyItem.push({
+          id: bodyItem.length,
+          value: newCreatedAt.toString(),
+        });
+
+      newBody.push(bodyItem);
 
       // add selectable checkbox
       selected[
@@ -113,7 +128,7 @@ const Table: FC<ITable> = ({
 
     // trigger header and body render
     setHeader(newHeader);
-    setBody([...body]);
+    setBody(newBody);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
@@ -175,6 +190,7 @@ const Table: FC<ITable> = ({
                 body={body}
                 selected={selected}
                 setSelected={setSelected}
+                locale={locale}
               />
             </table>
 

@@ -27,6 +27,7 @@ const CardForm: FC<ICardForm> = ({
         `form/${keyName}`,
       )}
       className="card-form"
+      data-cy={name.replaceAll(" ", "-")}
     >
       <h2
         className="card-form-title"

@@ -1,5 +1,5 @@
 import CypressTestClass from "../../../utils/CypressTest";
-import formTranslations from "../../../locales/fr/form.json";
+// import formTranslations from "../../../locales/fr/form.json";
 import data from "../../../utils/data";
 
 // classes

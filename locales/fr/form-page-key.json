@@ -2,6 +2,7 @@
   "meta:title": "Form",
 
   "table:header:ariaDescribedby": "Selectionner tous les champs",
+  "table:header:createdAt": "Créé à",
   "table:body:ariaDescribedby": "Select ce champ",
 
   "noDataFound:title": "Aucune requête trouvée"

@@ -275,6 +275,10 @@ export default class Validator {
       case "page must be a number":
         return t("form:error:random");
 
+      // key
+      case "key not found":
+        return t("form:key:error:found");
+
       // default
       default:
         return t("form:error:random");

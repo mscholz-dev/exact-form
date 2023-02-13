@@ -165,6 +165,8 @@ export interface ITable {
   maxPage: number;
   noDataFoundTitle: string;
   loading: boolean;
+  locale: string;
+  timezone: string;
 }
 
 export interface ITableHeader {
@@ -179,6 +181,7 @@ export interface ITableBody {
   setSelected: Dispatch<
     SetStateAction<Record<string, boolean>>
   >;
+  locale: string;
 }
 
 export interface IPaging {

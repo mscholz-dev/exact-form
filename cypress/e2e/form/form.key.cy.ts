@@ -1,5 +1,5 @@
 import CypressTestClass from "../../../utils/CypressTest";
-import formTranslations from "../../../locales/fr/form.json";
+// import formTranslations from "../../../locales/fr/form.json";
 import data from "../../../utils/data";
 
 // classes
@@ -34,5 +34,72 @@ describe("Page: /form/key", () => {
     );
 
     CypressTest.shouldRedirect(cy, `${url}/fr`);
+  });
+
+  it("it should get 50 form items (page 1)", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      50,
+    );
+  });
+
+  it("it should get 10 form items (page 2)", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    cy.wait(2_000);
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      10,
+    );
   });
 });

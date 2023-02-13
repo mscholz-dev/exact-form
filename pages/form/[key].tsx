@@ -5,7 +5,6 @@ import React, {
 } from "react";
 import Page from "../../templates/layouts/Page";
 import useTranslation from "next-translate/useTranslation";
-import AuthApi from "../api/auth";
 import { useRouter } from "next/router";
 import LinkHelperClass from "../../utils/LinkHelper";
 
@@ -37,6 +36,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
   });
 
   const [name, setName] = useState("");
+  const [timezone, setTimezone] = useState("");
   const [items, setItems] = useState([]);
   const [countAll, setCountAll] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -60,6 +60,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
         role: res.data.role,
       });
       setName(res.data.name);
+      setTimezone(res.data.timezone);
       setItems(res.data.items);
       setCountAll(res.data.countAll);
       setLoading(false);
@@ -96,6 +97,8 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
           "form-page-key:noDataFound:title",
         )}
         loading={loading}
+        locale={locale}
+        timezone={timezone}
       />
     </Page>
   );

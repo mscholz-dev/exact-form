@@ -31,9 +31,19 @@ const TableHeader: FC<ITableHeader> = ({
           <th
             key={id}
             className="table-header-column"
-            title={value}
+            title={
+              value === "created_at"
+                ? t(
+                    "form-page-key:table:header:createdAt",
+                  )
+                : value
+            }
           >
-            {value}
+            {value === "created_at"
+              ? t(
+                  "form-page-key:table:header:createdAt",
+                )
+              : value}
           </th>
         ))}
       </tr>

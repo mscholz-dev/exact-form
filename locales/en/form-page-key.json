@@ -2,6 +2,7 @@
   "meta:title": "Formulaire",
 
   "table:header:ariaDescribedby": "Select all fields",
+  "table:header:createdAt": "Created at",
   "table:body:ariaDescribedby": "Select this field",
 
   "noDataFound:title": "No request found"
