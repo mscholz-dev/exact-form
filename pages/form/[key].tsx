@@ -45,6 +45,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
 
   const isAuthAndGetSpecificForm = async () => {
     const key = router.query.key;
+    console.log(router.query, router.pathname);
 
     try {
       setLoading(true);
