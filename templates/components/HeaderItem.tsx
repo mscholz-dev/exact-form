@@ -44,7 +44,10 @@ const HeaderItem: FC<IHeaderItem> = ({
 
           <span
             className={`link${
-              pathname === path
+              LinkHelper.translate(
+                locale,
+                pathname,
+              ) === path
                 ? " header-list-item-active"
                 : ""
             }`}
@@ -59,7 +62,10 @@ const HeaderItem: FC<IHeaderItem> = ({
             pathname,
           )}
           className={`header-list-item link${
-            pathname === path
+            LinkHelper.translate(
+              locale,
+              pathname,
+            ) === path
               ? " header-list-item-active"
               : ""
           }`}
