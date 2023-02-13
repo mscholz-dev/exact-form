@@ -6,7 +6,7 @@ const { combinedEnv } = loadEnvConfig(
 );
 
 export default defineConfig({
-  projectId: 'rvrwgg',
+  projectId: "exact-form",
   env: combinedEnv,
   e2e: {
     baseUrl: "http://localhost:3000",

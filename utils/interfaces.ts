@@ -149,6 +149,7 @@ export interface ICardForm {
 
 export interface IFormKey {
   locale: string;
+  key: string | undefined;
 }
 
 export interface ITable {
