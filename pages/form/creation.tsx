@@ -3,18 +3,21 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import Page from "../templates/layouts/Page";
+import Page from "../../templates/layouts/Page";
 import useTranslation from "next-translate/useTranslation";
-import AuthApi from "./api/auth";
+import AuthApi from "../api/auth";
 import { useRouter } from "next/router";
-import LinkHelperClass from "../utils/LinkHelper";
+import LinkHelperClass from "../../utils/LinkHelper";
 
 // types
-import { TCookie, TLocale } from "../utils/types";
+import {
+  TCookie,
+  TLocale,
+} from "../../utils/types";
 
 // interfaces
-import { IFormCreation } from "../utils/interfaces";
-import FormFormCreation from "../templates/components/Form/FormFormCreation";
+import { IFormCreation } from "../../utils/interfaces";
+import FormFormCreation from "../../templates/components/Form/FormFormCreation";
 
 // classes
 const LinkHelper = new LinkHelperClass();

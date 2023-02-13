@@ -135,8 +135,8 @@ module.exports = nextTranslate({
 
       // form/creation
       {
-        source: "/fr/form-creation",
-        destination: "/fr/formulaire-creation",
+        source: "/fr/form/creation",
+        destination: "/fr/formulaire/creation",
         permanent: true,
         locale: false,
       },
@@ -196,8 +196,8 @@ module.exports = nextTranslate({
 
       // form-creation
       {
-        source: "/fr/formulaire-creation",
-        destination: "/fr/form-creation",
+        source: "/fr/formulaire/creation",
+        destination: "/fr/form/creation",
         locale: false,
       },
     ];
