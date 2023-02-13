@@ -27,8 +27,6 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
 
   const router = useRouter();
 
-  const key = router.query.key;
-
   const [cookie, setCookie] = useState({
     email: "",
     username: "",
@@ -46,10 +44,12 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     useState<number>(1);
 
   const isAuthAndGetSpecificForm = async () => {
+    if (!router.isReady) return;
+
     try {
       setLoading(true);
       const res = await FormApi.getSpecificForm(
-        key as string,
+        router.query.key as string,
         currentPage,
       );
 
@@ -76,7 +76,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     isAuthAndGetSpecificForm();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [currentPage, router.isReady]);
 
   return (
     <Page
