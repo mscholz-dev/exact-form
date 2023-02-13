@@ -22,10 +22,13 @@ const CardForm: FC<ICardForm> = ({
 
   return (
     <Link
-      href={LinkHelper.translate(
-        locale,
-        `form/${keyName}`,
-      )}
+      href={{
+        pathname: LinkHelper.translate(
+          locale,
+          "form/[key]",
+        ),
+        query: { key: keyName },
+      }}
       className="card-form"
       data-cy={name.replaceAll(" ", "-")}
     >
