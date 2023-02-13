@@ -40,6 +40,7 @@ const FormCreation: FC<IFormCreation> = ({
       const res = await AuthApi.index();
       setCookie(res.data as TCookie);
     } catch (err) {
+      // no page transition
       router.push(
         LinkHelper.translate(locale, ""),
       );

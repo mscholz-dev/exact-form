@@ -3,6 +3,7 @@ import Link from "next/link";
 import LinkHelperClass from "../../../utils/LinkHelper";
 import Avatar from "../Avatar";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 
 // interfaces
 import { ICardForm } from "../../../utils/interfaces";
@@ -20,6 +21,8 @@ const CardForm: FC<ICardForm> = ({
 }) => {
   const { t } = useTranslation();
 
+  const router = useRouter();
+
   return (
     <Link
       href={{
@@ -31,6 +34,15 @@ const CardForm: FC<ICardForm> = ({
       }}
       className="card-form"
       data-cy={name.replaceAll(" ", "-")}
+      onClick={(e) =>
+        LinkHelper.redirect(
+          e,
+          router,
+          locale,
+          "form/[key]",
+          { name: "key", value: keyName },
+        )
+      }
     >
       <h2
         className="card-form-title"

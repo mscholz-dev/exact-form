@@ -57,6 +57,7 @@ const Form: FC<IForm> = ({ locale }) => {
       // disable loading
       setLoading(false);
     } catch (err) {
+      // no page transition
       router.push(
         LinkHelper.translate(locale, ""),
       );

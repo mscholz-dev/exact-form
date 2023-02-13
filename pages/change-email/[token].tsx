@@ -39,6 +39,7 @@ const ChangeEmail: FC<TLocale> = ({ locale }) => {
       );
       setCookie(res.data as TCookie);
     } catch (err) {
+      // no page transition
       router.push(
         LinkHelper.translate(locale, ""),
       );

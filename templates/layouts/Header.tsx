@@ -42,8 +42,7 @@ const Header: FC<IHeader> = ({
   const listContainerRef =
     useRef<HTMLDivElement>(null);
 
-  const [pathname, setPathname] =
-    useState<string>("");
+  const [path, setPath] = useState<string>("");
   const [open, setOpen] =
     useState<boolean>(false);
 
@@ -51,7 +50,7 @@ const Header: FC<IHeader> = ({
     {
       id: 0,
       title: t("common:header:index"),
-      url: LinkHelper.translate(locale, ""),
+      pathname: "",
       avatar: "",
     },
   ];
@@ -60,13 +59,13 @@ const Header: FC<IHeader> = ({
     {
       id: 0,
       title: t("common:header:signup"),
-      url: LinkHelper.translate(locale, "signup"),
+      pathname: "signup",
       avatar: "",
     },
     {
       id: 1,
       title: t("common:header:signin"),
-      url: LinkHelper.translate(locale, "signin"),
+      pathname: "signin",
       avatar: "",
     },
   ];
@@ -75,16 +74,13 @@ const Header: FC<IHeader> = ({
     {
       id: 0,
       title: t("common:header:form"),
-      url: LinkHelper.translate(locale, "form"),
+      pathname: "form",
       avatar: "",
     },
     {
       id: 1,
       title: t("common:header:profile"),
-      url: LinkHelper.translate(
-        locale,
-        "profile",
-      ),
+      pathname: "profile",
       avatar: cookie.username,
     },
   ];
@@ -98,14 +94,15 @@ const Header: FC<IHeader> = ({
       await UserApi.disconnection();
 
       if (router.pathname === "/") {
-        router.reload();
+        LinkHelper.reload(router);
         return;
       }
 
-      router.push(
-        LinkHelper.translate(locale, ""),
-        undefined,
-        { shallow: false },
+      LinkHelper.redirect(
+        null,
+        router,
+        locale,
+        "",
       );
 
       return;
@@ -198,7 +195,7 @@ const Header: FC<IHeader> = ({
   };
 
   useEffect((): void => {
-    setPathname(window.location.pathname);
+    setPath(window.location.pathname);
     window.addEventListener("resize", () =>
       handleHeaderSize(),
     );
@@ -216,7 +213,18 @@ const Header: FC<IHeader> = ({
         className="header-container"
       >
         <div className="header-brand-wrapper">
-          <Link href="/" className="header-brand">
+          <Link
+            href="/"
+            className="header-brand"
+            onClick={(e) =>
+              LinkHelper.redirect(
+                e,
+                router,
+                locale,
+                "",
+              )
+            }
+          >
             <span className="header-brand-logo">
               <Brand />
             </span>
@@ -243,10 +251,16 @@ const Header: FC<IHeader> = ({
             className="header-list-container"
           >
             {headerData.map(
-              ({ id, title, url, avatar }) => (
+              ({
+                id,
+                title,
+                pathname,
+                avatar,
+              }) => (
                 <HeaderItem
                   key={id}
-                  url={url}
+                  path={path}
+                  locale={locale}
                   pathname={pathname}
                   title={title}
                   avatar={avatar}
@@ -258,10 +272,16 @@ const Header: FC<IHeader> = ({
               ? headerRandomData
               : headerClientData
             ).map(
-              ({ id, title, url, avatar }) => (
+              ({
+                id,
+                title,
+                pathname,
+                avatar,
+              }) => (
                 <HeaderItem
                   key={id}
-                  url={url}
+                  path={path}
+                  locale={locale}
                   pathname={pathname}
                   title={title}
                   avatar={avatar}
@@ -287,6 +307,14 @@ const Header: FC<IHeader> = ({
               <Link
                 href="/contact"
                 className="btn-contact"
+                onClick={(e) =>
+                  LinkHelper.redirect(
+                    e,
+                    router,
+                    locale,
+                    "contact",
+                  )
+                }
               >
                 {t("common:header:contact")}
               </Link>

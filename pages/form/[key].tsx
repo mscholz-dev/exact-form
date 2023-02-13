@@ -63,6 +63,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
       setCountAll(res.data.countAll);
       setLoading(false);
     } catch (err) {
+      // no page transition
       router.push(
         LinkHelper.translate(locale, ""),
       );

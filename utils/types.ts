@@ -17,7 +17,7 @@ export type TInspectDataErrors = {
 export type THeaderData = {
   id: number;
   title: string;
-  url: string;
+  pathname: string;
   avatar: string;
 }[];
 

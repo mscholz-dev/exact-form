@@ -56,7 +56,8 @@ export interface IWrapper {
 }
 
 export interface IHeaderItem {
-  url: string;
+  locale: string;
+  path: string;
   pathname: string;
   title: string;
   avatar: string;

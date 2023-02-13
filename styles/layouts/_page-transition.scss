@@ -1,0 +1,49 @@
+.page-transition {
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  pointer-events: none;
+  top: 0;
+  width: 100vw;
+  z-index: 2;
+
+  &-one,
+  &-two {
+    background: $primary-color;
+    display: inline-block;
+    left: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition: 1s clip-path ease-out;
+    width: 100%;
+  }
+
+  &-one {
+    clip-path: polygon(0 0, 0% 100%, 0 100%);
+  }
+
+  &-two {
+    clip-path: polygon(100% 0, 100% 100%, 100% 0);
+  }
+
+  &-hide {
+    .page-transition {
+      &-one {
+        clip-path: polygon(
+          0 0,
+          0% 100%,
+          100% 100%
+        );
+      }
+
+      &-two {
+        clip-path: polygon(
+          0 0,
+          100% 100%,
+          100% 0
+        );
+      }
+    }
+  }
+}

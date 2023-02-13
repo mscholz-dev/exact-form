@@ -2,6 +2,7 @@ import React, { FC, useRef } from "react";
 import Head from "next/head";
 import Header from "./Header";
 import { ToastContainer } from "react-toastify";
+import PageTransition from "./PageTransition";
 
 // interfaces
 import { IPage } from "../../utils/interfaces";
@@ -52,6 +53,8 @@ const Page: FC<IPage> = ({
         >
           {children}
         </main>
+
+        <PageTransition />
         <ToastContainer />
       </div>
     </>

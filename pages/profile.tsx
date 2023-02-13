@@ -38,6 +38,7 @@ const Profile: FC<TLocale> = ({ locale }) => {
       setUsername(res.data.username as string);
       setMarket(res.data.market as boolean);
     } catch (err) {
+      // no page transition
       router.push(
         LinkHelper.translate(locale, ""),
       );

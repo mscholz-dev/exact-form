@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import IconChevron from "../../public/icons/chevron.svg";
 
 // interfaces

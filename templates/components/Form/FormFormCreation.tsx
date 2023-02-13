@@ -91,8 +91,11 @@ const FormFormCreation: FC<TLocale> = ({
       return;
     }
 
-    router.push(
-      LinkHelper.translate(locale, "form"),
+    LinkHelper.redirect(
+      null,
+      router,
+      locale,
+      "form",
     );
   };
 

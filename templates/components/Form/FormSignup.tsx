@@ -92,7 +92,7 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
       return;
     }
 
-    router.push(LinkHelper.translate(locale, ""));
+    LinkHelper.redirect(null, router, locale, "");
   };
 
   return (

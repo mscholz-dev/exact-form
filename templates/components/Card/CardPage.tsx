@@ -7,6 +7,7 @@ import LinkHelperClass from "../../../utils/LinkHelper";
 import Paging from "../Paging";
 import NoDataFound from "../NoDataFound";
 import CardFormSkeleton from "./CardFormSkeleton";
+import { useRouter } from "next/router";
 
 // interfaces
 import { ICardPage } from "../../../utils/interfaces";
@@ -27,6 +28,8 @@ const CardPage: FC<ICardPage> = ({
   noDataFoundTitle,
   loading,
 }) => {
+  const router = useRouter();
+
   return (
     <Wrapper className="card-page wrapper-card-container">
       <article className="card-page-header">
@@ -45,6 +48,14 @@ const CardPage: FC<ICardPage> = ({
             creationPathname,
           )}
           className="btn-create"
+          onClick={(e) =>
+            LinkHelper.redirect(
+              e,
+              router,
+              locale,
+              creationPathname,
+            )
+          }
         >
           <span className="btn-create-icon">
             <IconPlus />

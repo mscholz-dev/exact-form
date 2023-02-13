@@ -1,3 +1,5 @@
+import type { NextRouter } from "next/router";
+
 export default class LinkHelper {
   translate(
     locale: string,
@@ -34,5 +36,70 @@ export default class LinkHelper {
           pathname ? `/${pathname}` : ""
         }`;
     }
+  }
+
+  hidePageTransition(): void {
+    if (typeof window === "undefined") return;
+
+    const pageTransition = document.querySelector(
+      "#pageTransition",
+    ) as HTMLDivElement;
+
+    if (!pageTransition) return;
+
+    pageTransition.classList.add(
+      "page-transition-hide",
+    );
+  }
+
+  redirect(
+    e: React.MouseEvent<HTMLAnchorElement> | null,
+    router: NextRouter,
+    locale: string,
+    pathname: string,
+    object?: { name?: string; value?: string },
+  ): void {
+    if (e) e.preventDefault();
+
+    if (
+      window.location.pathname ===
+      `/${locale}${
+        pathname ? `/${pathname}` : ""
+      }`
+    )
+      return;
+
+    this.hidePageTransition();
+
+    if (!object) {
+      setTimeout(
+        () =>
+          router.push(
+            this.translate(locale, pathname),
+          ),
+        1_000,
+      );
+      return;
+    }
+
+    setTimeout(
+      () =>
+        router.push({
+          pathname: this.translate(
+            locale,
+            pathname,
+          ),
+          query: {
+            [object.name as string]: object.value,
+          },
+        }),
+      1_000,
+    );
+  }
+
+  reload(router: NextRouter) {
+    this.hidePageTransition();
+
+    setTimeout(() => router.reload(), 1_000);
   }
 }
