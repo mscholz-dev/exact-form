@@ -128,6 +128,31 @@ export default class Validator {
           "form:input:password:error:incorrect",
         );
 
+      case "password must contain one upper case":
+        return t(
+          "form:input:password:error:atLeastOneUppercase",
+        );
+
+      case "password must contain one lower case":
+        return t(
+          "form:input:password:error:atLeastOneLowercase",
+        );
+
+      case "password must contain one digit":
+        return t(
+          "form:input:password:error:atLeastOneDigit",
+        );
+
+      case "password must contain one special character":
+        return t(
+          "form:input:password:error:atLeastOneSpecialCharacter",
+        );
+
+      case "password must containt 8 characters":
+        return t(
+          "form:input:password:error:atLeastHeightCharacters",
+        );
+
       // password2
       case "password2 required":
         return t(
@@ -137,6 +162,31 @@ export default class Validator {
       case "password2 too long":
         return t(
           "form:input:password2:error:long",
+        );
+
+      case "password2 must contain one upper case":
+        return t(
+          "form:input:password2:error:atLeastOneUppercase",
+        );
+
+      case "password2 must contain one lower case":
+        return t(
+          "form:input:password2:error:atLeastOneLowercase",
+        );
+
+      case "password2 must contain one digit":
+        return t(
+          "form:input:password2:error:atLeastOneDigit",
+        );
+
+      case "password2 must contain one special character":
+        return t(
+          "form:input:password2:error:atLeastOneSpecialCharacter",
+        );
+
+      case "password2 must containt 8 characters":
+        return t(
+          "form:input:password2:error:atLeastHeightCharacters",
         );
 
       // passwords

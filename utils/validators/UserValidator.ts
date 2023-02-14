@@ -227,6 +227,42 @@ export default class UserValidator extends Validator {
           return t(
             "form:input:password:error:long",
           );
+        if (
+          !Regex.passwordAtLeastOneUppercase(
+            value,
+          )
+        )
+          return t(
+            "form:input:password:error:atLeastOneUppercase",
+          );
+        if (
+          !Regex.passwordAtLeastOneLowercase(
+            value,
+          )
+        )
+          return t(
+            "form:input:password:error:atLeastOneLowercase",
+          );
+        if (!Regex.passwordAtLeastOneDigit(value))
+          return t(
+            "form:input:password:error:atLeastOneDigit",
+          );
+        if (
+          !Regex.passwordAtLeastOneSpecialCharacter(
+            value,
+          )
+        )
+          return t(
+            "form:input:password:error:atLeastOneSpecialCharacter",
+          );
+        if (
+          !Regex.passwordAtLeastHeightCharacters(
+            value,
+          )
+        )
+          return t(
+            "form:input:password:error:atLeastHeightCharacters",
+          );
         return "";
 
       // password2
@@ -238,6 +274,42 @@ export default class UserValidator extends Validator {
         if (value.length > 60)
           return t(
             "form:input:password2:error:long",
+          );
+        if (
+          !Regex.passwordAtLeastOneUppercase(
+            value,
+          )
+        )
+          return t(
+            "form:input:password2:error:atLeastOneUppercase",
+          );
+        if (
+          !Regex.passwordAtLeastOneLowercase(
+            value,
+          )
+        )
+          return t(
+            "form:input:password2:error:atLeastOneLowercase",
+          );
+        if (!Regex.passwordAtLeastOneDigit(value))
+          return t(
+            "form:input:password2:error:atLeastOneDigit",
+          );
+        if (
+          !Regex.passwordAtLeastOneSpecialCharacter(
+            value,
+          )
+        )
+          return t(
+            "form:input:password2:error:atLeastOneSpecialCharacter",
+          );
+        if (
+          !Regex.passwordAtLeastHeightCharacters(
+            value,
+          )
+        )
+          return t(
+            "form:input:password2:error:atLeastHeightCharacters",
           );
         return "";
 

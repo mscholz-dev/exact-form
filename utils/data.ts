@@ -10,7 +10,7 @@ const data = {
   lastName: "Doe",
   firstName: "John",
   phone: "0102030405",
-  password: "a",
+  password: "Azerty5!",
   message: "Je suis un message",
   client: "Client",
   formName: "Wobinit Contact Form",

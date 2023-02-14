@@ -70,6 +70,47 @@
     }
   }
 
+  &-regex {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+
+    &-item {
+      align-items: center;
+      display: flex;
+      margin-bottom: 4px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &-icon {
+        align-items: center;
+        border-radius: 50%;
+        display: flex;
+        fill: $white;
+        height: 10px;
+        justify-content: center;
+        margin-right: 4px;
+        padding: 2px;
+        transition: 0.25s background ease-in-out;
+        width: 10px;
+
+        &-true {
+          background: $valid-color;
+        }
+
+        &-false {
+          background: $error-color;
+        }
+      }
+
+      &-title {
+        font-size: 14px;
+      }
+    }
+  }
+
   &-focus {
     border: 1px solid $primary-color-light;
 

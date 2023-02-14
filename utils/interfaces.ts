@@ -32,6 +32,7 @@ export interface IFormInput {
   type: "text" | "email" | "password";
   asterix?: boolean;
   readOnly?: boolean;
+  regex?: boolean;
 }
 
 export interface IPage {

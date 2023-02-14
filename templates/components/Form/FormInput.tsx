@@ -6,11 +6,13 @@ import React, {
 } from "react";
 import IconEye from "../../../public/icons/eye.svg";
 import IconEyeSlash from "../../../public/icons/eye-slash.svg";
+import IconCheck from "../../../public/icons/check.svg";
+import IconCross from "../../../public/icons/cross.svg";
 import RegexClass from "../../../utils/Regex";
+import useTranslation from "next-translate/useTranslation";
 
 // interfaces
 import { IFormInput } from "../../../utils/interfaces";
-import { PassThrough } from "stream";
 
 // classes
 const Regex = new RegexClass();
@@ -27,8 +29,9 @@ const FormInput: FC<IFormInput> = ({
   type,
   asterix,
   readOnly,
+  regex,
 }) => {
-  const defaultType = type;
+  const { t } = useTranslation();
 
   const [focus, setFocus] =
     useState<boolean>(false);
@@ -54,6 +57,45 @@ const FormInput: FC<IFormInput> = ({
     atLeastHeightCharacters,
     setAtLeastHeightCharacters,
   ] = useState<boolean>(false);
+
+  const regexValidator = [
+    {
+      id: 0,
+      boolean: atLeastOneUppercase,
+      title: t(
+        "form:regex:title:atLeastOneUppercase",
+      ),
+    },
+    {
+      id: 1,
+      boolean: atLeastOneLowercase,
+      title: t(
+        "form:regex:title:atLeastOneLowercase",
+      ),
+    },
+    {
+      id: 2,
+      boolean: atLeastOneDigit,
+      title: t(
+        "form:regex:title:atLeastOneDigit",
+      ),
+    },
+    {
+      id: 3,
+      boolean: atLeastOneSpecialCharacter,
+      title: t(
+        "form:regex:title:atLeastOneSpecialCharacter",
+      ),
+    },
+
+    {
+      id: 4,
+      boolean: atLeastHeightCharacters,
+      title: t(
+        "form:regex:title:atLeastHeightCharacters",
+      ),
+    },
+  ];
 
   const handlePasswordValidator = () => {
     setAtLeastOneUppercase(
@@ -97,7 +139,7 @@ const FormInput: FC<IFormInput> = ({
   };
 
   useEffect(() => {
-    if (defaultType !== "password") return;
+    if (!regex) return;
 
     handlePasswordValidator();
 
@@ -159,35 +201,33 @@ const FormInput: FC<IFormInput> = ({
         )}
       </label>
 
-      {defaultType === "password" && (
-        <div>
-          <span>
-            {atLeastOneUppercase
-              ? "TRUE"
-              : "FALSE"}
-          </span>
-          <br />
-          <span>
-            {atLeastOneLowercase
-              ? "TRUE"
-              : "FALSE"}
-          </span>
-          <br />
-          <span>
-            {atLeastOneDigit ? "TRUE" : "FALSE"}
-          </span>
-          <br />
-          <span>
-            {atLeastOneSpecialCharacter
-              ? "TRUE"
-              : "FALSE"}
-          </span>
-          <br />
-          <span>
-            {atLeastHeightCharacters
-              ? "TRUE"
-              : "FALSE"}
-          </span>
+      {regex && (
+        <div className="form-input-regex">
+          {regexValidator.map(
+            ({ id, boolean, title }) => (
+              <span
+                key={id}
+                className="form-input-regex-item"
+              >
+                <span
+                  className={`form-input-regex-item-icon${
+                    boolean
+                      ? " form-input-regex-item-icon-true"
+                      : " form-input-regex-item-icon-false"
+                  }`}
+                >
+                  {boolean ? (
+                    <IconCheck />
+                  ) : (
+                    <IconCross />
+                  )}
+                </span>
+                <span className="form-input-regex-item-title">
+                  {title}
+                </span>
+              </span>
+            ),
+          )}
         </div>
       )}
     </>

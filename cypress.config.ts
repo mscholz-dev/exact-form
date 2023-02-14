@@ -6,7 +6,7 @@ const { combinedEnv } = loadEnvConfig(
 );
 
 export default defineConfig({
-  projectId: "exact-form",
+  projectId: "rvrwgg",
   env: combinedEnv,
   e2e: {
     baseUrl: "http://localhost:3000",
@@ -17,5 +17,11 @@ export default defineConfig({
     viewportWidth: 1920,
     video: false,
     screenshotOnRunFailure: false,
+    watchForFileChanges: false,
+    defaultCommandTimeout: 10_000,
+    taskTimeout: 10_000,
+    pageLoadTimeout: 10_000,
+    requestTimeout: 10_000,
+    responseTimeout: 10_000,
   },
 });

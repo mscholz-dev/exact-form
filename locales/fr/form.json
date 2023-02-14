@@ -66,12 +66,22 @@
   "input:password:error:long": "Le champ Mot de passe doit contenir 60 caractères maximum",
   "input:password:error:match": "Les champs Mot de passe ne correspondent pas",
   "input:password:new:error:match": "Les champs Nouveau mot de passe ne correspondent pas",
-  "input:password:error:incorrect": "Mot de passe incorrect",
+  "input:password:error:incorrect": "Le champ Mot de passe est incorrect",
+  "input:password:error:atLeastOneUppercase": "Le champ Mot de passe doit contenir une majuscule",
+  "input:password:error:atLeastOneLowercase": "Le champ Mot de passe doit contenir une minuscule",
+  "input:password:error:atLeastOneDigit": "Le champ Mot de passe doit contenir un chiffre",
+  "input:password:error:atLeastOneSpecialCharacter": "Le champ Mot de passe doit contenir un caractère spécial",
+  "input:password:error:atLeastHeightCharacters": "Le champ Mot de passe doit contenir 8 caractères",
 
   "input:password2:title": "Confirmer le mot de passe",
   "input:password2:ariaDescribedby": "Veuillez confirmer votre mot de passe",
   "input:password2:error:empty": "Le champ Confirmer le mot de passe est requis",
   "input:password2:error:long": "Le champ Confirmer le mot de passe doit contenir 60 caractères maximum",
+  "input:password2:error:atLeastOneUppercase": "Le champ Confirmer le mot de passe doit contenir une majuscule",
+  "input:password2:error:atLeastOneLowercase": "Le champ Confirmer le mot de passe doit contenir une minuscule",
+  "input:password2:error:atLeastOneDigit": "Le champ Confirmer le mot de passe doit contenir un chiffre",
+  "input:password2:error:atLeastOneSpecialCharacter": "Le champ Confirmer le mot de passe doit contenir un caractère spécial",
+  "input:password2:error:atLeastHeightCharacters": "Le champ Confirmer le mot de passe doit contenir 8 caractères",
 
   "input:password:edit:old:title": "Ancien mot de passe",
   "input:password:edit:old:ariaDescribedby": "Veuillez renseigner votre ancien mot de passe",
@@ -107,5 +117,11 @@
   "token:error:exists": "Demande de changement d'email déjà envoyée aujourd'hui",
   "token:error:found": "Veuillez refaire une demande de changement d'email",
 
-  "key:error:found": "Clé non trouvée"
+  "key:error:found": "Clé non trouvée",
+
+  "regex:title:atLeastOneUppercase": "Au moins une majuscule",
+  "regex:title:atLeastOneLowercase": "Au moins une minuscule",
+  "regex:title:atLeastOneDigit": "au moins un chiffre",
+  "regex:title:atLeastOneSpecialCharacter": "Au moins un caractère spécial",
+  "regex:title:atLeastHeightCharacters": "Au moins 8 caractères"
 }

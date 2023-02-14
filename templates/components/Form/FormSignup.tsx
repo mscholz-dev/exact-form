@@ -168,6 +168,7 @@ const FormSignup: FC<TLocale> = ({ locale }) => {
             mb
             maxLength={60}
             type="password"
+            regex
           />
           <FormInput
             icon={<IconPassword />}

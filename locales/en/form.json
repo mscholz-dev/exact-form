@@ -66,12 +66,22 @@
   "input:password:error:long": "Field Password must contain 60 characters maximum",
   "input:password:error:match": "Fields Passwords not matching",
   "input:password:new:error:match": "Fields New passwords not matching",
-  "input:password:error:incorrect": "Password incorrect",
+  "input:password:error:incorrect": "Field Password incorrect",
+  "input:password:error:atLeastOneUppercase": "Field Password must contain one upper case",
+  "input:password:error:atLeastOneLowercase": "Field Password must contain one lower case",
+  "input:password:error:atLeastOneDigit": "Field Password must contain one digit",
+  "input:password:error:atLeastOneSpecialCharacter": "Field Password must contain one special character",
+  "input:password:error:atLeastHeightCharacters": "Field Password must contain 8 characters",
 
   "input:password2:title": "Confirm password",
   "input:password2:ariaDescribedby": "Please confirm your password",
   "input:password2:error:empty": "Field Confirm password is required",
   "input:password2:error:long": "Field Confirm password must contain 60 characters maximum",
+  "input:password2:error:atLeastOneUppercase": "Field Confirm password must contain one upper case",
+  "input:password2:error:atLeastOneLowercase": "Field Confirm password must contain one lower case",
+  "input:password2:error:atLeastOneDigit": "Field Confirm password must contain one digit",
+  "input:password2:error:atLeastOneSpecialCharacter": "Field Confirm password must contain one special character",
+  "input:password2:error:atLeastHeightCharacters": "Field Confirm password must contain 8 characters",
 
   "input:password:edit:old:title": "Old password",
   "input:password:edit:old:ariaDescribedby": "Please enter your old password",
@@ -107,5 +117,11 @@
   "token:error:exists": "Change email request already sent for today",
   "token:error:found": "Please redo an email change request",
 
-  "key:error:found": "Key not found"
+  "key:error:found": "Key not found",
+
+  "regex:title:atLeastOneUppercase": "At least one upper case",
+  "regex:title:atLeastOneLowercase": "At least one lower case",
+  "regex:title:atLeastOneDigit": "At least one digit",
+  "regex:title:atLeastOneSpecialCharacter": "At least one special character",
+  "regex:title:atLeastHeightCharacters": "At least height characters"
 }
