@@ -28,7 +28,6 @@ export default class CypressTest {
   ) {
     this.getCyData(cy, cyData)
       .focus()
-      .clear()
       .type(value);
   }
 
@@ -105,8 +104,7 @@ export default class CypressTest {
   ) {
     cy.get(`[data-cy=${cyData}]`)
       .click()
-      .focused()
-      .clear();
+      .focused();
   }
 
   setCookie(

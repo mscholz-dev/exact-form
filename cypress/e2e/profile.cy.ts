@@ -76,7 +76,7 @@ describe("Page: /profile", () => {
     );
   });
 
-  it("it should throw: username required", () => {
+  it("it should throw: oldPassword must contain one upper case", () => {
     CypressTest.setCookie(
       cy,
       "user",
@@ -86,11 +86,147 @@ describe("Page: /profile", () => {
     const formError = [
       {
         id: 0,
-        toastValue: "input:username:error:empty",
+        toastValue:
+          "input:oldPassword:error:atLeastOneUppercase",
       },
     ];
 
-    CypressTest.clearInputValue(cy, "username");
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: "a",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: oldPassword must contain one lower case", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:oldPassword:error:atLeastOneLowercase",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: "A",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: oldPassword must contain one digit", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:oldPassword:error:atLeastOneDigit",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: "Aa",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: oldPassword must contain one special character", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:oldPassword:error:atLeastOneSpecialCharacter",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: "Aa1",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: oldPassword must contain 8 characters", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:oldPassword:error:atLeastHeightCharacters",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: "Aa1$",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
 
     CypressTest.clickCyData(cy, "btn-form");
 
@@ -113,10 +249,37 @@ describe("Page: /profile", () => {
         toastValue:
           "input:newPassword:error:empty",
       },
+    ];
+
+    const formData = [
       {
-        id: 1,
+        cyData: "oldPassword",
+        value: data.password,
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword must contain one upper case", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
         toastValue:
-          "input:newPassword2:error:empty",
+          "input:newPassword:error:atLeastOneUppercase",
       },
     ];
 
@@ -124,6 +287,154 @@ describe("Page: /profile", () => {
       {
         cyData: "oldPassword",
         value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: "a",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword must contain one lower case", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword:error:atLeastOneLowercase",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: "A",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword must contain one digit", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword:error:atLeastOneDigit",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: "Aa",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword must contain one special character", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword:error:atLeastOneSpecialCharacter",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: "Aa1",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword must contain 8 characters", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword:error:atLeastHeightCharacters",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: "Aa1$",
       },
     ];
 
@@ -159,7 +470,198 @@ describe("Page: /profile", () => {
       },
       {
         cyData: "newPassword",
-        value: "b",
+        value: `${data.password}.new`,
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword2 must contain one upper case", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword2:error:atLeastOneUppercase",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: `${data.password}.new`,
+      },
+      { cyData: "newPassword2", value: "a" },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword2 must contain one lower case", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword2:error:atLeastOneLowercase",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: `${data.password}.new`,
+      },
+      { cyData: "newPassword2", value: "A" },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword2 must contain one digit", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword2:error:atLeastOneDigit",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: `${data.password}.new`,
+      },
+      { cyData: "newPassword2", value: "Aa" },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword2 must contain one special character", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword2:error:atLeastOneSpecialCharacter",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: `${data.password}.new`,
+      },
+      {
+        cyData: "newPassword2",
+        value: "Aa1",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: newPassword2 must contain 8 characters", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:newPassword2:error:atLeastHeightCharacters",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "oldPassword",
+        value: data.password,
+      },
+      {
+        cyData: "newPassword",
+        value: `${data.password}.new`,
+      },
+      {
+        cyData: "newPassword2",
+        value: "Aa1$",
       },
     ];
 
@@ -195,11 +697,11 @@ describe("Page: /profile", () => {
       },
       {
         cyData: "newPassword",
-        value: "b",
+        value: `${data.password}.new`,
       },
       {
         cyData: "newPassword2",
-        value: "not matching",
+        value: `${data.password}.not.matching`,
       },
     ];
 
@@ -231,15 +733,15 @@ describe("Page: /profile", () => {
     const formData = [
       {
         cyData: "oldPassword",
-        value: "incorrect",
+        value: `${data.password}.incorrect`,
       },
       {
         cyData: "newPassword",
-        value: "b",
+        value: `${data.password}.new`,
       },
       {
         cyData: "newPassword2",
-        value: "b",
+        value: `${data.password}.new`,
       },
     ];
 
@@ -271,11 +773,11 @@ describe("Page: /profile", () => {
       },
       {
         cyData: "newPassword",
-        value: "b",
+        value: `${data.password}.new`,
       },
       {
         cyData: "newPassword2",
-        value: "b",
+        value: `${data.password}.new`,
       },
     ];
 
@@ -288,36 +790,6 @@ describe("Page: /profile", () => {
       0,
       "form:success",
       profileTranslations,
-    );
-  });
-
-  it("it should throw: username already exists", () => {
-    CypressTest.setCookie(
-      cy,
-      "user",
-      data.validFrJwt,
-    );
-    const formError = [
-      {
-        id: 0,
-        toastValue: "input:username:error:exists",
-      },
-    ];
-
-    const formData = [
-      {
-        cyData: "username",
-        value: `en.${data.username}`,
-      },
-    ];
-
-    CypressTest.loopFormFill(formData);
-
-    CypressTest.clickCyData(cy, "btn-form");
-
-    CypressTest.loopFormError(
-      formError,
-      formTranslations,
     );
   });
 

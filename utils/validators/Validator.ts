@@ -148,7 +148,7 @@ export default class Validator {
           "form:input:password:error:atLeastOneSpecialCharacter",
         );
 
-      case "password must containt 8 characters":
+      case "password must contain 8 characters":
         return t(
           "form:input:password:error:atLeastHeightCharacters",
         );
@@ -184,7 +184,7 @@ export default class Validator {
           "form:input:password2:error:atLeastOneSpecialCharacter",
         );
 
-      case "password2 must containt 8 characters":
+      case "password2 must contain 8 characters":
         return t(
           "form:input:password2:error:atLeastHeightCharacters",
         );
@@ -206,6 +206,31 @@ export default class Validator {
           "form:input:oldPassword:error:incorrect",
         );
 
+      case "oldPassword must contain one upper case":
+        return t(
+          "form:input:oldPassword:error:atLeastOneUppercase",
+        );
+
+      case "oldPassword must contain one lower case":
+        return t(
+          "form:input:oldPassword:error:atLeastOneLowercase",
+        );
+
+      case "oldPassword must contain one digit":
+        return t(
+          "form:input:oldPassword:error:atLeastOneDigit",
+        );
+
+      case "oldPassword must contain one special character":
+        return t(
+          "form:input:oldPassword:error:atLeastOneSpecialCharacter",
+        );
+
+      case "oldPassword must contain 8 characters":
+        return t(
+          "form:input:oldPassword:error:atLeastHeightCharacters",
+        );
+
       // newPassword
       case "newPassword required":
         return t(
@@ -217,6 +242,31 @@ export default class Validator {
           "form:input:newPassword:error:long",
         );
 
+      case "newPassword must contain one upper case":
+        return t(
+          "form:input:newPassword:error:atLeastOneUppercase",
+        );
+
+      case "newPassword must contain one lower case":
+        return t(
+          "form:input:newPassword:error:atLeastOneLowercase",
+        );
+
+      case "newPassword must contain one digit":
+        return t(
+          "form:input:newPassword:error:atLeastOneDigit",
+        );
+
+      case "newPassword must contain one special character":
+        return t(
+          "form:input:newPassword:error:atLeastOneSpecialCharacter",
+        );
+
+      case "newPassword must contain 8 characters":
+        return t(
+          "form:input:newPassword:error:atLeastHeightCharacters",
+        );
+
       // newPassword2
       case "newPassword2 required":
         return t(
@@ -226,6 +276,31 @@ export default class Validator {
       case "newPassword2 too long":
         return t(
           "form:input:newPassword2:error:long",
+        );
+
+      case "newPassword2 must contain one upper case":
+        return t(
+          "form:input:newPassword2:error:atLeastOneUppercase",
+        );
+
+      case "newPassword2 must contain one lower case":
+        return t(
+          "form:input:newPassword2:error:atLeastOneLowercase",
+        );
+
+      case "newPassword2 must contain one digit":
+        return t(
+          "form:input:newPassword2:error:atLeastOneDigit",
+        );
+
+      case "newPassword2 must contain one special character":
+        return t(
+          "form:input:newPassword2:error:atLeastOneSpecialCharacter",
+        );
+
+      case "newPassword2 must contain 8 characters":
+        return t(
+          "form:input:newPassword2:error:atLeastHeightCharacters",
         );
 
       // newPasswords

@@ -63,9 +63,7 @@ export default class LinkHelper {
 
     if (
       window.location.pathname ===
-      `/${locale}${
-        pathname ? `/${pathname}` : ""
-      }`
+      this.translate(locale, pathname)
     )
       return;
 

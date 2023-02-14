@@ -294,6 +294,7 @@ const FormProfile: FC<IFormProfile> = ({
             mb
             maxLength={60}
             type="password"
+            regex
           />
 
           <FormInput

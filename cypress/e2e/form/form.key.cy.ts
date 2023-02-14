@@ -88,7 +88,7 @@ describe("Page: /form/key", () => {
       "Form-1-User-1",
     ).click();
 
-    cy.wait(2_000);
+    cy.wait(3_000);
 
     CypressTest.getCyData(
       cy,

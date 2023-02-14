@@ -123,27 +123,198 @@ export default class UserValidator extends Validator {
   ) {
     if (!oldPassword) return errors;
 
+    if (
+      !Regex.passwordAtLeastOneUppercase(
+        oldPassword,
+      )
+    )
+      return errors.push({
+        key: "oldPassword",
+        message: t(
+          "form:input:oldPassword:error:atLeastOneUppercase",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneLowercase(
+        oldPassword,
+      )
+    )
+      return errors.push({
+        key: "oldPassword",
+        message: t(
+          "form:input:oldPassword:error:atLeastOneLowercase",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneDigit(oldPassword)
+    )
+      return errors.push({
+        key: "oldPassword",
+        message: t(
+          "form:input:oldPassword:error:atLeastOneDigit",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneSpecialCharacter(
+        oldPassword,
+      )
+    )
+      return errors.push({
+        key: "oldPassword",
+        message: t(
+          "form:input:oldPassword:error:atLeastOneSpecialCharacter",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastHeightCharacters(
+        oldPassword,
+      )
+    )
+      return errors.push({
+        key: "oldPassword",
+        message: t(
+          "form:input:oldPassword:error:atLeastHeightCharacters",
+        ),
+      });
+
     if (!newPassword)
-      errors.push({
+      return errors.push({
         key: "newPassword",
         message: t(
           "form:input:newPassword:error:empty",
         ),
       });
 
-    if (!newPassword2) {
-      errors.push({
+    if (
+      !Regex.passwordAtLeastOneUppercase(
+        newPassword,
+      )
+    )
+      return errors.push({
+        key: "newPassword",
+        message: t(
+          "form:input:newPassword:error:atLeastOneUppercase",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneLowercase(
+        newPassword,
+      )
+    )
+      return errors.push({
+        key: "newPassword",
+        message: t(
+          "form:input:newPassword:error:atLeastOneLowercase",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneDigit(newPassword)
+    )
+      return errors.push({
+        key: "newPassword",
+        message: t(
+          "form:input:newPassword:error:atLeastOneDigit",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneSpecialCharacter(
+        newPassword,
+      )
+    )
+      return errors.push({
+        key: "newPassword",
+        message: t(
+          "form:input:newPassword:error:atLeastOneSpecialCharacter",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastHeightCharacters(
+        newPassword,
+      )
+    )
+      return errors.push({
+        key: "newPassword",
+        message: t(
+          "form:input:newPassword:error:atLeastHeightCharacters",
+        ),
+      });
+
+    if (!newPassword2)
+      return errors.push({
         key: "newPassword2",
         message: t(
           "form:input:newPassword2:error:empty",
         ),
       });
 
-      return errors;
-    }
+    if (
+      !Regex.passwordAtLeastOneUppercase(
+        newPassword2,
+      )
+    )
+      return errors.push({
+        key: "newPassword2",
+        message: t(
+          "form:input:newPassword2:error:atLeastOneUppercase",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneLowercase(
+        newPassword2,
+      )
+    )
+      return errors.push({
+        key: "newPassword2",
+        message: t(
+          "form:input:newPassword2:error:atLeastOneLowercase",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneDigit(newPassword2)
+    )
+      return errors.push({
+        key: "newPassword2",
+        message: t(
+          "form:input:newPassword2:error:atLeastOneDigit",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastOneSpecialCharacter(
+        newPassword2,
+      )
+    )
+      return errors.push({
+        key: "newPassword2",
+        message: t(
+          "form:input:newPassword2:error:atLeastOneSpecialCharacter",
+        ),
+      });
+
+    if (
+      !Regex.passwordAtLeastHeightCharacters(
+        newPassword2,
+      )
+    )
+      return errors.push({
+        key: "newPassword2",
+        message: t(
+          "form:input:newPassword2:error:atLeastHeightCharacters",
+        ),
+      });
 
     if (newPassword !== newPassword2)
-      errors.push({
+      return errors.push({
         key: "newPassword2",
         message: t(
           "form:input:password:new:error:match",

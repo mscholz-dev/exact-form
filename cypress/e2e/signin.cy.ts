@@ -32,6 +32,156 @@ describe("Page: /signin", () => {
     );
   });
 
+  it("it should throw: password must contain one upper case", () => {
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:password:error:atLeastOneUppercase",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "email",
+        value: data.email,
+      },
+      {
+        cyData: "password",
+        value: "a",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: password must contain one lower case", () => {
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:password:error:atLeastOneLowercase",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "email",
+        value: data.email,
+      },
+      {
+        cyData: "password",
+        value: "A",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: password must contain one digit", () => {
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:password:error:atLeastOneDigit",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "email",
+        value: data.email,
+      },
+      {
+        cyData: "password",
+        value: "Aa",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: password must contain one special character", () => {
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:password:error:atLeastOneSpecialCharacter",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "email",
+        value: data.email,
+      },
+      {
+        cyData: "password",
+        value: "Aa1",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
+  it("it should throw: password must contain 8 characters", () => {
+    const formError = [
+      {
+        id: 0,
+        toastValue:
+          "input:password:error:atLeastHeightCharacters",
+      },
+    ];
+
+    const formData = [
+      {
+        cyData: "email",
+        value: data.email,
+      },
+      {
+        cyData: "password",
+        value: "Aa1$",
+      },
+    ];
+
+    CypressTest.loopFormFill(formData);
+
+    CypressTest.clickCyData(cy, "btn-form");
+
+    CypressTest.loopFormError(
+      formError,
+      formTranslations,
+    );
+  });
+
   it("it should throw: user not found", () => {
     const formError = [
       {
@@ -77,7 +227,7 @@ describe("Page: /signin", () => {
       },
       {
         cyData: "password",
-        value: "bad password",
+        value: `${data.password}$`,
       },
     ];
 

@@ -16,6 +16,7 @@
     position: absolute;
     top: 0;
     transition: 1s clip-path ease-out;
+    will-change: clip-path;
     width: 100%;
   }
 
