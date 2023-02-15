@@ -15,13 +15,13 @@ import FormApi from "../../../pages/api/form";
 import { AxiosError } from "axios";
 import FormValidatorClass from "../../../utils/validators/FormValidator";
 import useTranslation from "next-translate/useTranslation";
+import NoDataFound from "../NoDataFound";
 
 // interfaces
 import { ITable } from "../../../utils/interfaces";
 
 // types
 import { TTableBox } from "../../../utils/types";
-import NoDataFound from "../NoDataFound";
 
 // classes
 const Form = new FormClass();
