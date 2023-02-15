@@ -12,7 +12,6 @@ import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/validators/UserValidator";
 import FormClass from "../../../utils/Form";
-import BtnLoader from "../BtnLoader";
 
 // types
 import { TChangeEmailForm } from "../../../utils/types";

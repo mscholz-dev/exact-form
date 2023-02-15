@@ -1,5 +1,6 @@
 .table-body {
   &-row {
+    position: relative;
   }
 
   &-checkbox {
@@ -19,5 +20,9 @@
     border: 1px solid $secondary-color;
     padding: 0 4px;
     vertical-align: middle;
+
+    &-tooltip {
+      cursor: pointer;
+    }
   }
 }

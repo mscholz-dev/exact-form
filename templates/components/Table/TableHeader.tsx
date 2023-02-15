@@ -46,6 +46,12 @@ const TableHeader: FC<ITableHeader> = ({
               : value}
           </th>
         ))}
+
+        <th className="table-header-column">
+          {t(
+            "form-page-key:table:header:tooltip",
+          )}
+        </th>
       </tr>
     </thead>
   );

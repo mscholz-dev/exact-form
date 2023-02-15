@@ -3,7 +3,11 @@
 
   "table:header:ariaDescribedby": "Select all fields",
   "table:header:createdAt": "Created at",
+  "table:header:tooltip": "Manage",
   "table:body:ariaDescribedby": "Select this field",
 
-  "noDataFound:title": "No request found"
+  "noDataFound:title": "No request found",
+
+  "tooltip:edit": "Edit",
+  "tooltip:delete": "Delete"
 }

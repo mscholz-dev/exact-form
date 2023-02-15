@@ -1,0 +1,92 @@
+.tooltip {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: static;
+
+  &-dot {
+    display: flex;
+    height: 4px;
+    justify-content: space-between;
+    width: 18px;
+
+    &-one,
+    &-two,
+    &-three {
+      background: $black;
+      border-radius: 50%;
+      display: inline-block;
+      height: 4px;
+      width: 4px;
+    }
+  }
+
+  &-modal {
+    background-color: $white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    height: 0;
+    right: 0;
+    overflow: hidden;
+    position: absolute;
+    top: calc(50% + 4px);
+    transition: 0.25s width ease-in-out,
+      0.25s height ease-in-out,
+      0s border ease-in-out;
+    width: 0;
+    z-index: 1;
+
+    &-btn {
+      &-edit,
+      &-delete {
+        background: $primary-color;
+        background: linear-gradient(
+          90deg,
+          $primary-color 50%,
+          $white 50%
+        );
+        background-position: right;
+        background-size: 200% 100%;
+        cursor: pointer;
+        height: 50%;
+        font-size: 16px;
+        transition: 0.25s color ease-in-out,
+          0.25s background-position ease-in-out;
+
+        &:hover {
+          background-position: left;
+          color: $white;
+        }
+      }
+
+      &-delete {
+        background: linear-gradient(
+          90deg,
+          $error-color 50%,
+          $white 50%
+        );
+        background-position: right;
+        background-size: 200% 100%;
+        color: $error-color;
+      }
+    }
+
+    &-hr {
+      background: $black;
+      display: inline-block;
+      height: 1px;
+      width: 100%;
+    }
+  }
+
+  &-open {
+    .tooltip {
+      &-modal {
+        border: 2px solid $black;
+        height: 80px;
+        width: 120px;
+      }
+    }
+  }
+}

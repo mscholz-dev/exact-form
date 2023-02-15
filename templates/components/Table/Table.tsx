@@ -22,6 +22,7 @@ import NoDataFound from "../NoDataFound";
 const Form = new FormClass();
 
 const Table: FC<ITable> = ({
+  keyName,
   items,
   title,
   countAll,
@@ -39,6 +40,9 @@ const Table: FC<ITable> = ({
   const [body, setBody] = useState<TTableBox[]>(
     [],
   );
+  const [itemsId, setItemsId] = useState<
+    string[]
+  >([]);
   const [selectAll, setSelectAll] =
     useState(false);
 
@@ -54,6 +58,7 @@ const Table: FC<ITable> = ({
 
     const newHeader: TTableBox = [];
     const newBody: TTableBox[] = [];
+    const newItemsId: string[] = [];
 
     // create table header with unique keys
     for (const object of items) {
@@ -78,6 +83,9 @@ const Table: FC<ITable> = ({
 
     // create body with empty data
     for (const object of items) {
+      // add items id in order
+      newItemsId.push(object.id);
+
       const bodyItem = [];
 
       for (const { value } of newHeader) {
@@ -126,9 +134,10 @@ const Table: FC<ITable> = ({
       ] = false;
     }
 
-    // trigger header and body render
+    // trigger header, body and items id render
     setHeader(newHeader);
     setBody(newBody);
+    setItemsId(newItemsId);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
@@ -187,10 +196,13 @@ const Table: FC<ITable> = ({
                 selectAll={selectAll}
               />
               <TableBody
+                keyName={keyName}
                 body={body}
+                setBody={setBody}
                 selected={selected}
                 setSelected={setSelected}
                 locale={locale}
+                itemsId={itemsId}
               />
             </table>
 

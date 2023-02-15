@@ -86,6 +86,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
       locale={locale}
     >
       <Table
+        keyName={router.query.key as string}
         items={items}
         title={name}
         countAll={countAll}

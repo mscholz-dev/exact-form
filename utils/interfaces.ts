@@ -155,7 +155,9 @@ export interface IFormKey {
 }
 
 export interface ITable {
+  keyName: string;
   items: {
+    id: string;
     data: object;
     created_at: Date;
   }[];
@@ -179,12 +181,15 @@ export interface ITableHeader {
 }
 
 export interface ITableBody {
+  keyName: string;
   body: TTableBox[];
+  setBody: Dispatch<SetStateAction<TTableBox[]>>;
   selected: Record<string, boolean>;
   setSelected: Dispatch<
     SetStateAction<Record<string, boolean>>
   >;
   locale: string;
+  itemsId: string[];
 }
 
 export interface IPaging {
@@ -216,4 +221,17 @@ export interface IFormSelect {
 export interface INoDataFound {
   title: string;
   largeTXS?: boolean;
+}
+
+export interface ITooltip {
+  index: number;
+  open: boolean;
+  handleEditClick: (
+    e: React.MouseEvent,
+    index: number,
+  ) => void;
+  handleDeleteClick: (
+    e: React.MouseEvent,
+    index: number,
+  ) => void;
 }

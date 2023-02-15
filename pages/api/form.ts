@@ -38,4 +38,17 @@ export default class FormApi {
       })
       .then((res) => res);
   }
+
+  static async deleteItem(
+    key: string,
+    id: string,
+  ) {
+    return await api
+      .delete(`/form/${key}/${id}`, {
+        headers: {
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }
