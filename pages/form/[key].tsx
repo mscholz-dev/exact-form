@@ -45,9 +45,11 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
   const [currentPage, setCurrentPage] =
     useState<number>(1);
 
-  const isAuthAndGetSpecificForm = async () => {
+  const isAuthAndGetSpecificForm = async (
+    startLoading: boolean,
+  ) => {
     try {
-      setLoading(true);
+      setLoading(startLoading);
       const res = await FormApi.getSpecificForm(
         router.query.key as string,
         currentPage,
@@ -74,7 +76,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
   };
 
   useEffect(() => {
-    isAuthAndGetSpecificForm();
+    isAuthAndGetSpecificForm(true);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
@@ -102,6 +104,9 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
         loading={loading}
         locale={locale}
         timezone={timezone}
+        isAuthAndGetSpecificForm={() =>
+          isAuthAndGetSpecificForm(false)
+        }
       />
     </Page>
   );

@@ -3,7 +3,7 @@
   width: calc(100% - 1px);
 
   &-title {
-    margin-bottom: 32px;
+    margin-bottom: 12px;
 
     &-label {
       font-size: 32px;
@@ -28,6 +28,12 @@
 
   &-margin-bottom {
     margin-bottom: 64px;
+  }
+
+  &-btn {
+    position: relative;
+    height: 40px;
+    margin-bottom: 12px;
   }
 }
 

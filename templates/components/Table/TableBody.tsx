@@ -21,6 +21,7 @@ const TableBody: FC<ITableBody> = ({
   handleTooltipEditClick,
   handleTooltipClick,
   tooltips,
+  itemsId,
 }) => {
   const { t } = useTranslation();
 
@@ -44,13 +45,13 @@ const TableBody: FC<ITableBody> = ({
               handleChange={(e) =>
                 Form.handleCheckboxChange(
                   e,
-                  `selectRow${index}`,
+                  itemsId[index],
                   setSelected,
                   selected,
                 )
               }
               value={
-                selected[`selectRow${index}`]
+                selected[itemsId[index]] || false
               }
               ariaDescribedby={t(
                 "form-page-key:table:body:ariaDescribedby",

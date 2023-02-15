@@ -11,5 +11,8 @@
   "tooltip:edit": "Modifier",
   "tooltip:delete": "Supprimer",
 
-  "delete:success": "Ligne supprimée"
+  "delete:success": "Ligne supprimée",
+  "delete:many:success": "Lignes sélectionnées supprimées",
+
+  "btn:delete": "Supprimer"
 }

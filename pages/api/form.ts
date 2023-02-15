@@ -51,4 +51,17 @@ export default class FormApi {
       })
       .then((res) => res);
   }
+
+  static async deleteManyItem(
+    key: string,
+    ids: string,
+  ) {
+    return await api
+      .delete(`/form/${key}/items?${ids}`, {
+        headers: {
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }

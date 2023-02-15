@@ -16,6 +16,7 @@ import { AxiosError } from "axios";
 import FormValidatorClass from "../../../utils/validators/FormValidator";
 import useTranslation from "next-translate/useTranslation";
 import NoDataFound from "../NoDataFound";
+import IconTrash from "../../../public/icons/trash.svg";
 
 // interfaces
 import { ITable } from "../../../utils/interfaces";
@@ -40,6 +41,7 @@ const Table: FC<ITable> = ({
   loading,
   locale,
   timezone,
+  isAuthAndGetSpecificForm,
 }) => {
   const { t } = useTranslation();
 
@@ -97,6 +99,8 @@ const Table: FC<ITable> = ({
         itemsId[index],
       );
 
+      await isAuthAndGetSpecificForm();
+
       // close current tooltip
       setTooltips({});
 
@@ -110,6 +114,17 @@ const Table: FC<ITable> = ({
       // remove deleted item
       body.splice(index, 1);
       setBody([...body]);
+
+      // reset selected rows
+      setSelectAll(false);
+
+      const newSelected: Record<string, boolean> =
+        {};
+
+      for (const item of itemsId)
+        newSelected[item] = false;
+
+      setSelected(newSelected);
 
       // if all data has been deleted
       if (body.length === 0 && currentPage > 1)
@@ -140,12 +155,105 @@ const Table: FC<ITable> = ({
     }
   };
 
+  const handleMultipleDeleteClick =
+    async (): Promise<void> => {
+      const deleteItems: string[] = [];
+
+      for (const item in selected)
+        if (selected[item])
+          deleteItems.push(item);
+
+      // is deleteItems empty
+      if (!deleteItems.length) return;
+
+      const deleteItemsQuery = `${deleteItems.join(
+        "=true&",
+      )}=true`;
+
+      try {
+        await FormApi.deleteManyItem(
+          keyName,
+          deleteItemsQuery,
+        );
+
+        await isAuthAndGetSpecificForm();
+
+        // close current tooltip
+        setTooltips({});
+
+        // update countAll
+        setCountAll(
+          (countAll as number) -
+            deleteItems.length,
+        );
+
+        // remove deleted items id and body
+        const newItemsId = [];
+        const newBody = [];
+
+        for (let i = 0; i < itemsId.length; i++) {
+          if (!deleteItems.includes(itemsId[i])) {
+            newItemsId.push(itemsId[i]);
+            newBody.push(body[i]);
+          }
+        }
+
+        setItemsId(newItemsId);
+        setBody(newBody);
+
+        // reset selected rows
+        setSelectAll(false);
+
+        const newSelected: Record<
+          string,
+          boolean
+        > = {};
+
+        for (const item of itemsId)
+          newSelected[item] = false;
+
+        setSelected(newSelected);
+
+        // if all data has been deleted
+        if (
+          newBody.length === 0 &&
+          currentPage > 1
+        )
+          setCurrentPage(currentPage - 1);
+
+        const successMessage = t(
+          "form-page-key:delete:many:success",
+        );
+        toast.success(successMessage);
+      } catch (err: unknown) {
+        if (err instanceof AxiosError) {
+          const errorMessage =
+            FormValidator.errorApiMessage(
+              err?.response?.data.message,
+              t,
+            );
+          toast.error(errorMessage);
+          return;
+        }
+
+        // error not expected
+        console.error(err);
+        const errorMessage = t(
+          "form:error:random",
+        );
+        toast.error(errorMessage);
+        return;
+      }
+    };
+
   useEffect(() => {
     if (!items.length) return;
 
     const newHeader: TTableBox = [];
     const newBody: TTableBox[] = [];
     const newItemsId: string[] = [];
+    const newSelected: Record<string, boolean> =
+      {};
 
     // create table header with unique keys
     for (const object of items) {
@@ -214,17 +322,15 @@ const Table: FC<ITable> = ({
       newBody.push(bodyItem);
 
       // add selectable checkbox
-      selected[
-        `selectRow${
-          Object.keys(selected).length - 1
-        }`
-      ] = false;
+      newSelected[object.id] = false;
     }
 
-    // trigger header, body and items id render
+    // trigger state render
     setHeader(newHeader);
     setBody(newBody);
     setItemsId(newItemsId);
+    setSelected(newSelected);
+    setSelectAll(false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
@@ -254,6 +360,27 @@ const Table: FC<ITable> = ({
             : `(${countAll})`}
         </span>
       </h1>
+
+      <div className="table-btn">
+        <button
+          className={`btn-delete${
+            Object.values(selected).some(
+              (boolean) => boolean === true,
+            )
+              ? " btn-delete-active"
+              : ""
+          }`}
+          onClick={handleMultipleDeleteClick}
+          data-cy="table-btn-delete"
+        >
+          <span className="btn-delete-icon">
+            <IconTrash />
+          </span>
+          <span className="btn-delete-title">
+            {t("form-page-key:btn:delete")}
+          </span>
+        </button>
+      </div>
 
       {loading && (
         <span className="table-loader">
@@ -303,6 +430,7 @@ const Table: FC<ITable> = ({
                 handleTooltipClick={
                   handleTooltipClick
                 }
+                itemsId={itemsId}
               />
             </table>
 

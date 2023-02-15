@@ -175,6 +175,7 @@ export interface ITable {
   loading: boolean;
   locale: string;
   timezone: string;
+  isAuthAndGetSpecificForm: () => Promise<void>;
 }
 
 export interface ITableHeader {
@@ -200,6 +201,7 @@ export interface ITableBody {
   ) => void;
   handleTooltipClick: (index: number) => void;
   tooltips: Record<number, boolean>;
+  itemsId: string[];
 }
 
 export interface IPaging {

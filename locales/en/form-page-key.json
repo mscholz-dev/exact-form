@@ -11,5 +11,8 @@
   "tooltip:edit": "Edit",
   "tooltip:delete": "Delete",
 
-  "delete:success": "Row deleted"
+  "delete:success": "Row deleted",
+  "delete:many:success": "Rows selected deleted",
+
+  "btn:delete": "Delete"
 }

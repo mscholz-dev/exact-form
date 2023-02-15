@@ -147,13 +147,137 @@ describe("Page: /form/key", () => {
       cy,
       "table-body",
       "tr",
-      49,
+      50,
     );
 
     CypressTest.successToastContains(
       cy,
       0,
       "delete:success",
+      formPageKeyTranslations,
+    );
+  });
+
+  it("it should delete 3 form item with checkbox", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    cy.wait(3_000);
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      50,
+    );
+
+    CypressTest.getCyData(cy, "selectRow0").click(
+      {
+        force: true,
+      },
+    );
+
+    CypressTest.getCyData(cy, "selectRow1").click(
+      {
+        force: true,
+      },
+    );
+
+    CypressTest.getCyData(cy, "selectRow2").click(
+      {
+        force: true,
+      },
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "table-btn-delete",
+    ).click({ force: true });
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      50,
+    );
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "delete:many:success",
+      formPageKeyTranslations,
+    );
+  });
+
+  it("it should delete all form item with header checkbox", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    cy.wait(3_000);
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      50,
+    );
+
+    CypressTest.getCyData(cy, "selectAll").click({
+      force: true,
+    });
+
+    CypressTest.getCyData(
+      cy,
+      "table-btn-delete",
+    ).click({ force: true });
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      6,
+    );
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "delete:many:success",
       formPageKeyTranslations,
     );
   });
