@@ -1,5 +1,5 @@
 import CypressTestClass from "../../../utils/CypressTest";
-// import formTranslations from "../../../locales/fr/form.json";
+import formPageKeyTranslations from "../../../locales/fr/form-page-key.json";
 import data from "../../../utils/data";
 
 // classes
@@ -100,6 +100,61 @@ describe("Page: /form/key", () => {
       "table-body",
       "tr",
       10,
+    );
+  });
+
+  it("it should delete the first form item with tooltip", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    cy.wait(3_000);
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      50,
+    );
+
+    CypressTest.getCyData(cy, "tooltip-0").click({
+      force: true,
+    });
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-delete-0",
+    ).click({ force: true });
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      49,
+    );
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "delete:success",
+      formPageKeyTranslations,
     );
   });
 });

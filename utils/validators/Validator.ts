@@ -404,6 +404,17 @@ export default class Validator {
       case "key not found":
         return t("form:key:error:found");
 
+      // owner
+      case "owner role required":
+        return t("form:role:owner:required");
+
+      // id
+      case "id invalid":
+        return t("form:error:random");
+
+      case "id not found":
+        return t("form:error:random");
+
       // default
       default:
         return t("form:error:random");

@@ -138,5 +138,7 @@
   "regex:title:atLeastOneLowercase": "Au moins une minuscule",
   "regex:title:atLeastOneDigit": "au moins un chiffre",
   "regex:title:atLeastOneSpecialCharacter": "Au moins un caractère spécial",
-  "regex:title:atLeastHeightCharacters": "Au moins 8 caractères"
+  "regex:title:atLeastHeightCharacters": "Au moins 8 caractères",
+
+  "role:owner:required": "Vous devez être le propriétaire pour effectuer cette action"
 }

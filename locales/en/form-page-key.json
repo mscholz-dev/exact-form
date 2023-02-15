@@ -9,5 +9,7 @@
   "noDataFound:title": "No request found",
 
   "tooltip:edit": "Edit",
-  "tooltip:delete": "Delete"
+  "tooltip:delete": "Delete",
+
+  "delete:success": "Row deleted"
 }

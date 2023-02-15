@@ -10,6 +10,11 @@ import Paging from "../Paging";
 import Wrapper from "../../layouts/Wrapper";
 import IconLoader from "../../../public/icons/loader.svg";
 import timezoneData from "../../../utils/timezone.json";
+import { toast } from "react-toastify";
+import FormApi from "../../../pages/api/form";
+import { AxiosError } from "axios";
+import FormValidatorClass from "../../../utils/validators/FormValidator";
+import useTranslation from "next-translate/useTranslation";
 
 // interfaces
 import { ITable } from "../../../utils/interfaces";
@@ -20,12 +25,14 @@ import NoDataFound from "../NoDataFound";
 
 // classes
 const Form = new FormClass();
+const FormValidator = new FormValidatorClass();
 
 const Table: FC<ITable> = ({
   keyName,
   items,
   title,
   countAll,
+  setCountAll,
   currentPage,
   setCurrentPage,
   maxPage,
@@ -34,6 +41,8 @@ const Table: FC<ITable> = ({
   locale,
   timezone,
 }) => {
+  const { t } = useTranslation();
+
   const [header, setHeader] = useState<TTableBox>(
     [],
   );
@@ -52,6 +61,84 @@ const Table: FC<ITable> = ({
   >({
     selectAll: false,
   });
+
+  const [tooltips, setTooltips] = useState<
+    Record<number, boolean>
+  >({});
+
+  const handleTooltipClick = (index: number) => {
+    const newTooltips: Record<number, boolean> =
+      [];
+
+    for (const item of Object.keys(tooltips))
+      newTooltips[Number(item)] = false;
+
+    newTooltips[index] = !tooltips[index];
+
+    setTooltips(newTooltips);
+  };
+
+  const handleTooltipEditClick = (
+    e: React.MouseEvent,
+    index: number,
+  ) => {
+    e.stopPropagation();
+  };
+
+  const handleTooltipDeleteClick = async (
+    e: React.MouseEvent,
+    index: number,
+  ): Promise<void> => {
+    e.stopPropagation();
+
+    try {
+      await FormApi.deleteItem(
+        keyName,
+        itemsId[index],
+      );
+
+      // close current tooltip
+      setTooltips({});
+
+      // update countAll
+      setCountAll((countAll as number) - 1);
+
+      // remove deleted item id
+      itemsId.splice(index, 1);
+      setItemsId([...itemsId]);
+
+      // remove deleted item
+      body.splice(index, 1);
+      setBody([...body]);
+
+      // if all data has been deleted
+      if (body.length === 0 && currentPage > 1)
+        setCurrentPage(currentPage - 1);
+
+      const successMessage = t(
+        "form-page-key:delete:success",
+      );
+      toast.success(successMessage);
+
+      return;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+        toast.error(errorMessage);
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+      return;
+    }
+  };
 
   useEffect(() => {
     if (!items.length) return;
@@ -184,7 +271,13 @@ const Table: FC<ITable> = ({
         countAll !== null &&
         items.length !== 0 && (
           <>
-            <table className="table">
+            <table
+              className={`table${
+                maxPage <= 1
+                  ? " table-margin-bottom"
+                  : ""
+              }`}
+            >
               <TableHeader
                 header={header}
                 handleBooleanChange={() =>
@@ -196,13 +289,20 @@ const Table: FC<ITable> = ({
                 selectAll={selectAll}
               />
               <TableBody
-                keyName={keyName}
                 body={body}
-                setBody={setBody}
                 selected={selected}
                 setSelected={setSelected}
                 locale={locale}
-                itemsId={itemsId}
+                handleTooltipDeleteClick={
+                  handleTooltipDeleteClick
+                }
+                handleTooltipEditClick={
+                  handleTooltipEditClick
+                }
+                tooltips={tooltips}
+                handleTooltipClick={
+                  handleTooltipClick
+                }
               />
             </table>
 

@@ -23,19 +23,24 @@
 
   &-modal {
     background-color: $white;
-    border-radius: 4px;
-    display: flex;
-    flex-direction: column;
-    height: 0;
+    border-radius: 2px;
+    height: 0px;
     right: 0;
     overflow: hidden;
     position: absolute;
     top: calc(50% + 4px);
     transition: 0.25s width ease-in-out,
-      0.25s height ease-in-out,
-      0s border ease-in-out;
-    width: 0;
+      0.25s height ease-in-out;
+    width: 0px;
     z-index: 1;
+
+    &-border {
+      border: 2px solid $black;
+      border-radius: 4px;
+      display: flex;
+      height: calc(100% - 4px);
+      flex-direction: column;
+    }
 
     &-btn {
       &-edit,
@@ -83,7 +88,6 @@
   &-open {
     .tooltip {
       &-modal {
-        border: 2px solid $black;
         height: 80px;
         width: 120px;
       }

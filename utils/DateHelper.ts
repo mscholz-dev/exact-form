@@ -17,6 +17,8 @@ export default class DateHelper {
         break;
     }
 
-    return moment(date).format("HH:mm, DD MMMM");
+    return moment(new Date(date)).format(
+      "HH:mm, DD MMMM",
+    );
   }
 }

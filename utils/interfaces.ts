@@ -163,6 +163,9 @@ export interface ITable {
   }[];
   title: string;
   countAll: number | null;
+  setCountAll: Dispatch<
+    SetStateAction<null | number>
+  >;
   currentPage: number;
   setCurrentPage: Dispatch<
     SetStateAction<number>
@@ -181,15 +184,22 @@ export interface ITableHeader {
 }
 
 export interface ITableBody {
-  keyName: string;
   body: TTableBox[];
-  setBody: Dispatch<SetStateAction<TTableBox[]>>;
   selected: Record<string, boolean>;
   setSelected: Dispatch<
     SetStateAction<Record<string, boolean>>
   >;
   locale: string;
-  itemsId: string[];
+  handleTooltipDeleteClick: (
+    e: React.MouseEvent,
+    index: number,
+  ) => void;
+  handleTooltipEditClick: (
+    e: React.MouseEvent,
+    index: number,
+  ) => void;
+  handleTooltipClick: (index: number) => void;
+  tooltips: Record<number, boolean>;
 }
 
 export interface IPaging {

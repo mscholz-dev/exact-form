@@ -1,12 +1,26 @@
 .table-body {
   &-row {
     position: relative;
+
+    &-active {
+      .table-body {
+        &-checkbox,
+        &-column {
+          border-bottom: 1px solid
+            $primary-color-light;
+        }
+      }
+    }
+  }
+
+  &-checkbox,
+  &-column {
+    border: 1px solid $secondary-color;
+    vertical-align: middle;
+    transition: 0.25s border-bottom ease-in-out;
   }
 
   &-checkbox {
-    border: 1px solid $secondary-color;
-    vertical-align: middle;
-
     label {
       align-items: center;
       display: flex;
@@ -17,9 +31,7 @@
 
   &-column {
     @include ellipsis;
-    border: 1px solid $secondary-color;
     padding: 0 4px;
-    vertical-align: middle;
 
     &-tooltip {
       cursor: pointer;

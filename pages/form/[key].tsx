@@ -36,7 +36,9 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
   const [name, setName] = useState("");
   const [timezone, setTimezone] = useState("");
   const [items, setItems] = useState([]);
-  const [countAll, setCountAll] = useState(null);
+  const [countAll, setCountAll] = useState<
+    null | number
+  >(null);
   const [loading, setLoading] = useState(true);
 
   // paging
@@ -90,6 +92,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
         items={items}
         title={name}
         countAll={countAll}
+        setCountAll={setCountAll}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         maxPage={(countAll || 0) / 50}

@@ -25,6 +25,10 @@
     transition: 0.25s fill ease-in-out;
     width: 128px;
   }
+
+  &-margin-bottom {
+    margin-bottom: 64px;
+  }
 }
 
 @keyframes rotate {

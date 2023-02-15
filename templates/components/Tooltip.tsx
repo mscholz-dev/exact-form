@@ -25,23 +25,26 @@ const Tooltip: FC<ITooltip> = ({
       </div>
 
       <div className="tooltip-modal">
-        <button
-          className="tooltip-modal-btn-edit"
-          onClick={(e) =>
-            handleEditClick(e, index)
-          }
-        >
-          {t("form-page-key:tooltip:edit")}
-        </button>
-        <span className="tooltip-modal-hr" />
-        <button
-          className="tooltip-modal-btn-delete"
-          onClick={(e) =>
-            handleDeleteClick(e, index)
-          }
-        >
-          {t("form-page-key:tooltip:delete")}
-        </button>
+        <div className="tooltip-modal-border">
+          <button
+            className="tooltip-modal-btn-edit"
+            onClick={(e) =>
+              handleEditClick(e, index)
+            }
+          >
+            {t("form-page-key:tooltip:edit")}
+          </button>
+          <span className="tooltip-modal-hr" />
+          <button
+            className="tooltip-modal-btn-delete"
+            onClick={(e) =>
+              handleDeleteClick(e, index)
+            }
+            data-cy={`tooltip-delete-${index}`}
+          >
+            {t("form-page-key:tooltip:delete")}
+          </button>
+        </div>
       </div>
     </div>
   );
