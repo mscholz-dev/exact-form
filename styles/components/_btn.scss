@@ -204,7 +204,7 @@
       justify-content: center;
       position: absolute;
       right: 12px;
-      top: 12px;
+      top: 24px;
       transition: 0.5s transform
         $reverse-cubic-bezier;
       width: 32px;
@@ -212,6 +212,16 @@
 
       &:hover {
         transform: rotate(180deg);
+      }
+
+      @include responsive(t-xs) {
+        right: 24px;
+        top: 24px;
+      }
+
+      @include responsive(d-xs) {
+        right: 32px;
+        top: 32px;
       }
     }
 

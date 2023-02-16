@@ -5,7 +5,7 @@
   display: flex;
   left: 50%;
   max-height: calc(100% - 120px);
-  max-width: 400px;
+  max-width: 500px;
   opacity: 0;
   overflow: hidden;
   pointer-events: none;
@@ -15,6 +15,10 @@
   transition: 0.25s opacity ease-in-out;
   width: 90%;
   z-index: 2;
+
+  @include responsive(d-xs) {
+    max-width: 600px;
+  }
 
   &-filter {
     background: $black;
@@ -38,8 +42,16 @@
   &-content {
     overflow-y: scroll;
     max-height: calc(100% - 120px - 24px);
-    padding: 12px;
+    padding: 24px 12px;
     width: 100%;
+
+    @include responsive(t-xs) {
+      padding: 24px;
+    }
+
+    @include responsive(d-xs) {
+      padding: 32px;
+    }
   }
 
   &-title {
