@@ -429,6 +429,9 @@ export default class Validator {
       case "data not equal":
         return t("form:data:error:equal");
 
+      case "data too long":
+        return t("form:data:error:long");
+
       // default
       default:
         return t("form:error:random");

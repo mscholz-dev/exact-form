@@ -143,5 +143,6 @@
 
   "role:owner:required": "You must be the owner to perform this action",
 
-  "data:error:equal": "The data structure must be the same as the existing one"
+  "data:error:equal": "The data structure must be the same as the existing one",
+  "data:error:long": "Each field must contain 1 000 characters maximum"
 }

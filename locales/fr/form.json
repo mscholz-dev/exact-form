@@ -143,5 +143,6 @@
 
   "role:owner:required": "Vous devez être le propriétaire pour effectuer cette action",
 
-  "data:error:equal": "La structure de donnée doit être la même que celle déjà existante"
+  "data:error:equal": "La structure de donnée doit être la même que celle déjà existante",
+  "data:error:long": "Chaque champ doit contenir 1 000 caractères maximum"
 }
