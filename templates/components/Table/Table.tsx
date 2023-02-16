@@ -1,5 +1,6 @@
 import React, {
   FC,
+  SyntheticEvent,
   useEffect,
   useState,
 } from "react";
@@ -17,6 +18,10 @@ import FormValidatorClass from "../../../utils/validators/FormValidator";
 import useTranslation from "next-translate/useTranslation";
 import NoDataFound from "../NoDataFound";
 import IconTrash from "../../../public/icons/trash.svg";
+import DateHelperClass from "../../../utils/DateHelper";
+import IconDatabase from "../../../public/icons/database.svg";
+import FormInput from "../Form/FormInput";
+import Modal from "../Modal";
 
 // interfaces
 import { ITable } from "../../../utils/interfaces";
@@ -27,6 +32,7 @@ import { TTableBox } from "../../../utils/types";
 // classes
 const Form = new FormClass();
 const FormValidator = new FormValidatorClass();
+const DateHelper = new DateHelperClass();
 
 const Table: FC<ITable> = ({
   keyName,
@@ -68,6 +74,17 @@ const Table: FC<ITable> = ({
     Record<number, boolean>
   >({});
 
+  const [activeModal, setActiveModal] =
+    useState<boolean>(false);
+
+  const [contentForm, setContentForm] = useState<
+    Record<string, string>
+  >({});
+
+  const [editIndex, setEditIndex] = useState<
+    null | number
+  >(null);
+
   const handleTooltipClick = (index: number) => {
     const newTooltips: Record<number, boolean> =
       [];
@@ -85,6 +102,39 @@ const Table: FC<ITable> = ({
     index: number,
   ) => {
     e.stopPropagation();
+
+    // store current edit index
+    setEditIndex(index);
+
+    // close current tooltip
+    setTooltips({});
+
+    // display modal
+    setActiveModal(true);
+
+    // reset selected rows
+    setSelectAll(false);
+
+    const newSelected: Record<string, boolean> =
+      {};
+
+    for (const item of itemsId)
+      newSelected[item] = false;
+
+    setSelected(newSelected);
+
+    // delete header reference
+    const newHeader = [...header];
+    newHeader.pop();
+
+    // created content form structure
+    const newContentForm: Record<string, string> =
+      {};
+    for (let i = 0; i < newHeader.length; i++)
+      newContentForm[newHeader[i].value] =
+        body[index][i].value;
+
+    setContentForm(newContentForm);
   };
 
   const handleTooltipDeleteClick = async (
@@ -245,6 +295,66 @@ const Table: FC<ITable> = ({
         return;
       }
     };
+
+  const handleEditSubmit = async (
+    e: SyntheticEvent,
+  ) => {
+    e.preventDefault();
+
+    try {
+      await FormApi.editItem(
+        keyName,
+        itemsId[editIndex as number],
+        contentForm,
+      );
+
+      await isAuthAndGetSpecificForm();
+
+      // close current tooltip
+      setTooltips({});
+
+      // reset selected rows
+      setSelectAll(false);
+
+      const newSelected: Record<string, boolean> =
+        {};
+
+      for (const item of itemsId)
+        newSelected[item] = false;
+
+      setSelected(newSelected);
+
+      // hide modal
+      setActiveModal(false);
+
+      // reset contentForm
+      setContentForm({});
+
+      // reset editIndex
+      setEditIndex(null);
+
+      const successMessage = t(
+        "form-page-key:edit:success",
+      );
+      toast.success(successMessage);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+        toast.error(errorMessage);
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+      return;
+    }
+  };
 
   useEffect(() => {
     if (!items.length) return;
@@ -438,6 +548,90 @@ const Table: FC<ITable> = ({
               current={currentPage}
               setCurrent={setCurrentPage}
               max={maxPage}
+            />
+
+            <Modal
+              active={activeModal}
+              setActive={setActiveModal}
+              content={
+                editIndex !== null ? (
+                  <>
+                    <h2 className="modal-title">
+                      {t(
+                        "form-page-key:table:header:createdAt",
+                      )}{" "}
+                      {DateHelper.parseCreatedAt(
+                        body[editIndex][
+                          body[editIndex].length -
+                            1
+                        ].value,
+                        locale,
+                      )}
+                    </h2>
+                    <form
+                      method="PUT"
+                      onSubmit={handleEditSubmit}
+                    >
+                      {(
+                        [
+                          ...body,
+                        ].pop() as TTableBox
+                      ).map(({ id }) => {
+                        if (
+                          header[id].value ===
+                          "created_at"
+                        )
+                          return;
+
+                        return (
+                          <FormInput
+                            key={id}
+                            icon={
+                              <IconDatabase />
+                            }
+                            id={header[id].value}
+                            handleChange={(e) =>
+                              Form.handleChange(
+                                e,
+                                header[id].value,
+                                setContentForm,
+                                contentForm,
+                              )
+                            }
+                            value={
+                              contentForm[
+                                header[id].value
+                              ]
+                            }
+                            ariaDescribedby={`${t(
+                              "form-page-key:input:edit:ariaDescribedby",
+                            )} ${
+                              header[id].value
+                            }`}
+                            title={
+                              header[id].value
+                            }
+                            mb
+                            maxLength={100}
+                            type="text"
+                          />
+                        );
+                      })}
+
+                      <button
+                        className="btn-modal-edit"
+                        data-cy="modal-btn-edit"
+                      >
+                        {t(
+                          "form-page-key:btn:edit",
+                        )}
+                      </button>
+                    </form>
+                  </>
+                ) : (
+                  <></>
+                )
+              }
             />
           </>
         )}

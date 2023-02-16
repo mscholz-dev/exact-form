@@ -64,4 +64,18 @@ export default class FormApi {
       })
       .then((res) => res);
   }
+
+  static async editItem(
+    key: string,
+    id: string,
+    data: Record<string, string>,
+  ) {
+    return await api
+      .put(`/form/${key}/${id}`, data, {
+        headers: {
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }

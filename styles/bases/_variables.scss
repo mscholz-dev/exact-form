@@ -32,6 +32,14 @@ $primary-color: #810ca8;
 
 $secondary-color: #3a4750;
 
+// cubic-bezier
+$reverse-cubic-bezier: cubic-bezier(
+  0.44,
+  1.02,
+  0.66,
+  1.5
+);
+
 // fonts
 $primary-font-regular: "primaryRegular";
 $primary-font-regular-path: "/fonts/primary/regular.ttf";

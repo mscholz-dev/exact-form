@@ -1,0 +1,58 @@
+.modal {
+  background: $white;
+  border: 2px solid $black;
+  border-radius: 4px;
+  display: flex;
+  left: 50%;
+  max-height: calc(100% - 120px);
+  max-width: 400px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.25s opacity ease-in-out;
+  width: 90%;
+  z-index: 2;
+
+  &-filter {
+    background: $black;
+    height: 101%;
+    left: 50%;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.25s opacity ease-in-out;
+    width: 101%;
+    z-index: 2;
+
+    &-active {
+      opacity: 0.5;
+      pointer-events: all;
+    }
+  }
+
+  &-content {
+    overflow-y: scroll;
+    max-height: calc(100% - 120px - 24px);
+    padding: 12px;
+    width: 100%;
+  }
+
+  &-title {
+    align-items: center;
+    display: flex;
+    font-size: 24px;
+    height: 32px;
+    margin-bottom: 24px;
+    max-width: calc(100% - 48px);
+  }
+
+  &-active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}

@@ -13,6 +13,10 @@
 
   "delete:success": "Row deleted",
   "delete:many:success": "Rows selected deleted",
+  "edit:success": "Row edited",
 
-  "btn:delete": "Delete"
+  "btn:delete": "Delete",
+  "btn:edit": "Edit",
+
+  "input:edit:ariaDescribedby": "Edit the value of"
 }

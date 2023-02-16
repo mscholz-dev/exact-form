@@ -404,6 +404,9 @@ export default class Validator {
       case "key not found":
         return t("form:key:error:found");
 
+      case "key created_at is forbidden":
+        return t("form:key:error:created_at");
+
       // owner
       case "owner role required":
         return t("form:role:owner:required");
@@ -421,6 +424,10 @@ export default class Validator {
 
       case "query invalid":
         return t("form:error:random");
+
+      // data
+      case "data not equal":
+        return t("form:data:error:equal");
 
       // default
       default:

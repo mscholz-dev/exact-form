@@ -133,6 +133,7 @@
   "token:error:found": "Veuillez refaire une demande de changement d'email",
 
   "key:error:found": "Clé non trouvée",
+  "key:error:created_at": "Clé created_at interdite",
 
   "regex:title:atLeastOneUppercase": "Au moins une majuscule",
   "regex:title:atLeastOneLowercase": "Au moins une minuscule",
@@ -140,5 +141,7 @@
   "regex:title:atLeastOneSpecialCharacter": "Au moins un caractère spécial",
   "regex:title:atLeastHeightCharacters": "Au moins 8 caractères",
 
-  "role:owner:required": "Vous devez être le propriétaire pour effectuer cette action"
+  "role:owner:required": "Vous devez être le propriétaire pour effectuer cette action",
+
+  "data:error:equal": "La structure de donnée doit être la même que celle déjà existante"
 }

@@ -281,4 +281,70 @@ describe("Page: /form/key", () => {
       formPageKeyTranslations,
     );
   });
+
+  it("it should update a form item", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    cy.wait(3_000);
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      6,
+    );
+
+    CypressTest.getCyData(cy, "tooltip-0").click({
+      force: true,
+    });
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-edit-0",
+    ).click({ force: true });
+
+    CypressTest.inputFill(
+      cy,
+      "data1",
+      "NEW VALUE",
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "modal-btn-edit",
+    ).click({ force: true });
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      6,
+    );
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "edit:success",
+      formPageKeyTranslations,
+    );
+  });
 });

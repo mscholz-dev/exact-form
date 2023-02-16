@@ -247,3 +247,9 @@ export interface ITooltip {
     index: number,
   ) => void;
 }
+
+export interface IModal {
+  active: boolean;
+  setActive: Dispatch<SetStateAction<boolean>>;
+  content: JSX.Element;
+}

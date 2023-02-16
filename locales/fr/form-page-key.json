@@ -13,6 +13,10 @@
 
   "delete:success": "Ligne supprimée",
   "delete:many:success": "Lignes sélectionnées supprimées",
+  "edit:success": "Ligne modifiée",
 
-  "btn:delete": "Supprimer"
+  "btn:delete": "Supprimer",
+  "btn:edit": "Modifier",
+
+  "input:edit:ariaDescribedby": "Modifier la valeur de"
 }

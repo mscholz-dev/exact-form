@@ -133,6 +133,7 @@
   "token:error:found": "Please redo an email change request",
 
   "key:error:found": "Key not found",
+  "key:error:created_at": "Key created_at is forbidden",
 
   "regex:title:atLeastOneUppercase": "At least one upper case",
   "regex:title:atLeastOneLowercase": "At least one lower case",
@@ -140,5 +141,7 @@
   "regex:title:atLeastOneSpecialCharacter": "At least one special character",
   "regex:title:atLeastHeightCharacters": "At least height characters",
 
-  "role:owner:required": "You must be the owner to perform this action"
+  "role:owner:required": "You must be the owner to perform this action",
+
+  "data:error:equal": "The data structure must be the same as the existing one"
 }

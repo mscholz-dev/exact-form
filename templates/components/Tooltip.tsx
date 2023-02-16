@@ -31,6 +31,7 @@ const Tooltip: FC<ITooltip> = ({
             onClick={(e) =>
               handleEditClick(e, index)
             }
+            data-cy={`tooltip-edit-${index}`}
           >
             {t("form-page-key:tooltip:edit")}
           </button>

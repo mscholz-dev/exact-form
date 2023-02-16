@@ -193,6 +193,33 @@
       }
     }
   }
+
+  &-modal {
+    &-close {
+      align-items: center;
+      cursor: pointer;
+      display: flex;
+      fill: $black;
+      height: 32px;
+      justify-content: center;
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      transition: 0.5s transform
+        $reverse-cubic-bezier;
+      width: 32px;
+      z-index: 1;
+
+      &:hover {
+        transform: rotate(180deg);
+      }
+    }
+
+    &-edit {
+      @extend %btn;
+      font-size: 18px;
+    }
+  }
 }
 
 @keyframes rotate {
