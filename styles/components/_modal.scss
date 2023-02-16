@@ -55,6 +55,25 @@
     }
   }
 
+  &-data {
+    border-top: 1px solid $black;
+    margin-top: 12px;
+    padding-top: 12px;
+
+    &-title {
+      font-size: 20px;
+    }
+
+    &-text {
+      font-size: 16px;
+      margin-bottom: 12px;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
   &-active {
     opacity: 1;
     pointer-events: all;

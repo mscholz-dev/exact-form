@@ -161,6 +161,13 @@ export interface ITable {
     data: object;
     created_at: Date;
     updated_at: Date;
+    user_agent: string;
+    referer_url: string;
+    geo_localisation: {
+      city: string;
+      region: string;
+      country: string;
+    };
   }[];
   title: string;
   countAll: number | null;

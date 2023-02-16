@@ -19,5 +19,10 @@
   "btn:delete": "Supprimer",
   "btn:edit": "Modifier",
 
-  "input:edit:ariaDescribedby": "Modifier la valeur de"
+  "input:edit:ariaDescribedby": "Modifier la valeur de",
+
+  "modal:user_agent": "Agent",
+  "modal:referer_url": "URL de référence",
+  "modal:geo_localisation": "Ville / Region / Pays",
+  "modal:noData": "Non renseigné"
 }

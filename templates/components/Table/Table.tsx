@@ -492,6 +492,33 @@ const Table: FC<ITable> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectAll]);
 
+  useEffect(() => {
+    // close current tooltip
+    setTooltips({});
+
+    // reset selected rows
+    setSelectAll(false);
+
+    const newSelected: Record<string, boolean> =
+      {};
+
+    for (const item of itemsId)
+      newSelected[item] = false;
+
+    setSelected(newSelected);
+
+    // hide modal
+    setActiveModal(false);
+
+    // reset contentForm
+    setContentForm({});
+
+    // reset editIndex
+    setEditIndex(null);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
+
   return (
     <Wrapper className="wrapper-table-container">
       <h1 className="table-title">
@@ -672,6 +699,59 @@ const Table: FC<ITable> = ({
                         )}
                       </button>
                     </form>
+
+                    <div className="modal-data">
+                      <h3 className="modal-data-title">
+                        {t(
+                          "form-page-key:modal:user_agent",
+                        )}
+                      </h3>
+                      <p className="modal-data-text">
+                        {items[editIndex]
+                          .user_agent !== ""
+                          ? items[editIndex]
+                              .user_agent
+                          : t(
+                              "form-page-key:modal:noData",
+                            )}
+                      </p>
+
+                      <h3 className="modal-data-title">
+                        {t(
+                          "form-page-key:modal:referer_url",
+                        )}
+                      </h3>
+                      <p className="modal-data-text">
+                        {items[editIndex]
+                          .referer_url !== ""
+                          ? items[editIndex]
+                              .referer_url
+                          : t(
+                              "form-page-key:modal:noData",
+                            )}
+                      </p>
+
+                      <h3 className="modal-data-title">
+                        {t(
+                          "form-page-key:modal:geo_localisation",
+                        )}
+                      </h3>
+                      <p className="modal-data-text">
+                        {items[editIndex]
+                          .geo_localisation
+                          .city !== "" &&
+                        items[editIndex]
+                          .geo_localisation
+                          .region !== "" &&
+                        items[editIndex]
+                          .geo_localisation
+                          .country !== ""
+                          ? `${items[editIndex].geo_localisation.city} / ${items[editIndex].geo_localisation.region} / ${items[editIndex].geo_localisation.country}`
+                          : t(
+                              "form-page-key:modal:noData",
+                            )}
+                      </p>
+                    </div>
                   </>
                 ) : (
                   <></>

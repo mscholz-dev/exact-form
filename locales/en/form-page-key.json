@@ -19,5 +19,10 @@
   "btn:delete": "Delete",
   "btn:edit": "Edit",
 
-  "input:edit:ariaDescribedby": "Edit the value of"
+  "input:edit:ariaDescribedby": "Edit the value of",
+
+  "modal:user_agent": "Agent",
+  "modal:referer_url": "Referer URL",
+  "modal:geo_localisation": "City / Region / Country",
+  "modal:noData": "Not specified"
 }
