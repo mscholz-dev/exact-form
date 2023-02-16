@@ -49,6 +49,10 @@
     height: 32px;
     margin-bottom: 24px;
     max-width: calc(100% - 48px);
+
+    &:first-of-type {
+      margin-bottom: 12px;
+    }
   }
 
   &-active {

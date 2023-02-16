@@ -65,7 +65,8 @@ const TableBody: FC<ITableBody> = ({
               key={id}
               className="table-body-column"
               title={
-                row.length - 1 === id
+                row.length - 1 === id ||
+                row.length - 2 === id
                   ? DateHelper.parseCreatedAt(
                       value,
                       locale,
@@ -73,7 +74,8 @@ const TableBody: FC<ITableBody> = ({
                   : value.toString()
               }
             >
-              {row.length - 1 === id
+              {row.length - 1 === id ||
+              row.length - 2 === id
                 ? DateHelper.parseCreatedAt(
                     value,
                     locale,

@@ -36,12 +36,20 @@ const TableHeader: FC<ITableHeader> = ({
                 ? t(
                     "form-page-key:table:header:createdAt",
                   )
+                : value === "updated_at"
+                ? t(
+                    "form-page-key:table:header:updatedAt",
+                  )
                 : value
             }
           >
             {value === "created_at"
               ? t(
                   "form-page-key:table:header:createdAt",
+                )
+              : value === "updated_at"
+              ? t(
+                  "form-page-key:table:header:updatedAt",
                 )
               : value}
           </th>

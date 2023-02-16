@@ -3,6 +3,7 @@
 
   "table:header:ariaDescribedby": "Select all fields",
   "table:header:createdAt": "Created at",
+  "table:header:updatedAt": "Updated at",
   "table:header:tooltip": "Manage",
   "table:body:ariaDescribedby": "Select this field",
 

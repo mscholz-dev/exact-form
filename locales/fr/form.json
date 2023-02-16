@@ -134,6 +134,7 @@
 
   "key:error:found": "Clé non trouvée",
   "key:error:created_at": "Clé created_at interdite",
+  "key:error:updated_at": "Clé updated_at interdite",
 
   "regex:title:atLeastOneUppercase": "Au moins une majuscule",
   "regex:title:atLeastOneLowercase": "Au moins une minuscule",

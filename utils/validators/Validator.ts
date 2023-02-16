@@ -407,6 +407,9 @@ export default class Validator {
       case "key created_at is forbidden":
         return t("form:key:error:created_at");
 
+      case "key updated_at is forbidden":
+        return t("form:key:error:updated_at");
+
       // owner
       case "owner role required":
         return t("form:role:owner:required");

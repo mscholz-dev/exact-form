@@ -3,6 +3,7 @@
 
   "table:header:ariaDescribedby": "Selectionner tous les champs",
   "table:header:createdAt": "Créé à",
+  "table:header:updatedAt": "Modifié à",
   "table:header:tooltip": "Gérer",
   "table:body:ariaDescribedby": "Select ce champ",
 

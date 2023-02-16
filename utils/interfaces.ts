@@ -160,6 +160,7 @@ export interface ITable {
     id: string;
     data: object;
     created_at: Date;
+    updated_at: Date;
   }[];
   title: string;
   countAll: number | null;

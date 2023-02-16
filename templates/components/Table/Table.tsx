@@ -85,6 +85,9 @@ const Table: FC<ITable> = ({
     null | number
   >(null);
 
+  const [editBody, setEditBody] =
+    useState<TTableBox>([]);
+
   const handleTooltipClick = (index: number) => {
     const newTooltips: Record<number, boolean> =
       [];
@@ -115,6 +118,11 @@ const Table: FC<ITable> = ({
     // reset selected rows
     setSelectAll(false);
 
+    // create editBody
+    // remove reference
+    const newBody = [...body];
+    setEditBody(newBody[index]);
+
     const newSelected: Record<string, boolean> =
       {};
 
@@ -125,6 +133,9 @@ const Table: FC<ITable> = ({
 
     // delete header reference
     const newHeader = [...header];
+
+    // remove created_at and updated_at from contentForm
+    newHeader.pop();
     newHeader.pop();
 
     // created content form structure
@@ -386,6 +397,12 @@ const Table: FC<ITable> = ({
       value: "created_at",
     });
 
+    // add updated_at column
+    newHeader.push({
+      id: newHeader.length,
+      value: "updated_at",
+    });
+
     // create body with empty data
     for (const object of items) {
       // add items id in order
@@ -394,7 +411,10 @@ const Table: FC<ITable> = ({
       const bodyItem = [];
 
       for (const { value } of newHeader) {
-        if (value !== "created_at") {
+        if (
+          value !== "created_at" &&
+          value !== "updated_at"
+        ) {
           object.data[value as keyof object]
             ? bodyItem.push({
                 id: bodyItem.length,
@@ -414,20 +434,34 @@ const Table: FC<ITable> = ({
         object.created_at,
       );
 
-      // add timezone offset to created at data
+      let newUpdatedAt = new Date(
+        object.updated_at,
+      );
+
+      // add timezone offset to created_at and updated_at data
       timezoneData.some(({ name, offset }) => {
         if (name === timezone) {
           newCreatedAt.setHours(
             newCreatedAt.getHours() + offset - 1,
           );
+
+          newUpdatedAt.setHours(
+            newUpdatedAt.getHours() + offset - 1,
+          );
           return;
         }
       }),
-        // push created at data
+        // push created_at data
         bodyItem.push({
           id: bodyItem.length,
           value: newCreatedAt.toString(),
         });
+
+      // push updated_at data
+      bodyItem.push({
+        id: bodyItem.length,
+        value: newUpdatedAt.toString(),
+      });
 
       newBody.push(bodyItem);
 
@@ -563,6 +597,19 @@ const Table: FC<ITable> = ({
                       {DateHelper.parseCreatedAt(
                         body[editIndex][
                           body[editIndex].length -
+                            2
+                        ].value,
+                        locale,
+                      )}
+                    </h2>
+
+                    <h2 className="modal-title">
+                      {t(
+                        "form-page-key:table:header:updatedAt",
+                      )}{" "}
+                      {DateHelper.parseCreatedAt(
+                        body[editIndex][
+                          body[editIndex].length -
                             1
                         ].value,
                         locale,
@@ -572,14 +619,12 @@ const Table: FC<ITable> = ({
                       method="PUT"
                       onSubmit={handleEditSubmit}
                     >
-                      {(
-                        [
-                          ...body,
-                        ].pop() as TTableBox
-                      ).map(({ id }) => {
+                      {editBody.map(({ id }) => {
                         if (
                           header[id].value ===
-                          "created_at"
+                            "created_at" ||
+                          header[id].value ===
+                            "updated_at"
                         )
                           return;
 
