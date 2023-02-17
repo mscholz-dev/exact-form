@@ -40,6 +40,17 @@ $reverse-cubic-bezier: cubic-bezier(
   1.5
 );
 
+// animation
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 // fonts
 $primary-font-regular: "primaryRegular";
 $primary-font-regular-path: "/fonts/primary/regular.ttf";

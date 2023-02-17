@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import useTranslation from "next-translate/useTranslation";
+import IconLoader from "../../public/icons/loader.svg";
 
 // interfaces
 import { ITooltip } from "../../utils/interfaces";
@@ -9,6 +10,7 @@ const Tooltip: FC<ITooltip> = ({
   open,
   handleEditClick,
   handleDeleteClick,
+  deleteLoading,
 }) => {
   const { t } = useTranslation();
 
@@ -43,7 +45,17 @@ const Tooltip: FC<ITooltip> = ({
             }
             data-cy={`tooltip-delete-${index}`}
           >
-            {t("form-page-key:tooltip:delete")}
+            {deleteLoading ? (
+              <span className="tooltip-modal-btn-delete-loading">
+                <IconLoader />
+              </span>
+            ) : (
+              <>
+                {t(
+                  "form-page-key:tooltip:delete",
+                )}
+              </>
+            )}
           </button>
         </div>
       </div>

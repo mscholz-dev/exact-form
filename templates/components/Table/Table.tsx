@@ -22,6 +22,7 @@ import DateHelperClass from "../../../utils/DateHelper";
 import IconDatabase from "../../../public/icons/database.svg";
 import FormInput from "../Form/FormInput";
 import Modal from "../Modal";
+import BtnLoader from "../BtnLoader";
 
 // interfaces
 import { ITable } from "../../../utils/interfaces";
@@ -50,6 +51,18 @@ const Table: FC<ITable> = ({
   isAuthAndGetSpecificForm,
 }) => {
   const { t } = useTranslation();
+
+  // loading state
+  const [editLoading, setEditLoading] =
+    useState<boolean>(false);
+  const [
+    tooltipDeleteLoading,
+    setTooltipDeleteLoading,
+  ] = useState<boolean>(false);
+  const [
+    multipleDeleteLoading,
+    setMultipleDeleteLoading,
+  ] = useState<boolean>(false);
 
   const [header, setHeader] = useState<TTableBox>(
     [],
@@ -148,7 +161,12 @@ const Table: FC<ITable> = ({
   ): Promise<void> => {
     e.stopPropagation();
 
+    if (tooltipDeleteLoading) return;
+
     try {
+      // delete loading state
+      setTooltipDeleteLoading(true);
+
       await FormApi.deleteItem(
         keyName,
         itemsId[index],
@@ -190,6 +208,9 @@ const Table: FC<ITable> = ({
       );
       toast.success(successMessage);
 
+      // delete loading state
+      setTooltipDeleteLoading(false);
+
       return;
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
@@ -199,6 +220,10 @@ const Table: FC<ITable> = ({
             t,
           );
         toast.error(errorMessage);
+
+        // delete loading state
+        setTooltipDeleteLoading(false);
+
         return;
       }
 
@@ -206,12 +231,21 @@ const Table: FC<ITable> = ({
       console.error(err);
       const errorMessage = t("form:error:random");
       toast.error(errorMessage);
+
+      // delete loading state
+      setTooltipDeleteLoading(false);
+
       return;
     }
   };
 
   const handleMultipleDeleteClick =
     async (): Promise<void> => {
+      if (multipleDeleteLoading) return;
+
+      // delete loading state
+      setMultipleDeleteLoading(true);
+
       const deleteItems: string[] = [];
 
       for (const item in selected)
@@ -219,7 +253,11 @@ const Table: FC<ITable> = ({
           deleteItems.push(item);
 
       // is deleteItems empty
-      if (!deleteItems.length) return;
+      if (!deleteItems.length) {
+        // delete loading state
+        setMultipleDeleteLoading(false);
+        return;
+      }
 
       const deleteItemsQuery = `${deleteItems.join(
         "=true&",
@@ -280,6 +318,11 @@ const Table: FC<ITable> = ({
           "form-page-key:delete:many:success",
         );
         toast.success(successMessage);
+
+        // delete loading state
+        setMultipleDeleteLoading(false);
+
+        return;
       } catch (err: unknown) {
         if (err instanceof AxiosError) {
           const errorMessage =
@@ -288,6 +331,10 @@ const Table: FC<ITable> = ({
               t,
             );
           toast.error(errorMessage);
+
+          // delete loading state
+          setMultipleDeleteLoading(false);
+
           return;
         }
 
@@ -297,6 +344,10 @@ const Table: FC<ITable> = ({
           "form:error:random",
         );
         toast.error(errorMessage);
+
+        // delete loading state
+        setMultipleDeleteLoading(false);
+
         return;
       }
     };
@@ -306,7 +357,12 @@ const Table: FC<ITable> = ({
   ) => {
     e.preventDefault();
 
+    if (editLoading) return;
+
     try {
+      // edit loading btn state
+      setEditLoading(true);
+
       await FormApi.editItem(
         keyName,
         itemsId[editIndex as number],
@@ -342,6 +398,9 @@ const Table: FC<ITable> = ({
         "form-page-key:edit:success",
       );
       toast.success(successMessage);
+
+      // edit loading btn state
+      setEditLoading(false);
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         const errorMessage =
@@ -350,6 +409,10 @@ const Table: FC<ITable> = ({
             t,
           );
         toast.error(errorMessage);
+
+        // edit loading btn state
+        setEditLoading(false);
+
         return;
       }
 
@@ -357,6 +420,10 @@ const Table: FC<ITable> = ({
       console.error(err);
       const errorMessage = t("form:error:random");
       toast.error(errorMessage);
+
+      // edit loading btn state
+      setEditLoading(false);
+
       return;
     }
   };
@@ -538,12 +605,20 @@ const Table: FC<ITable> = ({
           onClick={handleMultipleDeleteClick}
           data-cy="table-btn-delete"
         >
-          <span className="btn-delete-icon">
-            <IconTrash />
-          </span>
-          <span className="btn-delete-title">
-            {t("form-page-key:btn:delete")}
-          </span>
+          {multipleDeleteLoading ? (
+            <span className="btn-delete-loading">
+              <IconLoader />
+            </span>
+          ) : (
+            <>
+              <span className="btn-delete-icon">
+                <IconTrash />
+              </span>
+              <span className="btn-delete-title">
+                {t("form-page-key:btn:delete")}
+              </span>
+            </>
+          )}
         </button>
       </div>
 
@@ -596,6 +671,9 @@ const Table: FC<ITable> = ({
                   handleTooltipClick
                 }
                 itemsId={itemsId}
+                tooltipDeleteLoading={
+                  tooltipDeleteLoading
+                }
               />
             </table>
 
@@ -662,14 +740,12 @@ const Table: FC<ITable> = ({
                         />
                       ))}
 
-                      <button
-                        className="btn-modal-edit"
-                        data-cy="modal-btn-edit"
-                      >
-                        {t(
+                      <BtnLoader
+                        loading={editLoading}
+                        text={t(
                           "form-page-key:btn:edit",
                         )}
-                      </button>
+                      />
                     </form>
 
                     <div className="modal-data">

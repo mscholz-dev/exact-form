@@ -210,6 +210,7 @@ export interface ITableBody {
   handleTooltipClick: (index: number) => void;
   tooltips: Record<number, boolean>;
   itemsId: string[];
+  tooltipDeleteLoading: boolean;
 }
 
 export interface IPaging {
@@ -254,6 +255,7 @@ export interface ITooltip {
     e: React.MouseEvent,
     index: number,
   ) => void;
+  deleteLoading: boolean;
 }
 
 export interface IModal {

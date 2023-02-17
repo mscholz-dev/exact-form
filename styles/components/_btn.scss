@@ -181,6 +181,14 @@
       pointer-events: all;
     }
 
+    &-loading {
+      animation: rotate 1s linear infinite;
+      fill: $white;
+      height: 24px;
+      transition: 0.25s fill ease-in-out;
+      width: 24px;
+    }
+
     &:hover {
       .btn-delete {
         &-icon {
@@ -189,6 +197,10 @@
 
         &-title {
           color: $error-color;
+        }
+
+        &-loading {
+          fill: $error-color;
         }
       }
     }
@@ -224,20 +236,5 @@
         top: 32px;
       }
     }
-
-    &-edit {
-      @extend %btn;
-      font-size: 18px;
-    }
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0);
-  }
-
-  to {
-    transform: rotate(360deg);
   }
 }

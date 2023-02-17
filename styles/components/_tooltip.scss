@@ -66,6 +66,7 @@
       }
 
       &-delete {
+        align-items: center;
         background: linear-gradient(
           90deg,
           $error-color 50%,
@@ -74,6 +75,22 @@
         background-position: right;
         background-size: 200% 100%;
         color: $error-color;
+        display: flex;
+        justify-content: center;
+
+        &-loading {
+          animation: rotate 1s linear infinite;
+          fill: $error-color;
+          height: 24px;
+          transition: 0.25s fill ease-in-out;
+          width: 24px;
+        }
+
+        &:hover {
+          .tooltip-modal-btn-delete-loading {
+            fill: $white;
+          }
+        }
       }
     }
 

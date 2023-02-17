@@ -21,7 +21,7 @@ export default class DateHelper {
     }
 
     return moment(new Date(date)).format(
-      "HH:mm, DD MMMM",
+      "HH:mm:ss - DD/MM",
     );
   }
 }

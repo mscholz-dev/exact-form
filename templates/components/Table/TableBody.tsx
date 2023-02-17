@@ -22,6 +22,7 @@ const TableBody: FC<ITableBody> = ({
   handleTooltipClick,
   tooltips,
   itemsId,
+  tooltipDeleteLoading,
 }) => {
   const { t } = useTranslation();
 
@@ -100,6 +101,7 @@ const TableBody: FC<ITableBody> = ({
               handleDeleteClick={(e) =>
                 handleTooltipDeleteClick(e, index)
               }
+              deleteLoading={tooltipDeleteLoading}
             />
           </td>
         </tr>
