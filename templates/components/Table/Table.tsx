@@ -85,9 +85,6 @@ const Table: FC<ITable> = ({
     null | number
   >(null);
 
-  const [editBody, setEditBody] =
-    useState<TTableBox>([]);
-
   const handleTooltipClick = (index: number) => {
     const newTooltips: Record<number, boolean> =
       [];
@@ -118,11 +115,6 @@ const Table: FC<ITable> = ({
     // reset selected rows
     setSelectAll(false);
 
-    // create editBody
-    // remove reference
-    const newBody = [...body];
-    setEditBody(newBody[index]);
-
     const newSelected: Record<string, boolean> =
       {};
 
@@ -141,9 +133,11 @@ const Table: FC<ITable> = ({
     // created content form structure
     const newContentForm: Record<string, string> =
       {};
-    for (let i = 0; i < newHeader.length; i++)
-      newContentForm[newHeader[i].value] =
-        body[index][i].value;
+    Object.keys(items[index].data).forEach(
+      (key) =>
+        (newContentForm[key] =
+          items[index].data[key as keyof object]),
+    );
 
     setContentForm(newContentForm);
   };
@@ -622,10 +616,8 @@ const Table: FC<ITable> = ({
                         "form-page-key:table:header:createdAt",
                       )}{" "}
                       {DateHelper.parseCreatedAt(
-                        body[editIndex][
-                          body[editIndex].length -
-                            2
-                        ].value,
+                        items[editIndex]
+                          .created_at,
                         locale,
                       )}
                     </h2>
@@ -635,10 +627,8 @@ const Table: FC<ITable> = ({
                         "form-page-key:table:header:updatedAt",
                       )}{" "}
                       {DateHelper.parseCreatedAt(
-                        body[editIndex][
-                          body[editIndex].length -
-                            1
-                        ].value,
+                        items[editIndex]
+                          .updated_at,
                         locale,
                       )}
                     </h2>
@@ -646,49 +636,31 @@ const Table: FC<ITable> = ({
                       method="PUT"
                       onSubmit={handleEditSubmit}
                     >
-                      {editBody.map(({ id }) => {
-                        if (
-                          header[id].value ===
-                            "created_at" ||
-                          header[id].value ===
-                            "updated_at"
-                        )
-                          return;
-
-                        return (
-                          <FormInput
-                            key={id}
-                            icon={
-                              <IconDatabase />
-                            }
-                            id={header[id].value}
-                            handleChange={(e) =>
-                              Form.handleChange(
-                                e,
-                                header[id].value,
-                                setContentForm,
-                                contentForm,
-                              )
-                            }
-                            value={
-                              contentForm[
-                                header[id].value
-                              ]
-                            }
-                            ariaDescribedby={`${t(
-                              "form-page-key:input:edit:ariaDescribedby",
-                            )} ${
-                              header[id].value
-                            }`}
-                            title={
-                              header[id].value
-                            }
-                            mb
-                            maxLength={100}
-                            type="text"
-                          />
-                        );
-                      })}
+                      {Object.keys(
+                        items[editIndex].data,
+                      ).map((key) => (
+                        <FormInput
+                          key={key}
+                          icon={<IconDatabase />}
+                          id={key}
+                          handleChange={(e) =>
+                            Form.handleChange(
+                              e,
+                              key,
+                              setContentForm,
+                              contentForm,
+                            )
+                          }
+                          value={contentForm[key]}
+                          ariaDescribedby={`${t(
+                            "form-page-key:input:edit:ariaDescribedby",
+                          )} ${key}`}
+                          title={key}
+                          mb
+                          maxLength={100}
+                          type="text"
+                        />
+                      ))}
 
                       <button
                         className="btn-modal-edit"

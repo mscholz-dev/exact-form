@@ -2,7 +2,10 @@ import moment from "moment";
 import "moment/min/locales.min";
 
 export default class DateHelper {
-  parseCreatedAt(date: string, locale: string) {
+  parseCreatedAt(
+    date: string | Date,
+    locale: string,
+  ) {
     switch (locale) {
       case "en":
         moment.locale("en");
