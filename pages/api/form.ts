@@ -78,4 +78,14 @@ export default class FormApi {
       })
       .then((res) => res);
   }
+
+  static async deleteForm(key: string) {
+    return await api
+      .delete(`/form/${key}`, {
+        headers: {
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
 }

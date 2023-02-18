@@ -8,5 +8,7 @@
   "card:timezone": "Fuseau",
   "card:items": "Éléments",
 
-  "noDataFound:title": "Auncun formulaire trouvé, créer en un dès maintenant!"
+  "noDataFound:title": "Auncun formulaire trouvé, créer en un dès maintenant!",
+
+  "delete:success": "Formulaire supprimé"
 }

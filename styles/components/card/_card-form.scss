@@ -30,11 +30,28 @@
         }
       }
     }
+
+    .tooltip {
+      &-dot {
+        &-one,
+        &-two,
+        &-three {
+          background: $primary-color;
+        }
+      }
+    }
   }
 
   @include responsive(t-xs) {
     margin-bottom: 0;
     width: calc(100% - 28px);
+  }
+
+  &-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 32px;
   }
 
   &-title {
@@ -44,8 +61,28 @@
     font-size: 32px;
     line-height: 28px;
     height: 36px;
-    margin-bottom: 32px;
     transition: 0.2s color ease-in-out;
+  }
+
+  &-tooltip {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+    position: relative;
+    width: 36px;
+
+    .tooltip {
+      &-dot {
+        &-one,
+        &-two,
+        &-three {
+          background: $white;
+          transition: 0.25s background ease-in-out;
+        }
+      }
+    }
   }
 
   span {

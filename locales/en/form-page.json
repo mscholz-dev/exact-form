@@ -8,5 +8,7 @@
   "card:timezone": "Timezone",
   "card:items": "Items",
 
-  "noDataFound:title": "No form found, create in one now!"
+  "noDataFound:title": "No form found, create in one now!",
+
+  "delete:success": "Form deleted"
 }

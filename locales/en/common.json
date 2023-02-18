@@ -13,5 +13,8 @@
 
   "role:client": "Customer",
   "role:admin": "Administrator",
-  "role:superAdmin": "Super administrator"
+  "role:superAdmin": "Super administrator",
+
+  "tooltip:edit": "Edit",
+  "tooltip:delete": "Delete"
 }

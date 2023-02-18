@@ -4,6 +4,7 @@ import {
   ReactNode,
   Ref,
   SetStateAction,
+  SyntheticEvent,
 } from "react";
 
 // types
@@ -137,8 +138,14 @@ export interface ICardPage {
   maxPage: number;
   creationPathname: string;
   countAll: null | number;
+  setCountAll: Dispatch<
+    SetStateAction<null | number>
+  >;
   noDataFoundTitle: string;
   loading: boolean;
+  isAuthAndGetAll: (
+    startLoading: boolean,
+  ) => Promise<void>;
 }
 
 export interface ICardForm {
@@ -148,6 +155,21 @@ export interface ICardForm {
   items: number;
   owner: string;
   locale: string;
+  handleTooltipClick: (
+    e: SyntheticEvent,
+    index: number,
+  ) => void;
+  handleTooltipEditClick: (
+    e: SyntheticEvent,
+    index: number,
+  ) => void;
+  handleTooltipDeleteClick: (
+    e: SyntheticEvent,
+    index: number,
+  ) => void;
+  tooltips: Record<number, boolean>;
+  index: number;
+  tooltipDeleteLoading: boolean;
 }
 
 export interface IFormKey {

@@ -91,6 +91,7 @@ const TableBody: FC<ITableBody> = ({
               handleTooltipClick(index)
             }
             data-cy={`tooltip-${index}`}
+            tabIndex={0}
           >
             <Tooltip
               index={index}

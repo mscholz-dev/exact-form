@@ -356,6 +356,7 @@ const Table: FC<ITable> = ({
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
+    e.stopPropagation();
 
     if (
       Object.values(

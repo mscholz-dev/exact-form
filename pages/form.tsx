@@ -31,16 +31,20 @@ const Form: FC<IForm> = ({ locale }) => {
   });
 
   const [forms, setForms] = useState([]);
-  const [countAll, setCountAll] = useState(null);
+  const [countAll, setCountAll] = useState<
+    null | number
+  >(null);
   const [loading, setLoading] = useState(true);
 
   // paging
   const [currentPage, setCurrentPage] =
     useState<number>(1);
 
-  const isAuthAndGetAll = async () => {
+  const isAuthAndGetAll = async (
+    startLoading: boolean,
+  ) => {
     try {
-      setLoading(true);
+      setLoading(startLoading);
       const res = await FormApi.getAll(
         currentPage,
       );
@@ -53,8 +57,6 @@ const Form: FC<IForm> = ({ locale }) => {
       });
       setForms(res.data.forms);
       setCountAll(res.data.countAll);
-
-      // disable loading
       setLoading(false);
     } catch (err) {
       // no page transition
@@ -66,7 +68,7 @@ const Form: FC<IForm> = ({ locale }) => {
   };
 
   useEffect(() => {
-    isAuthAndGetAll();
+    isAuthAndGetAll(true);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
@@ -89,10 +91,12 @@ const Form: FC<IForm> = ({ locale }) => {
         maxPage={(countAll || 0) / 8}
         creationPathname="form/creation"
         countAll={countAll}
+        setCountAll={setCountAll}
         noDataFoundTitle={t(
           "form-page:noDataFound:title",
         )}
         loading={loading}
+        isAuthAndGetAll={isAuthAndGetAll}
       />
     </Page>
   );

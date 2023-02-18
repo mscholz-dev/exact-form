@@ -9,9 +9,6 @@
 
   "noDataFound:title": "No request found",
 
-  "tooltip:edit": "Edit",
-  "tooltip:delete": "Delete",
-
   "delete:success": "Row deleted",
   "delete:many:success": "Rows selected deleted",
   "edit:success": "Row edited",

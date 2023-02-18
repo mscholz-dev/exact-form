@@ -9,9 +9,6 @@
 
   "noDataFound:title": "Aucune requête trouvée",
 
-  "tooltip:edit": "Modifier",
-  "tooltip:delete": "Supprimer",
-
   "delete:success": "Ligne supprimée",
   "delete:many:success": "Lignes sélectionnées supprimées",
   "edit:success": "Ligne modifiée",

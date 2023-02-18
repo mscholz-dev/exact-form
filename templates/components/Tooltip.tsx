@@ -35,7 +35,7 @@ const Tooltip: FC<ITooltip> = ({
             }
             data-cy={`tooltip-edit-${index}`}
           >
-            {t("form-page-key:tooltip:edit")}
+            {t("common:tooltip:edit")}
           </button>
           <span className="tooltip-modal-hr" />
           <button
@@ -50,11 +50,7 @@ const Tooltip: FC<ITooltip> = ({
                 <IconLoader />
               </span>
             ) : (
-              <>
-                {t(
-                  "form-page-key:tooltip:delete",
-                )}
-              </>
+              <>{t("common:tooltip:delete")}</>
             )}
           </button>
         </div>
