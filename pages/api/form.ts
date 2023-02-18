@@ -1,7 +1,10 @@
 import api from "./index";
 
 // types
-import { TFormCreationForm } from "../../utils/types";
+import {
+  TFormCreationForm,
+  TFormUpdateFormData,
+} from "../../utils/types";
 
 export default class FormApi {
   static async create(form: TFormCreationForm) {
@@ -82,6 +85,19 @@ export default class FormApi {
   static async deleteForm(key: string) {
     return await api
       .delete(`/form/${key}`, {
+        headers: {
+          accept: "application/json",
+        },
+      })
+      .then((res) => res);
+  }
+
+  static async updateForm(
+    key: string,
+    data: TFormUpdateFormData,
+  ) {
+    return await api
+      .put(`form/${key}`, data, {
         headers: {
           accept: "application/json",
         },

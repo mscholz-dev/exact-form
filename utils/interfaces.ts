@@ -143,9 +143,7 @@ export interface ICardPage {
   >;
   noDataFoundTitle: string;
   loading: boolean;
-  isAuthAndGetAll: (
-    startLoading: boolean,
-  ) => Promise<void>;
+  isAuthAndGetAll: () => Promise<void>;
 }
 
 export interface ICardForm {

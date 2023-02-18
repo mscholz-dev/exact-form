@@ -96,7 +96,9 @@ const Form: FC<IForm> = ({ locale }) => {
           "form-page:noDataFound:title",
         )}
         loading={loading}
-        isAuthAndGetAll={isAuthAndGetAll}
+        isAuthAndGetAll={() =>
+          isAuthAndGetAll(false)
+        }
       />
     </Page>
   );

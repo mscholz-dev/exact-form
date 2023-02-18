@@ -101,3 +101,8 @@ export type TTableBox = {
   id: number;
   value: string;
 }[];
+
+export type TFormUpdateFormData = {
+  name: string;
+  timezone: string;
+};

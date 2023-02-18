@@ -444,6 +444,9 @@ export default class Validator {
       case "data must be different":
         return t("form:sameData:data");
 
+      case "name or timezone must be different":
+        return t("form:sameData:nameOrTimezone");
+
       // default
       default:
         return t("form:error:random");

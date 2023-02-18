@@ -21,5 +21,6 @@
   "modal:user_agent": "Agent",
   "modal:referer_url": "Referer URL",
   "modal:geo_localisation": "City / Region / Country",
-  "modal:noData": "Not specified"
+  "modal:noData": "Not specified",
+  "modal:btn:edit": "EDIT"
 }

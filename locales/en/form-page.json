@@ -10,5 +10,12 @@
 
   "noDataFound:title": "No form found, create in one now!",
 
-  "delete:success": "Form deleted"
+  "delete:success": "Form deleted",
+  "edit:success": "Form edited",
+
+  "modal:title": "EDIT MY FORM",
+  "modal:btn:edit": "EDIT",
+
+  "input:formName:ariaDescribedby": "Edit form name",
+  "input:timezone:ariaDescribedby": "Change timezone"
 }

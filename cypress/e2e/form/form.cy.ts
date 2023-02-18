@@ -1,5 +1,5 @@
 import CypressTestClass from "../../../utils/CypressTest";
-// import formTranslations from "../../../locales/fr/form.json";
+import formPageTranslations from "../../../locales/fr/form-page.json";
 import data from "../../../utils/data";
 
 // classes
@@ -135,6 +135,59 @@ describe("Page: /form", () => {
       "article",
       "a",
       3,
+    );
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "delete:success",
+      formPageTranslations,
+    );
+  });
+
+  it("it should edit the first form", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.countChildren(
+      cy,
+      "article",
+      "a",
+      8,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-0",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-edit-0",
+    ).click();
+
+    CypressTest.inputFill(
+      cy,
+      "name",
+      "CYPRESS TEST UPDATE NAME",
+    );
+
+    CypressTest.selectOption(
+      cy,
+      "timezone",
+      "Asia/Kamchatka",
+    );
+
+    CypressTest.getCyData(cy, "btn-form").click();
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "edit:success",
+      formPageTranslations,
     );
   });
 });

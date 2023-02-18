@@ -3,11 +3,27 @@ import type { Translate } from "next-translate";
 import timezone from "../timezone.json";
 
 // types
-import { TFormCreationForm } from "../types";
+import {
+  TFormCreationForm,
+  TFormUpdateFormData,
+} from "../types";
 
 export default class FormValidator extends Validator {
   inspectCreationData(
     schema: TFormCreationForm,
+    t: Translate,
+  ) {
+    const errors = this.inspectData(
+      schema,
+      this.errorMessage,
+      t,
+    );
+
+    return errors;
+  }
+
+  inspectUpdateFormData(
+    schema: TFormUpdateFormData,
     t: Translate,
   ) {
     const errors = this.inspectData(

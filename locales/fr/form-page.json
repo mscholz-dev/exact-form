@@ -10,5 +10,12 @@
 
   "noDataFound:title": "Auncun formulaire trouvé, créer en un dès maintenant!",
 
-  "delete:success": "Formulaire supprimé"
+  "delete:success": "Formulaire supprimé",
+  "edit:success": "Formulaire modifié",
+
+  "modal:title": "MODIFIER MON FORMULAIRE",
+  "modal:btn:edit": "MODIFIER",
+
+  "input:formName:ariaDescribedby": "Modifier le nom du formulaire",
+  "input:timezone:ariaDescribedby": "Changer le fuseau horaire"
 }

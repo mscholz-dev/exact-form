@@ -147,6 +147,7 @@
   "data:error:equal": "La structure de donnée doit être la même que celle déjà existante",
   "data:error:long": "Chaque champ doit contenir 1 000 caractères maximum",
 
-  "sameData:usernameOrMarket": "Les champs Nom d'utilisateur et Marketing doivent être différents",
-  "sameData:data": "Les données doivent être différentes"
+  "sameData:usernameOrMarket": "Les champs Nom d'utilisateur ou Marketing doivent être différents",
+  "sameData:data": "Les données doivent être différentes",
+  "sameData:nameOrTimezone": "Les champs Nom ou Fuseau horaire doivent être différents"
 }

@@ -108,6 +108,12 @@ const Table: FC<ITable> = ({
     newTooltips[index] = !tooltips[index];
 
     setTooltips(newTooltips);
+
+    // delete loading state
+    setTooltipDeleteLoading(false);
+
+    // edit loading btn state
+    setEditLoading(false);
   };
 
   const handleTooltipEditClick = (
@@ -207,9 +213,6 @@ const Table: FC<ITable> = ({
         "form-page-key:delete:success",
       );
       toast.success(successMessage);
-
-      // delete loading state
-      setTooltipDeleteLoading(false);
 
       return;
     } catch (err: unknown) {
@@ -319,9 +322,6 @@ const Table: FC<ITable> = ({
         );
         toast.success(successMessage);
 
-        // delete loading state
-        setMultipleDeleteLoading(false);
-
         return;
       } catch (err: unknown) {
         if (err instanceof AxiosError) {
@@ -408,8 +408,7 @@ const Table: FC<ITable> = ({
       );
       toast.success(successMessage);
 
-      // edit loading btn state
-      setEditLoading(false);
+      return;
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         const errorMessage =
@@ -589,6 +588,12 @@ const Table: FC<ITable> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
+  // reset delete many btn
+  useEffect(() => {
+    // delete loading state
+    setMultipleDeleteLoading(false);
+  }, [selected, selectAll]);
+
   return (
     <Wrapper className="wrapper-table-container">
       <h1 className="table-title">
@@ -744,7 +749,7 @@ const Table: FC<ITable> = ({
                           )} ${key}`}
                           title={key}
                           mb
-                          maxLength={100}
+                          maxLength={1000}
                           type="text"
                         />
                       ))}
@@ -752,7 +757,7 @@ const Table: FC<ITable> = ({
                       <BtnLoader
                         loading={editLoading}
                         text={t(
-                          "form-page-key:btn:edit",
+                          "form-page-key:modal:btn:edit",
                         )}
                         disabled={
                           Object.values(

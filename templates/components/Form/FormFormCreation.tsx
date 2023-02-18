@@ -17,13 +17,13 @@ import timezone from "../../../utils/timezone.json";
 import FormApi from "../../../pages/api/form";
 import { useRouter } from "next/router";
 import LinkHelperClass from "../../../utils/LinkHelper";
+import FormSelect from "./FormSelect";
 
 // types
 import {
   TLocale,
   TFormCreationForm,
 } from "../../../utils/types";
-import FormSelect from "./FormSelect";
 
 // classes
 const FormValidator = new FormValidatorClass();

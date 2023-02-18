@@ -18,13 +18,22 @@ import FormApi from "../../../pages/api/form";
 import { AxiosError } from "axios";
 import FormValidatorClass from "../../../utils/validators/FormValidator";
 import useTranslation from "next-translate/useTranslation";
+import FormInput from "../Form/FormInput";
+import FormSelect from "../Form/FormSelect";
+import FormClass from "../../../utils/Form";
+import IconFont from "../../../public/icons/font.svg";
+import IconTimezone from "../../../public/icons/timezone.svg";
+import timezone from "../../../utils/timezone.json";
+import BtnLoader from "../BtnLoader";
 
 // interfaces
 import { ICardPage } from "../../../utils/interfaces";
+import Modal from "../Modal";
 
 // classes
 const LinkHelper = new LinkHelperClass();
 const FormValidator = new FormValidatorClass();
+const Form = new FormClass();
 
 const CardPage: FC<ICardPage> = ({
   locale,
@@ -50,6 +59,8 @@ const CardPage: FC<ICardPage> = ({
     tooltipDeleteLoading,
     setTooltipDeleteLoading,
   ] = useState<boolean>(false);
+  const [editLoading, setEditLoading] =
+    useState<boolean>(false);
 
   const [tooltips, setTooltips] = useState<
     Record<number, boolean>
@@ -58,9 +69,10 @@ const CardPage: FC<ICardPage> = ({
   const [activeModal, setActiveModal] =
     useState<boolean>(false);
 
-  const [contentForm, setContentForm] = useState<
-    Record<string, string>
-  >({});
+  const [contentForm, setContentForm] = useState<{
+    name: string;
+    timezone: string;
+  }>({ name: "", timezone: "" });
 
   const [editIndex, setEditIndex] = useState<
     null | number
@@ -82,6 +94,10 @@ const CardPage: FC<ICardPage> = ({
     newTooltips[index] = !tooltips[index];
 
     setTooltips(newTooltips);
+
+    setTooltipDeleteLoading(false);
+
+    setEditLoading(false);
   };
 
   const handleTooltipEditClick = (
@@ -91,7 +107,106 @@ const CardPage: FC<ICardPage> = ({
     e.preventDefault();
     e.stopPropagation();
 
-    console.log(index);
+    // store current edit index
+    setEditIndex(index);
+
+    // close current tooltip
+    setTooltips({});
+
+    // display modal
+    setActiveModal(true);
+
+    // created content form structure
+    setContentForm({
+      name: items[index].name,
+      timezone: items[index].timezone,
+    });
+  };
+
+  const handleEditSubmit = async (
+    e: SyntheticEvent,
+  ) => {
+    e.preventDefault();
+
+    if (
+      items[editIndex as number].name ===
+        contentForm.name &&
+      items[editIndex as number].timezone ===
+        contentForm.timezone
+    )
+      return;
+
+    // prevent spamming
+    if (editLoading) return;
+    setEditLoading(true);
+
+    const errors =
+      FormValidator.inspectUpdateFormData(
+        contentForm,
+        t,
+      );
+
+    if (errors.length) {
+      for (const { key, message } of errors) {
+        FormValidator.errorStyle(key);
+        toast.error(message);
+      }
+
+      setEditLoading(false);
+      return;
+    }
+
+    try {
+      await FormApi.updateForm(
+        items[editIndex as number].key,
+        contentForm,
+      );
+
+      await isAuthAndGetAll();
+
+      // close current tooltip
+      setTooltips({});
+
+      // hide modal
+      setActiveModal(false);
+
+      // reset contentForm
+      setContentForm({ name: "", timezone: "" });
+
+      // reset editIndex
+      setEditIndex(null);
+
+      const successMessage = t(
+        "form-page:edit:success",
+      );
+      toast.success(successMessage);
+
+      return;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+        toast.error(errorMessage);
+
+        // edit loading btn state
+        setEditLoading(false);
+
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+
+      // edit loading btn state
+      setEditLoading(false);
+
+      return;
+    }
   };
 
   const handleTooltipDeleteClick = async (
@@ -109,7 +224,7 @@ const CardPage: FC<ICardPage> = ({
 
       await FormApi.deleteForm(items[index].key);
 
-      await isAuthAndGetAll(false);
+      await isAuthAndGetAll();
 
       // close current tooltip
       setTooltips({});
@@ -128,9 +243,6 @@ const CardPage: FC<ICardPage> = ({
         "form-page:delete:success",
       );
       toast.success(successMessage);
-
-      // delete loading state
-      setTooltipDeleteLoading(false);
 
       return;
     } catch (err: unknown) {
@@ -168,7 +280,7 @@ const CardPage: FC<ICardPage> = ({
     setActiveModal(false);
 
     // reset contentForm
-    setContentForm({});
+    setContentForm({ name: "", timezone: "" });
 
     // reset editIndex
     setEditIndex(null);
@@ -287,6 +399,84 @@ const CardPage: FC<ICardPage> = ({
         current={currentPage}
         setCurrent={setCurrentPage}
         max={maxPage}
+      />
+
+      <Modal
+        active={activeModal}
+        setActive={setActiveModal}
+        content={
+          editIndex !== null ? (
+            <>
+              <h2 className="modal-title">
+                {t("form-page:modal:title")}
+              </h2>
+
+              <form
+                method="PUT"
+                onSubmit={handleEditSubmit}
+              >
+                <FormInput
+                  icon={<IconFont />}
+                  id="name"
+                  handleChange={(e) =>
+                    Form.handleChange(
+                      e,
+                      "name",
+                      setContentForm,
+                      contentForm,
+                    )
+                  }
+                  value={contentForm.name}
+                  ariaDescribedby={t(
+                    "form-page:input:formName:ariaDescribedby",
+                  )}
+                  title={t(
+                    "form:input:formName:title",
+                  )}
+                  mb
+                  maxLength={60}
+                  type="text"
+                />
+
+                <FormSelect
+                  icon={<IconTimezone />}
+                  id="timezone"
+                  defaultTitle={t(
+                    "form:input:timezone:title",
+                  )}
+                  ariaDescribedby={t(
+                    "form-page:input:timezone:ariaDescribedby",
+                  )}
+                  options={timezone}
+                  handleChange={(e) =>
+                    Form.handleChange(
+                      e,
+                      "timezone",
+                      setContentForm,
+                      contentForm,
+                    )
+                  }
+                  value={contentForm.timezone}
+                />
+
+                <BtnLoader
+                  loading={editLoading}
+                  text={t(
+                    "form-page:modal:btn:edit",
+                  )}
+                  disabled={
+                    items[editIndex].name ===
+                      contentForm.name &&
+                    items[editIndex].timezone ===
+                      contentForm.timezone
+                  }
+                />
+              </form>
+            </>
+          ) : (
+            <></>
+          )
+        }
       />
     </Wrapper>
   );
