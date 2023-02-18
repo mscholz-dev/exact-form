@@ -71,7 +71,7 @@ describe("Page: /form", () => {
     );
   });
 
-  it("it should get 5 forms (page 3)", () => {
+  it("it should get 4 forms (page 3)", () => {
     CypressTest.setCookie(
       cy,
       "user",
@@ -93,6 +93,48 @@ describe("Page: /form", () => {
       "article",
       "a",
       4,
+    );
+  });
+
+  it("it should delete a form (page 3)", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "article",
+      "a",
+      4,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-0",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-delete-0",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "article",
+      "a",
+      3,
     );
   });
 });
