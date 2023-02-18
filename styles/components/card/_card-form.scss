@@ -109,9 +109,13 @@
     display: flex;
     font-size: 14px;
     height: 20px;
-    max-width: 110px;
+    max-width: 70px;
 
     @include responsive(s-xs) {
+      max-width: 120px;
+    }
+
+    @include responsive(d-xs) {
       max-width: 150px;
     }
   }

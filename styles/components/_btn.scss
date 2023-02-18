@@ -61,9 +61,31 @@
     min-height: 40px;
     width: 112px;
 
+    &-loading {
+      animation: rotate 1s linear infinite;
+      fill: $white;
+      height: 24px;
+      transition: 0.25s fill ease-in-out;
+      width: 24px;
+    }
+
+    &-title {
+      color: $white;
+      transition: 0.25s color ease-in-out;
+    }
+
     &:hover {
       background-position: left;
-      color: $primary-color-light;
+
+      .btn-disconnect {
+        &-loading {
+          fill: $primary-color-light;
+        }
+
+        &-title {
+          color: $primary-color-light;
+        }
+      }
     }
 
     @include responsive(t-xs) {

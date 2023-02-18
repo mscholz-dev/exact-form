@@ -14,6 +14,8 @@ import LinkHelperClass from "../../utils/LinkHelper";
 import { toast } from "react-toastify";
 import UserApi from "../../pages/api/user";
 import { useRouter } from "next/router";
+import { AxiosError } from "axios";
+import IconLoader from "../../public/icons/loader.svg";
 import UserValidatorClass from "../../utils/validators/UserValidator";
 
 // interfaces
@@ -21,7 +23,6 @@ import { IHeader } from "../../utils/interfaces";
 
 // types
 import { THeaderData } from "../../utils/types";
-import { AxiosError } from "axios";
 
 // classes
 const LinkHelper = new LinkHelperClass();
@@ -45,6 +46,11 @@ const Header: FC<IHeader> = ({
   const [path, setPath] = useState<string>("");
   const [open, setOpen] =
     useState<boolean>(false);
+
+  const [
+    disconnectLoading,
+    setDisconnectLoading,
+  ] = useState<boolean>(false);
 
   const headerData: THeaderData = [
     {
@@ -90,6 +96,10 @@ const Header: FC<IHeader> = ({
   ) => {
     e.preventDefault();
 
+    if (disconnectLoading) return;
+
+    setDisconnectLoading(true);
+
     try {
       await UserApi.disconnection();
 
@@ -115,6 +125,9 @@ const Header: FC<IHeader> = ({
           );
 
         toast.error(errorMessage);
+
+        setDisconnectLoading(false);
+
         return;
       }
 
@@ -122,6 +135,10 @@ const Header: FC<IHeader> = ({
       console.error(err);
       const errorMessage = t("form:error:random");
       toast.error(errorMessage);
+
+      setDisconnectLoading(false);
+
+      return;
     }
   };
 
@@ -296,8 +313,16 @@ const Header: FC<IHeader> = ({
                   onClick={handleDisconnect}
                   data-cy="btn-disconnection"
                 >
-                  {t(
-                    "common:header:disconnection",
+                  {disconnectLoading ? (
+                    <span className="btn-disconnect-loading">
+                      <IconLoader />
+                    </span>
+                  ) : (
+                    <span className="btn-disconnect-title">
+                      {t(
+                        "common:header:disconnection",
+                      )}
+                    </span>
                   )}
                 </button>
               </div>
