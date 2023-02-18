@@ -2,7 +2,5 @@
   "meta:title": "Change email",
   "form:title": "CHANGE EMAIL",
 
-  "form:success": "Email changed !",
-
   "form:submit": "CHANGE"
 }

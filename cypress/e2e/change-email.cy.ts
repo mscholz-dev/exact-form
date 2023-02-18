@@ -148,58 +148,6 @@ describe("Page: /change-email/:token", () => {
     });
   });
 
-  it("it should throw: newEmail must be different", () => {
-    CypressTest.setCookie(
-      cy,
-      "user",
-      data.validFrJwt,
-    );
-
-    cy.request(
-      "GET",
-      "http://localhost:8000/api/test/user/token/email",
-    ).then((response) => {
-      expect(response.body.token).to.exist;
-
-      const token = response.body.token;
-
-      cy.visit(`${url}/fr/change-email/${token}`);
-
-      CypressTest.setCookie(
-        cy,
-        "user",
-        data.validFrJwt,
-      );
-      const formError = [
-        {
-          id: 0,
-          toastValue:
-            "input:newEmail:error:different",
-        },
-      ];
-
-      const formData = [
-        {
-          cyData: "newEmail",
-          value: data.emailSeed,
-        },
-        {
-          cyData: "newEmail2",
-          value: data.emailSeed,
-        },
-      ];
-
-      CypressTest.loopFormFill(formData);
-
-      CypressTest.clickCyData(cy, "btn-form");
-
-      CypressTest.loopFormError(
-        formError,
-        formTranslations,
-      );
-    });
-  });
-
   it("it should update email", () => {
     CypressTest.setCookie(
       cy,
@@ -238,11 +186,9 @@ describe("Page: /change-email/:token", () => {
 
       CypressTest.clickCyData(cy, "btn-form");
 
-      CypressTest.successToastContains(
+      CypressTest.shouldRedirect(
         cy,
-        0,
-        "form:success",
-        changeEmailTranslations,
+        `${url}/fr/profil`,
       );
     });
   });

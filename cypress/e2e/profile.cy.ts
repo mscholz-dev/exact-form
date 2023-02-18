@@ -37,45 +37,6 @@ describe("Page: /profile", () => {
     CypressTest.shouldRedirect(cy, `${url}/fr`);
   });
 
-  it("it should appear a valid toast", () => {
-    CypressTest.setCookie(
-      cy,
-      "user",
-      data.validFrJwt,
-    );
-
-    CypressTest.compareInputValue(
-      cy,
-      "username",
-      data.usernameSeed,
-    );
-    CypressTest.compareInputValue(
-      cy,
-      "email",
-      data.emailSeed,
-    );
-    CypressTest.compareInputValue(
-      cy,
-      "role",
-      data.client,
-    );
-
-    CypressTest.clickCyData(cy, "btn-form");
-
-    CypressTest.successToastContains(
-      cy,
-      0,
-      "form:success",
-      profileTranslations,
-    );
-
-    cy.getCookie("user").should(
-      "have.property",
-      "value",
-      data.validFrJwt,
-    );
-  });
-
   it("it should throw: oldPassword must contain one upper case", () => {
     CypressTest.setCookie(
       cy,

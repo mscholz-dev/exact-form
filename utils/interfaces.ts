@@ -109,6 +109,7 @@ export interface IFormCheckbox {
 export interface IBtnLoader {
   loading: boolean;
   text: string;
+  disabled?: boolean;
 }
 
 export interface IFormProfile {

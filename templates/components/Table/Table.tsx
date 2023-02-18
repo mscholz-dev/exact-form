@@ -357,6 +357,14 @@ const Table: FC<ITable> = ({
   ) => {
     e.preventDefault();
 
+    if (
+      Object.values(
+        items[editIndex as number].data,
+      ).toString() ===
+      Object.values(contentForm).toString()
+    )
+      return;
+
     if (editLoading) return;
 
     try {
@@ -745,6 +753,14 @@ const Table: FC<ITable> = ({
                         text={t(
                           "form-page-key:btn:edit",
                         )}
+                        disabled={
+                          Object.values(
+                            items[editIndex].data,
+                          ).toString() ===
+                          Object.values(
+                            contentForm,
+                          ).toString()
+                        }
                       />
                     </form>
 

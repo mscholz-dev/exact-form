@@ -12,6 +12,9 @@ import UserApi from "../../../pages/api/user";
 import { AxiosError } from "axios";
 import UserValidatorClass from "../../../utils/validators/UserValidator";
 import FormClass from "../../../utils/Form";
+import BtnLoader from "../BtnLoader";
+import { useRouter } from "next/router";
+import LinkHelperClass from "../../../utils/LinkHelper";
 
 // types
 import { TChangeEmailForm } from "../../../utils/types";
@@ -22,6 +25,7 @@ import { IFormChangeEmail } from "../../../utils/interfaces";
 // classes
 const UserValidator = new UserValidatorClass();
 const Form = new FormClass();
+const LinkHelper = new LinkHelperClass();
 
 const FormChangeEmail: FC<IFormChangeEmail> = ({
   email,
@@ -29,6 +33,8 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
   token,
 }) => {
   const { t } = useTranslation();
+
+  const router = useRouter();
 
   const defaultForm = {
     newEmail: "",
@@ -47,8 +53,11 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
   ) => {
     e.preventDefault();
 
+    if (email === form.newEmail) return;
+
     // prevent spamming
     if (loading) return;
+
     setLoading(true);
 
     const errors =
@@ -71,11 +80,15 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
     try {
       await UserApi.updateEmail(form);
 
-      const successMessage = t(
-        "change-email:form:success",
+      // redirect to profil
+      LinkHelper.redirect(
+        null,
+        router,
+        locale,
+        "profile",
       );
-      toast.success(successMessage);
-      setForm(defaultForm);
+
+      return;
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         const errorMessage =
@@ -96,8 +109,6 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
       setLoading(false);
       return;
     }
-
-    setLoading(false);
   };
 
   return (
@@ -154,13 +165,11 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
             type="email"
           />
 
-          <button
-            type="submit"
-            className="btn-submit"
-            data-cy="btn-form"
-          >
-            {t("change-email:form:submit")}
-          </button>
+          <BtnLoader
+            loading={loading}
+            text={t("change-email:form:submit")}
+            disabled={email === form.newEmail}
+          />
         </form>
       </>
     </FormPage>

@@ -328,10 +328,9 @@ describe("Page: /form/key", () => {
       "NEW VALUE",
     );
 
-    CypressTest.getCyData(
-      cy,
-      "modal-btn-edit",
-    ).click({ force: true });
+    CypressTest.getCyData(cy, "btn-form").click({
+      force: true,
+    });
 
     CypressTest.countChildren(
       cy,

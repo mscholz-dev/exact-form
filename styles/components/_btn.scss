@@ -89,6 +89,12 @@
       transition: 0.25s fill ease-in-out;
       width: 40px;
     }
+
+    &-disabled {
+      background: $primary-color-lighter;
+      color: $primary-color;
+      cursor: default;
+    }
   }
 
   &-edit {

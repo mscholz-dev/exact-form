@@ -435,6 +435,15 @@ export default class Validator {
       case "data too long":
         return t("form:data:error:long");
 
+      // same data
+      case "username or market must be different":
+        return t(
+          "form:sameData:usernameOrMarket",
+        );
+
+      case "data must be different":
+        return t("form:sameData:data");
+
       // default
       default:
         return t("form:error:random");

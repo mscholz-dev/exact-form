@@ -49,6 +49,11 @@ const FormProfile: FC<IFormProfile> = ({
     market: true,
   };
 
+  const [defaultData, setDefaultData] = useState({
+    username,
+    market,
+  });
+
   const [form, setForm] =
     useState<TProfileForm>(defaultForm);
   const [loading, setLoading] =
@@ -58,6 +63,13 @@ const FormProfile: FC<IFormProfile> = ({
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
+
+    if (
+      defaultData.username === form.username &&
+      defaultData.market === form.market &&
+      form.oldPassword === ""
+    )
+      return;
 
     // prevent spamming
     if (loading) return;
@@ -83,12 +95,22 @@ const FormProfile: FC<IFormProfile> = ({
         "profile:form:success",
       );
       toast.success(successMessage);
+
       setForm({
         ...form,
         oldPassword: "",
         newPassword: "",
         newPassword2: "",
       });
+
+      setDefaultData({
+        username: form.username,
+        market: form.market,
+      });
+
+      setLoading(false);
+
+      return;
     } catch (err: unknown) {
       if (err instanceof AxiosError) {
         const errorMessage =
@@ -109,8 +131,6 @@ const FormProfile: FC<IFormProfile> = ({
       setLoading(false);
       return;
     }
-
-    setLoading(false);
   };
 
   const handleChangeEmail = async () => {
@@ -144,6 +164,11 @@ const FormProfile: FC<IFormProfile> = ({
   useEffect(() => {
     setForm({
       ...form,
+      username,
+      market,
+    });
+
+    setDefaultData({
       username,
       market,
     });
@@ -340,6 +365,13 @@ const FormProfile: FC<IFormProfile> = ({
           <BtnLoader
             loading={loading}
             text={t("profile:form:submit")}
+            disabled={
+              defaultData.username ===
+                form.username &&
+              defaultData.market ===
+                form.market &&
+              form.oldPassword === ""
+            }
           />
         </form>
       </>
