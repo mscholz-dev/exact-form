@@ -447,6 +447,19 @@ export default class Validator {
       case "name or timezone must be different":
         return t("form:sameData:nameOrTimezone");
 
+      // trash:
+      case "update in trash is forbidden":
+        t("form:update:trash:forbidden");
+
+      case "delete forbidden outside the trash":
+        return t("form:delete:trash:forbidden");
+
+      case "trash required":
+        return t("form:trash:required");
+
+      case "trash invalid":
+        return t("form:trash:invalid");
+
       // default
       default:
         return t("form:error:random");

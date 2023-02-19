@@ -31,7 +31,7 @@
       }
     }
 
-    .tooltip {
+    .tooltip-table {
       &-dot {
         &-one,
         &-two,
@@ -57,11 +57,20 @@
   &-title {
     @include ellipsis;
     color: $white;
-    display: flex;
+    display: inline-block;
     font-size: 32px;
     line-height: 28px;
     height: 36px;
+    max-width: 220px;
     transition: 0.2s color ease-in-out;
+
+    @include responsive(s-xs) {
+      max-width: 290px;
+    }
+
+    @include responsive(d-xs) {
+      max-width: 320px;
+    }
   }
 
   &-tooltip {
@@ -73,7 +82,7 @@
     position: relative;
     width: 36px;
 
-    .tooltip {
+    .tooltip-table {
       &-dot {
         &-one,
         &-two,

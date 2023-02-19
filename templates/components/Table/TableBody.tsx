@@ -3,7 +3,8 @@ import FormCheckbox from "../Form/FormCheckbox";
 import useTranslation from "next-translate/useTranslation";
 import FormClass from "../../../utils/Form";
 import DateHelperClass from "../../../utils/DateHelper";
-import Tooltip from "../Tooltip";
+import Tooltip from "../Tooltip/TooltipTable";
+import IconTrash from "../../../public/icons/trash.svg";
 
 // interfaces
 import { ITableBody } from "../../../utils/interfaces";
@@ -23,6 +24,7 @@ const TableBody: FC<ITableBody> = ({
   tooltips,
   itemsId,
   tooltipDeleteLoading,
+  tooltipBtnCurrentId,
 }) => {
   const { t } = useTranslation();
 
@@ -91,19 +93,42 @@ const TableBody: FC<ITableBody> = ({
               handleTooltipClick(index)
             }
             data-cy={`tooltip-${index}`}
-            tabIndex={0}
+            tabIndex={
+              tooltipBtnCurrentId === 0 ? 0 : -1
+            }
           >
-            <Tooltip
-              index={index}
-              open={tooltips[index]}
-              handleEditClick={(e) =>
-                handleTooltipEditClick(e, index)
-              }
-              handleDeleteClick={(e) =>
-                handleTooltipDeleteClick(e, index)
-              }
-              deleteLoading={tooltipDeleteLoading}
-            />
+            {tooltipBtnCurrentId === 0 ? (
+              <Tooltip
+                index={index}
+                open={tooltips[index]}
+                handleEditClick={(e) =>
+                  handleTooltipEditClick(e, index)
+                }
+                handleDeleteClick={(e) =>
+                  handleTooltipDeleteClick(
+                    e,
+                    index,
+                  )
+                }
+                deleteLoading={
+                  tooltipDeleteLoading
+                }
+              />
+            ) : (
+              <button
+                className="table-body-column-delete"
+                onClick={(e) =>
+                  handleTooltipDeleteClick(
+                    e,
+                    index,
+                  )
+                }
+              >
+                <span className="table-body-column-delete-icon">
+                  <IconTrash />
+                </span>
+              </button>
+            )}
           </td>
         </tr>
       ))}

@@ -5,16 +5,21 @@
   "table:header:createdAt": "Created at",
   "table:header:updatedAt": "Updated at",
   "table:header:tooltip": "Manage",
+  "table:header:delete": "Delete",
   "table:body:ariaDescribedby": "Select this field",
 
   "noDataFound:title": "No request found",
 
+  "trash:success": "Row moved into trash",
+  "trash:many:success": "Rows selected moved into trash",
   "delete:success": "Row deleted",
   "delete:many:success": "Rows selected deleted",
   "edit:success": "Row edited",
 
   "btn:delete": "Delete",
   "btn:edit": "Edit",
+  "btn:type:inbox": "Inbox",
+  "btn:type:trash": "Trash",
 
   "input:edit:ariaDescribedby": "Edit the value of",
 

@@ -149,5 +149,11 @@
 
   "sameData:usernameOrMarket": "Les champs Nom d'utilisateur ou Marketing doivent être différents",
   "sameData:data": "Les données doivent être différentes",
-  "sameData:nameOrTimezone": "Les champs Nom ou Fuseau horaire doivent être différents"
+  "sameData:nameOrTimezone": "Les champs Nom ou Fuseau horaire doivent être différents",
+
+  "update:trash:forbidden": "Vous ne pouvez pas modifier dans la poubelle",
+  "delete:trash:forbidden": "Vous ne pouvez pas supprimer dans la poubelle",
+
+  "trash:required": "Les paramètres de la requêtes sont incomplets",
+  "trash:invalid": "Les paramètres de la requêtes sont invalides"
 }

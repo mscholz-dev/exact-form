@@ -5,16 +5,21 @@
   "table:header:createdAt": "Créé à",
   "table:header:updatedAt": "Modifié à",
   "table:header:tooltip": "Gérer",
+  "table:header:delete": "Supprimer",
   "table:body:ariaDescribedby": "Select ce champ",
 
   "noDataFound:title": "Aucune requête trouvée",
 
+  "trash:success": "Ligne placée dans la poubelle",
+  "trash:many:success": "Lignes sélectionnées placée dans la poubelle",
   "delete:success": "Ligne supprimée",
   "delete:many:success": "Lignes sélectionnées supprimées",
   "edit:success": "Ligne modifiée",
 
   "btn:delete": "Supprimer",
   "btn:edit": "Modifier",
+  "btn:type:inbox": "Boite",
+  "btn:type:trash": "Poubelle",
 
   "input:edit:ariaDescribedby": "Modifier la valeur de",
 

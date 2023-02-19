@@ -32,39 +32,51 @@ export default class FormApi {
   static async getSpecificForm(
     key: string,
     currentPage: number,
+    trash: boolean,
   ) {
     return await api
-      .get(`/form/${key}?page=${currentPage}`, {
-        headers: {
-          accept: "application/json",
+      .get(
+        `/form/${key}?page=${currentPage}&trash=${trash}`,
+        {
+          headers: {
+            accept: "application/json",
+          },
         },
-      })
+      )
       .then((res) => res);
   }
 
   static async deleteItem(
     key: string,
     id: string,
+    trash: boolean,
   ) {
     return await api
-      .delete(`/form/${key}/${id}`, {
-        headers: {
-          accept: "application/json",
+      .delete(
+        `/form/${key}/${id}?trash=${trash}`,
+        {
+          headers: {
+            accept: "application/json",
+          },
         },
-      })
+      )
       .then((res) => res);
   }
 
   static async deleteManyItem(
     key: string,
     ids: string,
+    trash: boolean,
   ) {
     return await api
-      .delete(`/form/${key}/items?${ids}`, {
-        headers: {
-          accept: "application/json",
+      .delete(
+        `/form/${key}/items?${ids}&trash=${trash}`,
+        {
+          headers: {
+            accept: "application/json",
+          },
         },
-      })
+      )
       .then((res) => res);
   }
 

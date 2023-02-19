@@ -1,0 +1,171 @@
+.tooltip-btn {
+  align-items: center;
+  background: $white;
+  background: linear-gradient(
+    90deg,
+    $black 50%,
+    $white 50%
+  );
+  background-position: right;
+  background-size: 200% 100%;
+  border: 1px solid $black;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 38px;
+  justify-content: center;
+  min-width: 118px;
+  position: relative;
+  transition: 0.25s background-position
+    ease-in-out;
+  width: 118px;
+
+  &:hover {
+    background-position: left;
+
+    .tooltip-btn {
+      &-icon {
+        fill: $white;
+      }
+
+      &-title {
+        color: $white;
+      }
+
+      &-loading {
+        fill: $white;
+      }
+    }
+  }
+
+  &-icon {
+    align-items: center;
+    display: flex;
+    height: 18px;
+    fill: $black;
+    justify-content: center;
+    margin-right: 4px;
+    transition: 0.25s fill ease-in-out;
+    width: 18px;
+  }
+
+  &-title {
+    display: flex;
+    font-family: $secondary-font-bold;
+    font-size: 16px;
+    transition: 0.25s color ease-in-out;
+  }
+
+  &-loading {
+    align-items: center;
+    animation: rotate 1s linear infinite;
+    display: flex;
+    height: 24px;
+    fill: $black;
+    justify-content: center;
+    transition: 0.25s fill ease-in-out;
+    width: 24px;
+  }
+
+  &-modal {
+    background-color: $white;
+    border-radius: 2px;
+    display: inline-block;
+    height: 0px;
+    left: -2px;
+    overflow: hidden;
+    position: absolute;
+    top: calc(100% + 8px);
+    transition: 0.25s height ease-in-out;
+    width: 120px;
+    z-index: 1;
+
+    &-border {
+      border: 1px solid $black;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-btn {
+      align-items: center;
+      background: $white;
+      background: linear-gradient(
+        90deg,
+        $black 50%,
+        $white 50%
+      );
+      background-position: right;
+      background-size: 200% 100%;
+      cursor: pointer;
+      display: flex;
+      height: 40px;
+      font-size: 16px;
+      justify-content: center;
+      transition: 0.25s color ease-in-out,
+        0.25s background-position ease-in-out;
+      width: 100%;
+
+      &:hover {
+        background-position: left;
+
+        .tooltip-btn-modal-btn {
+          &-icon {
+            fill: $white;
+          }
+
+          &-title {
+            color: $white;
+          }
+        }
+      }
+
+      &-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &-icon {
+        align-items: center;
+        display: flex;
+        height: 18px;
+        justify-content: center;
+        margin-right: 4px;
+        transition: 0.25s fill ease-in-out;
+        width: 18px;
+      }
+
+      &-title {
+        transition: 0.25s color ease-in-out;
+      }
+    }
+
+    &-hr {
+      background: $black;
+      display: inline-block;
+      height: 1px;
+      width: 100%;
+    }
+  }
+
+  &-open {
+    &:hover {
+      background-position: right;
+
+      .tooltip-btn {
+        &-icon {
+          fill: $black;
+        }
+
+        &-title {
+          color: $black;
+        }
+
+        &-loading {
+          fill: $black;
+        }
+      }
+    }
+  }
+}

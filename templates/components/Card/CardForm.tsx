@@ -4,7 +4,7 @@ import LinkHelperClass from "../../../utils/LinkHelper";
 import Avatar from "../Avatar";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
-import Tooltip from "../Tooltip";
+import Tooltip from "../Tooltip/TooltipTable";
 
 // interfaces
 import { ICardForm } from "../../../utils/interfaces";

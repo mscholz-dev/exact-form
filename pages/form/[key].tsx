@@ -45,14 +45,22 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
   const [currentPage, setCurrentPage] =
     useState<number>(1);
 
+  // form view
+  const [
+    tooltipBtnCurrentId,
+    setTooltipBtnCurrentId,
+  ] = useState<number>(0);
+
   const isAuthAndGetSpecificForm = async (
     startLoading: boolean,
+    trash: boolean,
   ) => {
     try {
       setLoading(startLoading);
       const res = await FormApi.getSpecificForm(
         router.query.key as string,
         currentPage,
+        trash,
       );
 
       // add data
@@ -76,7 +84,11 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
   };
 
   useEffect(() => {
-    isAuthAndGetSpecificForm(true);
+    isAuthAndGetSpecificForm(
+      true,
+      // trash boolean
+      tooltipBtnCurrentId === 1,
+    );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
@@ -104,8 +116,12 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
         loading={loading}
         locale={locale}
         timezone={timezone}
-        isAuthAndGetSpecificForm={() =>
-          isAuthAndGetSpecificForm(false)
+        isAuthAndGetSpecificForm={
+          isAuthAndGetSpecificForm
+        }
+        tooltipBtnCurrentId={tooltipBtnCurrentId}
+        setTooltipBtnCurrentId={
+          setTooltipBtnCurrentId
         }
       />
     </Page>

@@ -1,4 +1,4 @@
-.tooltip {
+.tooltip-table {
   align-items: center;
   display: flex;
   justify-content: center;
@@ -45,7 +45,7 @@
     &-btn {
       &-edit,
       &-delete {
-        background: $primary-color;
+        background: $white;
         background: linear-gradient(
           90deg,
           $primary-color 50%,
@@ -103,7 +103,7 @@
   }
 
   &-open {
-    .tooltip {
+    .tooltip-table {
       &-modal {
         height: 80px;
         width: 120px;

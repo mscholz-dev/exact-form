@@ -18,11 +18,13 @@ import FormValidatorClass from "../../../utils/validators/FormValidator";
 import useTranslation from "next-translate/useTranslation";
 import NoDataFound from "../NoDataFound";
 import IconTrash from "../../../public/icons/trash.svg";
+import IconInbox from "../../../public/icons/inbox.svg";
 import DateHelperClass from "../../../utils/DateHelper";
 import IconDatabase from "../../../public/icons/database.svg";
 import FormInput from "../Form/FormInput";
 import Modal from "../Modal";
 import BtnLoader from "../BtnLoader";
+import TooltipBtn from "../Tooltip/TooltipBtn";
 
 // interfaces
 import { ITable } from "../../../utils/interfaces";
@@ -49,6 +51,8 @@ const Table: FC<ITable> = ({
   locale,
   timezone,
   isAuthAndGetSpecificForm,
+  tooltipBtnCurrentId,
+  setTooltipBtnCurrentId,
 }) => {
   const { t } = useTranslation();
 
@@ -97,6 +101,104 @@ const Table: FC<ITable> = ({
   const [editIndex, setEditIndex] = useState<
     null | number
   >(null);
+
+  // tooltip btn states
+  const [tooltipBtnOpen, setTooltipBtnOpen] =
+    useState<boolean>(false);
+  const [
+    tooltipBtnLoading,
+    setTooltipBtnLoading,
+  ] = useState<boolean>(false);
+
+  const handleTooltipBtnChoiceClick = async (
+    e: SyntheticEvent,
+    id: number,
+    trash: boolean,
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // close tooltipBtn
+    setTooltipBtnOpen(false);
+
+    // already the current id
+    if (tooltipBtnCurrentId === id) return;
+
+    // is loading
+    if (tooltipBtnLoading) return;
+
+    // change current id
+    setTooltipBtnCurrentId(id);
+
+    try {
+      setTooltipBtnLoading(true);
+
+      await isAuthAndGetSpecificForm(
+        false,
+        trash,
+      );
+
+      //reset paging
+      setCurrentPage(1);
+
+      // close current tooltip
+      setTooltips({});
+
+      // display modal
+      setActiveModal(false);
+
+      // reset contentForm
+      setContentForm({});
+
+      // reset editIndex
+      setEditIndex(null);
+
+      setTooltipBtnLoading(false);
+
+      return;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+        toast.error(errorMessage);
+
+        // loading state
+        setTooltipBtnLoading(false);
+
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+
+      // loading state
+      setTooltipBtnLoading(false);
+
+      return;
+    }
+  };
+
+  const tooltipBtnItems = [
+    {
+      id: 0,
+      icon: <IconInbox />,
+      title: t("form-page-key:btn:type:inbox"),
+      handleClick: handleTooltipBtnChoiceClick,
+      trash: false,
+    },
+    {
+      id: 1,
+      icon: <IconTrash />,
+      title: t("form-page-key:btn:type:trash"),
+      handleClick: handleTooltipBtnChoiceClick,
+      trash: true,
+    },
+  ];
 
   const handleTooltipClick = (index: number) => {
     const newTooltips: Record<number, boolean> =
@@ -176,9 +278,15 @@ const Table: FC<ITable> = ({
       await FormApi.deleteItem(
         keyName,
         itemsId[index],
+        // trash boolean
+        tooltipBtnCurrentId === 1,
       );
 
-      await isAuthAndGetSpecificForm();
+      await isAuthAndGetSpecificForm(
+        false,
+        // trash boolean
+        tooltipBtnCurrentId === 1,
+      );
 
       // close current tooltip
       setTooltips({});
@@ -209,9 +317,10 @@ const Table: FC<ITable> = ({
       if (body.length === 0 && currentPage > 1)
         setCurrentPage(currentPage - 1);
 
-      const successMessage = t(
-        "form-page-key:delete:success",
-      );
+      const successMessage =
+        tooltipBtnCurrentId === 0
+          ? t("form-page-key:trash:success")
+          : t("form-page-key:delete:success");
       toast.success(successMessage);
 
       return;
@@ -270,9 +379,15 @@ const Table: FC<ITable> = ({
         await FormApi.deleteManyItem(
           keyName,
           deleteItemsQuery,
+          // trash boolean
+          tooltipBtnCurrentId === 1,
         );
 
-        await isAuthAndGetSpecificForm();
+        await isAuthAndGetSpecificForm(
+          false,
+          // trash boolean
+          tooltipBtnCurrentId === 1,
+        );
 
         // close current tooltip
         setTooltips({});
@@ -317,9 +432,14 @@ const Table: FC<ITable> = ({
         )
           setCurrentPage(currentPage - 1);
 
-        const successMessage = t(
-          "form-page-key:delete:many:success",
-        );
+        const successMessage =
+          tooltipBtnCurrentId === 0
+            ? t(
+                "form-page-key:trash:many:success",
+              )
+            : t(
+                "form-page-key:delete:many:success",
+              );
         toast.success(successMessage);
 
         return;
@@ -378,7 +498,11 @@ const Table: FC<ITable> = ({
         contentForm,
       );
 
-      await isAuthAndGetSpecificForm();
+      await isAuthAndGetSpecificForm(
+        false,
+        // already to false because can't edit in trash
+        false,
+      );
 
       // close current tooltip
       setTooltips({});
@@ -596,16 +720,26 @@ const Table: FC<ITable> = ({
 
   return (
     <Wrapper className="wrapper-table-container">
-      <h1 className="table-title">
-        <span className="table-title-label">
-          {title}
-        </span>
-        <span className="table-title-number">
-          {countAll === null
-            ? ""
-            : `(${countAll})`}
-        </span>
-      </h1>
+      <div className="table-title-header">
+        <h1 className="table-title">
+          <span className="table-title-label">
+            {title}
+          </span>
+          <span className="table-title-number">
+            {countAll === null
+              ? ""
+              : `(${countAll})`}
+          </span>
+        </h1>
+
+        <TooltipBtn
+          open={tooltipBtnOpen}
+          setOpen={setTooltipBtnOpen}
+          items={tooltipBtnItems}
+          currentId={tooltipBtnCurrentId}
+          loading={tooltipBtnLoading}
+        />
+      </div>
 
       <div className="table-btn">
         <button
@@ -668,6 +802,9 @@ const Table: FC<ITable> = ({
                   )
                 }
                 selectAll={selectAll}
+                tooltipBtnCurrentId={
+                  tooltipBtnCurrentId
+                }
               />
               <TableBody
                 body={body}
@@ -687,6 +824,9 @@ const Table: FC<ITable> = ({
                 itemsId={itemsId}
                 tooltipDeleteLoading={
                   tooltipDeleteLoading
+                }
+                tooltipBtnCurrentId={
+                  tooltipBtnCurrentId
                 }
               />
             </table>

@@ -204,13 +204,21 @@ export interface ITable {
   loading: boolean;
   locale: string;
   timezone: string;
-  isAuthAndGetSpecificForm: () => Promise<void>;
+  isAuthAndGetSpecificForm: (
+    startLoading: boolean,
+    trash: boolean,
+  ) => Promise<void>;
+  tooltipBtnCurrentId: number;
+  setTooltipBtnCurrentId: Dispatch<
+    SetStateAction<number>
+  >;
 }
 
 export interface ITableHeader {
   header: TTableBox;
   handleBooleanChange: () => void;
   selectAll: boolean;
+  tooltipBtnCurrentId: number;
 }
 
 export interface ITableBody {
@@ -232,6 +240,7 @@ export interface ITableBody {
   tooltips: Record<number, boolean>;
   itemsId: string[];
   tooltipDeleteLoading: boolean;
+  tooltipBtnCurrentId: number;
 }
 
 export interface IPaging {
@@ -265,7 +274,7 @@ export interface INoDataFound {
   largeTXS?: boolean;
 }
 
-export interface ITooltip {
+export interface ITooltipTable {
   index: number;
   open: boolean;
   handleEditClick: (
@@ -283,4 +292,22 @@ export interface IModal {
   active: boolean;
   setActive: Dispatch<SetStateAction<boolean>>;
   content: JSX.Element;
+}
+
+export interface ITooltipBtn {
+  open: boolean;
+  setOpen: Dispatch<SetStateAction<boolean>>;
+  items: {
+    id: number;
+    icon: JSX.Element;
+    title: string;
+    handleClick: (
+      e: SyntheticEvent,
+      id: number,
+      trash: boolean,
+    ) => void;
+    trash: boolean;
+  }[];
+  currentId: number;
+  loading: boolean;
 }

@@ -9,6 +9,7 @@ const TableHeader: FC<ITableHeader> = ({
   header,
   handleBooleanChange,
   selectAll,
+  tooltipBtnCurrentId,
 }) => {
   const { t } = useTranslation();
 
@@ -56,8 +57,19 @@ const TableHeader: FC<ITableHeader> = ({
         ))}
 
         <th className="table-header-column">
-          {t(
-            "form-page-key:table:header:tooltip",
+          {/* form view */}
+          {tooltipBtnCurrentId === 0 ? (
+            <>
+              {t(
+                "form-page-key:table:header:tooltip",
+              )}
+            </>
+          ) : (
+            <>
+              {t(
+                "form-page-key:table:header:delete",
+              )}
+            </>
           )}
         </th>
       </tr>

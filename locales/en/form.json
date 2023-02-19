@@ -149,5 +149,11 @@
 
   "sameData:usernameOrMarket": "Fields Username or Market must be different",
   "sameData:data": "Data must be different",
-  "sameData:nameOrTimezone": "Fields Name or Timezone must be different"
+  "sameData:nameOrTimezone": "Fields Name or Timezone must be different",
+
+  "update:trash:forbidden": "You can't update in trash",
+  "delete:trash:forbidden": "You can't delete outside the trash",
+
+  "trash:required": "Request parameters are incomplete",
+  "trash:invalid": "Request parameters are invalid"
 }
