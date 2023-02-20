@@ -42,11 +42,13 @@ const Form: FC<IForm> = ({ locale }) => {
 
   const isAuthAndGetAll = async (
     startLoading: boolean,
+    trash: boolean,
   ) => {
     try {
       setLoading(startLoading);
       const res = await FormApi.getAll(
         currentPage,
+        trash,
       );
 
       // add data
@@ -68,7 +70,7 @@ const Form: FC<IForm> = ({ locale }) => {
   };
 
   useEffect(() => {
-    isAuthAndGetAll(true);
+    isAuthAndGetAll(true, false);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
@@ -96,9 +98,7 @@ const Form: FC<IForm> = ({ locale }) => {
           "form-page:noDataFound:title",
         )}
         loading={loading}
-        isAuthAndGetAll={() =>
-          isAuthAndGetAll(false)
-        }
+        isAuthAndGetAll={isAuthAndGetAll}
       />
     </Page>
   );

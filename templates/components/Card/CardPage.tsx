@@ -25,10 +25,13 @@ import IconFont from "../../../public/icons/font.svg";
 import IconTimezone from "../../../public/icons/timezone.svg";
 import timezone from "../../../utils/timezone.json";
 import BtnLoader from "../BtnLoader";
+import IconInbox from "../../../public/icons/inbox.svg";
+import IconTrash from "../../../public/icons/trash.svg";
+import TooltipBtn from "../Tooltip/TooltipBtn";
+import Modal from "../Modal";
 
 // interfaces
 import { ICardPage } from "../../../utils/interfaces";
-import Modal from "../Modal";
 
 // classes
 const LinkHelper = new LinkHelperClass();
@@ -77,6 +80,102 @@ const CardPage: FC<ICardPage> = ({
   const [editIndex, setEditIndex] = useState<
     null | number
   >(null);
+
+  // tooltip btn
+  const [tooltipBtnOpen, setTooltipBtnOpen] =
+    useState<boolean>(false);
+  const [
+    tooltipBtnLoading,
+    setTooltipBtnLoading,
+  ] = useState<boolean>(false);
+  const [
+    tooltipBtnCurrentId,
+    setTooltipBtnCurrentId,
+  ] = useState<number>(0);
+
+  const handleTooltipBtnChoiceClick = async (
+    e: SyntheticEvent,
+    id: number,
+    trash: boolean,
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // close tooltipBtn
+    setTooltipBtnOpen(false);
+
+    // already the current id
+    if (tooltipBtnCurrentId === id) return;
+
+    // is loading
+    if (tooltipBtnLoading) return;
+
+    // change current id
+    setTooltipBtnCurrentId(id);
+
+    try {
+      setTooltipBtnLoading(true);
+
+      await isAuthAndGetAll(false, trash);
+
+      //reset paging
+      setCurrentPage(1);
+
+      // close current tooltip
+      setTooltips({});
+
+      // display modal
+      setActiveModal(false);
+
+      // reset editIndex
+      setEditIndex(null);
+
+      setTooltipBtnLoading(false);
+
+      return;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+        toast.error(errorMessage);
+
+        // loading state
+        setTooltipBtnLoading(false);
+
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+
+      // loading state
+      setTooltipBtnLoading(false);
+
+      return;
+    }
+  };
+
+  const tooltipBtnItems = [
+    {
+      id: 0,
+      icon: <IconInbox />,
+      title: t("form-page-key:btn:type:inbox"),
+      handleClick: handleTooltipBtnChoiceClick,
+      trash: false,
+    },
+    {
+      id: 1,
+      icon: <IconTrash />,
+      title: t("form-page-key:btn:type:trash"),
+      handleClick: handleTooltipBtnChoiceClick,
+      trash: true,
+    },
+  ];
 
   const handleTooltipClick = (
     e: SyntheticEvent,
@@ -162,7 +261,7 @@ const CardPage: FC<ICardPage> = ({
         contentForm,
       );
 
-      await isAuthAndGetAll();
+      await isAuthAndGetAll(false, false);
 
       // close current tooltip
       setTooltips({});
@@ -224,7 +323,11 @@ const CardPage: FC<ICardPage> = ({
 
       await FormApi.deleteForm(items[index].key);
 
-      await isAuthAndGetAll();
+      await isAuthAndGetAll(
+        false,
+        // trash boolean
+        tooltipBtnCurrentId === 1,
+      );
 
       // close current tooltip
       setTooltips({});
@@ -299,6 +402,14 @@ const CardPage: FC<ICardPage> = ({
             ({countAll || 0})
           </span>
         </h1>
+
+        <TooltipBtn
+          open={tooltipBtnOpen}
+          setOpen={setTooltipBtnOpen}
+          items={tooltipBtnItems}
+          currentId={tooltipBtnCurrentId}
+          loading={tooltipBtnLoading}
+        />
 
         <Link
           href={LinkHelper.translate(

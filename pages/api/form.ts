@@ -19,13 +19,19 @@ export default class FormApi {
       .then((res) => res);
   }
 
-  static async getAll(currentPage: number) {
+  static async getAll(
+    currentPage: number,
+    trash: boolean,
+  ) {
     return await api
-      .get(`/form?page=${currentPage}`, {
-        headers: {
-          accept: "application/json",
+      .get(
+        `/form?page=${currentPage}&trash=${trash}`,
+        {
+          headers: {
+            accept: "application/json",
+          },
         },
-      })
+      )
       .then((res) => res);
   }
 
