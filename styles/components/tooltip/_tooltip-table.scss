@@ -44,7 +44,8 @@
 
     &-btn {
       &-edit,
-      &-delete {
+      &-delete,
+      &-recover {
         background: $white;
         background: linear-gradient(
           90deg,
@@ -87,7 +88,27 @@
         }
 
         &:hover {
-          .tooltip-modal-btn-delete-loading {
+          .tooltip-table-modal-btn-delete-loading {
+            fill: $white;
+          }
+        }
+      }
+
+      &-recover {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+        &-loading {
+          animation: rotate 1s linear infinite;
+          fill: $black;
+          height: 24px;
+          transition: 0.25s fill ease-in-out;
+          width: 24px;
+        }
+
+        &:hover {
+          .tooltip-table-modal-btn-recover-loading {
             fill: $white;
           }
         }

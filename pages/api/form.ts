@@ -116,4 +116,21 @@ export default class FormApi {
       })
       .then((res) => res);
   }
+
+  static async recoverItem(
+    key: string,
+    id: string,
+  ) {
+    return await api
+      .put(
+        `form/${key}/recover/${id}`,
+        {},
+        {
+          headers: {
+            accept: "application/json",
+          },
+        },
+      )
+      .then((res) => res);
+  }
 }

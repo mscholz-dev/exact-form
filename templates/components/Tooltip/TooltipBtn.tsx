@@ -65,6 +65,7 @@ const TooltipBtn: FC<ITooltipBtn> = ({
         open ? " tooltip-btn-open" : ""
       }`}
       onClick={handleClick}
+      data-cy="tooltip-btn"
     >
       {loading ? (
         <span className="tooltip-btn-loading">
@@ -107,6 +108,7 @@ const TooltipBtn: FC<ITooltipBtn> = ({
                   onClick={(e) =>
                     handleClick(e, id, trash)
                   }
+                  data-cy={`tooltip-btn-${id}`}
                 >
                   <span className="tooltip-btn-modal-btn-icon">
                     {icon}

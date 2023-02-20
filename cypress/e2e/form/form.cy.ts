@@ -166,7 +166,7 @@ describe("Page: /form", () => {
 
     CypressTest.getCyData(
       cy,
-      "tooltip-edit-0",
+      "tooltip-table-edit-0",
     ).click();
 
     CypressTest.inputFill(

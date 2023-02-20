@@ -36,30 +36,5 @@
     &-tooltip {
       cursor: pointer;
     }
-
-    &-delete {
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      height: 36px;
-      justify-content: center;
-      width: 100%;
-
-      &-icon {
-        align-items: center;
-        display: flex;
-        height: 18px;
-        fill: $black;
-        justify-content: center;
-        transition: 0.25s fill ease-in-out;
-        width: 18px;
-      }
-
-      &:hover {
-        .table-body-column-delete-icon {
-          fill: $error-color;
-        }
-      }
-    }
   }
 }

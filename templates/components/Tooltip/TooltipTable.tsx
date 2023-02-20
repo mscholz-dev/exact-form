@@ -11,6 +11,8 @@ const TooltipTable: FC<ITooltipTable> = ({
   handleEditClick,
   handleDeleteClick,
   deleteLoading,
+  tooltipBtnCurrentId,
+  recoverLoading,
 }) => {
   const { t } = useTranslation();
 
@@ -29,13 +31,35 @@ const TooltipTable: FC<ITooltipTable> = ({
       <div className="tooltip-table-modal">
         <div className="tooltip-table-modal-border">
           <button
-            className="tooltip-table-modal-btn-edit"
+            className={`${
+              tooltipBtnCurrentId === 0
+                ? "tooltip-table-modal-btn-edit"
+                : "tooltip-table-modal-btn-recover"
+            }`}
             onClick={(e) =>
               handleEditClick(e, index)
             }
-            data-cy={`tooltip-table-edit-${index}`}
+            data-cy={`tooltip-table-${
+              tooltipBtnCurrentId === 0
+                ? "edit"
+                : "recover"
+            }-${index}`}
           >
-            {t("common:tooltip:edit")}
+            {tooltipBtnCurrentId === 0 ? (
+              <>{t("common:tooltip:edit")}</>
+            ) : (
+              <>
+                {recoverLoading ? (
+                  <span className="tooltip-table-modal-btn-recover-loading">
+                    <IconLoader />
+                  </span>
+                ) : (
+                  <>
+                    {t("common:tooltip:recover")}
+                  </>
+                )}
+              </>
+            )}
           </button>
           <span className="tooltip-table-modal-hr" />
           <button

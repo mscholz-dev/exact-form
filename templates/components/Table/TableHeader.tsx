@@ -57,19 +57,8 @@ const TableHeader: FC<ITableHeader> = ({
         ))}
 
         <th className="table-header-column">
-          {/* form view */}
-          {tooltipBtnCurrentId === 0 ? (
-            <>
-              {t(
-                "form-page-key:table:header:tooltip",
-              )}
-            </>
-          ) : (
-            <>
-              {t(
-                "form-page-key:table:header:delete",
-              )}
-            </>
+          {t(
+            "form-page-key:table:header:tooltip",
           )}
         </th>
       </tr>

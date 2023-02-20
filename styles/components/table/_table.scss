@@ -7,6 +7,7 @@
     display: flex;
     margin-bottom: 12px;
     max-width: 100%;
+    width: 100%;
 
     @include responsive(t-xs) {
       margin-bottom: 0;
@@ -20,11 +21,6 @@
       font-size: 32px;
       line-height: 42px;
       margin-right: 6px;
-      width: 80%;
-
-      @include responsive(t-xs) {
-        width: 85%;
-      }
     }
 
     &-number {

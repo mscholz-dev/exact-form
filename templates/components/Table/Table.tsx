@@ -67,6 +67,10 @@ const Table: FC<ITable> = ({
     multipleDeleteLoading,
     setMultipleDeleteLoading,
   ] = useState<boolean>(false);
+  const [
+    tooltipRecoverLoading,
+    setTooltipRecoverLoading,
+  ] = useState<boolean>(false);
 
   const [header, setHeader] = useState<TTableBox>(
     [],
@@ -216,6 +220,98 @@ const Table: FC<ITable> = ({
 
     // edit loading btn state
     setEditLoading(false);
+
+    // recover loading state
+    setTooltipRecoverLoading(false);
+  };
+
+  // TODO: write cypress test (everything works in front)
+
+  const handleTooltipRecoverClick = async (
+    e: React.MouseEvent,
+    index: number,
+  ) => {
+    e.stopPropagation();
+
+    // edit view
+    if (tooltipBtnCurrentId === 0) return;
+
+    // prevent spamming
+    if (tooltipRecoverLoading) return;
+
+    try {
+      // delete loading state
+      setTooltipRecoverLoading(true);
+
+      // not a delete with trash at false because i want a PUT method, not a DELETE
+      await FormApi.recoverItem(
+        keyName,
+        itemsId[index],
+      );
+
+      await isAuthAndGetSpecificForm(false, true);
+
+      // close current tooltip
+      setTooltips({});
+
+      // update countAll
+      setCountAll((countAll as number) - 1);
+
+      // remove deleted item id
+      itemsId.splice(index, 1);
+      setItemsId([...itemsId]);
+
+      // remove deleted item
+      body.splice(index, 1);
+      setBody([...body]);
+
+      // reset selected rows
+      setSelectAll(false);
+
+      const newSelected: Record<string, boolean> =
+        {};
+
+      for (const item of itemsId)
+        newSelected[item] = false;
+
+      setSelected(newSelected);
+
+      // if all data has been deleted
+      if (body.length === 0 && currentPage > 1)
+        setCurrentPage(currentPage - 1);
+
+      const successMessage = t(
+        "form-page-key:recover:success",
+      );
+
+      toast.success(successMessage);
+
+      return;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+        toast.error(errorMessage);
+
+        // delete loading state
+        setTooltipDeleteLoading(false);
+
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+
+      // delete loading state
+      setTooltipDeleteLoading(false);
+
+      return;
+    }
   };
 
   const handleTooltipEditClick = (
@@ -223,6 +319,9 @@ const Table: FC<ITable> = ({
     index: number,
   ) => {
     e.stopPropagation();
+
+    // recover view
+    if (tooltipBtnCurrentId === 1) return;
 
     // store current edit index
     setEditIndex(index);
@@ -477,6 +576,9 @@ const Table: FC<ITable> = ({
   ) => {
     e.preventDefault();
     e.stopPropagation();
+
+    // not in inbox view
+    if (tooltipBtnCurrentId === 1) return;
 
     if (
       Object.values(
@@ -827,6 +929,12 @@ const Table: FC<ITable> = ({
                 }
                 tooltipBtnCurrentId={
                   tooltipBtnCurrentId
+                }
+                handleTooltipRecoverClick={
+                  handleTooltipRecoverClick
+                }
+                recoverLoading={
+                  tooltipRecoverLoading
                 }
               />
             </table>

@@ -241,6 +241,11 @@ export interface ITableBody {
   itemsId: string[];
   tooltipDeleteLoading: boolean;
   tooltipBtnCurrentId: number;
+  handleTooltipRecoverClick: (
+    e: React.MouseEvent,
+    index: number,
+  ) => void;
+  recoverLoading: boolean;
 }
 
 export interface IPaging {
@@ -286,6 +291,8 @@ export interface ITooltipTable {
     index: number,
   ) => void;
   deleteLoading: boolean;
+  tooltipBtnCurrentId: number;
+  recoverLoading: boolean;
 }
 
 export interface IModal {

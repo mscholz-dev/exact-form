@@ -16,5 +16,6 @@
   "role:superAdmin": "Super administrateur",
 
   "tooltip:edit": "Modifier",
-  "tooltip:delete": "Supprimer"
+  "tooltip:delete": "Supprimer",
+  "tooltip:recover": "Récuperer"
 }

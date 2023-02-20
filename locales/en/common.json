@@ -16,5 +16,6 @@
   "role:superAdmin": "Super administrator",
 
   "tooltip:edit": "Edit",
-  "tooltip:delete": "Delete"
+  "tooltip:delete": "Delete",
+  "tooltip:recover": "Recover"
 }
