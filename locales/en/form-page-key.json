@@ -15,11 +15,13 @@
   "delete:many:success": "Rows selected deleted",
   "edit:success": "Row edited",
   "recover:success": "Row moved into inbox",
+  "recover:many:success": "Rows selected moved into inbox",
 
   "btn:delete": "Delete",
   "btn:edit": "Edit",
   "btn:type:inbox": "Inbox",
   "btn:type:trash": "Trash",
+  "btn:recover": "Recover",
 
   "input:edit:ariaDescribedby": "Edit the value of",
 

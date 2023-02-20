@@ -234,6 +234,70 @@
     }
   }
 
+  &-recover {
+    @extend %btn;
+    background: $valid-color;
+    background: linear-gradient(
+      90deg,
+      $white 50%,
+      $valid-color 50%
+    );
+    background-position: right;
+    background-size: 200% 100%;
+    border: 1px solid $valid-color;
+    height: 40px;
+    margin-top: 0;
+    min-height: 40px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s opacity ease-in-out,
+      0.25s background-position ease-in-out;
+    width: 110px;
+
+    &-icon {
+      display: flex;
+      fill: $white;
+      height: 18px;
+      margin-right: 4px;
+      transition: 0.25s fill ease-in-out;
+      width: 18px;
+    }
+
+    &-title {
+      color: $white;
+      transition: 0.25s color ease-in-out;
+    }
+
+    &-active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    &-loading {
+      animation: rotate 1s linear infinite;
+      fill: $white;
+      height: 24px;
+      transition: 0.25s fill ease-in-out;
+      width: 24px;
+    }
+
+    &:hover {
+      .btn-recover {
+        &-icon {
+          fill: $valid-color;
+        }
+
+        &-title {
+          color: $valid-color;
+        }
+
+        &-loading {
+          fill: $valid-color;
+        }
+      }
+    }
+  }
+
   &-modal {
     &-close {
       align-items: center;

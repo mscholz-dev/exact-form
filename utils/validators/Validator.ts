@@ -421,6 +421,10 @@ export default class Validator {
       case "id not found":
         return t("form:error:random");
 
+      // ids
+      case "ids required":
+        return t("form:error:random");
+
       // query
       case "query required":
         return t("form:error:random");

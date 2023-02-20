@@ -15,11 +15,13 @@
   "delete:many:success": "Lignes sélectionnées supprimées",
   "edit:success": "Ligne modifiée",
   "recover:success": "Ligne déplacée dans la boîte",
+  "recover:many:success": "Lignes sélectionnées déplacer dans la boîte",
 
   "btn:delete": "Supprimer",
   "btn:edit": "Modifier",
   "btn:type:inbox": "Boite",
   "btn:type:trash": "Poubelle",
+  "btn:recover": "Récuperer",
 
   "input:edit:ariaDescribedby": "Modifier la valeur de",
 

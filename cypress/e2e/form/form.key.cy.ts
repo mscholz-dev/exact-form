@@ -388,10 +388,14 @@ describe("Page: /form/key", () => {
       50,
     );
 
+    CypressTest.getCyData(cy, "tooltip-0").click({
+      force: true,
+    });
+
     CypressTest.getCyData(
       cy,
-      "btn-delete-0",
-    ).click();
+      "tooltip-delete-0",
+    ).click({ force: true });
 
     CypressTest.countChildren(
       cy,
@@ -481,13 +485,219 @@ describe("Page: /form/key", () => {
       cy,
       "table-body",
       "tr",
+      50,
+    );
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "delete:many:success",
+      formPageKeyTranslations,
+    );
+  });
+
+  it("it should recover a form item in trash with tooltip", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    cy.wait(3_000);
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn-1",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      50,
+    );
+
+    CypressTest.getCyData(cy, "tooltip-0").click({
+      force: true,
+    });
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-table-recover-0",
+    ).click({ force: true });
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
       49,
     );
 
     CypressTest.successToastContains(
       cy,
       0,
-      "delete:success",
+      "recover:success",
+      formPageKeyTranslations,
+    );
+  });
+
+  it("it should recover 3 form items with checkbox", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    cy.wait(3_000);
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn-1",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      49,
+    );
+
+    CypressTest.getCyData(cy, "selectRow0").click(
+      {
+        force: true,
+      },
+    );
+
+    CypressTest.getCyData(cy, "selectRow1").click(
+      {
+        force: true,
+      },
+    );
+
+    CypressTest.getCyData(cy, "selectRow2").click(
+      {
+        force: true,
+      },
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "table-btn-recover",
+    ).click({
+      force: true,
+    });
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      46,
+    );
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "recover:many:success",
+      formPageKeyTranslations,
+    );
+  });
+
+  it("it should recover 45 form items with checkbox all", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "paging-arrow-next",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "Form-1-User-1",
+    ).click();
+
+    cy.wait(3_000);
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn-1",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "table-body",
+      "tr",
+      46,
+    );
+
+    CypressTest.getCyData(cy, "selectAll").click({
+      force: true,
+    });
+
+    CypressTest.getCyData(
+      cy,
+      "table-btn-recover",
+    ).click({
+      force: true,
+    });
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "recover:many:success",
       formPageKeyTranslations,
     );
   });

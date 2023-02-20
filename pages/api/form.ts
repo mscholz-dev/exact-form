@@ -133,4 +133,21 @@ export default class FormApi {
       )
       .then((res) => res);
   }
+
+  static async recoverManyItem(
+    key: string,
+    ids: string[],
+  ) {
+    return await api
+      .put(
+        `form/${key}/recover`,
+        { ids },
+        {
+          headers: {
+            accept: "application/json",
+          },
+        },
+      )
+      .then((res) => res);
+  }
 }

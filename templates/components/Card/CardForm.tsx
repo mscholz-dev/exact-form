@@ -77,6 +77,8 @@ const CardForm: FC<ICardForm> = ({
               handleTooltipDeleteClick(e, index)
             }
             deleteLoading={tooltipDeleteLoading}
+            tooltipBtnCurrentId={0}
+            recoverLoading={false}
           />
         </span>
       </span>

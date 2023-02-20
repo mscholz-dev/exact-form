@@ -19,6 +19,7 @@ import useTranslation from "next-translate/useTranslation";
 import NoDataFound from "../NoDataFound";
 import IconTrash from "../../../public/icons/trash.svg";
 import IconInbox from "../../../public/icons/inbox.svg";
+import IconPlus from "../../../public/icons/plus.svg";
 import DateHelperClass from "../../../utils/DateHelper";
 import IconDatabase from "../../../public/icons/database.svg";
 import FormInput from "../Form/FormInput";
@@ -70,6 +71,10 @@ const Table: FC<ITable> = ({
   const [
     tooltipRecoverLoading,
     setTooltipRecoverLoading,
+  ] = useState<boolean>(false);
+  const [
+    multipleRecoverLoading,
+    setMultipleRecoverLoading,
   ] = useState<boolean>(false);
 
   const [header, setHeader] = useState<TTableBox>(
@@ -225,8 +230,6 @@ const Table: FC<ITable> = ({
     setTooltipRecoverLoading(false);
   };
 
-  // TODO: write cypress test (everything works in front)
-
   const handleTooltipRecoverClick = async (
     e: React.MouseEvent,
     index: number,
@@ -309,6 +312,103 @@ const Table: FC<ITable> = ({
 
       // delete loading state
       setTooltipDeleteLoading(false);
+
+      return;
+    }
+  };
+
+  const handleMultipleRecoverClick = async () => {
+    if (multipleRecoverLoading) return;
+
+    // delete loading state
+    setMultipleRecoverLoading(true);
+
+    const deleteItems: string[] = [];
+
+    for (const item in selected)
+      if (selected[item]) deleteItems.push(item);
+
+    // is deleteItems empty
+    if (!deleteItems.length) {
+      // delete loading state
+      setMultipleRecoverLoading(false);
+      return;
+    }
+
+    try {
+      await FormApi.recoverManyItem(
+        keyName,
+        deleteItems,
+      );
+
+      await isAuthAndGetSpecificForm(false, true);
+
+      // close current tooltip
+      setTooltips({});
+
+      // update countAll
+      setCountAll(
+        (countAll as number) - deleteItems.length,
+      );
+
+      // remove deleted items id and body
+      const newItemsId = [];
+      const newBody = [];
+
+      for (let i = 0; i < itemsId.length; i++) {
+        if (!deleteItems.includes(itemsId[i])) {
+          newItemsId.push(itemsId[i]);
+          newBody.push(body[i]);
+        }
+      }
+
+      setItemsId(newItemsId);
+      setBody(newBody);
+
+      // reset selected rows
+      setSelectAll(false);
+
+      const newSelected: Record<string, boolean> =
+        {};
+
+      for (const item of itemsId)
+        newSelected[item] = false;
+
+      setSelected(newSelected);
+
+      // if all data has been deleted
+      if (newBody.length === 0 && currentPage > 1)
+        setCurrentPage(currentPage - 1);
+
+      const successMessage = t(
+        "form-page-key:recover:many:success",
+      );
+
+      toast.success(successMessage);
+
+      return;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+        toast.error(errorMessage);
+
+        // delete loading state
+        setMultipleRecoverLoading(false);
+
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+
+      // delete loading state
+      setMultipleRecoverLoading(false);
 
       return;
     }
@@ -469,6 +569,8 @@ const Table: FC<ITable> = ({
         setMultipleDeleteLoading(false);
         return;
       }
+
+      console.log(deleteItems.length);
 
       const deleteItemsQuery = `${deleteItems.join(
         "=true&",
@@ -812,12 +914,15 @@ const Table: FC<ITable> = ({
     setEditIndex(null);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [currentPage, itemsId]);
 
   // reset delete many btn
   useEffect(() => {
     // delete loading state
     setMultipleDeleteLoading(false);
+
+    // recover loading state
+    setMultipleRecoverLoading(false);
   }, [selected, selectAll]);
 
   return (
@@ -866,6 +971,33 @@ const Table: FC<ITable> = ({
               </span>
               <span className="btn-delete-title">
                 {t("form-page-key:btn:delete")}
+              </span>
+            </>
+          )}
+        </button>
+
+        <button
+          className={`btn-recover${
+            Object.values(selected).some(
+              (boolean) => boolean === true,
+            ) && tooltipBtnCurrentId === 1
+              ? " btn-recover-active"
+              : ""
+          }`}
+          onClick={handleMultipleRecoverClick}
+          data-cy="table-btn-recover"
+        >
+          {multipleRecoverLoading ? (
+            <span className="btn-recover-loading">
+              <IconLoader />
+            </span>
+          ) : (
+            <>
+              <span className="btn-recover-icon">
+                <IconPlus />
+              </span>
+              <span className="btn-recover-title">
+                {t("form-page-key:btn:recover")}
               </span>
             </>
           )}
