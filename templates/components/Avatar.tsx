@@ -5,6 +5,7 @@ import React, {
 } from "react";
 import { createAvatar } from "@dicebear/core";
 import { identicon } from "@dicebear/collection";
+import HTMLReactParser from "html-react-parser";
 
 // interfaces
 import { IAvatar } from "../../utils/interfaces";
@@ -33,8 +34,9 @@ const Avatar: FC<IAvatar> = ({
       className={`avatar${
         className ? ` ${className}` : ""
       }`}
-      dangerouslySetInnerHTML={{ __html: avatar }}
-    />
+    >
+      {HTMLReactParser(avatar)}
+    </span>
   );
 };
 
