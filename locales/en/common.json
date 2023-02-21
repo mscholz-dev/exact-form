@@ -17,5 +17,8 @@
 
   "tooltip:edit": "Edit",
   "tooltip:delete": "Delete",
-  "tooltip:recover": "Recover"
+  "tooltip:recover": "Recover",
+
+  "btn:type:inbox": "Inbox",
+  "btn:type:trash": "Trash"
 }

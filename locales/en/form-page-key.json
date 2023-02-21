@@ -19,8 +19,6 @@
 
   "btn:delete": "Delete",
   "btn:edit": "Edit",
-  "btn:type:inbox": "Inbox",
-  "btn:type:trash": "Trash",
   "btn:recover": "Recover",
 
   "input:edit:ariaDescribedby": "Edit the value of",

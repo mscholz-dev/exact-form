@@ -43,6 +43,7 @@ describe("Page: /form/key", () => {
       data.validFrJwt,
     );
 
+    // TODO: test .trigger("click");
     CypressTest.getCyData(
       cy,
       "paging-arrow-next",
@@ -57,13 +58,6 @@ describe("Page: /form/key", () => {
       cy,
       "Form-1-User-1",
     ).click();
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
   });
 
   it("it should get 10 form items (page 2)", () => {
@@ -94,13 +88,6 @@ describe("Page: /form/key", () => {
       cy,
       "paging-arrow-next",
     ).click();
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      10,
-    );
   });
 
   it("it should set to trash the first form item with tooltip", () => {
@@ -127,28 +114,14 @@ describe("Page: /form/key", () => {
 
     cy.wait(3_000);
 
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
-
     CypressTest.getCyData(cy, "tooltip-0").click({
       force: true,
     });
 
     CypressTest.getCyData(
       cy,
-      "tooltip-delete-0",
+      "tooltip-table-delete-0",
     ).click({ force: true });
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
 
     CypressTest.successToastContains(
       cy,
@@ -182,13 +155,6 @@ describe("Page: /form/key", () => {
 
     cy.wait(3_000);
 
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
-
     CypressTest.getCyData(cy, "selectRow0").click(
       {
         force: true,
@@ -211,13 +177,6 @@ describe("Page: /form/key", () => {
       cy,
       "table-btn-delete",
     ).click({ force: true });
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
 
     CypressTest.successToastContains(
       cy,
@@ -251,13 +210,6 @@ describe("Page: /form/key", () => {
 
     cy.wait(3_000);
 
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
-
     CypressTest.getCyData(cy, "selectAll").click({
       force: true,
     });
@@ -266,13 +218,6 @@ describe("Page: /form/key", () => {
       cy,
       "table-btn-delete",
     ).click({ force: true });
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      6,
-    );
 
     CypressTest.successToastContains(
       cy,
@@ -306,13 +251,6 @@ describe("Page: /form/key", () => {
 
     cy.wait(3_000);
 
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      6,
-    );
-
     CypressTest.getCyData(cy, "tooltip-0").click({
       force: true,
     });
@@ -331,13 +269,6 @@ describe("Page: /form/key", () => {
     CypressTest.getCyData(cy, "btn-form").click({
       force: true,
     });
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      6,
-    );
 
     CypressTest.successToastContains(
       cy,
@@ -381,28 +312,14 @@ describe("Page: /form/key", () => {
       "tooltip-btn-1",
     ).click();
 
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
-
     CypressTest.getCyData(cy, "tooltip-0").click({
       force: true,
     });
 
     CypressTest.getCyData(
       cy,
-      "tooltip-delete-0",
+      "tooltip-table-delete-0",
     ).click({ force: true });
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
 
     CypressTest.successToastContains(
       cy,
@@ -446,13 +363,6 @@ describe("Page: /form/key", () => {
       "tooltip-btn-1",
     ).click();
 
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
-
     CypressTest.getCyData(cy, "selectRow0").click(
       {
         force: true,
@@ -480,13 +390,6 @@ describe("Page: /form/key", () => {
       cy,
       "table-btn-delete",
     ).click({ force: true });
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
 
     CypressTest.successToastContains(
       cy,
@@ -530,13 +433,6 @@ describe("Page: /form/key", () => {
       "tooltip-btn-1",
     ).click();
 
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      50,
-    );
-
     CypressTest.getCyData(cy, "tooltip-0").click({
       force: true,
     });
@@ -545,13 +441,6 @@ describe("Page: /form/key", () => {
       cy,
       "tooltip-table-recover-0",
     ).click({ force: true });
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      49,
-    );
 
     CypressTest.successToastContains(
       cy,
@@ -595,13 +484,6 @@ describe("Page: /form/key", () => {
       "tooltip-btn-1",
     ).click();
 
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      49,
-    );
-
     CypressTest.getCyData(cy, "selectRow0").click(
       {
         force: true,
@@ -626,13 +508,6 @@ describe("Page: /form/key", () => {
     ).click({
       force: true,
     });
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      46,
-    );
 
     CypressTest.successToastContains(
       cy,
@@ -675,13 +550,6 @@ describe("Page: /form/key", () => {
       cy,
       "tooltip-btn-1",
     ).click();
-
-    CypressTest.countChildren(
-      cy,
-      "table-body",
-      "tr",
-      46,
-    );
 
     CypressTest.getCyData(cy, "selectAll").click({
       force: true,

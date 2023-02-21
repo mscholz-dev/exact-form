@@ -4,11 +4,13 @@
       align-items: center;
       display: flex;
       justify-content: space-between;
+      margin-bottom: 24px;
     }
   }
 
   &-title {
-    margin-bottom: 12px;
+    margin-bottom: 24px;
+
     @include responsive(t-xs) {
       margin-bottom: 0;
     }

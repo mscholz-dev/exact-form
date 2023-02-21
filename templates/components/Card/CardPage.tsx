@@ -52,6 +52,8 @@ const CardPage: FC<ICardPage> = ({
   noDataFoundTitle,
   loading,
   isAuthAndGetAll,
+  tooltipBtnCurrentId,
+  setTooltipBtnCurrentId,
 }) => {
   const { t } = useTranslation();
 
@@ -64,6 +66,10 @@ const CardPage: FC<ICardPage> = ({
   ] = useState<boolean>(false);
   const [editLoading, setEditLoading] =
     useState<boolean>(false);
+  const [
+    tooltipRecoverLoading,
+    setTooltipRecoverLoading,
+  ] = useState<boolean>(false);
 
   const [tooltips, setTooltips] = useState<
     Record<number, boolean>
@@ -88,10 +94,6 @@ const CardPage: FC<ICardPage> = ({
     tooltipBtnLoading,
     setTooltipBtnLoading,
   ] = useState<boolean>(false);
-  const [
-    tooltipBtnCurrentId,
-    setTooltipBtnCurrentId,
-  ] = useState<number>(0);
 
   const handleTooltipBtnChoiceClick = async (
     e: SyntheticEvent,
@@ -164,14 +166,14 @@ const CardPage: FC<ICardPage> = ({
     {
       id: 0,
       icon: <IconInbox />,
-      title: t("form-page-key:btn:type:inbox"),
+      title: t("common:btn:type:inbox"),
       handleClick: handleTooltipBtnChoiceClick,
       trash: false,
     },
     {
       id: 1,
       icon: <IconTrash />,
-      title: t("form-page-key:btn:type:trash"),
+      title: t("common:btn:type:trash"),
       handleClick: handleTooltipBtnChoiceClick,
       trash: true,
     },
@@ -194,9 +196,14 @@ const CardPage: FC<ICardPage> = ({
 
     setTooltips(newTooltips);
 
+    // delete loading state
     setTooltipDeleteLoading(false);
 
+    // edit loading btn state
     setEditLoading(false);
+
+    // recover loading state
+    setTooltipRecoverLoading(false);
   };
 
   const handleTooltipEditClick = (
@@ -205,6 +212,9 @@ const CardPage: FC<ICardPage> = ({
   ) => {
     e.preventDefault();
     e.stopPropagation();
+
+    // recover view
+    if (tooltipBtnCurrentId === 1) return;
 
     // store current edit index
     setEditIndex(index);
@@ -222,10 +232,83 @@ const CardPage: FC<ICardPage> = ({
     });
   };
 
+  const handleTooltipRecoverClick = async (
+    e: React.MouseEvent,
+    index: number,
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // edit view
+    if (tooltipBtnCurrentId === 0) return;
+
+    // prevent spamming
+    if (tooltipRecoverLoading) return;
+
+    try {
+      // delete loading state
+      setTooltipRecoverLoading(true);
+
+      // not a delete with trash at false because i want a PUT method, not a DELETE
+      await FormApi.recoverForm(items[index].key);
+
+      await isAuthAndGetAll(false, true);
+
+      // close current tooltip
+      setTooltips({});
+
+      // update countAll
+      setCountAll((countAll as number) - 1);
+
+      // if all data has been deleted
+      if (
+        items.length - 1 === 0 &&
+        currentPage > 1
+      )
+        setCurrentPage(currentPage - 1);
+
+      const successMessage = t(
+        "form-page:recover:success",
+      );
+
+      toast.success(successMessage);
+
+      return;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        const errorMessage =
+          FormValidator.errorApiMessage(
+            err?.response?.data.message,
+            t,
+          );
+        toast.error(errorMessage);
+
+        // delete loading state
+        setTooltipDeleteLoading(false);
+
+        return;
+      }
+
+      // error not expected
+      console.error(err);
+      const errorMessage = t("form:error:random");
+      toast.error(errorMessage);
+
+      // delete loading state
+      setTooltipDeleteLoading(false);
+
+      return;
+    }
+  };
+
   const handleEditSubmit = async (
     e: SyntheticEvent,
   ) => {
     e.preventDefault();
+    e.stopPropagation();
+
+    // not in inbox view
+    if (tooltipBtnCurrentId === 1) return;
 
     if (
       items[editIndex as number].name ===
@@ -261,7 +344,11 @@ const CardPage: FC<ICardPage> = ({
         contentForm,
       );
 
-      await isAuthAndGetAll(false, false);
+      await isAuthAndGetAll(
+        false,
+        // already to false because can't edit in trash
+        false,
+      );
 
       // close current tooltip
       setTooltips({});
@@ -321,7 +408,11 @@ const CardPage: FC<ICardPage> = ({
       // delete loading state
       setTooltipDeleteLoading(true);
 
-      await FormApi.deleteForm(items[index].key);
+      await FormApi.deleteForm(
+        items[index].key,
+        // trash boolean
+        tooltipBtnCurrentId === 1,
+      );
 
       await isAuthAndGetAll(
         false,
@@ -342,9 +433,11 @@ const CardPage: FC<ICardPage> = ({
       )
         setCurrentPage(currentPage - 1);
 
-      const successMessage = t(
-        "form-page:delete:success",
-      );
+      const successMessage =
+        tooltipBtnCurrentId === 0
+          ? t("form-page:trash:success")
+          : t("form-page:delete:success");
+
       toast.success(successMessage);
 
       return;
@@ -410,30 +503,30 @@ const CardPage: FC<ICardPage> = ({
           currentId={tooltipBtnCurrentId}
           loading={tooltipBtnLoading}
         />
+      </article>
 
-        <Link
-          href={LinkHelper.translate(
+      <Link
+        href={LinkHelper.translate(
+          locale,
+          creationPathname,
+        )}
+        className="btn-create"
+        onClick={(e) =>
+          LinkHelper.redirect(
+            e,
+            router,
             locale,
             creationPathname,
-          )}
-          className="btn-create"
-          onClick={(e) =>
-            LinkHelper.redirect(
-              e,
-              router,
-              locale,
-              creationPathname,
-            )
-          }
-        >
-          <span className="btn-create-icon">
-            <IconPlus />
-          </span>
-          <span className="btn-create-title">
-            {createTitle}
-          </span>
-        </Link>
-      </article>
+          )
+        }
+      >
+        <span className="btn-create-icon">
+          <IconPlus />
+        </span>
+        <span className="btn-create-title">
+          {createTitle}
+        </span>
+      </Link>
 
       <article
         className={`card-page-items${
@@ -498,6 +591,15 @@ const CardPage: FC<ICardPage> = ({
                     tooltips={tooltips}
                     tooltipDeleteLoading={
                       tooltipDeleteLoading
+                    }
+                    tooltipBtnCurrentId={
+                      tooltipBtnCurrentId
+                    }
+                    handleTooltipRecoverClick={
+                      handleTooltipRecoverClick
+                    }
+                    recoverLoading={
+                      tooltipRecoverLoading
                     }
                   />
                 ),

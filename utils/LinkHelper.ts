@@ -1,4 +1,5 @@
 import type { NextRouter } from "next/router";
+import { SyntheticEvent } from "react";
 
 export default class LinkHelper {
   translate(
@@ -99,5 +100,11 @@ export default class LinkHelper {
     this.hidePageTransition();
 
     setTimeout(() => router.reload(), 1_000);
+  }
+
+  preventDefault(e: SyntheticEvent): void {
+    e.preventDefault();
+    e.stopPropagation();
+    return;
   }
 }

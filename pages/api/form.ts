@@ -100,9 +100,12 @@ export default class FormApi {
       .then((res) => res);
   }
 
-  static async deleteForm(key: string) {
+  static async deleteForm(
+    key: string,
+    trash: boolean,
+  ) {
     return await api
-      .delete(`/form/${key}`, {
+      .delete(`/form/${key}?trash=${trash}`, {
         headers: {
           accept: "application/json",
         },
@@ -148,6 +151,20 @@ export default class FormApi {
       .put(
         `form/${key}/recover`,
         { ids },
+        {
+          headers: {
+            accept: "application/json",
+          },
+        },
+      )
+      .then((res) => res);
+  }
+
+  static async recoverForm(key: string) {
+    return await api
+      .put(
+        `/form/recover`,
+        { key },
         {
           headers: {
             accept: "application/json",

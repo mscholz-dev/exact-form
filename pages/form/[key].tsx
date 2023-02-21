@@ -91,7 +91,7 @@ const FormKey: FC<IFormKey> = ({ locale }) => {
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [currentPage, tooltipBtnCurrentId]);
 
   return (
     <Page

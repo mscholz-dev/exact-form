@@ -25,6 +25,9 @@ const CardForm: FC<ICardForm> = ({
   tooltips,
   index,
   tooltipDeleteLoading,
+  tooltipBtnCurrentId,
+  handleTooltipRecoverClick,
+  recoverLoading,
 }) => {
   const { t } = useTranslation();
 
@@ -39,16 +42,23 @@ const CardForm: FC<ICardForm> = ({
         ),
         query: { key: keyName },
       }}
-      className="card-form"
+      className={`card-form${
+        tooltipBtnCurrentId === 1
+          ? " card-form-no-hover"
+          : ""
+      }`}
       data-cy={name.replaceAll(" ", "-")}
-      onClick={(e) =>
-        LinkHelper.redirect(
-          e,
-          router,
-          locale,
-          "form/[key]",
-          { name: "key", value: keyName },
-        )
+      onClick={
+        tooltipBtnCurrentId === 0
+          ? (e) =>
+              LinkHelper.redirect(
+                e,
+                router,
+                locale,
+                "form/[key]",
+                { name: "key", value: keyName },
+              )
+          : (e) => LinkHelper.preventDefault(e)
       }
     >
       <span className="card-form-header">
@@ -70,15 +80,27 @@ const CardForm: FC<ICardForm> = ({
           <Tooltip
             index={index}
             open={tooltips[index]}
-            handleEditClick={(e) =>
-              handleTooltipEditClick(e, index)
+            handleEditClick={
+              tooltipBtnCurrentId === 0
+                ? (e) =>
+                    handleTooltipEditClick(
+                      e,
+                      index,
+                    )
+                : (e) =>
+                    handleTooltipRecoverClick(
+                      e,
+                      index,
+                    )
             }
             handleDeleteClick={(e) =>
               handleTooltipDeleteClick(e, index)
             }
             deleteLoading={tooltipDeleteLoading}
-            tooltipBtnCurrentId={0}
-            recoverLoading={false}
+            tooltipBtnCurrentId={
+              tooltipBtnCurrentId
+            }
+            recoverLoading={recoverLoading}
           />
         </span>
       </span>

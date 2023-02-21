@@ -196,14 +196,14 @@ const Table: FC<ITable> = ({
     {
       id: 0,
       icon: <IconInbox />,
-      title: t("form-page-key:btn:type:inbox"),
+      title: t("common:btn:type:inbox"),
       handleClick: handleTooltipBtnChoiceClick,
       trash: false,
     },
     {
       id: 1,
       icon: <IconTrash />,
-      title: t("form-page-key:btn:type:trash"),
+      title: t("common:btn:type:trash"),
       handleClick: handleTooltipBtnChoiceClick,
       trash: true,
     },
@@ -234,6 +234,7 @@ const Table: FC<ITable> = ({
     e: React.MouseEvent,
     index: number,
   ) => {
+    e.preventDefault();
     e.stopPropagation();
 
     // edit view
@@ -418,6 +419,7 @@ const Table: FC<ITable> = ({
     e: React.MouseEvent,
     index: number,
   ) => {
+    e.preventDefault();
     e.stopPropagation();
 
     // recover view
@@ -466,6 +468,7 @@ const Table: FC<ITable> = ({
     e: React.MouseEvent,
     index: number,
   ): Promise<void> => {
+    e.preventDefault();
     e.stopPropagation();
 
     if (tooltipDeleteLoading) return;
@@ -569,8 +572,6 @@ const Table: FC<ITable> = ({
         setMultipleDeleteLoading(false);
         return;
       }
-
-      console.log(deleteItems.length);
 
       const deleteItemsQuery = `${deleteItems.join(
         "=true&",

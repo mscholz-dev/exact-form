@@ -40,6 +40,12 @@ const Form: FC<IForm> = ({ locale }) => {
   const [currentPage, setCurrentPage] =
     useState<number>(1);
 
+  // form view
+  const [
+    tooltipBtnCurrentId,
+    setTooltipBtnCurrentId,
+  ] = useState<number>(0);
+
   const isAuthAndGetAll = async (
     startLoading: boolean,
     trash: boolean,
@@ -70,10 +76,17 @@ const Form: FC<IForm> = ({ locale }) => {
   };
 
   useEffect(() => {
-    isAuthAndGetAll(true, false);
+    isAuthAndGetAll(
+      true,
+      // trash boolean
+      tooltipBtnCurrentId === 1,
+    );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [
+    currentPage, // trash boolean
+    tooltipBtnCurrentId,
+  ]);
 
   return (
     <Page
@@ -99,6 +112,10 @@ const Form: FC<IForm> = ({ locale }) => {
         )}
         loading={loading}
         isAuthAndGetAll={isAuthAndGetAll}
+        tooltipBtnCurrentId={tooltipBtnCurrentId}
+        setTooltipBtnCurrentId={
+          setTooltipBtnCurrentId
+        }
       />
     </Page>
   );

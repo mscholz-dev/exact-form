@@ -17,5 +17,8 @@
 
   "tooltip:edit": "Modifier",
   "tooltip:delete": "Supprimer",
-  "tooltip:recover": "Récuperer"
+  "tooltip:recover": "Récuperer",
+
+  "btn:type:inbox": "Boite",
+  "btn:type:trash": "Poubelle"
 }

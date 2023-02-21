@@ -67,7 +67,7 @@ const TooltipTable: FC<ITooltipTable> = ({
             onClick={(e) =>
               handleDeleteClick(e, index)
             }
-            data-cy={`tooltip-delete-${index}`}
+            data-cy={`tooltip-table-delete-${index}`}
           >
             {deleteLoading ? (
               <span className="tooltip-table-modal-btn-delete-loading">

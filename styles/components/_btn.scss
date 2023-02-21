@@ -136,7 +136,7 @@
 
   &-create {
     @extend %btn;
-    height: 36px;
+    height: 38px;
     padding: 0 12px;
     width: auto;
 
@@ -167,6 +167,7 @@
 
     @include responsive(t-xs) {
       margin-top: 0;
+      width: calc(50% - 12px - 24px);
     }
   }
 

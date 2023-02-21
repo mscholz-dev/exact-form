@@ -177,4 +177,38 @@
   &-owner {
     @include ellipsis;
   }
+
+  &-no-hover {
+    cursor: default;
+
+    &:hover {
+      background: $primary-color;
+
+      span {
+        color: $white;
+      }
+
+      .card-form {
+        &-title {
+          color: $white;
+        }
+
+        &-container {
+          &:after {
+            background: $white;
+          }
+        }
+      }
+
+      .tooltip-table {
+        &-dot {
+          &-one,
+          &-two,
+          &-three {
+            background: $white;
+          }
+        }
+      }
+    }
+  }
 }

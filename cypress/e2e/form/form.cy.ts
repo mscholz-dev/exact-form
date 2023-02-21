@@ -127,7 +127,7 @@ describe("Page: /form", () => {
 
     CypressTest.getCyData(
       cy,
-      "tooltip-delete-0",
+      "tooltip-table-delete-0",
     ).click();
 
     CypressTest.countChildren(
@@ -140,6 +140,40 @@ describe("Page: /form", () => {
     CypressTest.successToastContains(
       cy,
       0,
+      "trash:success",
+      formPageTranslations,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn-1",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "article",
+      "a",
+      1,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-0",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-table-delete-0",
+    ).click();
+
+    CypressTest.successToastContains(
+      cy,
+      1,
       "delete:success",
       formPageTranslations,
     );
@@ -188,6 +222,79 @@ describe("Page: /form", () => {
       0,
       "edit:success",
       formPageTranslations,
+    );
+  });
+
+  it("it should set to trash to the first form and recover this one", () => {
+    CypressTest.setCookie(
+      cy,
+      "user",
+      data.validFrJwt,
+    );
+
+    CypressTest.countChildren(
+      cy,
+      "article",
+      "a",
+      8,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-0",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-table-delete-0",
+    ).click();
+
+    CypressTest.successToastContains(
+      cy,
+      0,
+      "trash:success",
+      formPageTranslations,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-btn-1",
+    ).click();
+
+    CypressTest.countChildren(
+      cy,
+      "article",
+      "a",
+      1,
+    );
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-0",
+    ).click();
+
+    CypressTest.getCyData(
+      cy,
+      "tooltip-table-recover-0",
+    ).click();
+
+    CypressTest.successToastContains(
+      cy,
+      1,
+      "recover:success",
+      formPageTranslations,
+    );
+
+    CypressTest.countChildren(
+      cy,
+      "article",
+      "a",
+      0,
     );
   });
 });

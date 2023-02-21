@@ -10,8 +10,10 @@
 
   "noDataFound:title": "No form found, create in one now!",
 
+  "trash:success": "Form moved into trash",
   "delete:success": "Form deleted",
   "edit:success": "Form edited",
+  "recover:success": "Form moved into inbox",
 
   "modal:title": "EDIT MY FORM",
   "modal:btn:edit": "EDIT",

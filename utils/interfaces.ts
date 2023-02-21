@@ -147,6 +147,10 @@ export interface ICardPage {
     startLoading: boolean,
     trash: boolean,
   ) => Promise<void>;
+  tooltipBtnCurrentId: number;
+  setTooltipBtnCurrentId: Dispatch<
+    SetStateAction<number>
+  >;
 }
 
 export interface ICardForm {
@@ -171,6 +175,12 @@ export interface ICardForm {
   tooltips: Record<number, boolean>;
   index: number;
   tooltipDeleteLoading: boolean;
+  tooltipBtnCurrentId: number;
+  handleTooltipRecoverClick: (
+    e: React.MouseEvent,
+    index: number,
+  ) => void;
+  recoverLoading: boolean;
 }
 
 export interface IFormKey {
