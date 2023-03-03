@@ -6,14 +6,14 @@
 
   "card:owner": "Propriétaire",
   "card:timezone": "Fuseau",
-  "card:items": "Boîte",
+  "card:items": "Boite",
 
   "noDataFound:title": "Auncun formulaire trouvé, créer en un dès maintenant!",
 
   "trash:success": "Formulaire placée dans la poubelle",
   "delete:success": "Formulaire supprimé",
   "edit:success": "Formulaire modifié",
-  "recover:success": "Formulaire déplacée dans la boîte",
+  "recover:success": "Formulaire déplacée dans la boite",
 
   "modal:title": "MODIFIER MON FORMULAIRE",
   "modal:btn:edit": "MODIFIER",
