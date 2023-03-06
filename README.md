@@ -7,6 +7,6 @@ interface: we’ll get back to this later; it isn’t required by Cypress, but w
 support: this is where we will write our custom commands with TypeScript
 tasks: this is where we will write our custom tasks
 
-21
+22
 
 git add . && git commit -m "update" && git push
