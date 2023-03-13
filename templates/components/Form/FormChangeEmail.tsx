@@ -114,9 +114,12 @@ const FormChangeEmail: FC<IFormChangeEmail> = ({
   return (
     <FormPage>
       <>
-        <h1 className="form-page-title form-page-title-margin">
+        <h1 className="form-page-title">
           {t("change-email:form:title")}
         </h1>
+        <p className="form-page-subtitle">
+          {t("form:subtitle:mandatory")}
+        </p>
 
         <form
           method="PUT"
