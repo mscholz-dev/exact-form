@@ -14,8 +14,8 @@
   "delete:success": "Ligne supprimée",
   "delete:many:success": "Lignes sélectionnées supprimées",
   "edit:success": "Ligne modifiée",
-  "recover:success": "Ligne déplacée dans la boîte",
-  "recover:many:success": "Lignes sélectionnées déplacer dans la boîte",
+  "recover:success": "Ligne déplacée dans la boite",
+  "recover:many:success": "Lignes sélectionnées déplacer dans la boite",
 
   "btn:delete": "Supprimer",
   "btn:edit": "Modifier",
