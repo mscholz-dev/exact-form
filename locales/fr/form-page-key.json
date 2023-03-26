@@ -9,8 +9,8 @@
 
   "noDataFound:title": "Aucune requête trouvée",
 
-  "trash:success": "Ligne placée dans la poubelle",
-  "trash:many:success": "Lignes sélectionnées déplacée dans la poubelle",
+  "trash:success": "Ligne placée dans la corbeille",
+  "trash:many:success": "Lignes sélectionnées déplacée dans la corbeille",
   "delete:success": "Ligne supprimée",
   "delete:many:success": "Lignes sélectionnées supprimées",
   "edit:success": "Ligne modifiée",

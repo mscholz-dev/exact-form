@@ -151,8 +151,8 @@
   "sameData:data": "Les données doivent être différentes",
   "sameData:nameOrTimezone": "Les champs Nom ou Fuseau horaire doivent être différents",
 
-  "update:trash:forbidden": "Vous ne pouvez pas modifier dans la poubelle",
-  "delete:trash:forbidden": "Vous ne pouvez pas supprimer en dehors de la poubelle",
+  "update:trash:forbidden": "Vous ne pouvez pas modifier dans la corbeille",
+  "delete:trash:forbidden": "Vous ne pouvez pas supprimer en dehors de la corbeille",
 
   "trash:required": "Les paramètres de la requêtes sont incomplets",
   "trash:invalid": "Les paramètres de la requêtes sont invalides"

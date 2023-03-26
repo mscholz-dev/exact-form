@@ -10,7 +10,7 @@
 
   "noDataFound:title": "Auncun formulaire trouvé, créer en un dès maintenant!",
 
-  "trash:success": "Formulaire placée dans la poubelle",
+  "trash:success": "Formulaire placée dans la corbeille",
   "delete:success": "Formulaire supprimé",
   "edit:success": "Formulaire modifié",
   "recover:success": "Formulaire déplacée dans la boite",
