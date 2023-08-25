@@ -1,22 +1,15 @@
-import React, { FC } from "react";
-import IconChevron from "../../public/icons/chevron.svg";
+import React, { FC } from 'react';
+import IconChevron from '../../public/icons/chevron.svg';
 
 // interfaces
-import { IPaging } from "../../utils/interfaces";
+import { IPaging } from '../../utils/interfaces';
 
 // types
-import { TPagingArray } from "../../utils/types";
+import { TPagingArray } from '../../utils/types';
 
-const Paging: FC<IPaging> = ({
-  max,
-  current,
-  setCurrent,
-}) => {
+const Paging: FC<IPaging> = ({ max, current, setCurrent }) => {
   // function generate with chat gpt
-  const paging = (
-    max: number,
-    current: number,
-  ): Array<TPagingArray> => {
+  const paging = (max: number, current: number): Array<TPagingArray> => {
     const pageWindow = 2;
     let startPage = current - pageWindow;
     let endPage = current + pageWindow;
@@ -29,11 +22,7 @@ const Paging: FC<IPaging> = ({
     if (endPage > max) endPage = max;
 
     const array = [];
-    for (
-      let i = startPage - 1;
-      i < endPage;
-      i++
-    ) {
+    for (let i = startPage - 1; i < endPage; i++) {
       array.push({
         id: i,
         number: i + 1,
@@ -47,7 +36,7 @@ const Paging: FC<IPaging> = ({
   const scrollTop = (): void =>
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
 
   const handlePrevArrow = (): void => {
@@ -73,36 +62,26 @@ const Paging: FC<IPaging> = ({
         <div className="paging">
           <button
             className={`paging-arrow-prev${
-              current === 1
-                ? " paging-disabled"
-                : ""
+              current === 1 ? ' paging-disabled' : ''
             }`}
             onClick={handlePrevArrow}
           >
             <IconChevron />
           </button>
 
-          {paging(max, current).map(
-            ({ id, number, current }) => (
-              <button
-                key={id}
-                className={`paging-item${
-                  current ? " paging-current" : ""
-                }`}
-                onClick={() =>
-                  handleNumber(number)
-                }
-              >
-                {number}
-              </button>
-            ),
-          )}
+          {paging(max, current).map(({ id, number, current }) => (
+            <button
+              key={id}
+              className={`paging-item${current ? ' paging-current' : ''}`}
+              onClick={() => handleNumber(number)}
+            >
+              {number}
+            </button>
+          ))}
 
           <button
             className={`paging-arrow-next${
-              current === max
-                ? " paging-disabled"
-                : ""
+              current === max ? ' paging-disabled' : ''
             }`}
             onClick={handleNextArrow}
             data-cy="paging-arrow-next"
