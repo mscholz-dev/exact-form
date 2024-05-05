@@ -46,7 +46,7 @@ const Index: FC<IIndex> = ({ locale }) => {
           lineHeight: "normal",
         }}
       >
-        La page d'accueil n'est pas stylisé, le reste des pages et
+        La page d&apos;accueil n'est pas stylisé, le reste des pages et
         fonctionnalités sont disponibles,{" "}
         <u>tester de vous créer un compte !</u>
       </h1>
